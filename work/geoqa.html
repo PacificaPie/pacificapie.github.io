@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="GeoQA — Case Study" data-zh="GeoQA — 案例">GeoQA — Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block">
+        <span class="lang-en">case study · multimodal RL</span>
+        <span class="lang-zh">案例研究 · 多模态强化学习</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">GeoQA — When Strong SFT Kills the GRPO Gradient</span>
+        <span class="lang-zh">GeoQA —— 强 SFT 之后 GRPO 为什么不动了</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">
+          March – April 2026 &nbsp;·&nbsp;
+          Yale CS team project (3 authors) &nbsp;·&nbsp;
+          <a href="https://github.com/PacificaPie/vlm" target="_blank" rel="noopener">github.com/PacificaPie/vlm</a>
+        </span>
+        <span class="lang-zh">
+          2026 年 3–4 月 &nbsp;·&nbsp;
+          耶鲁 CS 三人组队项目 &nbsp;·&nbsp;
+          <a href="https://github.com/PacificaPie/vlm" target="_blank" rel="noopener">github.com/PacificaPie/vlm</a>
+        </span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">73.4 → 80.2%</span>
+        <span class="stat-label">
+          <span class="lang-en">test accuracy</span>
+          <span class="lang-zh">测试集准确率</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">+6.8 pts</span>
+        <span class="stat-label">
+          <span class="lang-en">over zero-shot</span>
+          <span class="lang-zh">相对 zero-shot</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">33.5%</span>
+        <span class="stat-label">
+          <span class="lang-en">retained for GRPO</span>
+          <span class="lang-zh">GRPO 保留比例</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">1× A100</span>
+        <span class="stat-label">
+          <span class="lang-en">single GPU</span>
+          <span class="lang-zh">单卡完成</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          Geometry word problems with diagrams are a hard test for vision-language models.
+          A solver has to read the question, look at the figure, identify which marks matter
+          (right-angle ticks, parallel arrows, congruence indicators), and chain a sequence of
+          theorem-based deductions to a single multiple-choice answer. Traditional OCR-then-LLM
+          pipelines lose most of the visual grammar; even strong general-purpose VLMs underperform.
+        </p>
+
+        <p>
+          We worked on the GeoQA benchmark — 3,509 training and 755 test
+          Chinese middle-school geometry problems, each with a diagram and four options.
+          Our backbone was InternVL3-8B. The question was whether a two-stage SFT + RL recipe
+          could give us meaningful gains, on a single A100.
+        </p>
+
+        <h2>Stage 1 — two-phase SFT</h2>
+
+        <p>
+          We fine-tuned with LoRA in two phases: a 200-step <em>visual warmup</em> with the
+          language backbone frozen (so the projector and ViT could stabilize without being
+          dragged around by the LLM's evolving preferences), followed by 3 epochs of joint
+          LoRA SFT on the LLM together with ViT and projector.
+        </p>
+
+        <p>
+          That alone got us from 73.4% → 79.3% — a typical SFT gain. The interesting story
+          is what happened next.
+        </p>
+
+        <h2>Stage 2 — and the failure that named itself</h2>
+
+        <p>
+          We layered GRPO on top with an outcome-based reward
+          (format + answer correctness, weighted 1:2) and a KL term against the SFT reference.
+          The first run did exactly nothing.
+        </p>
+
+        <p>
+          Mean training reward at step 0 was already <strong>≈ 3.0</strong> — the maximum
+          attainable. The SFT policy was already answering the majority of training prompts
+          correctly and in-format on every one of the K = 4 rollouts. Within each group,
+          all four rollouts earned the same reward. Within-group standard deviation went to zero.
+          Group-relative advantage went to zero. The policy gradient identically vanished.
+        </p>
+
+        <blockquote>
+          <em>Reward saturation:</em> a property of the joint distribution of policy and data
+          that arises whenever a strong imitation prior is followed by outcome-based RL on the
+          same prompts.
+        </blockquote>
+
+        <p>
+          We named it. It's not specific to geometry, or to multimodal inputs.
+          The better the SFT, the more tightly the group-relative advantage concentrates around zero.
+          The diagnostic axis isn't the magnitude of the reward but its <em>variance</em>.
+        </p>
+
+        <h2>Pass@K, repurposed</h2>
+
+        <p>
+          Pass@K is a metric from code generation: out of K samples, did at least one solve the problem?
+          We took it and used it for something else entirely: a one-shot, training-time data-selection rule.
+        </p>
+
+        <p>
+          For every prompt in the GeoQA training set, we drew K = 8 stochastic rollouts from
+          the SFT policy and computed the empirical pass rate <code>p̂(v, q)</code>.
+          Three buckets fell out cleanly:
+        </p>
+
+        <ul>
+          <li><strong>Always correct</strong> (<code>p̂ = 1</code>): 2,195 prompts (62.6%).
+            These contribute no gradient — every rollout earns max reward.</li>
+          <li><strong>Always wrong</strong> (<code>p̂ = 0</code>): 139 prompts (4.0%).
+            Almost no rollout group will contain a correct sample; signal is noisy.</li>
+          <li><strong>Uncertain</strong> (<code>0 &lt; p̂ &lt; 1</code>): <strong>1,175 prompts (33.5%)</strong>.
+            Every group is expected to contain a mix — variance is restored by construction.</li>
+        </ul>
+
+        <p>
+          We retained only the uncertain bucket. Mean reward at step 0 dropped from 3.0 to 1.75 —
+          confirming that variance was actually back. GRPO on the filtered subset reached
+          <strong>80.2%</strong>, +0.9 over SFT and +6.8 over zero-shot.
+        </p>
+
+        <div class="pull-quote-block purple">
+          The diagnostic axis isn't the magnitude of the reward — it's its variance.
+        </div>
+
+        <h2>What I owned</h2>
+
+        <p>
+          On a three-person team, I owned the data pipeline (loading and chunking GeoQA-cot,
+          tokenization with the InternVL chat template), the reward design (format + answer
+          extraction with a Chinese-text fallback for malformed tags, the 1:2 weighting), and
+          the Pass@K filtering experiments themselves — running the K = 8 sweep, building the
+          three buckets, and validating that the filtered training set actually unblocked GRPO.
+          I co-authored the technical report.
+        </p>
+
+        <h2>Why I think this matters for product strategy</h2>
+
+        <p>
+          The interesting transferable lesson isn't &ldquo;Pass@K filtering improves RL.&rdquo;
+          It's that an evaluation system can pass every check and still be silently broken if
+          you don't think about <em>variance</em>, not just <em>magnitude</em>. A reward signal
+          with zero variance is, mathematically, no signal at all. A KPI that everyone is already
+          maxing out is, behaviorally, no KPI at all.
+        </p>
+
+        <p>
+          A lot of strategy product work — pricing experiments, ranking algorithm A/Bs,
+          recommendation-engine evaluations — has the same shape. If you only watch the
+          headline metric, you can be staring at &ldquo;saturation&rdquo; and not know it.
+          Watching the dispersion is the work.
+        </p>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          带图的几何题对视觉语言模型来说是个 stress test。模型需要读题、看图、识别哪些标记是关键的
+          （直角符号、平行箭头、全等记号），然后串起一连串基于几何定理的推导，得到一个选项。
+          传统 OCR + LLM 链路丢掉了大部分视觉语法；即便是强力通用 VLM，在这类题上也明显低于平均。
+        </p>
+
+        <p>
+          我们在 GeoQA 基准上做实验 —— 3,509 道训练题、755 道测试题的中文初中几何选择题，每题配一张图。
+          基座是 InternVL3-8B。研究问题是：在单卡 A100 上，两阶段 SFT + RL 这套配方能不能拿到有意义的提升。
+        </p>
+
+        <h2>第一阶段 —— 两阶段 SFT</h2>
+
+        <p>
+          我们用 LoRA 分两阶段微调：先做 200 步的<em>视觉 warmup</em>（冻住 LLM，让 projector 和 ViT
+          能在不被 LLM 变化"拽走"的情况下稳定下来），再做 3 个 epoch 的联合 SFT，LLM 加上 LoRA 一起训练。
+        </p>
+
+        <p>
+          单做这一步就把准确率从 73.4% 推到 79.3% —— SFT 的常规收益。真正有意思的是后面发生的事。
+        </p>
+
+        <h2>第二阶段 —— 一种自己起了名字的失败</h2>
+
+        <p>
+          我们在 SFT 上叠加 GRPO，用 outcome-based reward（格式 + 答对，1:2 加权），加 KL 正则到 SFT 参考。
+          第一次跑完，啥也没动。
+        </p>
+
+        <p>
+          训练第 0 步的平均 reward 已经是 <strong>≈ 3.0</strong> —— 上限。
+          SFT 策略已经在大多数训练 prompt 上、4 次 rollout 都答对且格式合规。
+          组内 4 次 rollout 拿到一样的 reward，组内标准差为 0，
+          group-relative advantage 全部归零，policy gradient 恒为 0。
+        </p>
+
+        <blockquote>
+          <em>Reward Saturation：</em>这是 policy 与 data 联合分布的一种性质，
+          只要"强模仿先验 + 同一批 prompt 上的 outcome-based RL"这个组合出现，它就会出现。
+        </blockquote>
+
+        <p>
+          我们给它起了名字。这件事不只属于几何题，也不只属于多模态。
+          SFT 越强，组内 advantage 越紧地堆在 0 附近。
+          诊断这件事的轴不是 reward 的<em>大小</em>，是 reward 的<em>方差</em>。
+        </p>
+
+        <h2>把 Pass@K 借过来当筛选器</h2>
+
+        <p>
+          Pass@K 本来是代码生成评估指标：K 次采样里至少有一次答对就算通过。
+          我们把它拿过来做了完全不同的事 —— 一次性的、训练时的数据筛选规则。
+        </p>
+
+        <p>
+          对训练集每个 prompt，从 SFT 策略采 K = 8 次，计算经验通过率 <code>p̂(v, q)</code>，
+          数据自然分成三桶：
+        </p>
+
+        <ul>
+          <li><strong>始终答对</strong>（<code>p̂ = 1</code>）：2,195 题 (62.6%)。
+            这部分 prompt 不再贡献梯度 —— 每次 rollout 都拿到上限 reward。</li>
+          <li><strong>始终答错</strong>（<code>p̂ = 0</code>）：139 题 (4.0%)。
+            一组 4 次 rollout 几乎不可能出现至少一次答对，信号噪声大。</li>
+          <li><strong>不确定</strong>（<code>0 &lt; p̂ &lt; 1</code>）：<strong>1,175 题 (33.5%)</strong>。
+            每组都期望出现 mix，方差天然非零。</li>
+        </ul>
+
+        <p>
+          我们只保留"不确定"那一桶。GRPO 第 0 步的平均 reward 从 3.0 掉到 1.75 ——
+          方差确实回来了。在筛选后的训练集上跑 GRPO，准确率到 <strong>80.2%</strong>，
+          相对 SFT +0.9，相对 zero-shot +6.8。
+        </p>
+
+        <div class="pull-quote-block purple">
+          诊断 reward 健不健康，不要看大小，要看方差。
+        </div>
+
+        <h2>我具体做了什么</h2>
+
+        <p>
+          三人团队里，我负责数据 pipeline（GeoQA-cot 的加载和切分、按 InternVL chat template 做 tokenization）、
+          reward 设计（格式判断 + 答案提取 + 中文文本 fallback 应对 tag 出错、1:2 加权），
+          以及 Pass@K 筛选的实验本身（K = 8 的扫描、三桶划分、以及验证筛后训练集是真的能让 GRPO 重新动起来）。
+          论文部分我也参与了撰写。
+        </p>
+
+        <h2>这件事和策略产品有什么关系</h2>
+
+        <p>
+          这个项目里我觉得最值得带走的不是"Pass@K 筛选能改善 RL"这个具体结论，
+          而是这件事：一个评估体系可以指标全绿，但在你不去看<em>方差</em>只看<em>大小</em>的时候，
+          它已经悄悄失效了。一个方差为 0 的 reward 信号，数学上等于没信号；
+          一个所有人都已经打满的 KPI，行为上等于没 KPI。
+        </p>
+
+        <p>
+          策略产品里很多事情结构都一模一样 —— 定价实验、排序算法 A/B、推荐系统的评估。
+          如果你只盯着 headline metric，你可能正在盯着 saturation 而不自知。
+          看分布、看方差，本身才是工作。
+        </p>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

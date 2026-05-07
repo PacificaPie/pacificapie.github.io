@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="The Translation Layer Is the Product" data-zh="翻译层才是产品">The Translation Layer Is the Product</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block blue">
+        <span class="lang-en">writing · product · ai</span>
+        <span class="lang-zh">写作 · 产品 · AI</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">The Translation Layer Is the Product</span>
+        <span class="lang-zh">翻译层才是产品</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">
+          May 2026 &nbsp;·&nbsp; ~ 7 min read &nbsp;·&nbsp;
+          a postmortem on <a href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">VibeSearch</a>
+        </span>
+        <span class="lang-zh">
+          2026 年 5 月 &nbsp;·&nbsp; 阅读约 7 分钟 &nbsp;·&nbsp;
+          <a href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">VibeSearch</a> 项目复盘
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <p>
+          A few weeks ago I shipped a small thing: a chatbot that takes a free-form sentence
+          like <em>"something for crying in a Honda Civic at 11pm"</em> and recommends songs.
+          I called it VibeSearch. The pipeline is unglamorous — Spotify open data, fuzzy
+          matching, ChromaDB, a LangChain RAG loop, a Streamlit demo. Nothing in it is novel.
+        </p>
+
+        <p>
+          But there's one piece of it I keep thinking about, because I think it's the actual
+          product. And it's the piece that almost didn't happen, because it didn't look like
+          AI work.
+        </p>
+
+        <h2>The product gap that started everything</h2>
+
+        <p>
+          The user-side observation was simple. People do not describe music using
+          <code>energy = 0.9, valence = 0.2, danceability = 0.4</code>. They describe music
+          like: &ldquo;road trip in October,&rdquo; &ldquo;the kind of sad I want to wallow in,&rdquo;
+          &ldquo;something Frank Ocean–coded.&rdquo; Spotify's API exposes the first kind of vocabulary;
+          the user only speaks the second.
+        </p>
+
+        <p>
+          Most of the existing &ldquo;mood-based&rdquo; recommenders cheat their way around this
+          by hand-curating playlists for a small number of moods (&ldquo;Happy,&rdquo; &ldquo;Sad,&rdquo;
+          &ldquo;Workout&rdquo;). That works until you say &ldquo;crying in a Civic at 11pm,&rdquo; and the
+          system has nothing to do but pick the closest of the seven labels it knows about.
+        </p>
+
+        <p>
+          The interesting question, the one I built the project around, was:
+          how do we get a vector retriever to actually meet the user halfway?
+        </p>
+
+        <h2>Pretending it's an embedding problem</h2>
+
+        <p>
+          The first instinct — and I went here too — is to say: it's a vector-similarity problem.
+          Embed the user's query. Embed each song's metadata. Cosine the two. Done.
+        </p>
+
+        <p>
+          This <em>almost</em> works. It works well enough that the demo isn't embarrassing.
+          But it has a quiet failure mode: when you embed
+          <code>{title: "...", artist: "...", energy: 0.9, valence: 0.2}</code> as text,
+          the model is given a row of a CSV. There is no story in it. The numbers are floating
+          tokens with no semantic gravity. The retriever is doing its best, but you're asking it
+          to read a spreadsheet and feel something.
+        </p>
+
+        <h2>The translation layer</h2>
+
+        <p>
+          The thing that actually changed the demo from &ldquo;cute&rdquo; to
+          &ldquo;oh, it gets it&rdquo; was not the retriever, the LLM, or the prompt. It was
+          a tiny rule engine — maybe 80 lines of code — that translated the numerical features
+          into natural-language descriptors before they ever hit the embedder.
+        </p>
+
+        <p>
+          So <code>energy = 0.9</code> doesn't get embedded as &ldquo;energy 0.9.&rdquo;
+          It gets embedded as <em>&ldquo;high-energy, intense, driving, kinetic.&rdquo;</em>
+          <code>valence = 0.2</code> doesn't get embedded as &ldquo;valence 0.2.&rdquo; It becomes
+          <em>&ldquo;melancholy, downcast, somber.&rdquo;</em> Multiply across the seven Spotify
+          features and each song now has a paragraph the embedder can actually read.
+        </p>
+
+        <p>
+          That paragraph is the same vocabulary the user is using. The retrieval gap closes
+          because we did the translation work for it.
+        </p>
+
+        <div class="pull-quote-block blue">
+          The product wasn't the AI. The product was the bilingual dictionary.
+        </div>
+
+        <h2>Why I think this is a PM artifact, not an engineering one</h2>
+
+        <p>
+          Here's the part I want to make a bigger claim about.
+        </p>
+
+        <p>
+          The translation layer required exactly zero machine learning. It was a lookup table.
+          You could build it by hand in an afternoon — <em>if you knew which descriptors mattered.</em>
+          And that &ldquo;if&rdquo; is the entire job.
+        </p>
+
+        <p>
+          To write the rule from <code>energy = 0.9</code> to
+          <em>&ldquo;intense, driving, kinetic&rdquo;</em>, you have to know
+          (a) how users actually talk about high-energy music, (b) which of the synonyms a
+          retriever will treat as semantic neighbors, and (c) which of those synonyms have
+          enough specificity to discriminate. That's a vocabulary-design problem.
+          It is not an engineering problem. It is a <em>product spec</em>.
+        </p>
+
+        <p>
+          A PM who writes that spec well makes the engineering trivial. A PM who waves
+          their hand at it and says &ldquo;the model will figure it out&rdquo; gets a system
+          that returns the same five sad songs to every melancholy query, and nobody on
+          the team can explain why.
+        </p>
+
+        <h2>Three things I'd argue from this</h2>
+
+        <h3>1. Most &ldquo;AI&rdquo; problems are translation problems in disguise.</h3>
+
+        <p>
+          Search systems, ranking systems, recommendation systems — they all live or die on
+          whether the system's internal vocabulary matches the user's. Embeddings, transformers,
+          LLMs are how we cross the gap. <em>What the gap is</em> is a question for whoever
+          understands both vocabularies. That tends to be the PM.
+        </p>
+
+        <h3>2. The smartest part of the spec is usually the smallest.</h3>
+
+        <p>
+          The translation rule engine is 80 lines. The Spotify ingestion pipeline is 600.
+          The RAG retrieval loop is 150. By line count, the rule engine is invisible.
+          By product impact, it's the entire reason the demo doesn't feel hollow.
+          When you write specs, look for the small surfaces with disproportionate leverage.
+        </p>
+
+        <h3>3. Build it once before you spec it for the third time.</h3>
+
+        <p>
+          I would not have spotted the translation-layer move from a whiteboard. I spotted it
+          because I had a retriever that was returning the same Frank Ocean tracks for every
+          sad query, and I was sitting in front of it at 1am on a Sunday wondering why.
+          Strategy is more honest after you've built the thing once.
+        </p>
+
+        <h2>What I'd build next</h2>
+
+        <p>
+          A few things on the running list, in case anyone wants to fight about them:
+        </p>
+
+        <ul>
+          <li>Crowdsource the descriptor dictionary instead of hand-writing it.
+            Show users two songs and ask &ldquo;which is more <em>X</em>?&rdquo; with <em>X</em>
+            being a candidate descriptor. Calibrate the rule engine off the votes.</li>
+          <li>Make the translation layer per-user. &ldquo;Driving&rdquo; means something different
+            for somebody whose top genre is hyperpop vs. country.</li>
+          <li>Treat negation explicitly. &ldquo;Sad but not depressing&rdquo; is the kind of query
+            current systems break on, and it's fixable at the rule layer, not the model layer.</li>
+        </ul>
+
+        <p>
+          That's where I am. The code is on GitHub if you want to pick it apart;
+          tell me where I'm wrong at <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>.
+        </p>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <p>
+          几周前我做了个小东西：一个 chatbot，输入一句话比如
+          <em>"晚上 11 点在 Honda Civic 里哭的时候听的歌"</em>，它给我推荐音乐。
+          叫 VibeSearch。整套链路并不光鲜 —— Spotify 开放数据、模糊匹配、ChromaDB、
+          一段 LangChain RAG、一个 Streamlit demo。其中没有任何新东西。
+        </p>
+
+        <p>
+          但有一块东西我一直在想，因为我觉得它才是真正的产品。
+          而它差点没被做出来，因为它看上去不像 "AI 的活"。
+        </p>
+
+        <h2>一切的起点是产品 gap</h2>
+
+        <p>
+          用户侧的观察很简单。没有人会用
+          <code>energy = 0.9, valence = 0.2, danceability = 0.4</code> 来描述音乐。
+          人会说："想要点适合十月公路旅行的"、"我想沉溺在那种悲伤里"、"有点 Frank Ocean 那种感觉"。
+          Spotify 的 API 提供了第一种词汇，用户却只说第二种。
+        </p>
+
+        <p>
+          市面上的 "情绪推荐" 大多绕过了这件事，靠人工策展几个固定情绪歌单
+          ("Happy", "Sad", "Workout")。这个方法在你说 "11 点在 Civic 里哭的歌" 时立刻穿帮 ——
+          系统能做的只是从它知道的七个标签里挑一个最近的。
+        </p>
+
+        <p>
+          我做这个项目想搞清楚的真问题是：
+          怎么让向量检索<em>真的</em>能接得住用户的话？
+        </p>
+
+        <h2>把它当成 embedding 问题（差点）</h2>
+
+        <p>
+          第一反应 —— 我也走过这条路 —— 是说：这是个向量相似度问题嘛。
+          把用户 query embed，把每首歌的 metadata embed，算 cosine，搞定。
+        </p>
+
+        <p>
+          这<em>差不多</em>能跑。跑得 demo 不至于让人尴尬。
+          但它有一个隐性失败模式：当你把
+          <code>{title: "...", artist: "...", energy: 0.9, valence: 0.2}</code> 作为文本 embed 进去，
+          模型拿到的是 CSV 的一行。里面没有故事。数字是飘在空中的 token，没有语义重力。
+          retriever 已经在尽力了，但你在让它读一个表格然后产生情绪。
+        </p>
+
+        <h2>翻译层</h2>
+
+        <p>
+          真正把 demo 从 "还行" 推到 "诶它居然懂" 的不是 retriever，不是 LLM，不是 prompt。
+          是一个非常小的规则引擎 —— 大概 80 行代码 —— 它把数值特征翻译成自然语言描述，
+          在被 embed 之前就先翻译好。
+        </p>
+
+        <p>
+          于是 <code>energy = 0.9</code> 不会被 embed 成 "energy 0.9"，
+          它被 embed 成 <em>"高能量、强烈、富有冲击力、动感"</em>。
+          <code>valence = 0.2</code> 不会是 "valence 0.2"，它变成
+          <em>"忧郁、低沉、沉重"</em>。把七个 Spotify 特征都过一遍，
+          每首歌就有了一段 embedder 真正能读懂的描述。
+        </p>
+
+        <p>
+          这段描述用的是用户嘴里的词汇。检索的 gap 因此被合上 —— 因为我们替它把翻译做了。
+        </p>
+
+        <div class="pull-quote-block blue">
+          产品不是 AI，产品是那本双语词典。
+        </div>
+
+        <h2>为什么我觉得这是 PM 的活，不是工程师的活</h2>
+
+        <p>
+          下面这个观点我想稍微 push 一下。
+        </p>
+
+        <p>
+          这个翻译层完全没用到任何机器学习。它就是一张查找表。
+          你下午就能手写一份 —— <em>前提是你知道哪些描述词重要</em>。
+          这个 "前提" 才是整个工作。
+        </p>
+
+        <p>
+          要写出 <code>energy = 0.9</code> → <em>"强烈、动感、有冲击力"</em> 这条规则，
+          你得知道 (a) 用户实际怎么描述高能量音乐，(b) 这些同义词里哪些会被 retriever 当成语义近邻，
+          (c) 哪些有足够的区分度。
+          这是一个 vocabulary design 问题，不是工程问题。它是<em>产品 spec</em>。
+        </p>
+
+        <p>
+          一个能写好这份 spec 的 PM 会让工程变得平凡。
+          一个挥挥手说 "模型会自己学到的" 的 PM 会得到一个无论用户说什么悲伤都返回同样五首歌的系统，
+          而团队里没人能解释为什么。
+        </p>
+
+        <h2>三个我想从这里推出去的观点</h2>
+
+        <h3>1. 大多数 "AI 问题" 其实是翻译问题。</h3>
+
+        <p>
+          搜索系统、排序系统、推荐系统 —— 它们的成败全在于
+          系统内部的词汇能不能对上用户的词汇。
+          Embedding、Transformer、LLM 是我们跨越这个 gap 的工具。
+          <em>gap 到底在哪里</em>，是给同时懂两边词汇的人回答的问题。这个人通常是 PM。
+        </p>
+
+        <h3>2. 最聪明的那一部分 spec 通常是最小的。</h3>
+
+        <p>
+          翻译规则引擎是 80 行。Spotify 数据 ingestion 是 600 行。RAG retrieval loop 是 150 行。
+          按代码行数算，规则引擎是隐形的。
+          按产品影响算，它是整个 demo 不空洞的全部理由。
+          写 spec 的时候，找那种"面积小、杠杆大"的位置。
+        </p>
+
+        <h3>3. 在你第三次写 spec 之前，先做一遍。</h3>
+
+        <p>
+          我从白板上看不出 "翻译层" 这一招。我看出它是因为我面前坐着一个 retriever，
+          它在每一个悲伤 query 上都返回同样的几首 Frank Ocean，
+          而我在某个周日凌晨一点，对着它发呆。
+          亲手做完一遍再谈策略，会更诚实一些。
+        </p>
+
+        <h2>下一步想做的</h2>
+
+        <p>
+          列几个还没动的方向，欢迎来吵：
+        </p>
+
+        <ul>
+          <li>把描述词典从手写变成众包。给用户两首歌，问 "哪首更 <em>X</em>？"，
+            <em>X</em> 是候选描述词。基于投票来校准规则引擎。</li>
+          <li>让翻译层个人化。"动感" 对一个 hyperpop top genre 的人和一个 country 听众来说意思不一样。</li>
+          <li>把否定显式建模。"悲伤但不要丧" 是当前系统会崩的 query，
+            而修这种问题的位置在规则层，不在模型层。</li>
+        </ul>
+
+        <p>
+          先写到这里。代码在 GitHub 上，欢迎指出我哪里想错了
+          —— <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>。
+        </p>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; May 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026.05</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

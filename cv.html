@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="CV — Pacifica Zhang" data-zh="简历 — 张若阳">CV — Pacifica Zhang</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .cv-card {
+      display: block;
+      padding: 2rem 1.6rem 1.8rem;
+      text-decoration: none;
+      color: inherit;
+      background: var(--bg-tint);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+    .cv-card:nth-child(1) {
+      background: linear-gradient(180deg, rgba(229, 181, 61, 0.18) 0%, var(--bg-tint) 100%);
+    }
+    .cv-card:nth-child(2) {
+      background: linear-gradient(180deg, rgba(122, 92, 138, 0.16) 0%, var(--bg-tint) 100%);
+    }
+    .cv-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(60, 50, 40, 0.10);
+    }
+    .cv-card-eyebrow {
+      font-family: var(--font-serif-en);
+      font-style: italic;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    html[lang="zh"] .cv-card-eyebrow {
+      font-family: var(--font-serif-cn);
+      font-style: normal;
+      text-transform: none;
+      letter-spacing: 0.18em;
+    }
+    .cv-card-title {
+      font-family: var(--font-serif-en);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin: 0 0 0.7rem;
+      letter-spacing: -0.005em;
+    }
+    html[lang="zh"] .cv-card-title {
+      font-family: var(--font-serif-cn);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+    .cv-card-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin-bottom: 1.2rem;
+      max-width: 36ch;
+    }
+    .cv-card-cta {
+      font-family: var(--font-sans-en);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    html[lang="zh"] .cv-card-cta {
+      font-family: var(--font-sans-cn);
+      text-transform: none;
+      letter-spacing: 0.14em;
+    }
+    .cv-tip {
+      font-family: var(--font-serif-en);
+      font-style: italic;
+      font-size: 0.85rem;
+      color: var(--muted);
+      letter-spacing: 0.03em;
+      max-width: 60ch;
+      line-height: 1.65;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+    html[lang="zh"] .cv-tip {
+      font-family: var(--font-serif-cn);
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block cream">
+        <span class="lang-en">cv · two versions</span>
+        <span class="lang-zh">简历 · 两版</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Curriculum Vitae</span>
+        <span class="lang-zh">简历</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">Two versions, optimized for two contexts.</span>
+        <span class="lang-zh">两个版本，分别为两边的招聘场景准备。</span>
+      </div>
+    </div>
+
+    <div class="cv-grid">
+
+      <a class="cv-card" href="cv/en.html">
+        <div class="cv-card-eyebrow">English · One Page · ATS</div>
+        <div class="cv-card-title">English CV</div>
+        <p class="cv-card-desc">
+          <span class="lang-en">
+            Single-column, ATS-friendly. Optimized for U.S. tech recruiters and
+            applicant-tracking parsers.
+          </span>
+          <span class="lang-zh">
+            单栏 ATS 友好排版，针对美国 tech 招聘流程和简历解析器优化。
+          </span>
+        </p>
+        <div class="cv-card-cta">
+          <span class="lang-en">View →</span>
+          <span class="lang-zh">查看 →</span>
+        </div>
+      </a>
+
+      <a class="cv-card" href="cv/zh.html">
+        <div class="cv-card-eyebrow">中文 · 一页半 · 含照片</div>
+        <div class="cv-card-title">中文简历</div>
+        <p class="cv-card-desc">
+          <span class="lang-en">
+            Bilingual header, photo, two-column masthead. Formatted for Chinese
+            big-tech HR conventions (BOSS / LinkedIn 中国版).
+          </span>
+          <span class="lang-zh">
+            双语 header、含照片、双栏 masthead。按中国大厂 HR 习惯排版
+            （BOSS 直聘 / 国内领英）。
+          </span>
+        </p>
+        <div class="cv-card-cta">
+          <span class="lang-en">View →</span>
+          <span class="lang-zh">查看 →</span>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="cv-tip">
+      <span class="lang-en">
+        <strong>Tip:</strong> open either version and press <code>⌘P</code> (Mac)
+        or <code>Ctrl+P</code> (Windows) to save as PDF — print backgrounds will
+        be removed automatically and the layout adapts to A4 / Letter.
+      </span>
+      <span class="lang-zh">
+        <strong>小贴士：</strong>打开任一版本后按 <code>⌘P</code> （Mac）
+        或 <code>Ctrl+P</code> （Windows）即可另存为 PDF —— 打印时背景灰色和
+        阴影会自动去除，自动适配 A4 / Letter 纸张。
+      </span>
+    </p>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

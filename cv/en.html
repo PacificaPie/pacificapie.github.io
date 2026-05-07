@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ruoyang Zhang — Resume</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: #f4f4f4; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+      color: #222;
+      max-width: 8.5in;
+      margin: 0 auto;
+      padding: 0.55in 0.65in;
+      background: #fff;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111;
+    }
+    .contact-row {
+      font-size: 9.5pt;
+      color: #555;
+      margin-top: 5px;
+    }
+    .contact-row a { color: #555; text-decoration: none; }
+    .contact-row .sep { margin: 0 6px; color: #bbb; }
+    .summary {
+      font-size: 10pt;
+      color: #333;
+      margin: 12px 0 6px;
+      line-height: 1.55;
+      padding: 8px 12px;
+      background: #f6f7fa;
+      border-left: 2px solid #1a3a6c;
+    }
+    h2 {
+      font-size: 11pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #1a3a6c;
+      border-bottom: 1px solid #1a3a6c;
+      padding-bottom: 2px;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+    .entry { margin-bottom: 9px; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .entry-title {
+      font-weight: 700;
+      font-size: 10.5pt;
+      color: #111;
+    }
+    .entry-meta {
+      font-size: 9.5pt;
+      color: #666;
+      white-space: nowrap;
+    }
+    .entry-sub {
+      font-size: 10pt;
+      color: #444;
+      font-style: italic;
+      margin-top: 1px;
+      margin-bottom: 2px;
+    }
+    .entry-sub a { color: #1a3a6c; font-style: normal; }
+    ul { padding-left: 17px; margin-top: 2px; }
+    li {
+      margin-bottom: 2px;
+      font-size: 10pt;
+      line-height: 1.45;
+    }
+    li strong { color: #111; font-weight: 600; }
+    li em { color: #1a3a6c; font-style: italic; }
+    .skills-list { list-style: none; padding-left: 0; }
+    .skills-list li {
+      padding-left: 0;
+      margin-bottom: 3px;
+      font-size: 10pt;
+    }
+    .skill-cat {
+      font-weight: 700;
+      color: #1a3a6c;
+      display: inline-block;
+      min-width: 110px;
+    }
+    a { color: #1a3a6c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    @media print {
+      html, body { background: #fff; }
+      body {
+        max-width: none;
+        margin: 0;
+        padding: 0.4in 0.5in;
+        box-shadow: none;
+      }
+      .summary { background: transparent; }
+      a { color: #1a3a6c; }
+    }
+    @page { size: Letter; margin: 0.4in 0.5in; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Ruoyang (Pacifica) Zhang</h1>
+    <div class="contact-row">
+      New Haven, CT
+      <span class="sep">|</span>
+      (203) 780-1858
+      <span class="sep">|</span>
+      <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+      <span class="sep">|</span>
+      <a href="https://github.com/PacificaPie">github.com/PacificaPie</a>
+      <span class="sep">|</span>
+      <a href="https://www.linkedin.com/in/pacifica-zhang">linkedin.com/in/pacifica-zhang</a>
+      <span class="sep">|</span>
+      <a href="https://pacificapie.github.io">pacificapie.github.io</a>
+    </div>
+  </header>
+
+  <div class="summary">
+    Strategy PM candidate combining causal-inference rigor (Difference-in-Differences, synthetic control) with applied AI engineering (VLM fine-tuning, RAG) — bridging counterfactual evaluation, business logic, and shipping product strategy.
+  </div>
+
+  <h2>Education</h2>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Yale University</span>
+      <span class="entry-meta">New Haven, CT &middot; Aug 2025 &ndash; May 2027</span>
+    </div>
+    <div class="entry-sub">M.S. in Biostatistics &amp; Data Science</div>
+    <ul>
+      <li>Coursework: Causal Inference, Large Language Models, Machine Learning, Statistical Inference, Advanced Regression</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Central University of Finance and Economics</span>
+      <span class="entry-meta">Beijing, China &middot; Sep 2021 &ndash; Jun 2025</span>
+    </div>
+    <div class="entry-sub">B.A. in International Trade &amp; Financial Risk Management &middot; GPA 3.92/4.00 (Top 5%) &middot; Outstanding Graduate</div>
+    <ul>
+      <li>Coursework: Econometrics, Empirical Asset Pricing, Financial Risk Management, Macro/Microeconomics</li>
+    </ul>
+  </div>
+
+  <h2>Skills</h2>
+  <ul class="skills-list">
+    <li><span class="skill-cat">Strategy &amp; Product</span> A/B Testing, Rule-based Strategy Design, User Behavior Analysis, KYC/AML, Customer Segmentation, PRD Writing</li>
+    <li><span class="skill-cat">Causal Inference</span> Difference-in-Differences (Callaway&ndash;Sant'Anna), Event Study, Synthetic Control, Panel Data Analysis, Counterfactual Evaluation</li>
+    <li><span class="skill-cat">AI &amp; ML</span> VLM Fine-tuning (LoRA, GRPO), RAG (LangChain, ChromaDB), NLP, XGBoost, Logistic Regression</li>
+    <li><span class="skill-cat">Programming</span> Python (PyTorch, Pandas, NumPy), SQL (Window Functions), R, Stata, SAS, Git</li>
+  </ul>
+
+  <!--
+    TODO: Insert Meituan Strategy PM internship here, above Raiffeisen, after ~1 month onboard.
+    Suggested template:
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Meituan</span>
+          <span class="entry-meta">Beijing, China · May 2026 – present</span>
+        </div>
+        <div class="entry-sub">Strategy Product Manager Intern</div>
+        <ul>
+          <li data-tags="strategy,causal,pricing">[counterfactual evaluation framework — DiD / synthetic control for pricing]</li>
+          <li data-tags="strategy,mechanism,pricing">[mechanism design / dynamic pricing — closed-loop from problem definition to launch]</li>
+          <li data-tags="strategy,evaluation">[evaluation-standard ownership — algorithm iteration arbiter]</li>
+        </ul>
+      </div>
+  -->
+
+  <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Raiffeisen Bank International AG &mdash; Beijing Branch</span>
+      <span class="entry-meta">Beijing, China &middot; Dec 2024 &ndash; Mar 2025</span>
+    </div>
+    <div class="entry-sub">Corporate &amp; Institutional Clients Intern</div>
+    <ul>
+      <li data-tags="strategy,ml,business"><strong>Prospect-targeting strategy upgrade.</strong> Built a KNN similarity-ranking engine over <strong>1,500+ A-share companies</strong> (financial / ESG / industry features), replacing the manual scorecard; produced Top-K target lists adopted into the annual client-acquisition plan; cross-validated against rule-based screening and presented the methodology internally.</li>
+      <li data-tags="risk,compliance,strategy"><strong>KYC/AML due diligence.</strong> Conducted ownership penetration, related-party transaction, and compliance-risk reviews on <strong>40+ corporate clients</strong>, supporting credit-approval decisions.</li>
+      <li data-tags="finance,analysis"><strong>Financial risk profiling.</strong> Drafted ratio analyses (debt-to-asset, ROA/ROE, interest coverage) into client risk profiles consumed by the credit committee.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Tencent &mdash; WeChat Mini Program Group</span>
+      <span class="entry-meta">Guangzhou, China &middot; Jul 2023 &ndash; Aug 2023</span>
+    </div>
+    <div class="entry-sub">Risk Strategy &amp; Product Analytics Intern</div>
+    <ul>
+      <li data-tags="strategy,nlp,risk,moderation"><strong>Two-dimension anti-abuse strategy.</strong> Built a rule-based detection framework for abusive transaction reviews combining content signals (text/image semantics, abuse lexicon) with account signals (anomalous behavior, account linkage); lifted platform compliance coverage.</li>
+      <li data-tags="strategy,nlp,collab,product"><strong>NLP classifier &mdash; spec to ship.</strong> Authored data-labeling spec and feature-requirement docs; collaborated with the DS team to train and ship the NLP classifier; automated review tagging across <strong>3,500+ merchants</strong> and lifted page UV by <strong>~3%</strong>.</li>
+      <li data-tags="strategy,product,governance"><strong>Merchant-risk governance.</strong> Mined fulfillment-risk patterns from B-side merchant negative reviews; proposed governance fixes adopted into the product.</li>
+    </ul>
+  </div>
+
+  <h2>Projects</h2>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">GeoQA &mdash; Multimodal Geometric Reasoning with SFT + GRPO on InternVL3-8B</span>
+      <span class="entry-meta">Mar 2026 &ndash; Apr 2026</span>
+    </div>
+    <div class="entry-sub">Yale CS team project (3 authors) &middot; <a href="https://github.com/PacificaPie/vlm">github.com/PacificaPie/vlm</a></div>
+    <ul>
+      <li data-tags="ai,vlm,training,evaluation"><strong>End-to-end training pipeline.</strong> Built two-stage training (LoRA SFT + GRPO) on InternVL3-8B; lifted GeoQA test accuracy <strong>73.4% &rarr; 80.2% (+6.8 pts)</strong> on a single A100.</li>
+      <li data-tags="ai,evaluation,research,strategy"><strong>Diagnosed <em>reward saturation</em>.</strong> After strong SFT, group-relative advantage variance collapses to zero, identically vanishing the GRPO gradient &mdash; a general failure mode of imitation-then-RL pipelines.</li>
+      <li data-tags="ai,evaluation,strategy,data"><strong>Method &mdash; Pass@K data filtering.</strong> Repurposed Pass@K from a code-eval metric into a training-time data-selection criterion, retaining only the <strong>33.5%</strong> of prompts where the SFT policy is genuinely uncertain &mdash; restored reward variance and unblocked GRPO.</li>
+      <li data-tags="ai,collab,ownership"><strong>Owned</strong> data pipeline (GeoQA-cot), reward design (format + outcome with 1:2 weighting), and Pass@K filtering experiments; co-authored the technical report.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">VibeSearch &mdash; RAG-based Natural-Language Music Recommender</span>
+      <span class="entry-meta">Mar 2026</span>
+    </div>
+    <div class="entry-sub">Solo project &middot; <a href="https://pacificapie.github.io/vibesearch/">pacificapie.github.io/vibesearch</a> &middot; <a href="https://github.com/PacificaPie/vibesearch">github.com/PacificaPie/vibesearch</a></div>
+    <ul>
+      <li data-tags="product,strategy,user-research"><strong>Product gap.</strong> Users describe music by mood/scene, but search systems only key-word match &mdash; designed a RAG solution targeting natural-language queries.</li>
+      <li data-tags="data,engineering"><strong>Data engineering.</strong> Merged Spotify open datasets (114K audio features + 57K lyrics) via multi-strategy fuzzy matching; raised usable corpus from 1,355 to <strong>6,377 songs across 110 genres (+370%)</strong>.</li>
+      <li data-tags="ai,innovation"><strong>Semantic-translation layer.</strong> Designed a rule engine mapping numerical audio features (e.g. <code>energy=0.9</code>) into natural-language descriptors, enabling vector retrieval to match colloquial queries without forcing music-jargon vocabulary.</li>
+      <li data-tags="ai,implementation,product"><strong>Full RAG pipeline.</strong> LangChain + ChromaDB + GPT-3.5 with multi-turn dialogue memory and metadata-filter tools; shipped an interactive Streamlit demo.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="entry-header">
+      <span class="entry-title">Counterfactual Policy Evaluation via Staggered Difference-in-Differences</span>
+      <span class="entry-meta">2024</span>
+    </div>
+    <div class="entry-sub">Applied econometrics project</div>
+    <ul>
+      <li data-tags="causal,evaluation,strategy,pricing"><strong>Counterfactual framework.</strong> Built a quasi-experimental causal-inference framework on multi-period panel data (2000&ndash;2023) to estimate policy treatment effects &mdash; a "parallel-universe" evaluation pattern directly transferable to dynamic-pricing and mechanism-design problems.</li>
+      <li data-tags="causal,statistics,methodology"><strong>Identification.</strong> Verified the parallel-trend assumption via event study; addressed heterogeneous treatment timing using <strong>Callaway&ndash;Sant'Anna</strong> correction.</li>
+      <li data-tags="causal,statistics,robustness"><strong>Robustness.</strong> Quantified treatment-effect heterogeneity across cohorts; validated conclusions via placebo tests.</li>
+    </ul>
+  </div>
+
+</body>
+</html>
