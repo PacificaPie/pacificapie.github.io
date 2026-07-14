@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Two-Stage Generation — Case Study" data-zh="两段式生成 — 案例">Two-Stage Generation — Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block blue">
+        <span class="lang-en">case study · generation pipeline</span>
+        <span class="lang-zh">案例研究 · 生成链路</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Two-Stage Generation — Rooting Out Garbled Chinese in AI Images</span>
+        <span class="lang-zh">两段式生成 —— 根除 AI 生图中文乱码</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">
+          internship project (internal) &nbsp;·&nbsp;
+          a PM walking the full backend delivery loop alone: code → build → deploy → schedule → data backfill &nbsp;·&nbsp;
+          <span class="badge badge-shipped">Shipped</span> <span class="badge badge-internal">Internal</span>
+        </span>
+        <span class="lang-zh">
+          实习项目（内部） &nbsp;·&nbsp;
+          产品人独立走完后端 "代码 → 构建 → 部署 → 调度 → 数据回填" 全流程交付 &nbsp;·&nbsp;
+          <span class="badge badge-shipped">已上线</span> <span class="badge badge-internal">内部</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          Text-to-image models garble Chinese, reliably. The moment an event title enters the
+          prompt, the model treats it as poster copy and paints the characters onto the image —
+          mangled.
+        </p>
+
+        <h2>My call</h2>
+
+        <p>
+          This isn't a wording-tuning problem. It's a <strong>pipeline-structure</strong> problem:
+          separate text from image. The AI should only ever paint a text-free background —
+          the words belong to a different layer entirely.
+        </p>
+
+        <h2>What shipped</h2>
+
+        <ul>
+          <li><strong>Two-stage generation</strong> — a text LLM first &ldquo;translates&rdquo; the event
+            into a pure visual scene description, which is then fed to the text-to-image model.</li>
+          <li><strong>Fallbacks by event type</strong> for when generation misbehaves.</li>
+          <li><strong>Weakness-driven art direction</strong> — an impressionist brushwork style,
+            chosen because it masks the AI's detail failures while staying on the brand palette.</li>
+        </ul>
+
+        <h2>Validation</h2>
+
+        <p>
+          Final images for all trending events landed in the table. When a batch rerun turned up
+          anomalies, a &ldquo;fallbacks-must-diverge&rdquo; counter-evidence check localized the cause
+          to a config that hadn't taken effect — not a flaw in the design.
+        </p>
+
+        <h2>What iterating taught me</h2>
+
+        <blockquote>
+          The core of LLM engineering isn't prompt wording — it's pipeline structure.
+        </blockquote>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          文生图模型渲染中文必乱码。事件标题一进 prompt，就被当成海报文字画到图上 —— 而且画坏。
+        </p>
+
+        <h2>我的判断</h2>
+
+        <p>
+          这不是措辞调优问题，是<strong>链路结构</strong>问题：图文分离。
+          AI 只画无文字背景图 —— 文字属于另一层。
+        </p>
+
+        <h2>交付</h2>
+
+        <ul>
+          <li><strong>两段式生成</strong> —— 文本大模型先把事件 "翻译" 成纯画面场景描述，
+            再喂给文生图模型。</li>
+          <li><strong>按事件类型的兜底</strong>，应对生成异常。</li>
+          <li><strong>"弱点驱动选型" 的画风</strong> —— 选印象派笔触，因为它能掩盖 AI 细节翻车，
+            且贴品牌色板。</li>
+        </ul>
+
+        <h2>验证</h2>
+
+        <p>
+          全部热点事件成品图落表。批量重跑出现异常时，用 "兜底必分化" 的反证法把原因定位为
+          配置未生效，而非方案缺陷。
+        </p>
+
+        <h2>认知迭代</h2>
+
+        <blockquote>
+          LLM 工程的核心不是 prompt 措辞，而是链路结构。
+        </blockquote>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Job-Search Automation — Case Study" data-zh="求职自动化系统 — 案例">Job-Search Automation — Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block">
+        <span class="lang-en">case study · ai agent pipeline</span>
+        <span class="lang-zh">案例研究 · AI Agent 管线</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Job-Search Automation — an End-to-End AI Agent Pipeline</span>
+        <span class="lang-zh">求职自动化系统 —— 端到端 AI Agent 管线</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">
+          Jun 2026 – present &nbsp;·&nbsp; personal project &nbsp;·&nbsp;
+          product owner + architecture, implementation paired with AI &nbsp;·&nbsp;
+          <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
+        </span>
+        <span class="lang-zh">
+          2026.06 至今 &nbsp;·&nbsp; 个人项目 &nbsp;·&nbsp;
+          产品 Owner + 架构，实现与 AI 结对完成 &nbsp;·&nbsp;
+          <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>运行中</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">2026.06 —</span>
+        <span class="stat-label">
+          <span class="lang-en">running unattended</span>
+          <span class="lang-zh">无人值守运行中</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2×/day</span>
+        <span class="stat-label">
+          <span class="lang-en">scheduled runs</span>
+          <span class="lang-zh">每日两班</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">≤ 10 min</span>
+        <span class="stat-label">
+          <span class="lang-en">daily loop budget</span>
+          <span class="lang-zh">每日循环时间预算</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">3</span>
+        <span class="stat-label">
+          <span class="lang-en">failure classes caught by alerts</span>
+          <span class="lang-zh">靠报警发现的环境故障类别</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          Campus-recruiting information is scattered across sources, and the work of tracking it
+          is mostly repeated labor. The requirement I set for myself: the entire daily loop —
+          <em>see a new opening → judge it → produce a résumé → apply</em> — has to finish
+          in under 10 minutes a day.
+        </p>
+
+        <h2>My call</h2>
+
+        <p>
+          For a personal tool, the core metric isn't feature count — it's the
+          <strong>friction of the daily loop</strong>. And two human-in-the-loop rules are
+          non-negotiable: applications are never auto-submitted, and every number on a résumé
+          must trace back to a ledger of verified facts.
+        </p>
+
+        <h2>What shipped</h2>
+
+        <ul>
+          <li><strong>Multi-source job discovery</strong> — structured tables + recruiting-platform APIs.</li>
+          <li><strong>Profile-based filtering and dedup</strong> ahead of anything expensive.</li>
+          <li><strong>LLM-agent enrichment</strong> — finds the official application entry, pulls the JD,
+            and judges the match.</li>
+          <li><strong>Daily scheduled digest</strong> pushed on a fixed cadence.</li>
+          <li><strong>Full-pipeline failure alerting</strong>, with alerting-channel credentials kept
+            separate from data-channel credentials.</li>
+          <li><strong>Cross-channel suppression</strong> of jobs already applied to.</li>
+        </ul>
+
+        <h2>Validation</h2>
+
+        <p>
+          The pipeline has been running unattended since June 2026, on two scheduled runs per day.
+          The alerting mechanism has already caught — and led to fixes for — three distinct
+          classes of environment failure.
+        </p>
+
+        <h2>What iterating taught me</h2>
+
+        <blockquote>
+          In an automated system, &ldquo;no news&rdquo; and &ldquo;no hits&rdquo; must never be
+          indistinguishable. That ambiguity is the cardinal sin of automation.
+        </blockquote>
+
+        <blockquote>
+          The biggest enemy of accumulation isn't the tool — it's friction.
+        </blockquote>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          校招信息散落在各处，跟进它们的工作大部分是重复劳动。我给自己定的要求是：
+          每天 10 分钟内完成 <em>"看到新岗 → 判断 → 出简历 → 投出"</em> 这整个循环。
+        </p>
+
+        <h2>我的判断</h2>
+
+        <p>
+          个人工具的核心指标不是功能数量，是<strong>"每日循环的摩擦"</strong>。
+          另外有两条 human-in-the-loop 铁律不可协商：投递不自动提交；
+          简历上每个数字必须可溯源到事实台账。
+        </p>
+
+        <h2>交付</h2>
+
+        <ul>
+          <li><strong>多信源岗位发现</strong> —— 结构化表 + 招聘平台 API。</li>
+          <li><strong>画像筛选去重</strong>，放在一切昂贵操作之前。</li>
+          <li><strong>LLM agent 富化</strong> —— 搜官方入口、抓 JD、判匹配度。</li>
+          <li><strong>每日定时推送</strong>。</li>
+          <li><strong>全链路故障报警</strong>，报警通道与数据通道凭证分离。</li>
+          <li><strong>已投岗位跨渠道自动抑制</strong>。</li>
+        </ul>
+
+        <h2>验证</h2>
+
+        <p>
+          系统自 2026 年 6 月起无人值守运行中，每日两班。
+          曾靠报警机制发现并修复三类环境故障。
+        </p>
+
+        <h2>认知迭代</h2>
+
+        <blockquote>
+          "没消息" 和 "没命中" 不可区分，是自动化系统的大忌。
+        </blockquote>
+
+        <blockquote>
+          沉淀的最大敌人是摩擦，不是工具。
+        </blockquote>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

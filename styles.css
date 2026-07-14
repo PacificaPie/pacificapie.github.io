@@ -1312,3 +1312,341 @@ html[lang="zh"] .footer-signoff {
   .work-item-date { font-size: 0.75rem; }
   .sticky-note { max-width: 100%; }
 }
+
+/* =========================================================
+   v6 — "AI PM business card" additions
+   Proof chips · status badges · project constellation
+   ========================================================= */
+
+:root {
+  --live-green: #3E8E5A;
+  --live-green-glow: rgba(62, 142, 90, 0.45);
+  --panel-ink: #23211C;      /* dark constellation panel — works in both schemes */
+  --panel-ink-soft: #B8B0A0;
+  --card-paper: #F8F4ED;     /* fixed-light card on the dark panel */
+  --card-ink: #2A2A28;
+  --card-ink-soft: #4A4642;
+}
+
+/* ---------- Status badges ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans-en);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.18rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+.badge-running  { color: var(--live-green); }
+.badge-live     { color: var(--blue); }
+.badge-shipped  { color: var(--accent); }
+.badge-internal { color: var(--muted); }
+.badge-oss      { color: var(--purple); }
+a.badge { text-decoration: none; transition: all 0.2s ease; }
+a.badge:hover { background: rgba(122, 92, 138, 0.1); }
+
+/* Breathing green dot — for RUNNING status */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--live-green);
+  flex-shrink: 0;
+  animation: pulseDot 2.2s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { box-shadow: 0 0 0 0 var(--live-green-glow); opacity: 1; }
+  50%      { box-shadow: 0 0 0 6px rgba(62, 142, 90, 0); opacity: 0.65; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pulse-dot { animation: none; }
+}
+
+/* ---------- Hero proof chips ---------- */
+.proof-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: clamp(1.6rem, 4vw, 2.4rem) 0 0;
+  position: relative;
+  z-index: 1;
+}
+.proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.35);
+  font-family: var(--font-sans-en);
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.22s ease;
+}
+html[lang="zh"] .proof-chip { font-family: var(--font-sans-cn); }
+.proof-chip:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(139, 111, 71, 0.14);
+}
+.proof-chip .badge { border: none; padding: 0; }
+
+/* ---------- Project constellation ---------- */
+.constellation-section .section-heading { margin-bottom: 1.4rem; }
+.constellation-hint {
+  font-size: 0.82rem;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin: -0.8rem 0 1.2rem;
+  font-family: var(--font-sans-en);
+}
+html[lang="zh"] .constellation-hint { font-family: var(--font-sans-cn); }
+.constellation {
+  position: relative;
+  height: clamp(360px, 46vw, 500px);
+  background: var(--panel-ink);
+  border-radius: 6px;
+  border: 1px solid rgba(248, 244, 237, 0.07);
+  overflow: hidden;
+}
+.constellation canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Builder ↔ Evaluator axis */
+.constellation-axis {
+  position: absolute;
+  left: 4.5%;
+  right: 4.5%;
+  bottom: 7.5%;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  pointer-events: none;
+  z-index: 1;
+}
+.axis-label {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--panel-ink-soft);
+}
+html[lang="zh"] .axis-label sub,
+.axis-label .axis-zh {
+  display: block;
+  font-family: var(--font-sans-cn);
+  font-style: normal;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  opacity: 0.75;
+  text-align: center;
+}
+.axis-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 228, 188, 0.45), transparent);
+  position: relative;
+}
+.axis-line::before,
+.axis-line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid rgba(244, 228, 188, 0.55);
+}
+.axis-line::before {
+  left: 0;
+  border-left: 1px solid rgba(244, 228, 188, 0.55);
+  transform: translateY(-50%) rotate(-45deg);
+}
+.axis-line::after {
+  right: 0;
+  border-right: 1px solid rgba(244, 228, 188, 0.55);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+/* Node */
+.constellation-node {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.node-dot {
+  display: block;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: var(--dot, var(--yellow-deep));
+  box-shadow: 0 0 14px 2px color-mix(in srgb, var(--dot, var(--yellow-deep)) 55%, transparent);
+  transition: transform 0.25s ease;
+}
+.node-dot-running { animation: pulseDot 2.2s ease-in-out infinite; }
+.constellation-node:hover .node-dot,
+.constellation-node:focus-visible .node-dot { transform: scale(1.35); }
+.constellation-node:focus-visible .node-label { text-decoration: underline; }
+.node-label {
+  display: block;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: var(--font-sans-en);
+  font-size: 0.74rem;
+  letter-spacing: 0.05em;
+  color: #D8D2C4;
+  white-space: nowrap;
+}
+html[lang="zh"] .node-label { font-family: var(--font-sans-cn); letter-spacing: 0.1em; }
+
+/* Hover card — fixed light "paper" so it reads in any color scheme */
+.node-card {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  width: min(264px, 72vw);
+  background: var(--card-paper);
+  color: var(--card-ink);
+  border-radius: 4px;
+  padding: 0.95rem 1.05rem 0.9rem;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(var(--cs, -50%), 6px);
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+  z-index: 4;
+  text-align: left;
+}
+.constellation-node:hover .node-card,
+.constellation-node:focus .node-card,
+.constellation-node:focus-within .node-card {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(var(--cs, -50%), 0);
+}
+.constellation-node.card-below .node-card {
+  bottom: auto;
+  top: calc(100% + 14px);
+  transform: translate(var(--cs, -50%), -6px);
+}
+.constellation-node.card-below:hover .node-card,
+.constellation-node.card-below:focus .node-card,
+.constellation-node.card-below:focus-within .node-card {
+  transform: translate(var(--cs, -50%), 0);
+}
+.constellation-node.card-left  { --cs: -18%; }
+.constellation-node.card-right { --cs: -82%; }
+.node-card-title {
+  font-family: var(--font-serif-en);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 0.3rem;
+  color: var(--card-ink);
+}
+html[lang="zh"] .node-card-title { font-family: var(--font-serif-cn); font-style: normal; }
+.node-card-desc {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--card-ink-soft);
+  font-family: var(--font-sans-en);
+}
+html[lang="zh"] .node-card-desc { font-family: var(--font-sans-cn); }
+.node-card .badge { font-size: 0.6rem; }
+
+/* Mobile: hide hover cards (tap = navigate), show legend list below */
+.constellation-legend { display: none; }
+@media (max-width: 700px) {
+  .constellation { height: 320px; }
+  .node-card { display: none; }
+  .node-label { font-size: 0.66rem; }
+  .constellation-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 1.2rem;
+  }
+  .legend-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.65rem 0.2rem;
+    border-top: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 0.85rem;
+  }
+  .legend-item:last-child { border-bottom: 1px solid var(--rule); }
+  .legend-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--dot, var(--yellow-deep));
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .legend-name { font-weight: 600; }
+  .legend-item .badge { margin-left: auto; }
+}
+
+/* Work-index badge next to tags */
+.work-item-tags .badge { align-self: center; }
+
+/* =========================================================
+   Dark mode — token overrides (system preference)
+   ========================================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:           #201E1A;
+    --bg-tint:      #282520;
+    --ink:          #EDE7DA;
+    --ink-soft:     #CFC7B6;
+    --muted:        #948C7C;
+    --accent:       #C4A77D;
+    --accent-soft:  #8B6F47;
+    --rule:         #3B372F;
+    --note-edge:    #5A4F33;
+    /* pastel tints darken so inherited light ink stays readable */
+    --yellow:       #453718;
+    --blue-soft:    #31424F;
+    --purple-soft:  #413347;
+    --live-green:   #6FBF8A;
+    --live-green-glow: rgba(111, 191, 138, 0.4);
+    --panel-ink:    #1A1916;
+  }
+  /* Saffron / cream surfaces keep dark ink on them */
+  .color-band.yellow { color: #2A2A28; }
+  .article-eyebrow-block { color: #2A2A28; }
+  .article-eyebrow-block.blue,
+  .article-eyebrow-block.purple { color: #FAF7EE; }
+  .article-eyebrow-block.cream { color: var(--accent); }
+  .work-item-tag { background: rgba(255, 255, 255, 0.05); }
+  .work-item:hover { background: rgba(196, 167, 125, 0.06); }
+  .work-item:hover .work-item-icon { background: #33302A; }
+  .proof-chip { background: rgba(255, 255, 255, 0.04); }
+  .sticky-note {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.35);
+  }
+  .constellation { border-color: rgba(248, 244, 237, 0.1); }
+}

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="ResourceLoop — Case Study" data-zh="ResourceLoop — 案例">ResourceLoop — Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block cream">
+        <span class="lang-en">case study · b-side system</span>
+        <span class="lang-zh">案例研究 · B 端系统</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">ResourceLoop — a B-Side System Delivered Pairing with AI</span>
+        <span class="lang-zh">ResourceLoop —— 与 AI 结对交付的 B 端系统</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">
+          internship project (internal) &nbsp;·&nbsp;
+          product shape, interaction, and mechanism proposed by me, validated by the team, co-developed &nbsp;·&nbsp;
+          <span class="badge badge-internal">Internal</span>
+        </span>
+        <span class="lang-zh">
+          实习项目（内部） &nbsp;·&nbsp;
+          产品形态 / 交互 / 机制由我先提出、团队校验后协同开发 &nbsp;·&nbsp;
+          <span class="badge badge-internal">内部</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          Resource requests and reviews for trending events had no systematic process —
+          the request-and-approval loop lived nowhere in particular.
+        </p>
+
+        <h2>My call</h2>
+
+        <p>
+          The product shape, interaction, and mechanism came from me first; the team validated
+          them and we built together. Implementation was <strong>paired with AI</strong> —
+          with me owning direction, judgment, and acceptance.
+        </p>
+
+        <h2>What shipped</h2>
+
+        <ul>
+          <li><strong>A three-role system</strong>: request → review → deploy.</li>
+          <li><strong>Incentive-mechanism design</strong> — success rates semi-visible to prevent
+            gaming; appeals decoupled from review, with scorecards for two-way accountability.</li>
+          <li><strong>Multiple iterations driven by user feedback</strong> — an event calendar with a
+            pinned request zone, explicit draft-state backfill, and error messages rewritten in
+            plain human language.</li>
+        </ul>
+
+        <h2>Validation</h2>
+
+        <p>
+          A launchable system, iterated over multiple rounds. A frontend engineering baseline was
+          part of the delivery — unit tests caught a real <code>Number(null) === 0</code> bug
+          on the spot.
+        </p>
+
+        <h2>What iterating taught me</h2>
+
+        <blockquote>
+          Working with AI has to be driven by your own structured thinking. A PM can take part
+          in development — but never at the cost of time spent thinking about the big direction.
+        </blockquote>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          热点事件的资源申请—审核没有系统化流程，申请与审批的循环无处安放。
+        </p>
+
+        <h2>我的判断</h2>
+
+        <p>
+          产品形态、交互、机制由我先提出，团队校验后协同开发。
+          实现<strong>借助 AI 结对</strong> —— 我定方向、判断与验收。
+        </p>
+
+        <h2>交付</h2>
+
+        <ul>
+          <li><strong>三角色系统</strong>：申报 → 审核 → 投放。</li>
+          <li><strong>激励机制设计</strong> —— 成功率半外显防套利；申诉与审核解耦 +
+            记分卡双向问责。</li>
+          <li><strong>按用户反馈多轮迭代</strong> —— 事件日历 + 钉死申报区、
+            草稿态显式回填、报错用人话外显。</li>
+        </ul>
+
+        <h2>验证</h2>
+
+        <p>
+          可上线系统，多轮迭代。交付里包含前端工程化基线 ——
+          单测当场抓到 <code>Number(null) === 0</code> 的真 bug。
+        </p>
+
+        <h2>认知迭代</h2>
+
+        <blockquote>
+          与 AI 协同要用结构化思考带动；产品可以参与开发，但不能牺牲对大方向的思考时间。
+        </blockquote>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

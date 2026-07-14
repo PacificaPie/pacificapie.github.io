@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="LLM Feature — Case Study" data-zh="LLM 功能上线 — 案例">LLM Feature — Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block purple">
+        <span class="lang-en">case study · prompt &amp; evaluation</span>
+        <span class="lang-zh">案例研究 · prompt 与评估</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Shipping an LLM Feature — 7 Prompt Versions and 103 Real Cases</span>
+        <span class="lang-zh">LLM 功能上线 —— 7 个 prompt 版本与 103 条真实数据</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">
+          internship project (internal) &nbsp;·&nbsp;
+          independently designed the prompt and the evaluation method for an LLM recommendation sub-capability &nbsp;·&nbsp;
+          <span class="badge badge-shipped">Shipped</span> <span class="badge badge-internal">Internal</span>
+        </span>
+        <span class="lang-zh">
+          实习项目（内部） &nbsp;·&nbsp;
+          独立设计 LLM 推荐子能力的 prompt 与评估方式 &nbsp;·&nbsp;
+          <span class="badge badge-shipped">已上线</span> <span class="badge badge-internal">内部</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-num">7</span>
+        <span class="stat-label">
+          <span class="lang-en">prompt versions</span>
+          <span class="lang-zh">prompt 版本迭代</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">103</span>
+        <span class="stat-label">
+          <span class="lang-en">real production events</span>
+          <span class="lang-zh">真实生产事件</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100 → 65</span>
+        <span class="stat-label">
+          <span class="lang-en">prompt lines</span>
+          <span class="lang-zh">prompt 行数</span>
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">
+          <span class="lang-en">badcase gone after fix</span>
+          <span class="lang-zh">修复后 badcase 消失</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          The feature recommends supporting materials for an event — &ldquo;event → materials.&rdquo;
+          The LLM's output quality lands directly in front of frontline users, who see the
+          candidates and check the ones they want. Bad output means a bad selection experience,
+          immediately.
+        </p>
+
+        <h2>My call</h2>
+
+        <p>
+          The core of prompt engineering isn't wording — it's <strong>evaluation discipline</strong>:
+          every version <code>v_n</code> gets compared against <code>v_(n-1)</code> on a fixed
+          sample set. And the framing matters: LLM recommendations aren't the standard answer;
+          they're a candidate list a human can veto.
+        </p>
+
+        <h2>What shipped</h2>
+
+        <ul>
+          <li>Slimmed the prompt from a 100-line exhaustive spec to
+            <strong>65 lines of principles + few-shot</strong>.</li>
+          <li>Fixed <strong>example contamination</strong> — after annotating the reasoning path in
+            each example and adding negative examples, the badcase disappeared 100%.</li>
+          <li>Added fallback rules for sparse scenarios.</li>
+        </ul>
+
+        <h2>Validation</h2>
+
+        <p>
+          103 real production events, 7 prompt versions, each evaluated version-over-version
+          on the fixed sample.
+        </p>
+
+        <h2>What iterating taught me — five rules</h2>
+
+        <blockquote>
+          <ol>
+            <li>Never omit the reasoning path from an example.</li>
+            <li>Don't pile up rules — by prohibition rule #8, the rules start to backfire.</li>
+            <li>Don't guess the customer segment.</li>
+            <li>Hard quantity constraints need supporting rules to hold.</li>
+            <li>Normalization is an engineering problem — don't make the prompt carry it.</li>
+          </ol>
+        </blockquote>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          这个功能做的是 "事件 → 配套物料" 推荐。LLM 的输出质量直接落到一线用户面前 ——
+          他们看到候选项、勾选想要的那几个。输出不好，勾选体验立刻变差。
+        </p>
+
+        <h2>我的判断</h2>
+
+        <p>
+          prompt 工程的核心不是措辞，是<strong>评估纪律</strong>：
+          每个版本 <code>v_n</code> 都在固定样本上与 <code>v_(n-1)</code> 做对照评估。
+          定位同样关键：LLM 推荐不是标准答案，是人工可否决的候选清单。
+        </p>
+
+        <h2>交付</h2>
+
+        <ul>
+          <li>prompt 从 100 行穷举式瘦身到 <strong>65 行 "原则 + few-shot"</strong>。</li>
+          <li>修复<strong>示例污染</strong> —— 给示例补上推理路径标注、加入反面示例之后，
+            badcase 100% 消失。</li>
+          <li>为稀疏场景加兜底规则。</li>
+        </ul>
+
+        <h2>验证</h2>
+
+        <p>
+          103 条真实生产事件、7 个版本迭代，每一版都在固定样本上做逐版本对照。
+        </p>
+
+        <h2>认知迭代 —— 五条心法</h2>
+
+        <blockquote>
+          <ol>
+            <li>示例的推理路径不能省。</li>
+            <li>规则不能堆 —— 第 8 条禁止规则开始反噬。</li>
+            <li>客群不能猜。</li>
+            <li>硬数量约束需补足规则。</li>
+            <li>归一化是工程问题，不该让 prompt 扛。</li>
+          </ol>
+        </blockquote>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
