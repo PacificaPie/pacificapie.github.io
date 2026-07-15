@@ -11,6 +11,10 @@
   const STORAGE_KEY = 'pz-lang';
   const root = document.documentElement;
 
+  // Initial language priority:
+  // (1) user's manual choice saved in localStorage (written only on toggle click)
+  // (2) navigator.language starting with "zh" → Chinese
+  // (3) default English
   function getInitialLang() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved === 'en' || saved === 'zh') return saved;
@@ -18,9 +22,11 @@
     return browserLang.startsWith('zh') ? 'zh' : 'en';
   }
 
-  function setLang(lang) {
+  function setLang(lang, persist) {
     root.setAttribute('lang', lang);
-    localStorage.setItem(STORAGE_KEY, lang);
+    // Persist only explicit user choices — never overwrite a manual
+    // selection with auto-detected language.
+    if (persist) localStorage.setItem(STORAGE_KEY, lang);
     document.querySelectorAll('.lang-toggle').forEach((btn) => {
       btn.textContent = lang === 'en' ? '中文' : 'EN';
       btn.setAttribute('aria-label', lang === 'en' ? 'Switch to Chinese' : 'Switch to English');
@@ -35,7 +41,7 @@
     document.querySelectorAll('.lang-toggle').forEach((btn) => {
       btn.addEventListener('click', () => {
         const current = root.getAttribute('lang') || 'en';
-        setLang(current === 'en' ? 'zh' : 'en');
+        setLang(current === 'en' ? 'zh' : 'en', true);
       });
     });
   }

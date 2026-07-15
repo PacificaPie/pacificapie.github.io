@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Cross-border Commerce — Case Study" data-zh="跨境电商从 0 到 1 — 案例">Cross-border Commerce — Case Study</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block">
+        <span class="lang-en">case study · ai-driven commerce pipeline</span>
+        <span class="lang-zh">案例研究 · AI 驱动的选品-上架管线</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Cross-border Commerce, Zero to One — an AI-driven sourcing-to-listing system</span>
+        <span class="lang-zh">跨境电商从 0 到 1 —— AI 驱动的选品-上架全流程体系</span>
+      </h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-personal">Personal Project</span>
+        <span class="badge badge-building"><span class="pulse-dot pulse-dot-amber" aria-hidden="true"></span>Building</span>
+        <span class="case-layer">Applications</span>
+      </div>
+      <div class="article-meta">
+        <span class="lang-en">
+          An independent TikTok Shop (Malaysia) business, run on a six-stage AI pipeline:
+          research → selection → sourcing → pricing → creative → listing.
+        </span>
+        <span class="lang-zh">
+          独立运营的马来西亚 TikTok Shop 店铺，跑在六环节 AI 流水线上：调研→选品→货源→定价→素材→上架。
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          Cross-border selling looks like an information game but is actually an execution game.
+          I wanted to test whether one person plus AI could run the entire chain — with real money,
+          a real store, and real inventory decisions.
+        </p>
+
+        <h2>My call</h2>
+
+        <p>
+          Division of labor: I own the irreversible decisions (market / platform / category choice,
+          budget allocation, risk judgment) and the platform-side operations (business license,
+          store setup, ERP/API activation); AI takes on data collection and tool-chain coding.
+          Let data veto intuition — the hair-accessory category was dropped once the data confirmed
+          its market structure and loss-leader monopoly; the real demand shape of
+          &ldquo;sport phone cases&rdquo; in Malaysia turned out to be waterproof pouches.
+          Identified and avoided categories monopolized by RM0.01 loss-leaders, and chose an open
+          niche: high ticket, zero loss-leaders. Risk screening was pushed forward into the search
+          terms themselves: patent minefields, high-return categories, and shipping-restricted goods
+          are excluded at the data source — not caught by manual review.
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 182" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-cb-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <!-- main chain: six stages -->
+            <rect class="pl-box" x="6" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="57" y="46" text-anchor="middle">市场调研</text>
+            <text class="pl-note" x="57" y="62" text-anchor="middle">公开社区内容检索</text>
+            <rect class="pl-box" x="126" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="177" y="46" text-anchor="middle">选品</text>
+            <text class="pl-note" x="177" y="62" text-anchor="middle">四层漏斗·三源交叉</text>
+            <rect class="pl-box" x="246" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="297" y="46" text-anchor="middle">货源</text>
+            <text class="pl-note" x="297" y="62" text-anchor="middle">1688·买样为硬前提</text>
+            <rect class="pl-box" x="366" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="417" y="46" text-anchor="middle">定价</text>
+            <text class="pl-note" x="417" y="62" text-anchor="middle">利润测算模型</text>
+            <rect class="pl-box" x="486" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="537" y="46" text-anchor="middle">素材</text>
+            <text class="pl-note" x="537" y="62" text-anchor="middle">两层商品图工厂</text>
+            <rect class="pl-box" x="606" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="657" y="46" text-anchor="middle">上架</text>
+            <text class="pl-note" x="657" y="62" text-anchor="middle">ERP API 管道</text>
+            <line class="pl-line" x1="111" y1="50" x2="121" y2="50" marker-end="url(#arr-cb-en)"/>
+            <line class="pl-line" x1="231" y1="50" x2="241" y2="50" marker-end="url(#arr-cb-en)"/>
+            <line class="pl-line" x1="351" y1="50" x2="361" y2="50" marker-end="url(#arr-cb-en)"/>
+            <line class="pl-line" x1="471" y1="50" x2="481" y2="50" marker-end="url(#arr-cb-en)"/>
+            <line class="pl-line" x1="591" y1="50" x2="601" y2="50" marker-end="url(#arr-cb-en)"/>
+            <!-- risk-screening side note under 选品 -->
+            <path class="pl-dash" d="M 177 76 V 116" marker-end="url(#arr-cb-en)"/>
+            <rect class="pl-box" x="92" y="122" width="170" height="44" rx="8"/>
+            <text class="pl-name" x="177" y="140" text-anchor="middle">风控前置</text>
+            <text class="pl-note" x="177" y="156" text-anchor="middle">专利/退货/物流约束在源头排除</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Six-stage pipeline; risk screening happens at the data source, not in review.</span>
+            <span class="lang-zh">六环节流水线;风控发生在数据源头,而非人工复核。</span>
+          </figcaption>
+        </figure>
+
+        <h2>What shipped</h2>
+
+        <p>
+          Delivered in 12 days: a product-selection shortlist across six product lines
+          (21 qualified suppliers, est. profit ¥8–26 per unit); the four-layer selection funnel
+          packaged as a reusable skill with experience write-back; the ERP open-platform API path
+          tested end to end (HmacSHA256 signing aligned byte-for-byte with the official algorithm;
+          2 products in the TikTok publish queue); a two-layer product-image factory
+          (AI image-to-image scene backgrounds + a deterministic label-rendering layer);
+          and a bilingual Malay listing copy system. About 950 lines of Python.
+        </p>
+
+        <h2>Validation</h2>
+
+        <p>
+          Three-source cross-validation: Google Trends momentum × TikTok Shop market data
+          (via a third-party data service) × 1688 wholesale data (dropship price / lead time /
+          repeat-purchase rate). Data-quality engineering: sparse trend sub-terms distorted the
+          signal, so I switched to a 12-month weekly window with sparsity flags; one-cent
+          loss-leaders polluted price-band statistics, so a floor filter marks them separately;
+          reseller listings with &ldquo;high margin, zero sales&rdquo; were fingerprinted by their
+          identical repeat-rate/MOQ patterns, and &ldquo;sample purchase before commitment&rdquo;
+          became a hard rule. Cost engineering: comparable data services differ in price by 33× —
+          compared and chose accordingly, keeping monthly data cost within a $5 free tier.
+          The store is open and bound to the ERP; currently in the sample-and-inspect stage.
+        </p>
+
+        <h2>What iterating taught me</h2>
+
+        <blockquote>
+          From &ldquo;finding one winning product&rdquo; to &ldquo;building reusable
+          product-selection infrastructure&rdquo; — in the AI era, a solo operator's core leverage
+          is a repeatable pipeline. Data vetoes intuition, and data gets corrected too:
+          only when both directions have happened can you call it data-driven.
+        </blockquote>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          跨境电商看起来是信息差生意,实际是执行节奏生意。我想验证:一个人加 AI,能不能跑通完整链路——真金白银、真店铺、真库存决策。
+        </p>
+
+        <h2>我的判断</h2>
+
+        <p>
+          分工边界:我负责不可逆决策(市场/平台/品类选择、预算分配、风险判断)与平台侧运营(执照、店铺、ERP/API 开通),AI 承担数据抓取与工具链编码。用数据否决直觉——发饰品类因市场特性与引流款垄断被数据证实放弃;"运动手机壳"在马来的真实需求形态是防水袋。识别 RM0.01 引流款垄断的品类并规避,选择高客单、零引流款的空位品类。风控前置到搜索词:专利雷区、高退货品类、物流受限品在数据源头排除,而不是靠人工复核。
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 182" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-cb-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <!-- main chain: six stages -->
+            <rect class="pl-box" x="6" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="57" y="46" text-anchor="middle">市场调研</text>
+            <text class="pl-note" x="57" y="62" text-anchor="middle">公开社区内容检索</text>
+            <rect class="pl-box" x="126" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="177" y="46" text-anchor="middle">选品</text>
+            <text class="pl-note" x="177" y="62" text-anchor="middle">四层漏斗·三源交叉</text>
+            <rect class="pl-box" x="246" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="297" y="46" text-anchor="middle">货源</text>
+            <text class="pl-note" x="297" y="62" text-anchor="middle">1688·买样为硬前提</text>
+            <rect class="pl-box" x="366" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="417" y="46" text-anchor="middle">定价</text>
+            <text class="pl-note" x="417" y="62" text-anchor="middle">利润测算模型</text>
+            <rect class="pl-box" x="486" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="537" y="46" text-anchor="middle">素材</text>
+            <text class="pl-note" x="537" y="62" text-anchor="middle">两层商品图工厂</text>
+            <rect class="pl-box" x="606" y="24" width="102" height="52" rx="8"/>
+            <text class="pl-name" x="657" y="46" text-anchor="middle">上架</text>
+            <text class="pl-note" x="657" y="62" text-anchor="middle">ERP API 管道</text>
+            <line class="pl-line" x1="111" y1="50" x2="121" y2="50" marker-end="url(#arr-cb-zh)"/>
+            <line class="pl-line" x1="231" y1="50" x2="241" y2="50" marker-end="url(#arr-cb-zh)"/>
+            <line class="pl-line" x1="351" y1="50" x2="361" y2="50" marker-end="url(#arr-cb-zh)"/>
+            <line class="pl-line" x1="471" y1="50" x2="481" y2="50" marker-end="url(#arr-cb-zh)"/>
+            <line class="pl-line" x1="591" y1="50" x2="601" y2="50" marker-end="url(#arr-cb-zh)"/>
+            <!-- risk-screening side note under 选品 -->
+            <path class="pl-dash" d="M 177 76 V 116" marker-end="url(#arr-cb-zh)"/>
+            <rect class="pl-box" x="92" y="122" width="170" height="44" rx="8"/>
+            <text class="pl-name" x="177" y="140" text-anchor="middle">风控前置</text>
+            <text class="pl-note" x="177" y="156" text-anchor="middle">专利/退货/物流约束在源头排除</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Six-stage pipeline; risk screening happens at the data source, not in review.</span>
+            <span class="lang-zh">六环节流水线;风控发生在数据源头,而非人工复核。</span>
+          </figcaption>
+        </figure>
+
+        <h2>交付</h2>
+
+        <p>
+          12 天交付:六条产品线选品清单(21 个达标货源,单件预估利润 ¥8-26)、四层选品漏斗封装为带经验回写的可复用 skill、ERP 开放平台 API 全链路实测跑通(HmacSHA256 签名与官方算法逐字节对齐,2 个商品进入 TikTok 待发布队列)、两层商品图工厂(AI 图生图场景底图 + 确定性标签层渲染)、马来语双语 listing 文案体系。约 950 行 Python。
+        </p>
+
+        <h2>验证</h2>
+
+        <p>
+          三源数据交叉验证:Google Trends 趋势动量 × TikTok Shop 市场数据(经第三方数据服务) × 1688 批发数据(代发价/时效/回头率)。数据质量工程:趋势细分词稀疏失真改 12 个月周度窗口+稀疏标记;一分钱引流款污染价格带统计,设下限过滤单独标注;分销盘"高利润零销量"链接用回头率/MOQ 雷同特征指纹识别,立"买样验证为硬前提"规则。成本工程:同类数据服务价差 33 倍对比择优,月度数据成本控制在 $5 免费额度内。店铺已开设并绑定 ERP,当前处于买样验货阶段。
+        </p>
+
+        <h2>认知迭代</h2>
+
+        <blockquote>
+          从"找一个爆品"到"搭一套可复用的选品基础设施"——AI 时代个体户的核心杠杆是可重复的流水线。数据否决直觉,也修正数据:两个方向都发生过,才叫数据驱动。
+        </blockquote>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

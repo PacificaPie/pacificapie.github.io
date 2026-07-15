@@ -1307,6 +1307,22 @@ a.badge:hover { background: rgba(122, 92, 138, 0.1); }
   .pulse-dot { animation: none; }
 }
 
+/* Breathing amber dot — for BUILDING status (analogous to RUNNING green) */
+:root {
+  --build-amber: #C08A2D;
+  --build-amber-glow: rgba(192, 138, 45, 0.45);
+}
+.badge-building { color: var(--build-amber); }
+.pulse-dot.pulse-dot-amber {
+  background: var(--build-amber);
+  animation-name: pulseDotAmber;
+}
+@keyframes pulseDotAmber {
+  0%, 100% { box-shadow: 0 0 0 0 var(--build-amber-glow); opacity: 1; }
+  50%      { box-shadow: 0 0 0 6px rgba(192, 138, 45, 0); opacity: 0.65; }
+}
+.strata-dot.strata-dot-building { animation: pulseDotAmber 2.2s ease-in-out infinite; }
+
 /* ---------- Hero proof chips ---------- */
 .proof-chips {
   display: flex;
@@ -1572,6 +1588,8 @@ html[lang="zh"] .node-card-desc { font-family: var(--font-sans-cn); }
     --purple-soft:  #413347;
     --live-green:   #6FBF8A;
     --live-green-glow: rgba(111, 191, 138, 0.4);
+    --build-amber:  #D9A855;
+    --build-amber-glow: rgba(217, 168, 85, 0.4);
     --panel-ink:    #1A1916;
   }
   /* Saffron / cream surfaces keep dark ink on them */
