@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="Ruoyang (Pacifica) Zhang" data-zh="张若阳 — Pacifica">Ruoyang (Pacifica) Zhang</title>
-  <meta name="description" content="Pacifica Zhang — AI product builder. From post-training to agents to applications: a running job-search agent, a live RAG demo, and a real cross-border commerce pipeline." />
+  <meta name="description" content="Pacifica Zhang — AI-native product strategy, evaluation, and hands-on building. I turn ambiguous AI workflows into measurable, working systems." />
+  <link rel="icon" type="image/png" href="assets/pacifica-avatar.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,65 +98,77 @@
     </div>
   </section>
 
-  <!-- ============== HERO — color-block composition ============== -->
-  <header class="hero wrap">
+  <!-- ============== HERO — positioning + person + proof ============== -->
+  <header class="hero hero-v2 wrap-wide">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-kicker">
+          <span class="lang-en">AI-native product strategy · evaluation · systems</span>
+          <span class="lang-zh">AI-native 策略产品 · 评测 · 系统落地</span>
+        </div>
 
-    <!-- Two color bands carrying the claim.
-         Animation triggers when hero scrolls into view. -->
-    <div class="hero-bands">
+        <h1 class="hero-statement">
+          <span class="lang-en">I turn ambiguous AI workflows into <span class="statement-highlight">measurable, working systems.</span></span>
+          <span class="lang-zh">我把模糊的 AI 需求，变成<span class="statement-highlight">可运行、可评测、可迭代的系统。</span></span>
+        </h1>
 
-      <div class="color-band yellow">
-        <span class="lang-en">From post-training to agents to applications —</span>
-        <span class="lang-zh">从模型后训练，到 Agent 编排，到应用落地——</span>
+        <p class="hero-intro">
+          <span class="lang-en">I connect business judgment, evaluation discipline, and hands-on building — from post-training experiments to agent systems and real operations.</span>
+          <span class="lang-zh">从后训练实验到 Agent 系统与真实业务，我把业务判断、评测纪律和亲手实现接在一起。</span>
+        </p>
+
+        <div class="hero-actions">
+          <a class="hero-action primary" href="#work">
+            <span class="lang-en">View selected work</span>
+            <span class="lang-zh">查看代表项目</span>
+          </a>
+          <a class="hero-action secondary" href="mailto:ruoyang.zhang@yale.edu">
+            <span class="lang-en">Start a conversation</span>
+            <span class="lang-zh">和我聊聊</span>
+          </a>
+        </div>
+
+        <div class="proof-chips" aria-label="Selected evidence">
+          <a class="proof-chip" href="work/jobagent.html">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span class="lang-en">Agent running 2× daily</span>
+            <span class="lang-zh">Agent 每日运行 2 次</span>
+          </a>
+          <a class="proof-chip" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">
+            <span class="lang-en">Live RAG product</span>
+            <span class="lang-zh">在线 RAG 产品</span>
+          </a>
+          <a class="proof-chip" href="work/llm-feature.html">
+            <span class="lang-en">103-case evaluation set</span>
+            <span class="lang-zh">103 条真实样本评测</span>
+          </a>
+        </div>
       </div>
 
-      <div class="color-band blue">
-        <span class="lang-en">I've built, shipped, and validated every layer of the AI stack.</span>
-        <span class="lang-zh">AI 链路的每一层我都亲手搭过、上线过、验证过。</span>
-      </div>
-
+      <figure class="hero-portrait">
+        <div class="portrait-orbit" aria-hidden="true"></div>
+        <img src="assets/pacifica-avatar.png" alt="Abstract illustrated portrait of Pacifica Zhang">
+        <figcaption>
+          <span class="lang-en">Pacifica / Ruoyang Zhang</span>
+          <span class="lang-zh">张若阳 / Pacifica</span>
+        </figcaption>
+      </figure>
     </div>
-
-    <!-- Proof chips — three receipts, not adjectives -->
-    <div class="proof-chips">
-      <a class="proof-chip" href="work/jobagent.html">
-        <span class="pulse-dot" aria-hidden="true"></span>
-        <span class="lang-en">Job-search agent — RUNNING since Jun 2026</span>
-        <span class="lang-zh">求职 agent —— 运行中 · 自 2026.06</span>
-      </a>
-      <a class="proof-chip" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">
-        <span class="lang-en">VibeSearch — live demo</span>
-        <span class="lang-zh">VibeSearch —— 在线 demo</span>
-      </a>
-      <a class="proof-chip" href="work/llm-feature.html">
-        <span class="lang-en">LLM feature — shipped, validated on 103 real cases</span>
-        <span class="lang-zh">LLM 功能 —— 已上线 · 103 条真实数据验证</span>
-      </a>
-    </div>
-
-    <div class="hero-meta">
-      <span class="lang-en">Post-training · Agent Systems · AI Applications · Evaluation</span>
-      <span class="lang-zh">Post-training · Agent Systems · AI Applications · Evaluation</span>
-    </div>
-
-    <!-- Small decoration anchoring lower-left, balances composition -->
-    <svg class="svg-deco hero-decoration bottom-left" viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <line class="stroke" x1="40"  y1="60"  x2="120" y2="120"/>
-      <line class="stroke" x1="120" y1="120" x2="80"  y2="170"/>
-      <line class="stroke" x1="120" y1="120" x2="230" y2="95"/>
-      <circle class="dot-yellow" cx="40"  cy="60"  r="3"/>
-      <circle class="dot-purple" cx="120" cy="120" r="4"/>
-      <circle class="dot-blue"   cx="80"  cy="170" r="3"/>
-      <circle class="dot-accent" cx="230" cy="95"  r="3.5"/>
-    </svg>
   </header>
 
-  <!-- ============== STACK STRATA — three layers of the AI stack ============== -->
+  <main class="home-flow">
+
+  <!-- ============== CAPABILITY STRATA — a compact lens, not a second project index ============== -->
   <section id="strata-section" class="wrap-wide fade-in strata-section">
     <h2 class="section-heading">
-      <span class="lang-en">Stack Strata</span>
-      <span class="lang-zh">三层地层图</span>
+      <span class="lang-en">How I Work Across the Stack</span>
+      <span class="lang-zh">我如何跨层工作</span>
     </h2>
+
+    <p class="section-intro">
+      <span class="lang-en">Not a claim to do everything. A map of where I make product decisions, build, and validate.</span>
+      <span class="lang-zh">这不是“什么都做”的清单，而是一张关于我在哪里做判断、实现与验证的地图。</span>
+    </p>
 
     <div class="strata">
       <div class="strata-eval-head" aria-hidden="true">Evaluation / 评测</div>
@@ -170,45 +183,11 @@
           <div class="stratum-nodes">
             <a class="strata-node" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener" style="--dot:var(--origin-personal);">
               <span class="strata-dot"></span>
-              <span class="strata-name">VibeSearch</span>
-              <span class="origin-pill origin-personal">Personal</span>
-              <span class="badge badge-live">Live</span>
+              <span class="strata-name"><span class="lang-en">Shape the user loop</span><span class="lang-zh">定义用户闭环</span></span>
+              <span class="strata-example">VibeSearch · ResourceLoop</span>
               <span class="strata-card">
-                <span class="lang-en">RAG music search that understands moods, not keywords.</span>
-                <span class="lang-zh">听得懂情绪的音乐搜索。</span>
-              </span>
-            </a>
-            <a class="strata-node" href="work/resourceloop.html" style="--dot:var(--origin-internship);">
-              <span class="strata-dot"></span>
-              <span class="strata-name">ResourceLoop</span>
-              <span class="origin-pill origin-internship">Internship · Meituan</span>
-              <span class="badge badge-internal">Internal</span>
-              <span class="strata-card">
-                <span class="lang-en">A three-role B2B system, co-built with AI.</span>
-                <span class="lang-zh">与 AI 结对交付的 B 端三角色系统。</span>
-              </span>
-            </a>
-            <a class="strata-node" href="work/crossborder.html" style="--dot:var(--build-amber);">
-              <span class="strata-dot strata-dot-building"></span>
-              <span class="strata-name">Crossborder Commerce</span>
-              <span class="origin-pill origin-personal">Personal</span>
-              <span class="badge badge-building"><span class="pulse-dot pulse-dot-amber" aria-hidden="true"></span>Building</span>
-              <span class="strata-card">
-                <span class="lang-en">A real TikTok Shop business run on a six-stage AI pipeline.</span>
-                <span class="lang-zh">跑在六环节 AI 流水线上的真实跨境生意。</span>
-              </span>
-            </a>
-            <a class="strata-node" href="https://github.com/PacificaPie/pacificapie.github.io" target="_blank" rel="noopener" style="--dot:var(--origin-personal);">
-              <span class="strata-dot"></span>
-              <span class="strata-name">
-                <span class="lang-en">This Site</span>
-                <span class="lang-zh">这张名片</span>
-              </span>
-              <span class="origin-pill origin-personal">Personal</span>
-              <span class="badge badge-here">You are here</span>
-              <span class="strata-card">
-                <span class="lang-en">This card was built the same way — spec by me, executed by agents.</span>
-                <span class="lang-zh">这张名片本身也是这么做出来的。</span>
+                <span class="lang-en">Translate a business or user problem into a workflow people can actually use.</span>
+                <span class="lang-zh">把业务与用户问题翻译成真正可用的工作流。</span>
               </span>
             </a>
           </div>
@@ -228,32 +207,11 @@
           <div class="stratum-nodes">
             <a class="strata-node" href="work/jobagent.html" style="--dot:var(--live-green);">
               <span class="strata-dot strata-dot-running"></span>
-              <span class="strata-name">Job-search Agent</span>
-              <span class="origin-pill origin-personal">Personal</span>
-              <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
+              <span class="strata-name"><span class="lang-en">Design the system</span><span class="lang-zh">设计系统与边界</span></span>
+              <span class="strata-example">Job Agent · ImageGen</span>
               <span class="strata-card">
-                <span class="lang-en">Finds jobs, tailors resumes, never auto-submits. Running daily.</span>
-                <span class="lang-zh">每天自动找岗、定制简历，永不代投。运行中。</span>
-              </span>
-            </a>
-            <a class="strata-node" href="work/llm-feature.html" style="--dot:var(--origin-internship);">
-              <span class="strata-dot"></span>
-              <span class="strata-name">LLM Feature</span>
-              <span class="origin-pill origin-internship">Internship · Meituan</span>
-              <span class="badge badge-shipped">Shipped</span>
-              <span class="strata-card">
-                <span class="lang-en">7 prompt versions, validated on 103 real cases.</span>
-                <span class="lang-zh">七版 prompt，103 条真实数据验证。</span>
-              </span>
-            </a>
-            <a class="strata-node" href="work/imagegen.html" style="--dot:var(--origin-internship);">
-              <span class="strata-dot"></span>
-              <span class="strata-name">Two-stage ImageGen</span>
-              <span class="origin-pill origin-internship">Internship · Meituan</span>
-              <span class="badge badge-shipped">Shipped</span>
-              <span class="strata-card">
-                <span class="lang-en">Fixed Chinese-text garbling by restructuring the pipeline.</span>
-                <span class="lang-zh">用链路重构根除生图中文乱码。</span>
+                <span class="lang-en">Set human-in-the-loop boundaries, failure states, and operating rules.</span>
+                <span class="lang-zh">定义人机边界、失败状态与系统运行规则。</span>
               </span>
             </a>
           </div>
@@ -273,12 +231,11 @@
           <div class="stratum-nodes">
             <a class="strata-node" href="work/geoqa.html" style="--dot:var(--origin-course);">
               <span class="strata-dot"></span>
-              <span class="strata-name">GeoQA</span>
-              <span class="origin-pill origin-course">Yale Course</span>
-              <span class="badge badge-oss">Open source</span>
+              <span class="strata-name"><span class="lang-en">Interrogate the model</span><span class="lang-zh">理解模型行为</span></span>
+              <span class="strata-example">GeoQA · LoRA · GRPO</span>
               <span class="strata-card">
-                <span class="lang-en">LoRA SFT + GRPO; unblocked RL with Pass@K data filtering.</span>
-                <span class="lang-zh">两阶段后训练,用 Pass@K 解锁 GRPO。</span>
+                <span class="lang-en">Understand failure modes closely enough to make better product and evaluation decisions.</span>
+                <span class="lang-zh">理解失败模式，进而做出更好的产品与评测判断。</span>
               </span>
             </a>
           </div>
@@ -292,7 +249,7 @@
   </section>
 
   <!-- Constellation divider -->
-  <div class="wrap">
+  <div class="wrap capability-divider">
     <svg class="svg-deco constellation-divider" viewBox="0 0 280 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <line class="stroke" x1="20"  y1="20" x2="80"  y2="20"/>
       <line class="stroke" x1="80"  y1="20" x2="140" y2="10"/>
@@ -307,7 +264,7 @@
   </div>
 
   <!-- ============== STICKY NOTE 1 ============== -->
-  <div class="wrap sticky-note-wrap left">
+  <div class="wrap sticky-note-wrap left signature-note">
     <div class="sticky-note">
       <span class="lang-en">
         Permanence is something to be grateful for.<br>
@@ -325,126 +282,80 @@
   </div>
 
   <!-- ============== WORK ============== -->
-  <section id="work" class="wrap fade-in">
+  <section id="work" class="wrap-wide fade-in">
     <h2 class="section-heading">
       <span class="lang-en">Selected Work</span>
       <span class="lang-zh">代表项目</span>
     </h2>
 
-    <div class="work-index">
+    <p class="section-intro">
+      <span class="lang-en">Three projects, three kinds of proof: a system that keeps running, a feature evaluated on real cases, and a business tested with real constraints.</span>
+      <span class="lang-zh">三个项目，三种证据：持续运行的系统、经过真实样本评测的功能，以及接受真实约束检验的生意。</span>
+    </p>
 
-      <a class="work-index-row" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">
-        <span class="work-index-name">VibeSearch</span>
-        <span class="origin-pill origin-personal">Personal Project</span>
-        <span class="badge badge-live">Live</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
+    <div class="featured-work-grid">
+      <a class="featured-work-card card-agent" href="work/jobagent.html">
+        <div class="featured-work-topline">
+          <span class="featured-work-number">01</span>
+          <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
+        </div>
+        <h3>Job-search Agent</h3>
+        <p>
+          <span class="lang-en">A human-in-the-loop pipeline that discovers, judges, and prepares applications twice a day — without ever auto-submitting.</span>
+          <span class="lang-zh">每天两次自动发现、判断并准备求职材料，同时坚持永不代投的人机边界。</span>
+        </p>
+        <dl class="featured-evidence">
+          <div><dt>Cadence</dt><dd>2× / day</dd></div>
+          <div><dt>Signal</dt><dd><span class="lang-en">3 failure classes caught</span><span class="lang-zh">捕获 3 类故障</span></dd></div>
+        </dl>
+        <span class="featured-work-link"><span class="lang-en">Read case study</span><span class="lang-zh">阅读案例</span> →</span>
       </a>
 
-      <a class="work-index-row" href="work/resourceloop.html">
-        <span class="work-index-name">ResourceLoop</span>
-        <span class="origin-pill origin-internship">Internship · Meituan</span>
-        <span class="badge badge-internal">Internal</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
+      <a class="featured-work-card card-eval" href="work/llm-feature.html">
+        <div class="featured-work-topline">
+          <span class="featured-work-number">02</span>
+          <span class="badge badge-shipped">Shipped</span>
+        </div>
+        <h3>LLM Recommendation Feature</h3>
+        <p>
+          <span class="lang-en">A recommendation capability shaped through fixed-sample regression, badcase attribution, and seven prompt versions.</span>
+          <span class="lang-zh">用固定样本回归、badcase 归因和七版 prompt 打磨出的推荐能力。</span>
+        </p>
+        <dl class="featured-evidence">
+          <div><dt>Evidence</dt><dd>103 <span class="lang-en">cases</span><span class="lang-zh">条样本</span></dd></div>
+          <div><dt>Iteration</dt><dd>7 <span class="lang-en">versions</span><span class="lang-zh">个版本</span></dd></div>
+        </dl>
+        <span class="featured-work-link"><span class="lang-en">Read case study</span><span class="lang-zh">阅读案例</span> →</span>
       </a>
 
-      <a class="work-index-row" href="work/crossborder.html">
-        <span class="work-index-name">Crossborder Commerce</span>
-        <span class="origin-pill origin-personal">Personal Project</span>
-        <span class="badge badge-building"><span class="pulse-dot pulse-dot-amber" aria-hidden="true"></span>Building</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
+      <a class="featured-work-card card-commerce" href="work/crossborder.html">
+        <div class="featured-work-topline">
+          <span class="featured-work-number">03</span>
+          <span class="badge badge-building"><span class="pulse-dot pulse-dot-amber" aria-hidden="true"></span>Building</span>
+        </div>
+        <h3>Cross-border Commerce</h3>
+        <p>
+          <span class="lang-en">A real TikTok Shop operation used to test whether one person plus AI can run the sourcing-to-listing chain.</span>
+          <span class="lang-zh">用真实 TikTok Shop 检验“一人 + AI”能否跑通从选品到上架的完整链路。</span>
+        </p>
+        <dl class="featured-evidence">
+          <div><dt>Delivery</dt><dd>12 <span class="lang-en">days</span><span class="lang-zh">天</span></dd></div>
+          <div><dt>Pipeline</dt><dd>6 <span class="lang-en">stages</span><span class="lang-zh">个环节</span></dd></div>
+        </dl>
+        <span class="featured-work-link"><span class="lang-en">Read case study</span><span class="lang-zh">阅读案例</span> →</span>
       </a>
+    </div>
 
-      <a class="work-index-row" href="https://github.com/PacificaPie/pacificapie.github.io" target="_blank" rel="noopener">
-        <span class="work-index-name">
-          <span class="lang-en">This Site</span>
-          <span class="lang-zh">这张名片</span>
-        </span>
-        <span class="origin-pill origin-personal">Personal Project</span>
-        <span class="badge badge-here">You are here</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a class="work-index-row" href="work/jobagent.html">
-        <span class="work-index-name">Job-search Agent</span>
-        <span class="origin-pill origin-personal">Personal Project</span>
-        <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a class="work-index-row" href="work/llm-feature.html">
-        <span class="work-index-name">LLM Feature</span>
-        <span class="origin-pill origin-internship">Internship · Meituan</span>
-        <span class="badge badge-shipped">Shipped</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a class="work-index-row" href="work/imagegen.html">
-        <span class="work-index-name">Two-stage ImageGen</span>
-        <span class="origin-pill origin-internship">Internship · Meituan</span>
-        <span class="badge badge-shipped">Shipped</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
-      </a>
-
-      <a class="work-index-row" href="work/geoqa.html">
-        <span class="work-index-name">GeoQA</span>
-        <span class="origin-pill origin-course">Yale Course</span>
-        <span class="badge badge-oss">Open source</span>
-        <span class="work-index-arrow" aria-hidden="true">→</span>
-      </a>
-
+    <div class="more-work">
+      <span class="more-work-label"><span class="lang-en">More work</span><span class="lang-zh">更多项目</span></span>
+      <a href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">VibeSearch ↗</a>
+      <a href="work/resourceloop.html">ResourceLoop</a>
+      <a href="work/imagegen.html">Two-stage ImageGen</a>
+      <a href="work/geoqa.html">GeoQA</a>
     </div>
   </section>
 
-  <!-- ============== STICKY NOTE 2 ============== -->
-  <div class="wrap sticky-note-wrap">
-    <div class="sticky-note purple">
-      <span class="lang-en">
-        Maybe every problem is like that moment of my life —<br>
-        in the end, you have to save yourself.
-      </span>
-      <span class="lang-zh">
-        可能我所有的课题就像那一刻我的命一样，<br>
-        说到底都需要自己拯救。
-      </span>
-      <span class="note-source">
-        <span class="lang-en">— surfing in Barbados, 2025</span>
-        <span class="lang-zh">—— 巴巴多斯冲浪那天 · 2025</span>
-      </span>
-    </div>
-  </div>
-
-  <!-- Constellation divider -->
-  <div class="wrap">
-    <svg class="svg-deco constellation-divider" viewBox="0 0 280 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <line class="stroke" x1="20"  y1="22" x2="80"  y2="14"/>
-      <line class="stroke" x1="80"  y1="14" x2="140" y2="28"/>
-      <line class="stroke" x1="140" y1="28" x2="200" y2="14"/>
-      <line class="stroke" x1="200" y1="14" x2="260" y2="22"/>
-      <circle class="dot-purple" cx="20"  cy="22" r="3"/>
-      <circle class="dot-yellow" cx="80"  cy="14" r="3.5"/>
-      <circle class="dot-red"    cx="140" cy="28" r="3"/>
-      <circle class="dot-blue"   cx="200" cy="14" r="4"/>
-      <circle class="dot-accent" cx="260" cy="22" r="3"/>
-    </svg>
-  </div>
-
-  <!-- ============== STICKY NOTE 3 ============== -->
-  <div class="wrap sticky-note-wrap left">
-    <div class="sticky-note blue">
-      <span class="lang-en">
-        Most "AI" problems are<br>
-        translation problems in disguise.
-      </span>
-      <span class="lang-zh">
-        大部分 "AI 问题"，<br>
-        其实是翻译问题。
-      </span>
-      <span class="note-source">
-        <span class="lang-en">— from a RAG postmortem, 2026</span>
-        <span class="lang-zh">—— RAG 项目复盘 · 2026</span>
-      </span>
-    </div>
-  </div>
+  </main>
 
   <!-- ============== ABOUT TEASER ============== -->
   <section class="wrap fade-in">
@@ -457,9 +368,9 @@
       <div class="lang-en">
         <p>
           I came to Yale's Biostatistics MS from a Beijing finance-econ undergrad.
-          Strategy PM internships at Tencent and at an Austrian bank, a research assistantship at the Gerstein Lab,
-          a paper on multimodal RL with two CS teammates. The bridge between any two of these wasn't planned;
-          it was built one tool at a time as the problem demanded.
+          My path crosses strategy, data, research, and building: Tencent and an Austrian bank,
+          the Gerstein Lab, multimodal RL, and now AI systems that run in the real world.
+          The bridge between them was built one problem at a time.
         </p>
         <p>
           This site is the part of me my résumé can't hold.
@@ -469,9 +380,9 @@
       <div class="lang-zh">
         <p>
           中央财经大学的应用经济学读到耶鲁的生物统计学硕士，
-          中间是腾讯微信的策略实习、奥合银行的客户挖掘策略、Gerstein Lab 的科研助理，
-          再到和两位耶鲁 CS 同学合作的多模态 RL 论文。这些之间的桥都不是规划好的，
-          只是 "需要什么就学什么" 一节一节搭出来。
+          中间跨过腾讯微信与奥合银行的策略工作、Gerstein Lab 的科研助理，
+          再到多模态 RL 和真实运行中的 AI 系统。这些桥不是提前规划好的，
+          而是围绕一个个具体问题搭出来的。
         </p>
         <p>
           这个网站是我简历装不下的那一部分。

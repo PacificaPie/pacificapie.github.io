@@ -89,10 +89,10 @@
         </span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">100%</span>
+        <span class="stat-num">0 / 103</span>
         <span class="stat-label">
-          <span class="lang-en">badcase gone after fix</span>
-          <span class="lang-zh">修复后 badcase 消失</span>
+          <span class="lang-en">targeted recurrence after fix</span>
+          <span class="lang-zh">目标问题修复后复现</span>
         </span>
       </div>
     </div>
@@ -152,7 +152,8 @@
           <li>Slimmed the prompt from a 100-line exhaustive spec to
             <strong>65 lines of principles + few-shot</strong>.</li>
           <li>Fixed <strong>example contamination</strong> — after annotating the reasoning path in
-            each example and adding negative examples, the badcase disappeared 100%.</li>
+            each example and adding negative examples, the targeted failure mode did not recur
+            on the 103-case regression set.</li>
           <li>Added fallback rules for sparse scenarios.</li>
         </ul>
 
@@ -226,7 +227,7 @@
         <ul>
           <li>prompt 从 100 行穷举式瘦身到 <strong>65 行 "原则 + few-shot"</strong>。</li>
           <li>修复<strong>示例污染</strong> —— 给示例补上推理路径标注、加入反面示例之后，
-            badcase 100% 消失。</li>
+            目标失败模式在 103 条固定回归样本中没有再次出现。</li>
           <li>为稀疏场景加兜底规则。</li>
         </ul>
 
