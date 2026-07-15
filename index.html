@@ -39,8 +39,8 @@
     </div>
   </nav>
 
-  <!-- ============== SPLASH — opening cover, exits on scroll ============== -->
-  <section class="splash" aria-label="Introduction">
+  <!-- ============== SPLASH — time-driven opening cover (one-shot, ≤1.5s) ============== -->
+  <section class="splash" aria-label="Introduction" aria-hidden="true">
     <div class="splash-inner">
 
       <div class="splash-text">
@@ -93,10 +93,6 @@
       </div>
 
     </div>
-    <div class="splash-scroll-hint">
-      <span class="lang-en">scroll</span>
-      <span class="lang-zh">下滑</span>
-    </div>
   </section>
 
   <!-- ============== HERO — color-block composition ============== -->
@@ -107,13 +103,13 @@
     <div class="hero-bands">
 
       <div class="color-band yellow">
-        <span class="lang-en">I build products with AI —</span>
-        <span class="lang-zh">用 AI 把想法变成运行中的系统，</span>
+        <span class="lang-en">From post-training to agents to applications —</span>
+        <span class="lang-zh">从模型后训练，到 Agent 编排，到应用落地——</span>
       </div>
 
       <div class="color-band blue">
-        <span class="lang-en">and prove they actually work.</span>
-        <span class="lang-zh">再证明它们真的有效。</span>
+        <span class="lang-en">I've built, shipped, and validated every layer of the AI stack.</span>
+        <span class="lang-zh">AI 链路的每一层我都亲手搭过、上线过、验证过。</span>
       </div>
 
     </div>
@@ -136,8 +132,8 @@
     </div>
 
     <div class="hero-meta">
-      <span class="lang-en">AI Product · Agent Systems · LLM Evaluation</span>
-      <span class="lang-zh">AI 产品 · Agent 系统 · LLM 评估</span>
+      <span class="lang-en">Post-training · Agent Systems · AI Applications · Evaluation</span>
+      <span class="lang-zh">Post-training · Agent Systems · AI Applications · Evaluation</span>
     </div>
 
     <!-- Small decoration anchoring lower-left, balances composition -->
@@ -152,179 +148,134 @@
     </svg>
   </header>
 
-  <!-- ============== PROJECT CONSTELLATION — hub of all AI projects ============== -->
-  <section id="constellation-section" class="wrap-wide fade-in constellation-section">
+  <!-- ============== STACK STRATA — three layers of the AI stack ============== -->
+  <section id="strata-section" class="wrap-wide fade-in strata-section">
     <h2 class="section-heading">
-      <span class="lang-en">Project Constellation</span>
-      <span class="lang-zh">项目星座</span>
+      <span class="lang-en">Stack Strata</span>
+      <span class="lang-zh">三层地层图</span>
     </h2>
-    <p class="constellation-hint">
-      <span class="lang-en">Builder ↔ Evaluator — hover a star for the story, click to enter.</span>
-      <span class="lang-zh">横轴 Builder ↔ Evaluator —— 悬停看简介，点击进入项目。</span>
-    </p>
 
-    <div class="constellation" id="constellation">
-      <canvas aria-hidden="true"></canvas>
+    <div class="strata">
+      <div class="strata-eval-head" aria-hidden="true">Evaluation / 评测</div>
 
-      <!-- Nodes: --x = Builder(0) → Evaluator(1) -->
-
-      <div class="constellation-node card-left card-below" style="--x:20%; --y:26%; --dot:var(--seal);"
-           data-href="work/resourceloop.html" role="link" tabindex="0"
-           aria-label="ResourceLoop">
-        <span class="node-dot"></span>
-        <span class="node-label">ResourceLoop</span>
-        <div class="node-card">
-          <div class="node-card-title">ResourceLoop</div>
-          <p class="node-card-desc">
-            <span class="lang-en">A B-side, three-role system (request → review → deploy), delivered pairing with AI.</span>
-            <span class="lang-zh">与 AI 结对交付的 B 端三角色系统（申报 → 审核 → 投放）。</span>
-          </p>
-          <span class="badge badge-internal">Internal</span>
-        </div>
-      </div>
-
-      <div class="constellation-node card-left" style="--x:25%; --y:64%; --dot:var(--blue);"
-           data-href="https://pacificapie.github.io/vibesearch/" data-external="1" role="link" tabindex="0"
-           aria-label="VibeSearch">
-        <span class="node-dot"></span>
-        <span class="node-label">VibeSearch</span>
-        <div class="node-card">
-          <div class="node-card-title">VibeSearch</div>
-          <p class="node-card-desc">
-            <span class="lang-en">Natural-language music recommender (RAG) — describe a vibe, get songs.</span>
-            <span class="lang-zh">自然语言音乐推荐（RAG）—— 用一句话描述情绪，换一串歌。</span>
-          </p>
-          <span class="badge badge-live">Live demo ↗</span>
-        </div>
-      </div>
-
-      <div class="constellation-node" style="--x:35%; --y:30%; --dot:var(--live-green);"
-           data-href="work/jobagent.html" role="link" tabindex="0"
-           aria-label="Job-search automation">
-        <span class="node-dot node-dot-running"></span>
-        <span class="node-label">
-          <span class="lang-en">Job-search agent</span>
-          <span class="lang-zh">求职自动化系统</span>
-        </span>
-        <div class="node-card">
-          <div class="node-card-title">
-            <span class="lang-en">Job-search automation</span>
-            <span class="lang-zh">求职自动化系统</span>
+      <!-- Band 1 — Applications (surface) -->
+      <div class="stratum stratum-app">
+        <div class="stratum-body">
+          <div class="stratum-label">
+            <span class="layer-en">Applications</span>
+            <span class="layer-zh">应用层</span>
           </div>
-          <p class="node-card-desc">
-            <span class="lang-en">End-to-end AI agent pipeline — running unattended since Jun 2026.</span>
-            <span class="lang-zh">端到端 AI Agent 管线 —— 2026.06 至今无人值守运行中。</span>
-          </p>
-          <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
-        </div>
-      </div>
-
-      <div class="constellation-node card-below" style="--x:50%; --y:62%; --dot:var(--accent);"
-           data-href="work/imagegen.html" role="link" tabindex="0"
-           aria-label="Two-stage image generation">
-        <span class="node-dot"></span>
-        <span class="node-label">
-          <span class="lang-en">Two-stage image gen</span>
-          <span class="lang-zh">两段式生图链路</span>
-        </span>
-        <div class="node-card">
-          <div class="node-card-title">
-            <span class="lang-en">Two-stage generation</span>
-            <span class="lang-zh">两段式生图链路</span>
+          <div class="stratum-nodes">
+            <a class="strata-node" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener" style="--dot:var(--origin-personal);">
+              <span class="strata-dot"></span>
+              <span class="strata-name">VibeSearch</span>
+              <span class="origin-pill origin-personal">Personal</span>
+              <span class="badge badge-live">Live</span>
+              <span class="strata-card">
+                <span class="lang-en">RAG music search that understands moods, not keywords.</span>
+                <span class="lang-zh">听得懂情绪的音乐搜索。</span>
+              </span>
+            </a>
+            <a class="strata-node" href="work/resourceloop.html" style="--dot:var(--origin-internship);">
+              <span class="strata-dot"></span>
+              <span class="strata-name">ResourceLoop</span>
+              <span class="origin-pill origin-internship">Internship · Meituan</span>
+              <span class="badge badge-internal">Internal</span>
+              <span class="strata-card">
+                <span class="lang-en">A three-role B2B system, co-built with AI.</span>
+                <span class="lang-zh">与 AI 结对交付的 B 端三角色系统。</span>
+              </span>
+            </a>
+            <a class="strata-node" href="https://github.com/PacificaPie/pacificapie.github.io" target="_blank" rel="noopener" style="--dot:var(--origin-personal);">
+              <span class="strata-dot"></span>
+              <span class="strata-name">
+                <span class="lang-en">This Site</span>
+                <span class="lang-zh">这张名片</span>
+              </span>
+              <span class="origin-pill origin-personal">Personal</span>
+              <span class="badge badge-here">You are here</span>
+              <span class="strata-card">
+                <span class="lang-en">This card was built the same way — spec by me, executed by agents.</span>
+                <span class="lang-zh">这张名片本身也是这么做出来的。</span>
+              </span>
+            </a>
           </div>
-          <p class="node-card-desc">
-            <span class="lang-en">Text–image separation that roots out garbled Chinese in AI-generated images.</span>
-            <span class="lang-zh">图文分离，根除 AI 生图中的中文乱码。</span>
-          </p>
-          <span class="badge badge-shipped">Shipped</span>&nbsp;<span class="badge badge-internal">Internal</span>
+        </div>
+        <div class="stratum-eval" aria-hidden="true">
+          <span class="eval-tick">runtime monitoring &amp; alerting / 运行监控与报警</span>
         </div>
       </div>
 
-      <div class="constellation-node" style="--x:60%; --y:28%; --dot:var(--yellow-deep);"
-           data-href="work/llm-feature.html" role="link" tabindex="0"
-           aria-label="LLM material recommendation">
-        <span class="node-dot"></span>
-        <span class="node-label">
-          <span class="lang-en">LLM recommendation</span>
-          <span class="lang-zh">LLM 物料推荐</span>
-        </span>
-        <div class="node-card">
-          <div class="node-card-title">
-            <span class="lang-en">LLM material recommendation</span>
-            <span class="lang-zh">LLM 物料推荐</span>
+      <!-- Band 2 — Agents · Skills · Prompts -->
+      <div class="stratum stratum-agent">
+        <div class="stratum-body">
+          <div class="stratum-label">
+            <span class="layer-en">Agents · Skills · Prompts</span>
+            <span class="layer-zh">编排层</span>
           </div>
-          <p class="node-card-desc">
-            <span class="lang-en">7 prompt versions, evaluated on 103 real production cases.</span>
-            <span class="lang-zh">7 个 prompt 版本，103 条真实生产数据验证。</span>
-          </p>
-          <span class="badge badge-shipped">Shipped</span>&nbsp;<span class="badge badge-internal">Internal</span>
+          <div class="stratum-nodes">
+            <a class="strata-node" href="work/jobagent.html" style="--dot:var(--live-green);">
+              <span class="strata-dot strata-dot-running"></span>
+              <span class="strata-name">Job-search Agent</span>
+              <span class="origin-pill origin-personal">Personal</span>
+              <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
+              <span class="strata-card">
+                <span class="lang-en">Finds jobs, tailors resumes, never auto-submits. Running daily.</span>
+                <span class="lang-zh">每天自动找岗、定制简历，永不代投。运行中。</span>
+              </span>
+            </a>
+            <a class="strata-node" href="work/llm-feature.html" style="--dot:var(--origin-internship);">
+              <span class="strata-dot"></span>
+              <span class="strata-name">LLM Feature</span>
+              <span class="origin-pill origin-internship">Internship · Meituan</span>
+              <span class="badge badge-shipped">Shipped</span>
+              <span class="strata-card">
+                <span class="lang-en">7 prompt versions, validated on 103 real cases.</span>
+                <span class="lang-zh">七版 prompt，103 条真实数据验证。</span>
+              </span>
+            </a>
+            <a class="strata-node" href="work/imagegen.html" style="--dot:var(--origin-internship);">
+              <span class="strata-dot"></span>
+              <span class="strata-name">Two-stage ImageGen</span>
+              <span class="origin-pill origin-internship">Internship · Meituan</span>
+              <span class="badge badge-shipped">Shipped</span>
+              <span class="strata-card">
+                <span class="lang-en">Fixed Chinese-text garbling by restructuring the pipeline.</span>
+                <span class="lang-zh">用链路重构根除生图中文乱码。</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="stratum-eval" aria-hidden="true">
+          <span class="eval-tick">fixed-sample prompt comparison / 固定样本对照</span>
         </div>
       </div>
 
-      <div class="constellation-node card-right card-below" style="--x:75%; --y:52%; --dot:var(--purple);"
-           data-href="work/geoqa.html" role="link" tabindex="0"
-           aria-label="GeoQA">
-        <span class="node-dot"></span>
-        <span class="node-label">GeoQA</span>
-        <div class="node-card">
-          <div class="node-card-title">GeoQA</div>
-          <p class="node-card-desc">
-            <span class="lang-en">Two-stage SFT + GRPO on InternVL3-8B; test accuracy 73.4% → 80.2%.</span>
-            <span class="lang-zh">InternVL3-8B 上的两阶段 SFT + GRPO，准确率 73.4% → 80.2%。</span>
-          </p>
-          <a class="badge badge-oss" href="https://github.com/PacificaPie/vlm" target="_blank" rel="noopener">Open source ↗</a>
+      <!-- Band 3 — Post-training (bedrock) -->
+      <div class="stratum stratum-model">
+        <div class="stratum-body">
+          <div class="stratum-label">
+            <span class="layer-en">Post-training</span>
+            <span class="layer-zh">模型层</span>
+          </div>
+          <div class="stratum-nodes">
+            <a class="strata-node" href="work/geoqa.html" style="--dot:var(--origin-course);">
+              <span class="strata-dot"></span>
+              <span class="strata-name">GeoQA</span>
+              <span class="origin-pill origin-course">Yale Course</span>
+              <span class="badge badge-oss">Open source</span>
+              <span class="strata-card">
+                <span class="lang-en">LoRA SFT + GRPO; unblocked RL with Pass@K data filtering.</span>
+                <span class="lang-zh">两阶段后训练,用 Pass@K 解锁 GRPO。</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="stratum-eval" aria-hidden="true">
+          <span class="eval-tick">reward design · Pass@K</span>
         </div>
       </div>
 
-      <!-- Axis -->
-      <div class="constellation-axis" aria-hidden="true">
-        <span class="axis-label">Builder<span class="axis-zh lang-zh">造物</span></span>
-        <span class="axis-line"></span>
-        <span class="axis-label">Evaluator<span class="axis-zh lang-zh">验证</span></span>
-      </div>
-    </div>
-
-    <!-- Mobile legend (hover cards don't exist on touch) -->
-    <div class="constellation-legend">
-      <a class="legend-item" href="work/jobagent.html" style="--dot:var(--live-green);">
-        <span class="legend-dot"></span>
-        <span class="legend-name">
-          <span class="lang-en">Job-search automation</span>
-          <span class="lang-zh">求职自动化系统</span>
-        </span>
-        <span class="badge badge-running">Running</span>
-      </a>
-      <a class="legend-item" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener" style="--dot:var(--blue);">
-        <span class="legend-dot"></span>
-        <span class="legend-name">VibeSearch</span>
-        <span class="badge badge-live">Live demo</span>
-      </a>
-      <a class="legend-item" href="work/geoqa.html" style="--dot:var(--purple);">
-        <span class="legend-dot"></span>
-        <span class="legend-name">GeoQA</span>
-        <span class="badge badge-oss">Open source</span>
-      </a>
-      <a class="legend-item" href="work/llm-feature.html" style="--dot:var(--yellow-deep);">
-        <span class="legend-dot"></span>
-        <span class="legend-name">
-          <span class="lang-en">LLM recommendation</span>
-          <span class="lang-zh">LLM 物料推荐</span>
-        </span>
-        <span class="badge badge-shipped">Shipped</span>
-      </a>
-      <a class="legend-item" href="work/imagegen.html" style="--dot:var(--accent);">
-        <span class="legend-dot"></span>
-        <span class="legend-name">
-          <span class="lang-en">Two-stage image gen</span>
-          <span class="lang-zh">两段式生图链路</span>
-        </span>
-        <span class="badge badge-shipped">Shipped</span>
-      </a>
-      <a class="legend-item" href="work/resourceloop.html" style="--dot:var(--seal);">
-        <span class="legend-dot"></span>
-        <span class="legend-name">ResourceLoop</span>
-        <span class="badge badge-internal">Internal</span>
-      </a>
     </div>
   </section>
 
@@ -368,341 +319,58 @@
       <span class="lang-zh">代表项目</span>
     </h2>
 
-    <div class="work-list">
+    <div class="work-index">
 
-      <a class="work-item" href="work/jobagent.html">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Pipeline: source nodes → agent → digest -->
-              <circle cx="14" cy="20" r="3" fill="#4F6E8C"/>
-              <circle cx="14" cy="40" r="3" fill="#4F6E8C"/>
-              <circle cx="14" cy="60" r="3" fill="#4F6E8C" opacity="0.55"/>
-              <path class="stroke" d="M 17 20 Q 30 20 36 38" stroke="#8B6F47" stroke-width="1.2"/>
-              <path class="stroke" d="M 17 40 L 34 40" stroke="#8B6F47" stroke-width="1.2"/>
-              <path class="stroke" d="M 17 60 Q 30 60 36 42" stroke="#8B6F47" stroke-width="1.2"/>
-              <rect class="stroke" x="36" y="32" width="16" height="16" rx="3" stroke="#7A5C8A" stroke-width="1.6"/>
-              <path class="stroke" d="M 52 40 L 66 40" stroke="#8B6F47" stroke-width="1.2"/>
-              <path class="stroke" d="M 62 36 L 66 40 L 62 44" stroke="#8B6F47" stroke-width="1.2"/>
-              <!-- Running dot -->
-              <circle cx="70" cy="40" r="3.2" fill="#3E8E5A"/>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">Job-Search Automation — End-to-End AI Agent Pipeline</span>
-              <span class="lang-zh">求职自动化系统 —— 端到端 AI Agent 管线</span>
-            </span>
-          </div>
-          <span class="work-item-date">2026.06 —</span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-blue">Agent</span>
-            <span class="work-item-tag tag-purple">
-              <span class="lang-en">personal</span>
-              <span class="lang-zh">个人项目</span>
-            </span>
-            <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              Multi-source job discovery → profile filtering &amp; dedup → LLM-agent enrichment →
-              daily scheduled digest, with full-pipeline failure alerting. Human-in-the-loop by
-              design: nothing auto-submits. Running unattended since June 2026.
-            </span>
-            <span class="lang-zh">
-              多信源岗位发现 → 画像筛选去重 → LLM agent 富化 → 每日定时推送，全链路故障报警。
-              human-in-the-loop 铁律：投递不自动提交。2026.06 至今无人值守运行中。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">
+        <span class="work-index-name">VibeSearch</span>
+        <span class="origin-pill origin-personal">Personal Project</span>
+        <span class="badge badge-live">Live</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="work-item" href="work/llm-feature.html">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Prompt slimming: long stack → short stack -->
-              <line x1="12" y1="22" x2="34" y2="22" stroke="#7A5C8A" stroke-width="1.4"/>
-              <line x1="12" y1="30" x2="34" y2="30" stroke="#7A5C8A" stroke-width="1.4"/>
-              <line x1="12" y1="38" x2="34" y2="38" stroke="#7A5C8A" stroke-width="1.4" opacity="0.7"/>
-              <line x1="12" y1="46" x2="34" y2="46" stroke="#7A5C8A" stroke-width="1.4" opacity="0.5"/>
-              <line x1="12" y1="54" x2="34" y2="54" stroke="#7A5C8A" stroke-width="1.4" opacity="0.3"/>
-              <path class="stroke" d="M 40 38 L 50 38" stroke="#8B6F47"/>
-              <path class="stroke" d="M 47 34 L 51 38 L 47 42" stroke="#8B6F47"/>
-              <line x1="56" y1="30" x2="70" y2="30" stroke="#4F6E8C" stroke-width="1.8"/>
-              <line x1="56" y1="38" x2="70" y2="38" stroke="#4F6E8C" stroke-width="1.8"/>
-              <!-- Check -->
-              <path class="stroke" d="M 58 50 L 62 54 L 70 46" stroke="#E5B53D" stroke-width="1.8"/>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">LLM Feature — 7 Prompt Versions, 103 Real Cases</span>
-              <span class="lang-zh">LLM 功能上线 —— 7 个 prompt 版本与 103 条真实数据</span>
-            </span>
-          </div>
-          <span class="work-item-date">
-            <span class="lang-en">internship</span>
-            <span class="lang-zh">实习项目</span>
-          </span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-yellow">prompt</span>
-            <span class="work-item-tag tag-blue">
-              <span class="lang-en">evaluation</span>
-              <span class="lang-zh">评估</span>
-            </span>
-            <span class="badge badge-shipped">Shipped</span>
-            <span class="badge badge-internal">Internal</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              An &ldquo;event → materials&rdquo; recommendation capability. Slimmed the prompt from a
-              100-line exhaustive spec to 65 lines of principles + few-shot; fixing example
-              contamination made the badcase disappear entirely. Validated version-over-version
-              on 103 real production events.
-            </span>
-            <span class="lang-zh">
-              "事件 → 配套物料" 推荐能力。prompt 从 100 行穷举式瘦身到 65 行 "原则 + few-shot"；
-              修复示例污染后 badcase 100% 消失。在 103 条真实生产事件上做逐版本对照验证。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="work/resourceloop.html">
+        <span class="work-index-name">ResourceLoop</span>
+        <span class="origin-pill origin-internship">Internship · Meituan</span>
+        <span class="badge badge-internal">Internal</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="work-item" href="work/imagegen.html">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Two-stage: text doc → scene frame -->
-              <rect class="stroke" x="10" y="24" width="22" height="30" rx="2" stroke="#7A5C8A" stroke-width="1.6"/>
-              <line x1="14" y1="32" x2="28" y2="32" stroke="#7A5C8A" stroke-width="1"/>
-              <line x1="14" y1="38" x2="28" y2="38" stroke="#7A5C8A" stroke-width="1"/>
-              <line x1="14" y1="44" x2="24" y2="44" stroke="#7A5C8A" stroke-width="1"/>
-              <path class="stroke" d="M 36 39 L 44 39" stroke="#8B6F47"/>
-              <path class="stroke" d="M 41 35 L 45 39 L 41 43" stroke="#8B6F47"/>
-              <rect class="stroke" x="48" y="24" width="24" height="30" rx="2" stroke="#4F6E8C" stroke-width="1.6"/>
-              <!-- Pure scene: sun + hill, no text -->
-              <circle cx="56" cy="33" r="3" fill="#E5B53D"/>
-              <path class="stroke" d="M 49 50 Q 58 40 64 47 Q 68 43 71 47" stroke="#4F6E8C" stroke-width="1.2"/>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">Two-Stage Generation — Rooting Out Garbled Chinese in AI Images</span>
-              <span class="lang-zh">两段式生成 —— 根除 AI 生图中文乱码</span>
-            </span>
-          </div>
-          <span class="work-item-date">
-            <span class="lang-en">internship</span>
-            <span class="lang-zh">实习项目</span>
-          </span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-purple">
-              <span class="lang-en">pipeline</span>
-              <span class="lang-zh">链路</span>
-            </span>
-            <span class="work-item-tag tag-red">
-              <span class="lang-en">image gen</span>
-              <span class="lang-zh">生图</span>
-            </span>
-            <span class="badge badge-shipped">Shipped</span>
-            <span class="badge badge-internal">Internal</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              Text-to-image models garble Chinese. Not a wording problem — a pipeline-structure
-              problem: an LLM first &ldquo;translates&rdquo; the event into a pure visual scene, then the
-              image model paints a text-free picture. Every trending event's final image landed.
-            </span>
-            <span class="lang-zh">
-              文生图模型渲染中文必乱码。这不是措辞调优问题，是链路结构问题：
-              先让文本大模型把事件 "翻译" 成纯画面场景描述，再喂文生图，只画无文字背景图。
-              全部热点事件成品图落表。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="https://github.com/PacificaPie/pacificapie.github.io" target="_blank" rel="noopener">
+        <span class="work-index-name">
+          <span class="lang-en">This Site</span>
+          <span class="lang-zh">这张名片</span>
+        </span>
+        <span class="origin-pill origin-personal">Personal Project</span>
+        <span class="badge badge-here">You are here</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="work-item" href="work/resourceloop.html">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Three-role loop -->
-              <circle cx="40" cy="20" r="5" class="stroke" stroke="#B85450" stroke-width="1.6" fill="none"/>
-              <circle cx="20" cy="54" r="5" class="stroke" stroke="#4F6E8C" stroke-width="1.6" fill="none"/>
-              <circle cx="60" cy="54" r="5" class="stroke" stroke="#7A5C8A" stroke-width="1.6" fill="none"/>
-              <path class="stroke" d="M 36 24 Q 24 34 21 48" stroke="#8B6F47" stroke-width="1.2"/>
-              <path class="stroke" d="M 26 56 L 54 56" stroke="#8B6F47" stroke-width="1.2"/>
-              <path class="stroke" d="M 59 48 Q 56 34 44 24" stroke="#8B6F47" stroke-width="1.2"/>
-              <!-- Arrowheads -->
-              <path class="stroke" d="M 20 43 L 21 48 L 25 45" stroke="#8B6F47" stroke-width="1"/>
-              <path class="stroke" d="M 50 53 L 54 56 L 50 59" stroke="#8B6F47" stroke-width="1"/>
-              <path class="stroke" d="M 44 29 L 44 24 L 48 27" stroke="#8B6F47" stroke-width="1"/>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">ResourceLoop — A B-Side System Delivered Pairing with AI</span>
-              <span class="lang-zh">ResourceLoop —— 与 AI 结对交付的 B 端系统</span>
-            </span>
-          </div>
-          <span class="work-item-date">
-            <span class="lang-en">internship</span>
-            <span class="lang-zh">实习项目</span>
-          </span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-blue">
-              <span class="lang-en">B-side</span>
-              <span class="lang-zh">B 端</span>
-            </span>
-            <span class="work-item-tag tag-purple">
-              <span class="lang-en">mechanism design</span>
-              <span class="lang-zh">机制设计</span>
-            </span>
-            <span class="badge badge-internal">Internal</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              A three-role system (request → review → deploy) for trending-event resources.
-              I proposed the product shape, interaction, and incentive mechanism first; the team
-              validated it and we co-developed — implementation paired with AI, with me owning
-              direction, judgment, and acceptance.
-            </span>
-            <span class="lang-zh">
-              热点事件资源的三角色系统（申报 → 审核 → 投放）。产品形态 / 交互 / 机制由我先提出、
-              团队校验后协同开发；实现借助 AI 结对 —— 我定方向、判断与验收。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="work/jobagent.html">
+        <span class="work-index-name">Job-search Agent</span>
+        <span class="origin-pill origin-personal">Personal Project</span>
+        <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="work-item" href="work/geoqa.html">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Triangle -->
-              <polygon class="stroke" points="14,62 38,16 58,58" stroke="#7A5C8A"/>
-              <!-- Angle ticks -->
-              <path class="stroke" d="M 33 24 A 7 7 0 0 1 42 24" stroke="#7A5C8A" stroke-width="1"/>
-              <path class="stroke" d="M 18 56 L 22 60" stroke="#7A5C8A" stroke-width="1"/>
-              <!-- Rollout dots, vertical -->
-              <circle cx="68" cy="22" r="2.6" fill="#B85450"/>
-              <circle cx="68" cy="34" r="2.6" fill="#B85450"/>
-              <circle cx="68" cy="46" r="2.6" fill="#B85450" opacity="0.55"/>
-              <circle cx="68" cy="58" r="2.6" fill="#B85450" opacity="0.25"/>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">GeoQA — Multimodal Geometry, SFT + GRPO on InternVL3-8B</span>
-              <span class="lang-zh">GeoQA — 多模态几何题求解：InternVL3-8B 上的两阶段 SFT + GRPO</span>
-            </span>
-          </div>
-          <span class="work-item-date">2026.03 — 04</span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-purple">VLM</span>
-            <span class="work-item-tag tag-red">RL</span>
-            <span class="work-item-tag">Yale CS</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              Two-stage training (LoRA SFT + GRPO) on a multimodal model. Diagnosed
-              <em>reward saturation</em> and repurposed Pass@K as a training-time
-              data-selection criterion. Test accuracy 73.4% → 80.2%.
-            </span>
-            <span class="lang-zh">
-              两阶段训练（LoRA SFT + GRPO）。诊断<em>reward saturation</em> 失败模式，
-              把 Pass@K 重新解释为训练时数据筛选标准，准确率 73.4% → 80.2%。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="work/llm-feature.html">
+        <span class="work-index-name">LLM Feature</span>
+        <span class="origin-pill origin-internship">Internship · Meituan</span>
+        <span class="badge badge-shipped">Shipped</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="work-item" href="https://pacificapie.github.io/vibesearch/" target="_blank" rel="noopener">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Numerical input "0.9" left -->
-              <text x="6"  y="30" font-size="11" fill="#8A8479">0.9</text>
-              <text x="6"  y="46" font-size="11" fill="#8A8479">0.2</text>
-              <!-- Arrow -->
-              <path class="stroke" d="M 26 38 L 42 38" stroke="#8B6F47"/>
-              <path class="stroke" d="M 38 34 L 42 38 L 38 42" stroke="#8B6F47"/>
-              <!-- Wave (vibe) right -->
-              <path class="stroke" d="M 46 38 Q 52 28 58 38 T 70 38" stroke="#4F6E8C" stroke-width="1.8"/>
-              <circle cx="72" cy="38" r="2.5" fill="#B85450"/>
-              <!-- Bottom labels (subtle) -->
-              <text x="6"  y="62" font-size="7" fill="#B0A99B" font-style="italic">numbers</text>
-              <text x="48" y="62" font-size="7" fill="#B0A99B" font-style="italic">vibe</text>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">VibeSearch — Natural-Language Music Recommender (RAG)</span>
-              <span class="lang-zh">VibeSearch — 自然语言音乐推荐 (RAG)</span>
-            </span>
-          </div>
-          <span class="work-item-date">2026.03</span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-blue">RAG</span>
-            <span class="work-item-tag tag-yellow">LangChain</span>
-            <span class="work-item-tag tag-red">live demo ↗</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              Users describe music by mood, but search does keyword matching. A semantic-translation
-              layer turns numerical audio features into colloquial descriptors so vector retrieval
-              can meet the user halfway. Streamlit demo live.
-            </span>
-            <span class="lang-zh">
-              用户用情绪描述音乐，搜索却只懂关键词。设计语义翻译层，把数值型音频特征转成
-              口语化描述，让向量检索能接住用户的真实查询。Streamlit demo 在线可玩。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="work/imagegen.html">
+        <span class="work-index-name">Two-stage ImageGen</span>
+        <span class="origin-pill origin-internship">Internship · Meituan</span>
+        <span class="badge badge-shipped">Shipped</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
-      <a class="work-item" href="#">
-        <div class="work-item-inner">
-          <div class="work-item-icon">
-            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <!-- Speech bubble -->
-              <path class="stroke" d="M 12 22 L 56 22 Q 66 22 66 32 L 66 50 Q 66 60 56 60 L 32 60 L 22 68 L 24 60 L 12 60 Q 12 60 12 50 Z" stroke="#B85450" stroke-width="1.6"/>
-              <!-- Filter "rules": dots + sieve lines -->
-              <line x1="20" y1="35" x2="58" y2="35" stroke="#7A5C8A" stroke-width="1"/>
-              <circle cx="26" cy="42" r="2" fill="#4F6E8C"/>
-              <circle cx="36" cy="42" r="2" fill="#4F6E8C"/>
-              <circle cx="46" cy="42" r="2" fill="#4F6E8C" opacity="0.4"/>
-              <circle cx="56" cy="42" r="2" fill="#4F6E8C"/>
-              <line x1="20" y1="49" x2="58" y2="49" stroke="#7A5C8A" stroke-width="1"/>
-              <!-- A small check-mark above for "compliance" -->
-              <path class="stroke" d="M 60 16 L 64 20 L 70 12" stroke="#E5B53D" stroke-width="1.8"/>
-            </svg>
-          </div>
-          <div class="work-item-row">
-            <span class="work-item-title">
-              <span class="lang-en">Tencent · WeChat — Anti-Abuse Strategy & NLP Tagging</span>
-              <span class="lang-zh">腾讯微信 — 违规交易评价反作弊策略 & NLP 标签</span>
-            </span>
-          </div>
-          <span class="work-item-date">2023</span>
-          <div class="work-item-tags">
-            <span class="work-item-tag tag-red">strategy</span>
-            <span class="work-item-tag tag-blue">NLP</span>
-            <span class="work-item-tag tag-purple">moderation</span>
-          </div>
-          <p class="work-item-desc">
-            <span class="lang-en">
-              Two-dimension rule-based detection (content + account signals). Spec'd labeling
-              and feature requirements for an NLP classifier; tagged 3,500+ merchants and
-              lifted page UV ~3%.
-            </span>
-            <span class="lang-zh">
-              内容侧 + 账号侧双维度的规则反作弊。给数据科学团队写标注规范和特征文档，
-              协助上线 NLP 分类器，覆盖 3,500+ 商家，相关页面 UV +3%。
-            </span>
-          </p>
-        </div>
+      <a class="work-index-row" href="work/geoqa.html">
+        <span class="work-index-name">GeoQA</span>
+        <span class="origin-pill origin-course">Yale Course</span>
+        <span class="badge badge-oss">Open source</span>
+        <span class="work-index-arrow" aria-hidden="true">→</span>
       </a>
 
     </div>

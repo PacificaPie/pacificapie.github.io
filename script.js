@@ -41,83 +41,55 @@
   }
 
   // ----------------------------------------------------------
-  // Splash scroll-leave fallback
-  // CSS already handles this in browsers that support
-  // `animation-timeline: scroll()`. For others we fall back to
-  // a JS scroll listener that mirrors the same effect.
+  // Splash — time-driven one-shot cover (CSS animates the exit).
+  // After it has fully played (≤1.5s) remove it from the tree so
+  // it can never intercept anything.
   // ----------------------------------------------------------
-  function setupSplashFallback() {
-    const supportsScrollTimeline =
-      typeof CSS !== 'undefined' &&
-      CSS.supports &&
-      CSS.supports('animation-timeline: scroll()');
-    if (supportsScrollTimeline) return;
-
-    const splashInner = document.querySelector('.splash-inner');
-    const splashHint = document.querySelector('.splash-scroll-hint');
-    if (!splashInner) return;
-
-    splashInner.classList.add('js-scroll-fade');
-    if (splashHint) splashHint.classList.add('js-scroll-fade');
-
-    let ticking = false;
-
-    function update() {
-      const scrollY = window.scrollY;
-      const vh = window.innerHeight;
-      const innerProgress = Math.min(scrollY / (vh * 0.9), 1);
-      const hintProgress = Math.min(scrollY / (vh * 0.25), 1);
-
-      splashInner.style.opacity = String(1 - innerProgress);
-      splashInner.style.transform = `translateY(${-innerProgress * 22}vh)`;
-
-      if (splashHint) {
-        splashHint.style.opacity = String(1 - hintProgress);
-        splashHint.style.transform = `translate(-50%, ${hintProgress * 24}px)`;
-      }
-
-      ticking = false;
-    }
-
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (!ticking) {
-          window.requestAnimationFrame(update);
-          ticking = true;
-        }
-      },
-      { passive: true }
-    );
-
-    // Initial state in case user lands mid-page (refresh + scroll)
-    update();
+  function setupSplashTimed() {
+    const splash = document.querySelector('.splash');
+    if (!splash) return;
+    window.setTimeout(() => {
+      splash.remove();
+    }, 1600);
   }
 
   // ----------------------------------------------------------
-  // Trigger color-block hero animation when it enters viewport,
-  // not on page load. (Otherwise the bands animate while the
-  // user is still on the splash and the moment is wasted.)
+  // Trigger color-block hero animation once the splash cover has
+  // faded (time-driven, ≤1.5s), so the bands slide in exactly as
+  // the hero is revealed. Pages without a splash animate when the
+  // hero scrolls into view.
   // ----------------------------------------------------------
   function setupHeroBandTrigger() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
-    if (!('IntersectionObserver' in window)) {
-      hero.classList.add('animated');
-      return;
+
+    const reducedMotion =
+      window.matchMedia &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const splash = document.querySelector('.splash');
+    const delay = splash && !reducedMotion ? 1050 : 0;
+
+    function observe() {
+      if (!('IntersectionObserver' in window)) {
+        hero.classList.add('animated');
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animated');
+              io.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+      io.observe(hero);
     }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(hero);
+
+    if (delay > 0) window.setTimeout(observe, delay);
+    else observe();
   }
 
   // ----------------------------------------------------------
@@ -315,7 +287,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     setLang(getInitialLang());
     bindToggles();
-    setupSplashFallback();
+    setupSplashTimed();
     setupHeroBandTrigger();
     setupFadeIn();
     setupConstellation();

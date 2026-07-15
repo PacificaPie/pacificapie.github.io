@@ -49,6 +49,11 @@
         <span class="lang-en">Two-Stage Generation — Rooting Out Garbled Chinese in AI Images</span>
         <span class="lang-zh">两段式生成 —— 根除 AI 生图中文乱码</span>
       </h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-internship">Internship · Meituan</span>
+        <span class="badge badge-shipped">Shipped</span>
+        <span class="case-layer">Agents &amp; Skills</span>
+      </div>
       <div class="article-meta">
         <span class="lang-en">
           internship project (internal) &nbsp;·&nbsp;
@@ -83,6 +88,33 @@
           separate text from image. The AI should only ever paint a text-free background —
           the words belong to a different layer entirely.
         </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-ig-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <text class="pl-anno" x="10" y="14">单段直出 ⇒ 中文乱码 ✗</text>
+            <rect class="pl-box" x="10" y="30" width="140" height="52" rx="8"/>
+            <text class="pl-name" x="80" y="60" text-anchor="middle">事件标题+字段</text>
+            <rect class="pl-box" x="190" y="30" width="160" height="52" rx="8"/>
+            <text class="pl-name" x="270" y="52" text-anchor="middle">文本 LLM</text>
+            <text class="pl-note" x="270" y="68" text-anchor="middle">译成纯画面场景·禁文字</text>
+            <rect class="pl-box" x="390" y="30" width="140" height="52" rx="8"/>
+            <text class="pl-name" x="460" y="52" text-anchor="middle">文生图</text>
+            <text class="pl-note" x="460" y="68" text-anchor="middle">无字背景图</text>
+            <rect class="pl-box" x="570" y="30" width="140" height="52" rx="8"/>
+            <text class="pl-name" x="640" y="60" text-anchor="middle">前端叠加标题</text>
+            <line class="pl-line" x1="154" y1="56" x2="186" y2="56" marker-end="url(#arr-ig-en)"/>
+            <line class="pl-line" x1="354" y1="56" x2="386" y2="56" marker-end="url(#arr-ig-en)"/>
+            <line class="pl-line" x1="534" y1="56" x2="566" y2="56" marker-end="url(#arr-ig-en)"/>
+            <line class="pl-line" x1="460" y1="82" x2="460" y2="132" marker-end="url(#arr-ig-en)"/>
+            <rect class="pl-box" x="390" y="136" width="140" height="38" rx="8"/>
+            <text class="pl-name" x="460" y="159" text-anchor="middle">按事件类型兜底</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Two-stage generation: text LLM translates events into scene descriptions before image generation.</span>
+            <span class="lang-zh">两段式:先把事件译成画面,再生成图像。</span>
+          </figcaption>
+        </figure>
 
         <h2>What shipped</h2>
 
@@ -125,6 +157,33 @@
           这不是措辞调优问题，是<strong>链路结构</strong>问题：图文分离。
           AI 只画无文字背景图 —— 文字属于另一层。
         </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-ig-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <text class="pl-anno" x="10" y="14">单段直出 ⇒ 中文乱码 ✗</text>
+            <rect class="pl-box" x="10" y="30" width="140" height="52" rx="8"/>
+            <text class="pl-name" x="80" y="60" text-anchor="middle">事件标题+字段</text>
+            <rect class="pl-box" x="190" y="30" width="160" height="52" rx="8"/>
+            <text class="pl-name" x="270" y="52" text-anchor="middle">文本 LLM</text>
+            <text class="pl-note" x="270" y="68" text-anchor="middle">译成纯画面场景·禁文字</text>
+            <rect class="pl-box" x="390" y="30" width="140" height="52" rx="8"/>
+            <text class="pl-name" x="460" y="52" text-anchor="middle">文生图</text>
+            <text class="pl-note" x="460" y="68" text-anchor="middle">无字背景图</text>
+            <rect class="pl-box" x="570" y="30" width="140" height="52" rx="8"/>
+            <text class="pl-name" x="640" y="60" text-anchor="middle">前端叠加标题</text>
+            <line class="pl-line" x1="154" y1="56" x2="186" y2="56" marker-end="url(#arr-ig-zh)"/>
+            <line class="pl-line" x1="354" y1="56" x2="386" y2="56" marker-end="url(#arr-ig-zh)"/>
+            <line class="pl-line" x1="534" y1="56" x2="566" y2="56" marker-end="url(#arr-ig-zh)"/>
+            <line class="pl-line" x1="460" y1="82" x2="460" y2="132" marker-end="url(#arr-ig-zh)"/>
+            <rect class="pl-box" x="390" y="136" width="140" height="38" rx="8"/>
+            <text class="pl-name" x="460" y="159" text-anchor="middle">按事件类型兜底</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Two-stage generation: text LLM translates events into scene descriptions before image generation.</span>
+            <span class="lang-zh">两段式:先把事件译成画面,再生成图像。</span>
+          </figcaption>
+        </figure>
 
         <h2>交付</h2>
 

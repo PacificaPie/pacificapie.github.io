@@ -49,6 +49,11 @@
         <span class="lang-en">Shipping an LLM Feature — 7 Prompt Versions and 103 Real Cases</span>
         <span class="lang-zh">LLM 功能上线 —— 7 个 prompt 版本与 103 条真实数据</span>
       </h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-internship">Internship · Meituan</span>
+        <span class="badge badge-shipped">Shipped</span>
+        <span class="case-layer">Agents &amp; Skills</span>
+      </div>
       <div class="article-meta">
         <span class="lang-en">
           internship project (internal) &nbsp;·&nbsp;
@@ -117,6 +122,32 @@
           they're a candidate list a human can veto.
         </p>
 
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-lf-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <rect class="pl-box" x="110" y="22" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="190" y="50" text-anchor="middle">Prompt vN</text>
+            <rect class="pl-box" x="450" y="22" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="530" y="42" text-anchor="middle">固定样本</text>
+            <text class="pl-note" x="530" y="58" text-anchor="middle">103 真实事件</text>
+            <rect class="pl-box" x="450" y="160" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="530" y="180" text-anchor="middle">对照评估</text>
+            <text class="pl-note" x="530" y="196" text-anchor="middle">vs v(N-1)</text>
+            <rect class="pl-box" x="110" y="160" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="190" y="188" text-anchor="middle">badcase 归因</text>
+            <line class="pl-line" x1="274" y1="46" x2="446" y2="46" marker-end="url(#arr-lf-en)"/>
+            <line class="pl-line" x1="530" y1="74" x2="530" y2="156" marker-end="url(#arr-lf-en)"/>
+            <line class="pl-line" x1="446" y1="184" x2="274" y2="184" marker-end="url(#arr-lf-en)"/>
+            <line class="pl-line" x1="190" y1="156" x2="190" y2="74" marker-end="url(#arr-lf-en)"/>
+            <text class="pl-anno" x="178" y="120" text-anchor="end">vN+1</text>
+            <text class="pl-anno" x="368" y="120" text-anchor="middle">v3 → v7.2 · 100 行 → 65 行</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Evaluation loop: fixed-sample comparison per version.</span>
+            <span class="lang-zh">评估循环:每一版都在同一批固定样本上对照。</span>
+          </figcaption>
+        </figure>
+
         <h2>What shipped</h2>
 
         <ul>
@@ -165,6 +196,32 @@
           每个版本 <code>v_n</code> 都在固定样本上与 <code>v_(n-1)</code> 做对照评估。
           定位同样关键：LLM 推荐不是标准答案，是人工可否决的候选清单。
         </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-lf-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <rect class="pl-box" x="110" y="22" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="190" y="50" text-anchor="middle">Prompt vN</text>
+            <rect class="pl-box" x="450" y="22" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="530" y="42" text-anchor="middle">固定样本</text>
+            <text class="pl-note" x="530" y="58" text-anchor="middle">103 真实事件</text>
+            <rect class="pl-box" x="450" y="160" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="530" y="180" text-anchor="middle">对照评估</text>
+            <text class="pl-note" x="530" y="196" text-anchor="middle">vs v(N-1)</text>
+            <rect class="pl-box" x="110" y="160" width="160" height="48" rx="8"/>
+            <text class="pl-name" x="190" y="188" text-anchor="middle">badcase 归因</text>
+            <line class="pl-line" x1="274" y1="46" x2="446" y2="46" marker-end="url(#arr-lf-zh)"/>
+            <line class="pl-line" x1="530" y1="74" x2="530" y2="156" marker-end="url(#arr-lf-zh)"/>
+            <line class="pl-line" x1="446" y1="184" x2="274" y2="184" marker-end="url(#arr-lf-zh)"/>
+            <line class="pl-line" x1="190" y1="156" x2="190" y2="74" marker-end="url(#arr-lf-zh)"/>
+            <text class="pl-anno" x="178" y="120" text-anchor="end">vN+1</text>
+            <text class="pl-anno" x="368" y="120" text-anchor="middle">v3 → v7.2 · 100 行 → 65 行</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Evaluation loop: fixed-sample comparison per version.</span>
+            <span class="lang-zh">评估循环:每一版都在同一批固定样本上对照。</span>
+          </figcaption>
+        </figure>
 
         <h2>交付</h2>
 

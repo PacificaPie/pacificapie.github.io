@@ -49,6 +49,11 @@
         <span class="lang-en">GeoQA — When Strong SFT Kills the GRPO Gradient</span>
         <span class="lang-zh">GeoQA —— 强 SFT 之后 GRPO 为什么不动了</span>
       </h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-course">Yale Course</span>
+        <span class="badge badge-oss">Open source</span>
+        <span class="case-layer">Post-training</span>
+      </div>
       <div class="article-meta">
         <span class="lang-en">
           March – April 2026 &nbsp;·&nbsp;
@@ -115,6 +120,35 @@
           Our backbone was InternVL3-8B. The question was whether a two-stage SFT + RL recipe
           could give us meaningful gains, on a single A100.
         </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-gq-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <rect class="pl-box" x="2" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="52" y="76" text-anchor="middle">InternVL3-8B</text>
+            <rect class="pl-box" x="126" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="176" y="76" text-anchor="middle">SFT (LoRA)</text>
+            <rect class="pl-box" x="250" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="300" y="68" text-anchor="middle">⚠ reward</text>
+            <text class="pl-name" x="300" y="84" text-anchor="middle">saturation</text>
+            <rect class="pl-box" x="374" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="424" y="68" text-anchor="middle">Pass@K 筛选</text>
+            <text class="pl-note" x="424" y="84" text-anchor="middle">保留33.5%</text>
+            <rect class="pl-box" x="498" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="548" y="76" text-anchor="middle">GRPO</text>
+            <rect class="pl-box" x="622" y="44" width="96" height="56" rx="8"/>
+            <text class="pl-name" x="670" y="76" text-anchor="middle">73.4%→80.2%</text>
+            <line class="pl-line" x1="104" y1="72" x2="122" y2="72" marker-end="url(#arr-gq-en)"/>
+            <line class="pl-line" x1="228" y1="72" x2="246" y2="72" marker-end="url(#arr-gq-en)"/>
+            <line class="pl-line" x1="352" y1="72" x2="370" y2="72" marker-end="url(#arr-gq-en)"/>
+            <line class="pl-line" x1="476" y1="72" x2="494" y2="72" marker-end="url(#arr-gq-en)"/>
+            <line class="pl-line" x1="600" y1="72" x2="618" y2="72" marker-end="url(#arr-gq-en)"/>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Post-training pipeline: Pass@K data filtering restored reward variance and unblocked GRPO.</span>
+            <span class="lang-zh">后训练管线:Pass@K 筛选恢复奖励方差,解锁 GRPO。</span>
+          </figcaption>
+        </figure>
 
         <h2>Stage 1 — two-phase SFT</h2>
 
@@ -235,6 +269,35 @@
           我们在 GeoQA 基准上做实验 —— 3,509 道训练题、755 道测试题的中文初中几何选择题，每题配一张图。
           基座是 InternVL3-8B。研究问题是：在单卡 A100 上，两阶段 SFT + RL 这套配方能不能拿到有意义的提升。
         </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-gq-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <rect class="pl-box" x="2" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="52" y="76" text-anchor="middle">InternVL3-8B</text>
+            <rect class="pl-box" x="126" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="176" y="76" text-anchor="middle">SFT (LoRA)</text>
+            <rect class="pl-box" x="250" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="300" y="68" text-anchor="middle">⚠ reward</text>
+            <text class="pl-name" x="300" y="84" text-anchor="middle">saturation</text>
+            <rect class="pl-box" x="374" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="424" y="68" text-anchor="middle">Pass@K 筛选</text>
+            <text class="pl-note" x="424" y="84" text-anchor="middle">保留33.5%</text>
+            <rect class="pl-box" x="498" y="44" width="100" height="56" rx="8"/>
+            <text class="pl-name" x="548" y="76" text-anchor="middle">GRPO</text>
+            <rect class="pl-box" x="622" y="44" width="96" height="56" rx="8"/>
+            <text class="pl-name" x="670" y="76" text-anchor="middle">73.4%→80.2%</text>
+            <line class="pl-line" x1="104" y1="72" x2="122" y2="72" marker-end="url(#arr-gq-zh)"/>
+            <line class="pl-line" x1="228" y1="72" x2="246" y2="72" marker-end="url(#arr-gq-zh)"/>
+            <line class="pl-line" x1="352" y1="72" x2="370" y2="72" marker-end="url(#arr-gq-zh)"/>
+            <line class="pl-line" x1="476" y1="72" x2="494" y2="72" marker-end="url(#arr-gq-zh)"/>
+            <line class="pl-line" x1="600" y1="72" x2="618" y2="72" marker-end="url(#arr-gq-zh)"/>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Post-training pipeline: Pass@K data filtering restored reward variance and unblocked GRPO.</span>
+            <span class="lang-zh">后训练管线:Pass@K 筛选恢复奖励方差,解锁 GRPO。</span>
+          </figcaption>
+        </figure>
 
         <h2>第一阶段 —— 两阶段 SFT</h2>
 

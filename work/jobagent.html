@@ -49,6 +49,12 @@
         <span class="lang-en">Job-Search Automation — an End-to-End AI Agent Pipeline</span>
         <span class="lang-zh">求职自动化系统 —— 端到端 AI Agent 管线</span>
       </h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-personal">Personal Project</span>
+        <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
+        <a class="badge badge-oss" href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Public repo</a>
+        <span class="case-layer">Agents &amp; Skills</span>
+      </div>
       <div class="article-meta">
         <span class="lang-en">
           Jun 2026 – present &nbsp;·&nbsp; personal project &nbsp;·&nbsp;
@@ -117,6 +123,48 @@
           must trace back to a ledger of verified facts.
         </p>
 
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-ja-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <!-- main chain -->
+            <rect class="pl-box" x="10" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="75" y="50" text-anchor="middle">多信源</text>
+            <text class="pl-note" x="75" y="66" text-anchor="middle">结构化表+平台API</text>
+            <rect class="pl-box" x="175" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="240" y="50" text-anchor="middle">筛选+去重</text>
+            <text class="pl-note" x="240" y="66" text-anchor="middle">画像匹配</text>
+            <rect class="pl-box" x="340" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="405" y="50" text-anchor="middle">LLM Agent 富化</text>
+            <text class="pl-note" x="405" y="66" text-anchor="middle">官方入口·JD·匹配度</text>
+            <rect class="pl-box" x="505" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="570" y="50" text-anchor="middle">每日推送</text>
+            <text class="pl-note" x="570" y="66" text-anchor="middle">Feishu</text>
+            <line class="pl-line" x1="144" y1="54" x2="168" y2="54" marker-end="url(#arr-ja-en)"/>
+            <line class="pl-line" x1="309" y1="54" x2="333" y2="54" marker-end="url(#arr-ja-en)"/>
+            <line class="pl-line" x1="474" y1="54" x2="498" y2="54" marker-end="url(#arr-ja-en)"/>
+            <!-- alerting rail (dashed drops from every node) -->
+            <path class="pl-dash" d="M 75 80 V 160"/>
+            <path class="pl-dash" d="M 240 80 V 160"/>
+            <path class="pl-dash" d="M 405 80 V 160"/>
+            <path class="pl-dash" d="M 570 80 V 160"/>
+            <path class="pl-dash" d="M 75 160 H 570"/>
+            <path class="pl-dash" d="M 95 160 V 180" marker-end="url(#arr-ja-en)"/>
+            <rect class="pl-box" x="10" y="186" width="170" height="44" rx="8"/>
+            <text class="pl-name" x="95" y="204" text-anchor="middle">故障报警</text>
+            <text class="pl-note" x="95" y="220" text-anchor="middle">独立凭证通道</text>
+            <!-- ledger feedback loop -->
+            <rect class="pl-box" x="575" y="186" width="105" height="40" rx="8"/>
+            <text class="pl-name" x="627" y="210" text-anchor="middle">投递台账</text>
+            <path class="pl-line" d="M 635 54 C 692 62, 692 150, 640 180" marker-end="url(#arr-ja-en)"/>
+            <path class="pl-line" d="M 575 206 C 420 246, 275 165, 244 88" marker-end="url(#arr-ja-en)"/>
+            <text class="pl-anno" x="415" y="243" text-anchor="middle">已投抑制 / applied-suppression</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Daily pipeline: discovery → filter → LLM enrichment → push, with an independent alerting rail and a ledger feedback loop.</span>
+            <span class="lang-zh">每日管线:发现→筛选→LLM富化→推送;独立报警轨 + 台账回流抑制。</span>
+          </figcaption>
+        </figure>
+
         <h2>What shipped</h2>
 
         <ul>
@@ -137,6 +185,19 @@
           The alerting mechanism has already caught — and led to fixes for — three distinct
           classes of environment failure.
         </p>
+
+        <h2>System Artifacts</h2>
+
+        <p>
+          The architecture, agent prompts, and the three Claude Code skills that orchestrate
+          this system are public:
+        </p>
+
+        <ul>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Architecture &amp; design decisions / 架构与设计决策 (README)</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Agent prompts: discovery &amp; enrichment / 发现与富化提示词</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Skills: career-archive · resume-tailor · apply / 三个编排 skill（已脱敏）</a></li>
+        </ul>
 
         <h2>What iterating taught me</h2>
 
@@ -169,6 +230,48 @@
           简历上每个数字必须可溯源到事实台账。
         </p>
 
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-ja-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <!-- main chain -->
+            <rect class="pl-box" x="10" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="75" y="50" text-anchor="middle">多信源</text>
+            <text class="pl-note" x="75" y="66" text-anchor="middle">结构化表+平台API</text>
+            <rect class="pl-box" x="175" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="240" y="50" text-anchor="middle">筛选+去重</text>
+            <text class="pl-note" x="240" y="66" text-anchor="middle">画像匹配</text>
+            <rect class="pl-box" x="340" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="405" y="50" text-anchor="middle">LLM Agent 富化</text>
+            <text class="pl-note" x="405" y="66" text-anchor="middle">官方入口·JD·匹配度</text>
+            <rect class="pl-box" x="505" y="28" width="130" height="52" rx="8"/>
+            <text class="pl-name" x="570" y="50" text-anchor="middle">每日推送</text>
+            <text class="pl-note" x="570" y="66" text-anchor="middle">Feishu</text>
+            <line class="pl-line" x1="144" y1="54" x2="168" y2="54" marker-end="url(#arr-ja-zh)"/>
+            <line class="pl-line" x1="309" y1="54" x2="333" y2="54" marker-end="url(#arr-ja-zh)"/>
+            <line class="pl-line" x1="474" y1="54" x2="498" y2="54" marker-end="url(#arr-ja-zh)"/>
+            <!-- alerting rail (dashed drops from every node) -->
+            <path class="pl-dash" d="M 75 80 V 160"/>
+            <path class="pl-dash" d="M 240 80 V 160"/>
+            <path class="pl-dash" d="M 405 80 V 160"/>
+            <path class="pl-dash" d="M 570 80 V 160"/>
+            <path class="pl-dash" d="M 75 160 H 570"/>
+            <path class="pl-dash" d="M 95 160 V 180" marker-end="url(#arr-ja-zh)"/>
+            <rect class="pl-box" x="10" y="186" width="170" height="44" rx="8"/>
+            <text class="pl-name" x="95" y="204" text-anchor="middle">故障报警</text>
+            <text class="pl-note" x="95" y="220" text-anchor="middle">独立凭证通道</text>
+            <!-- ledger feedback loop -->
+            <rect class="pl-box" x="575" y="186" width="105" height="40" rx="8"/>
+            <text class="pl-name" x="627" y="210" text-anchor="middle">投递台账</text>
+            <path class="pl-line" d="M 635 54 C 692 62, 692 150, 640 180" marker-end="url(#arr-ja-zh)"/>
+            <path class="pl-line" d="M 575 206 C 420 246, 275 165, 244 88" marker-end="url(#arr-ja-zh)"/>
+            <text class="pl-anno" x="415" y="243" text-anchor="middle">已投抑制 / applied-suppression</text>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Daily pipeline: discovery → filter → LLM enrichment → push, with an independent alerting rail and a ledger feedback loop.</span>
+            <span class="lang-zh">每日管线:发现→筛选→LLM富化→推送;独立报警轨 + 台账回流抑制。</span>
+          </figcaption>
+        </figure>
+
         <h2>交付</h2>
 
         <ul>
@@ -186,6 +289,18 @@
           系统自 2026 年 6 月起无人值守运行中，每日两班。
           曾靠报警机制发现并修复三类环境故障。
         </p>
+
+        <h2>系统构件</h2>
+
+        <p>
+          这套系统的架构、agent 提示词与三个编排 skill 已公开：
+        </p>
+
+        <ul>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Architecture &amp; design decisions / 架构与设计决策 (README)</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Agent prompts: discovery &amp; enrichment / 发现与富化提示词</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Skills: career-archive · resume-tailor · apply / 三个编排 skill（已脱敏）</a></li>
+        </ul>
 
         <h2>认知迭代</h2>
 
