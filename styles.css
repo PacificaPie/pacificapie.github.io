@@ -2135,6 +2135,36 @@ html[lang="zh"] .hero-portrait figcaption {
   font-size: 0.92rem;
   line-height: 1.75;
 }
+.case-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 2.5rem 0;
+  padding: 1px;
+  background: var(--rule);
+}
+.case-summary > div {
+  min-width: 0;
+  padding: 1rem 0.95rem 1.15rem;
+  background: var(--bg-tint);
+}
+.case-summary > div:nth-child(1) { background: var(--yellow); }
+.case-summary > div:nth-child(2) { background: color-mix(in srgb, var(--blue-soft) 72%, var(--bg)); }
+.case-summary > div:nth-child(3) { background: color-mix(in srgb, var(--purple-soft) 68%, var(--bg)); }
+.case-summary dt {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.case-summary dd {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+  line-height: 1.55;
+}
 .home-flow {
   display: flex;
   flex-direction: column;
@@ -2257,6 +2287,7 @@ html[lang="zh"] .featured-work-card h3 {
   .featured-work-grid { grid-template-columns: 1fr; }
   .featured-work-card { min-height: 0; }
   .featured-evidence { margin-top: 2rem; }
+  .case-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
@@ -2298,6 +2329,7 @@ html[lang="zh"] .featured-work-card h3 {
   .featured-work-card { padding: 1.4rem; }
   .featured-work-card h3 { margin-top: 2rem; }
   .more-work { align-items: flex-start; flex-direction: column; }
+  .case-summary { margin: 1.8rem 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="LLM Feature — Case Study" data-zh="LLM 功能上线 — 案例">LLM Feature — Case Study</title>
+  <meta name="description" content="A shipped LLM recommendation capability developed through seven prompt versions and a 103-case regression set.">
+  <link rel="icon" href="../favicon.ico">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -65,6 +67,25 @@
         </span>
       </div>
     </div>
+
+    <dl class="case-summary" aria-label="Case study summary">
+      <div>
+        <dt><span class="lang-en">Context</span><span class="lang-zh">场景</span></dt>
+        <dd><span class="lang-en">An internal LLM recommendation capability used by frontline operators</span><span class="lang-zh">面向一线运营的内部 LLM 推荐能力</span></dd>
+      </div>
+      <div>
+        <dt><span class="lang-en">My role</span><span class="lang-zh">我的角色</span></dt>
+        <dd><span class="lang-en">Prompt design · evaluation method · badcase attribution</span><span class="lang-zh">Prompt 设计 · 评测方法 · badcase 归因</span></dd>
+      </div>
+      <div>
+        <dt><span class="lang-en">Key decision</span><span class="lang-zh">关键判断</span></dt>
+        <dd><span class="lang-en">Treat output as a human-vetoable candidate list, not an answer key</span><span class="lang-zh">把输出当作可否决候选集，而非标准答案</span></dd>
+      </div>
+      <div>
+        <dt><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></dt>
+        <dd><span class="lang-en">7 versions · 103 real cases · 0 targeted recurrences</span><span class="lang-zh">7 个版本 · 103 条真实样本 · 目标问题 0 次复现</span></dd>
+      </div>
+    </dl>
 
     <div class="stats-row">
       <div class="stat-item">
