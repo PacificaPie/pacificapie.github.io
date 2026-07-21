@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Skills — Pacifica Zhang" data-zh="工具集 — 张若阳">Skills — Pacifica Zhang</title>
+  <meta name="description" content="A portfolio of self-built agent skills — methodology compiled into runnable assets: products, research harnesses, diagram workflows, and personal systems.">
+  <link rel="icon" type="image/png" href="assets/pacifica-avatar.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="skills.html">
+        <span class="lang-en">skills</span>
+        <span class="lang-zh">工具集</span>
+      </a>
+      <a href="index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block blue">
+        <span class="lang-en">skills · toolchain</span>
+        <span class="lang-zh">skills · 工具集</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Methodology, compiled into runnable assets.</span>
+        <span class="lang-zh">把方法论，固化成可执行的资产。</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">agent skills I design, build, and run for my own workflows</span>
+        <span class="lang-zh">为自己的工作流设计、构建并日常运行的 agent skills</span>
+      </div>
+      <div class="skills-count-strip" aria-label="Portfolio counts">
+        <span class="skills-count">15 <span class="lang-en">built</span><span class="lang-zh">个已建</span></span>
+        <span class="skills-count">7 <span class="lang-en">public here</span><span class="lang-zh">个公开展示</span></span>
+        <span class="skills-count">8 <span class="lang-en">internal (work)</span><span class="lang-zh">个工作场景不公开</span></span>
+      </div>
+    </div>
+
+    <div class="article-body">
+
+      <p>
+        <span class="lang-en">
+          A skill is a small, versioned playbook an AI agent can load: trigger conditions,
+          an execution order, and hard stops — with the knowledge it needs living in one
+          authoritative document it points to. Whenever a workflow of mine starts repeating,
+          I compile it into one. These are the seven I can show.
+        </span>
+        <span class="lang-zh">
+          skill 是 agent 可加载的小型剧本：触发条件、执行序、硬中止，
+          它依赖的知识正文放在它指向的唯一权威文档里。
+          一个工作流开始重复出现，我就把它固化成一个 skill。这里是可以公开的 7 个。
+        </span>
+      </p>
+
+      <div class="skill-principles">
+        <div class="skill-principle">
+          <h3><span class="lang-en">Thin shell</span><span class="lang-zh">薄皮原则</span></h3>
+          <p>
+            <span class="lang-en">A skill carries triggers, order, and stops — never a second copy of the knowledge. One source of truth; everything else is a pointer.</span>
+            <span class="lang-zh">skill 只带触发、顺序与中止，不复制知识正文——同一知识只在一处有正文，其余都是指针。</span>
+          </p>
+        </div>
+        <div class="skill-principle">
+          <h3><span class="lang-en">Write-back</span><span class="lang-zh">经验回写</span></h3>
+          <p>
+            <span class="lang-en">Every real use writes its lessons back into the skill's own knowledge base. The tool gets sharper the more it runs.</span>
+            <span class="lang-zh">每次真实使用都把教训写回 skill 自己的判例与知识库，工具越用越准。</span>
+          </p>
+        </div>
+        <div class="skill-principle">
+          <h3><span class="lang-en">Knowing when not to orchestrate</span><span class="lang-zh">知道何时不编排</span></h3>
+          <p>
+            <span class="lang-en">Independent playbooks get no orchestration layer. Structure is added when a trigger signal appears — not before.</span>
+            <span class="lang-zh">互不依赖的剧本不上编排层；结构等触发信号出现才加，绝不提前。</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- ============ GROUP 1 · PRODUCT LINE ============ -->
+      <section class="skill-group">
+        <div class="skill-group-head">
+          <span class="skill-group-label"><span class="lang-en">Product line</span><span class="lang-zh">产品线</span></span>
+          <span class="skill-group-note">
+            <span class="lang-en">a product and its research harness, built as a pair</span>
+            <span class="lang-zh">产品与它的调研 harness，成对出现</span>
+          </span>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">tripalarm</span>
+              <span class="skill-form-tag"><span class="lang-en">product</span><span class="lang-zh">产品</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                TripAlarm — say where, when, and your budget; a server watches prices
+                year-round and pushes the moment they hit (ntfy / Feishu / Telegram).
+                The skill is the product's front door.
+              </span>
+              <span class="lang-zh">
+                旅行闹钟——说出目的地、时间和预算，server 全年盯价，
+                到价即主动推送（ntfy / 飞书 / Telegram）。skill 本身就是产品入口。
+              </span>
+            </p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">competitor-research</span>
+              <span class="skill-form-tag"><span class="lang-en">research harness</span><span class="lang-zh">调研 harness</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Exhaustive competitor research for TripAlarm: bilingual sweeps across apps,
+                web tools, and AI agents, with live screenshots — and a registry ledger that
+                refuses to stop until the search is truly exhausted.
+              </span>
+              <span class="lang-zh">
+                为 TripAlarm 做穷尽式竞品调研：中英双语横扫 App / 网页 / AI agent 三种形态并实地截图；
+                registry 登记簿保证搜到「搜无可搜」才允许收尾。
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GROUP 2 · DIAGRAM TWINS ============ -->
+      <section class="skill-group">
+        <div class="skill-group-head">
+          <span class="skill-group-label"><span class="lang-en">Diagram twins</span><span class="lang-zh">配图双子星</span></span>
+          <span class="skill-group-note">
+            <span class="lang-en">one export craft, two visual grammars for two audiences</span>
+            <span class="lang-zh">同一套导出工艺，面向两种场合的两套语法</span>
+          </span>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">glass-diagram</span>
+              <span class="skill-form-tag"><span class="lang-en">workflow</span><span class="lang-zh">工作流</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Business-report diagrams in a unified glass style: HTML skeleton → design
+                system → headless-Chrome self-check → 2× PNG. Consistency is the product —
+                the same object gets the same icon in every chart.
+              </span>
+              <span class="lang-zh">
+                蓝白玻璃质感的汇报配图流水线：HTML 骨干 → 设计系统渲染 → 无头 Chrome 截图自检 → 2 倍 PNG。
+                一致性即产品——同一业务物件在所有图里长同一个样。
+              </span>
+            </p>
+          </div>
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">academic-diagram</span>
+              <span class="skill-form-tag"><span class="lang-en">workflow</span><span class="lang-zh">工作流</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Paper-style layered architecture figures: a shape-semantics grammar
+                (cylinder = store, pill = AI capability…), figure-in-figure nesting,
+                and one hard rule — arrows are flows, no exceptions.
+              </span>
+              <span class="lang-zh">
+                学术风分层架构图：形状语义语法（圆柱=存储、胶囊=AI 能力…）、
+                图套图工序（子图独立渲染再嵌回父图），以及一条铁律——箭头即流向，没有例外。
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GROUP 3 · PERSONAL SYSTEMS ============ -->
+      <section class="skill-group">
+        <div class="skill-group-head">
+          <span class="skill-group-label"><span class="lang-en">Personal systems</span><span class="lang-zh">个人系统</span></span>
+          <span class="skill-group-note">
+            <span class="lang-en">the material layer of an agent that runs every day</span>
+            <span class="lang-zh">一个每天在跑的 agent 的素材层</span>
+          </span>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">career-archive</span>
+              <span class="skill-form-tag"><span class="lang-en">system</span><span class="lang-zh">系统</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                A private experience archive in three strict layers: capture (append-only
+                truth log) → organize (direction-neutral distillation) → tailor (reserved).
+                Two human review gates — nothing enters the archive without sign-off.
+                It is the material layer of my job-search agent.
+              </span>
+              <span class="lang-zh">
+                私有经历库，三层分工：捕获（只追加的流水真相源）→ 整理（方向中立的研磨）→ 裁剪（预留）。
+                两道人工审核闸，不经确认不入库；它是我求职 agent 的素材层。
+              </span>
+            </p>
+            <a class="skill-related" href="work/jobagent.html">
+              <span class="lang-en">related case: Job-search Agent →</span>
+              <span class="lang-zh">相关案例：求职 Agent →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GROUP 4 · DECISION SYSTEMS ============ -->
+      <section class="skill-group">
+        <div class="skill-group-head">
+          <span class="skill-group-label"><span class="lang-en">Decision systems</span><span class="lang-zh">决策系统</span></span>
+          <span class="skill-group-note">
+            <span class="lang-en">funnels that update themselves after every run</span>
+            <span class="lang-zh">每跑一轮就自我更新的漏斗</span>
+          </span>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">crossborder-xuanpin</span>
+              <span class="skill-form-tag"><span class="lang-en">decision funnel</span><span class="lang-zh">决策漏斗</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Product selection for cross-border commerce as a four-layer funnel —
+                market → category → variant → supplier — cross-validated by three
+                independent data sources, with lessons written back after every run.
+              </span>
+              <span class="lang-zh">
+                跨境选品四层漏斗：市场 → 品类 → 品种 → 货源，
+                三个独立数据源交叉验证，每跑一轮把经验写回知识库。
+              </span>
+            </p>
+            <a class="skill-related" href="work/crossborder.html">
+              <span class="lang-en">related case: Cross-border Commerce →</span>
+              <span class="lang-zh">相关案例：跨境电商 →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GROUP 5 · COLLABORATION TOOLS ============ -->
+      <section class="skill-group">
+        <div class="skill-group-head">
+          <span class="skill-group-label"><span class="lang-en">Collaboration tools</span><span class="lang-zh">协作工具</span></span>
+        </div>
+        <div class="skill-grid">
+          <div class="skill-card">
+            <div class="skill-card-top">
+              <span class="skill-name">roadmap-update</span>
+              <span class="skill-form-tag"><span class="lang-en">tool</span><span class="lang-zh">工具</span></span>
+            </div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Update a shared roadmap gantt by talking: natural language → cloud data
+                edit → the page refreshes live for everyone. Least-privilege by design —
+                the anonymous role can't even delete a row.
+              </span>
+              <span class="lang-zh">
+                用自然语言改共享甘特图：说一句 → 云端数据更新 → 网页对所有人实时刷新。
+                最小权限设计，匿名角色连删行都不行。
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <p class="skills-foot">
+        <span class="lang-en">
+          Eight more skills run in work contexts — delivery pipelines, PRD methodology,
+          engineering health checks, data-query SOPs. Those stay internal; the three
+          principles above are the skeleton they all share.
+        </span>
+        <span class="lang-zh">
+          另有 8 个 skill 服务于工作场景——交付流水线、PRD 方法论、工程体检、取数 SOP。
+          它们不公开；但上面那三条原则，是它们共同的骨架。
+        </span>
+      </p>
+
+    </div>
+  </article>
+
+  <!-- ============== FOOTER ============== -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -11,6 +11,7 @@ No build step, no framework, no dependencies. Just open `index.html`.
 website/
 ├── index.html              Home — splash + color-block hero + work + writing
 ├── about.html              Long bio
+├── skills.html             Skills portfolio — 7 public agent skills, grouped by relationship
 ├── cv.html                 CV landing — links to en / zh resumes
 ├── work/
 │   └── geoqa.html          GeoQA case study (template for future case studies)
@@ -86,6 +87,12 @@ Site will be live at `https://pacificapie.github.io/` within a minute.
 1. Copy `work/geoqa.html` to `work/<new-slug>.html`
 2. Edit eyebrow / title / stats row / body
 3. The corresponding card on `index.html#work` already exists — just update its `href`
+
+### Add a skill to the portfolio
+
+1. Edit `skills.html` — cards live in relationship groups (`.skill-group`); copy an existing `.skill-card`
+2. If totals change, update the "15 built · 7 public" counts in the header strip AND the homepage strata node (`index.html`, 编排层 "Compile the toolchain")
+3. Public-site red line: only personal-project skills appear here; work-context skills stay as an aggregate count
 
 ### Update the CV
 
