@@ -61,8 +61,8 @@
       </div>
       <div class="skills-count-strip" aria-label="Portfolio counts">
         <span class="skills-count">15 <span class="lang-en">built</span><span class="lang-zh">个已建</span></span>
-        <span class="skills-count">7 <span class="lang-en">public here</span><span class="lang-zh">个公开展示</span></span>
-        <span class="skills-count">8 <span class="lang-en">internal (work)</span><span class="lang-zh">个工作场景不公开</span></span>
+        <span class="skills-count">7 <span class="lang-en">components public</span><span class="lang-zh">个组件公开</span></span>
+        <span class="skills-count">3 <span class="lang-en">compositions running</span><span class="lang-zh">个组合在跑</span></span>
       </div>
     </div>
 
@@ -106,10 +106,19 @@
         </div>
       </div>
 
-      <!-- ============ GROUP 1 · PRODUCT LINE ============ -->
+      <h2>
+        <span class="lang-en">Components — the seven skills</span>
+        <span class="lang-zh">组件——七个 skill</span>
+      </h2>
+      <p>
+        <span class="lang-en">One axis, no overlap: each skill belongs to exactly one domain it serves.</span>
+        <span class="lang-zh">唯一分类轴：每个 skill 恰好属于它所服务的一个领域。</span>
+      </p>
+
+      <!-- ============ GROUP 1 · TRAVEL ============ -->
       <section class="skill-group">
         <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Product line</span><span class="lang-zh">产品线</span></span>
+          <span class="skill-group-label"><span class="lang-en">Travel</span><span class="lang-zh">旅行</span></span>
           <span class="skill-group-note">
             <span class="lang-en">a product and its research harness, built as a pair</span>
             <span class="lang-zh">产品与它的调研 harness，成对出现</span>
@@ -156,7 +165,7 @@
       <!-- ============ GROUP 2 · DIAGRAM TWINS ============ -->
       <section class="skill-group">
         <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Diagram twins</span><span class="lang-zh">配图双子星</span></span>
+          <span class="skill-group-label"><span class="lang-en">Diagrams</span><span class="lang-zh">配图</span></span>
           <span class="skill-group-note">
             <span class="lang-en">one export craft, two visual grammars for two audiences</span>
             <span class="lang-zh">同一套导出工艺，面向两种场合的两套语法</span>
@@ -203,7 +212,7 @@
       <!-- ============ GROUP 3 · PERSONAL SYSTEMS ============ -->
       <section class="skill-group">
         <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Personal systems</span><span class="lang-zh">个人系统</span></span>
+          <span class="skill-group-label"><span class="lang-en">Career</span><span class="lang-zh">求职</span></span>
           <span class="skill-group-note">
             <span class="lang-en">the material layer of an agent that runs every day</span>
             <span class="lang-zh">一个每天在跑的 agent 的素材层</span>
@@ -238,7 +247,7 @@
       <!-- ============ GROUP 4 · DECISION SYSTEMS ============ -->
       <section class="skill-group">
         <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Decision systems</span><span class="lang-zh">决策系统</span></span>
+          <span class="skill-group-label"><span class="lang-en">Commerce</span><span class="lang-zh">跨境</span></span>
           <span class="skill-group-note">
             <span class="lang-en">funnels that update themselves after every run</span>
             <span class="lang-zh">每跑一轮就自我更新的漏斗</span>
@@ -272,7 +281,7 @@
       <!-- ============ GROUP 5 · COLLABORATION TOOLS ============ -->
       <section class="skill-group">
         <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Collaboration tools</span><span class="lang-zh">协作工具</span></span>
+          <span class="skill-group-label"><span class="lang-en">Collaboration</span><span class="lang-zh">协作</span></span>
         </div>
         <div class="skill-grid">
           <div class="skill-card">
@@ -295,15 +304,23 @@
         </div>
       </section>
 
-      <!-- ============ ORCHESTRATION · WHEN SKILLS COMPOSE ============ -->
+      <!-- ============ LEVEL 2 · COMPOSITIONS ============ -->
       <section class="skill-group">
-        <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">When skills compose</span><span class="lang-zh">当 skills 组成 agent</span></span>
-          <span class="skill-group-note">
-            <span class="lang-en">three compositions, three shapes — this is agent development</span>
-            <span class="lang-zh">三个组合，三种形态——这就是 agent 开发</span>
+        <h2>
+          <span class="lang-en">Compositions — when skills become systems</span>
+          <span class="lang-zh">组合——当 skills 组成系统</span>
+        </h2>
+        <p>
+          <span class="lang-en">
+            Systems assembled from the components above, plus runtime parts — servers,
+            schedulers, feeds. Components reappearing here is the point: composition means
+            reuse. Three compositions, three shapes — this is agent development.
           </span>
-        </div>
+          <span class="lang-zh">
+            由上面的组件装配出的系统，外加运行时件——server、定时器、信源。
+            组件在这里再次出现正是重点：组合的含义就是复用。三个组合，三种形态——这就是 agent 开发。
+          </span>
+        </p>
         <div class="orch-list">
 
           <div class="orch-row">
@@ -311,7 +328,7 @@
               <span class="orch-name"><span class="lang-en">Job-search Agent</span><span class="lang-zh">求职 Agent</span></span>
               <span class="skill-form-tag"><span class="lang-en">autonomous loop</span><span class="lang-zh">自治循环</span></span>
             </div>
-            <div class="orch-chain">MCP sources → filter / dedupe → LLM enrich → Feishu push&nbsp;&nbsp;|&nbsp;&nbsp;cron 2×/day&nbsp;&nbsp;|&nbsp;&nbsp;gate: never auto-submit</div>
+            <div class="orch-chain">MCP sources → filter / dedupe → LLM enrich → Feishu push&nbsp;&nbsp;|&nbsp;&nbsp;cron 2×/day&nbsp;&nbsp;|&nbsp;&nbsp;material: career-archive&nbsp;&nbsp;|&nbsp;&nbsp;gate: never auto-submit</div>
             <p class="skill-desc">
               <span class="lang-en">
                 Skills, MCP feeds, and a scheduler composed into an unattended daily pipeline.

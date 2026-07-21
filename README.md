@@ -90,8 +90,8 @@ Site will be live at `https://pacificapie.github.io/` within a minute.
 
 ### Add a skill to the portfolio
 
-1. Edit `skills.html` — cards live in relationship groups (`.skill-group`); copy an existing `.skill-card`
-2. If totals change, update the "15 built · 7 public" counts in the header strip AND the homepage strata node (`index.html`, 编排层 "Compile the toolchain")
+1. Edit `skills.html` — two levels: **Components** (skills, grouped by ONE axis = domain served: Travel/Diagrams/Career/Commerce/Collaboration) and **Compositions** (systems assembled from components). A component reappearing inside a composition is by design
+2. If totals change, update the counts (built / components / compositions) in the header strip AND the homepage strata node (`index.html`, 编排层 "Compile the toolchain")
 3. Public-site red line: only personal-project skills appear here; work-context skills stay as an aggregate count
 
 ### Update the CV
