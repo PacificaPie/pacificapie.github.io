@@ -2468,3 +2468,44 @@ html[lang="zh"] .featured-work-card h3 {
 @media (max-width: 760px) {
   .skill-principles { grid-template-columns: 1fr; }
 }
+
+/* ---- Orchestration: when skills compose (skills.html) ---- */
+.orch-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+.orch-row {
+  min-width: 0;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 1.15rem 1.25rem;
+}
+.orch-row-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+}
+.orch-name {
+  font-family: var(--font-sans-en);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.orch-chain {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.79rem;
+  color: var(--ink);
+  background: var(--bg-tint);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 0.55rem 0.85rem;
+  margin-bottom: 0.7rem;
+  line-height: 1.7;
+}
+.orch-coda {
+  margin-top: 1.3rem;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}

@@ -295,6 +295,89 @@
         </div>
       </section>
 
+      <!-- ============ ORCHESTRATION · WHEN SKILLS COMPOSE ============ -->
+      <section class="skill-group">
+        <div class="skill-group-head">
+          <span class="skill-group-label"><span class="lang-en">When skills compose</span><span class="lang-zh">当 skills 组成 agent</span></span>
+          <span class="skill-group-note">
+            <span class="lang-en">three compositions, three shapes — this is agent development</span>
+            <span class="lang-zh">三个组合，三种形态——这就是 agent 开发</span>
+          </span>
+        </div>
+        <div class="orch-list">
+
+          <div class="orch-row">
+            <div class="orch-row-head">
+              <span class="orch-name"><span class="lang-en">Job-search Agent</span><span class="lang-zh">求职 Agent</span></span>
+              <span class="skill-form-tag"><span class="lang-en">autonomous loop</span><span class="lang-zh">自治循环</span></span>
+            </div>
+            <div class="orch-chain">MCP sources → filter / dedupe → LLM enrich → Feishu push&nbsp;&nbsp;|&nbsp;&nbsp;cron 2×/day&nbsp;&nbsp;|&nbsp;&nbsp;gate: never auto-submit</div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Skills, MCP feeds, and a scheduler composed into an unattended daily pipeline.
+                career-archive supplies its material layer; a hard human gate — applications
+                are never auto-submitted — defines the system boundary.
+              </span>
+              <span class="lang-zh">
+                skills、MCP 信源与定时器组合成无人值守的每日管线；career-archive 是它的素材层；
+                硬性人机闸——永不代投——划定系统边界。
+              </span>
+            </p>
+            <a class="skill-related" href="work/jobagent.html">
+              <span class="lang-en">case study: Job-search Agent →</span>
+              <span class="lang-zh">案例：求职 Agent →</span>
+            </a>
+          </div>
+
+          <div class="orch-row">
+            <div class="orch-row-head">
+              <span class="orch-name"><span class="lang-en">career-archive pipeline</span><span class="lang-zh">career-archive 管线</span></span>
+              <span class="skill-form-tag"><span class="lang-en">staged pipeline</span><span class="lang-zh">分层管线</span></span>
+            </div>
+            <div class="orch-chain">capture (append-only) → organize (distill) → tailor (reserved)&nbsp;&nbsp;|&nbsp;&nbsp;interface: human sign-off gates</div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                Three modes of one skill chained into a pipeline. The interface between layers
+                is a human review gate — distortion upstream cannot propagate downstream.
+              </span>
+              <span class="lang-zh">
+                同一 skill 的三个模式串成管线，层间接口是人工审核闸——上游的失真无法向下传播。
+              </span>
+            </p>
+          </div>
+
+          <div class="orch-row">
+            <div class="orch-row-head">
+              <span class="orch-name">TripAlarm</span>
+              <span class="skill-form-tag"><span class="lang-en">product loop</span><span class="lang-zh">产品闭环</span></span>
+            </div>
+            <div class="orch-chain">skill front door → resident server → year-round price watch → push → /lock · /pause · /delete</div>
+            <p class="skill-desc">
+              <span class="lang-en">
+                A conversational skill in front, a resident server behind: the skill files the
+                alarm, the server watches prices year-round, and hits push back through the
+                user's own channel — with commands that steer the loop.
+              </span>
+              <span class="lang-zh">
+                前端是对话式 skill，身后是常驻 server：skill 立闹钟，server 全年盯价，
+                到价推送回用户自己的通道，/lock /pause 指令收束循环。
+              </span>
+            </p>
+          </div>
+
+        </div>
+        <p class="orch-coda">
+          <span class="lang-en">
+            Orchestration is the capability; restraint is the judgment. With three compositions
+            running, the third principle above — knowing when not to orchestrate — is a choice,
+            not a limitation.
+          </span>
+          <span class="lang-zh">
+            编排是能力，克制是判断。三个组合在跑，上面的第三条原则——知道何时不编排——才是选择，而不是局限。
+          </span>
+        </p>
+      </section>
+
       <p class="skills-foot">
         <span class="lang-en">
           Eight more skills run in work contexts — delivery pipelines, PRD methodology,
