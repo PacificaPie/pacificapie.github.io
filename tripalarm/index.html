@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TripAlarm 旅行闹钟 · 让好价叫醒你 — 差旅场景 Demo</title>
+<meta name="description" content="盯价 Agent：意图说一次，Agent 7×24 代守，到价叫醒你，人来拍板。消费旅行与企业差旅，同一套代守范式。个人项目 · 演示数据。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⏰%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg:          #F8F4ED;
+    --bg-tint:     #F1EBDF;
+    --card:        #FFFDF8;
+    --ink:         #2A2A28;
+    --ink-soft:    #4A4642;
+    --muted:       #8A8479;
+    --accent:      #8B6F47;
+    --accent-soft: #C4A77D;
+    --rule:        #DCD2BD;
+    --saffron:     #E5B53D;
+    --saffron-soft:#F4E4BC;
+    --blue:        #4F6E8C;
+    --blue-soft:   #B6C5D4;
+    --seal:        #B85450;
+    --purple:      #7A5C8A;
+    --serif-cn: 'Noto Serif SC','Songti SC','STSong',serif;
+    --sans:  'Inter',-apple-system,'PingFang SC','Noto Sans SC','Microsoft YaHei',sans-serif;
+    --mono: ui-monospace,'SF Mono','Menlo','Consolas','PingFang SC',monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+  body {
+    background:var(--bg); color:var(--ink);
+    font-family:var(--sans); font-size:16px; line-height:1.75;
+    font-feature-settings:"tnum" on,"lnum" on;
+  }
+  .wrap { max-width:720px; margin:0 auto; padding:0 clamp(1.1rem,4.5vw,2rem); }
+
+  /* ---------- header ---------- */
+  header { padding:2.2rem 0 0; }
+  .brand-row { display:flex; align-items:baseline; justify-content:space-between; gap:1rem; }
+  .brand { font-family:var(--serif-cn); font-size:1.05rem; letter-spacing:.12em; color:var(--ink-soft); white-space:nowrap; }
+  @media (max-width:420px){ .brand { font-size:.95rem; letter-spacing:.08em; } }
+  .brand b { color:var(--accent); }
+  .backlink { font-size:.82rem; color:var(--muted); text-decoration:none; letter-spacing:.05em; white-space:nowrap; }
+  .backlink:hover { color:var(--accent); }
+
+  /* ---------- hero ---------- */
+  .hero { padding:3.2rem 0 2.6rem; border-bottom:1px solid var(--rule); }
+  .hero .kicker { display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.1rem; }
+  .chip { font-size:.72rem; letter-spacing:.14em; padding:.22rem .6rem; border-radius:99px; border:1px solid var(--rule); color:var(--ink-soft); background:var(--card); }
+  .chip.live { border-color:var(--saffron); background:var(--saffron-soft); color:#7A5E14; }
+  .chip.demo { border-color:var(--blue-soft); color:var(--blue); }
+  h1 { font-family:var(--serif-cn); font-size:clamp(2.1rem,7.5vw,3.1rem); line-height:1.25; font-weight:700; letter-spacing:.02em; }
+  h1 .bell { display:inline-block; transform-origin:top center; }
+  .hero.rings .bell { animation:ring 1.1s ease-in-out; }
+  @keyframes ring { 0%,100%{transform:rotate(0)} 15%{transform:rotate(14deg)} 30%{transform:rotate(-12deg)} 45%{transform:rotate(9deg)} 60%{transform:rotate(-6deg)} 75%{transform:rotate(3deg)} }
+  .hero .sub { margin-top:1.15rem; font-size:1.02rem; color:var(--ink-soft); max-width:34em; }
+  .hero .sub b { color:var(--ink); }
+  .hero .one-liner { margin-top:1rem; font-family:var(--serif-cn); font-size:1.12rem; color:var(--accent); letter-spacing:.04em; }
+
+  /* ---------- sections ---------- */
+  section { padding:2.6rem 0; border-bottom:1px solid var(--rule); }
+  .sec-label { font-size:.72rem; letter-spacing:.24em; color:var(--muted); text-transform:uppercase; margin-bottom:.5rem; }
+  h2 { font-family:var(--serif-cn); font-size:1.5rem; font-weight:700; margin-bottom:1.1rem; letter-spacing:.03em; }
+  h2 .accent { color:var(--accent); }
+  p.lede { color:var(--ink-soft); max-width:36em; }
+  p.lede + p.lede { margin-top:.7rem; }
+  .punch { font-family:var(--serif-cn); font-size:1.18rem; margin-top:1.2rem; padding-left:.9rem; border-left:3px solid var(--saffron); letter-spacing:.03em; }
+
+  /* ---------- three steps ---------- */
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:1.4rem; }
+  @media (max-width:640px){ .steps { grid-template-columns:1fr; } }
+  .step { background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1.1rem 1rem 1rem; }
+  .step .no { font-family:var(--mono); font-size:.72rem; color:var(--accent-soft); letter-spacing:.18em; }
+  .step h3 { font-family:var(--serif-cn); font-size:1.06rem; margin:.35rem 0 .3rem; }
+  .step p { font-size:.86rem; color:var(--ink-soft); line-height:1.65; }
+  .step p code { font-family:var(--mono); font-size:.8rem; background:var(--bg-tint); padding:.05rem .3rem; border-radius:4px; }
+
+  /* ---------- chat demo ---------- */
+  .mode-toggle { display:inline-flex; border:1px solid var(--rule); border-radius:99px; background:var(--card); padding:.2rem; margin:.4rem 0 1.2rem; }
+  .mode-toggle button {
+    font-family:var(--sans); font-size:.85rem; letter-spacing:.06em; border:none; background:transparent;
+    padding:.38rem 1.05rem; border-radius:99px; color:var(--muted); cursor:pointer; transition:all .18s;
+  }
+  .mode-toggle button.on { background:var(--ink); color:var(--bg); }
+  .mode-toggle button:not(.on):hover { color:var(--ink); }
+  .chat { display:flex; flex-direction:column; gap:.7rem; }
+  .bubble { max-width:92%; border-radius:14px; padding:.65rem .95rem; font-size:.92rem; line-height:1.6; }
+  .bubble.user { align-self:flex-end; background:var(--saffron-soft); border:1px solid var(--note-edge,#E0CC95); border-bottom-right-radius:4px; }
+  .bubble.agent { align-self:flex-start; background:var(--card); border:1px solid var(--rule); border-bottom-left-radius:4px; }
+  .bubble .who { font-size:.68rem; letter-spacing:.16em; color:var(--muted); display:block; margin-bottom:.15rem; }
+  .bubble pre {
+    font-family:var(--mono); font-size:.78rem; line-height:1.55; overflow-x:auto; white-space:pre;
+    color:var(--ink); -webkit-overflow-scrolling:touch;
+  }
+  .mode-biz-only, .mode-leisure-only { display:none; }
+  .mode-leisure .mode-leisure-only { display:block; }
+  .mode-biz .mode-biz-only { display:block; }
+  .mode-note { font-size:.8rem; color:var(--muted); margin-top:.9rem; }
+  .mode-biz .biz-highlight { color:var(--blue); font-weight:600; }
+
+  /* ---------- live watch ---------- */
+  .watch-card { background:var(--card); border:1px solid var(--rule); border-radius:16px; padding:1.2rem 1.1rem 1.3rem; margin-top:1.2rem; }
+  .watch-head { display:flex; justify-content:space-between; align-items:baseline; gap:.8rem; flex-wrap:wrap; }
+  .watch-title { font-family:var(--serif-cn); font-size:1.02rem; }
+  .watch-meta { font-family:var(--mono); font-size:.76rem; color:var(--muted); }
+  .chart-box { margin-top:.9rem; }
+  svg.chart { width:100%; height:auto; display:block; }
+  .axis-label { font-family:var(--mono); font-size:9.5px; fill:var(--muted); }
+  .budget-label { font-family:var(--mono); font-size:9.5px; fill:#B08A18; font-weight:600; }
+  .ticker { display:flex; justify-content:space-between; align-items:center; margin-top:.7rem; font-family:var(--mono); font-size:.8rem; color:var(--ink-soft); min-height:1.6em; }
+  .ticker .price.hit { color:var(--seal); font-weight:700; }
+  .btn-row { display:flex; gap:.7rem; margin-top:1rem; }
+  .btn {
+    font-family:var(--sans); font-size:.9rem; letter-spacing:.08em; cursor:pointer;
+    border-radius:10px; padding:.55rem 1.3rem; border:1px solid var(--ink); background:var(--ink); color:var(--bg);
+    transition:transform .12s ease, opacity .15s;
+  }
+  .btn:hover { transform:translateY(-1px); }
+  .btn.ghost { background:transparent; color:var(--ink); }
+  .btn:disabled { opacity:.35; cursor:default; transform:none; }
+
+  .push-wrap { margin-top:1.1rem; display:none; }
+  .push-wrap.show { display:block; animation:rise .45s cubic-bezier(.2,.9,.3,1.2); }
+  @keyframes rise { from { opacity:0; transform:translateY(14px);} to { opacity:1; transform:none; } }
+  .push-label { font-size:.72rem; letter-spacing:.2em; color:var(--seal); margin-bottom:.4rem; }
+  .push-card {
+    background:#2E2B26; color:#F2EBDD; border-radius:14px; padding:1rem 1.05rem;
+    font-family:var(--mono); font-size:.78rem; line-height:1.6; overflow-x:auto; white-space:pre;
+    box-shadow:0 10px 30px rgba(42,42,40,.18);
+  }
+  .push-card .hl { color:var(--saffron); }
+  .push-card .save { color:#E9A6A3; }
+  .push-actions { display:flex; gap:.6rem; margin-top:.7rem; flex-wrap:wrap; }
+  .cmd-chip { font-family:var(--mono); font-size:.76rem; background:var(--bg-tint); border:1px solid var(--rule); border-radius:8px; padding:.28rem .6rem; color:var(--ink-soft); }
+  .demo-tag { font-size:.72rem; color:var(--muted); margin-top:.8rem; }
+
+  /* ---------- mapping table ---------- */
+  .map-table { margin-top:1.3rem; border:1px solid var(--rule); border-radius:14px; overflow:hidden; background:var(--card); }
+  .map-row { display:grid; grid-template-columns:1fr 34px 1fr; align-items:stretch; border-bottom:1px solid var(--rule); }
+  .map-row:last-child { border-bottom:none; }
+  .map-row.head { background:var(--bg-tint); font-size:.75rem; letter-spacing:.14em; color:var(--muted); }
+  .map-cell { padding:.7rem .85rem; font-size:.88rem; line-height:1.55; }
+  .map-cell b { display:block; font-size:.9rem; }
+  .map-cell .d { font-size:.78rem; color:var(--muted); }
+  .map-arrow { display:flex; align-items:center; justify-content:center; color:var(--accent-soft); font-family:var(--mono); }
+  .map-row .map-cell:first-child { border-right:none; }
+  .map-row .map-cell:last-child b { color:var(--blue); }
+  .insight { margin-top:1.2rem; background:var(--card); border:1px solid var(--blue-soft); border-radius:14px; padding:1rem 1.1rem; font-size:.92rem; color:var(--ink-soft); }
+  .insight b { color:var(--blue); }
+
+  /* ---------- judgments ---------- */
+  .judge-list { margin-top:1.2rem; display:grid; gap:.7rem; }
+  .judge { background:var(--card); border:1px solid var(--rule); border-radius:12px; padding:.85rem 1rem; }
+  .judge b { font-size:.94rem; }
+  .judge p { font-size:.85rem; color:var(--ink-soft); margin-top:.15rem; }
+  .judge .tag { font-family:var(--mono); font-size:.68rem; letter-spacing:.12em; color:var(--purple); }
+
+  /* ---------- eval ---------- */
+  .eval-qs { display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:1.2rem; }
+  @media (max-width:640px){ .eval-qs { grid-template-columns:1fr; } }
+  .eval-q { border:1px solid var(--rule); border-radius:12px; padding:.9rem .95rem; background:var(--card); }
+  .eval-q .q { font-family:var(--serif-cn); font-size:.98rem; margin-bottom:.25rem; }
+  .eval-q p { font-size:.82rem; color:var(--ink-soft); }
+  .eval-q .m { font-family:var(--mono); font-size:.72rem; color:var(--seal); letter-spacing:.06em; }
+
+  /* ---------- arch ---------- */
+  .arch { margin-top:1.3rem; background:var(--card); border:1px solid var(--rule); border-radius:14px; padding:1.1rem; overflow-x:auto; }
+  .arch pre { font-family:var(--mono); font-size:.75rem; line-height:1.65; color:var(--ink-soft); white-space:pre; }
+  .arch .note { font-size:.78rem; color:var(--muted); margin-top:.6rem; }
+
+  /* ---------- footer ---------- */
+  footer { padding:2.4rem 0 3.4rem; }
+  .foot-links { display:flex; gap:.7rem; flex-wrap:wrap; margin-top:.8rem; }
+  .foot-links a { font-size:.85rem; color:var(--accent); text-decoration:none; border:1px solid var(--rule); background:var(--card); border-radius:99px; padding:.35rem .95rem; }
+  .foot-links a:hover { border-color:var(--accent-soft); }
+  .colophon { margin-top:1.4rem; font-size:.78rem; color:var(--muted); line-height:1.7; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="brand-row">
+    <div class="brand"><b>TripAlarm</b> · 旅行闹钟</div>
+    <a class="backlink" href="https://pacificapie.github.io" rel="author">← 主站</a>
+  </div>
+</header>
+
+<div class="hero wrap" id="hero">
+  <div class="kicker">
+    <span class="chip live">可运行 · 本地演示模式</span>
+    <span class="chip demo">页面为演示数据</span>
+    <span class="chip">个人项目</span>
+  </div>
+  <h1>让好价<span class="bell">叫醒</span>你。</h1>
+  <p class="sub">价格会波动，人的注意力不会。<b>TripAlarm</b> 是一个盯价 Agent：意图说一次，它 7×24 代守；到价推送叫醒你，<b>下单永远由人拍板</b>。</p>
+  <p class="one-liner">「从消费旅行到企业差旅——同一套“代守”范式。」</p>
+</div>
+
+<section class="wrap" id="problem">
+  <div class="sec-label">Problem</div>
+  <h2>没人真的每天去查价</h2>
+  <p class="lede">想去三亚，等一个好价——但"等"这个动作没有人真正执行：不是忘了查，就是查到了也说不清"这个价算不算好"。</p>
+  <p class="lede">出差场景里同样的事换了主语：<b>行程定了，票价每天在变</b>。员工没空盯价，公司在为"下单的时机"默默买单。</p>
+  <div class="punch">把"等好价"从一个心愿，变成一个可以托付的任务。</div>
+</section>
+
+<section class="wrap" id="how">
+  <div class="sec-label">How it works</div>
+  <h2>三步：立约 → 代守 → 叫醒</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="no">01 · CREATE</div>
+      <h3>一句话立约</h3>
+      <p>「帮我盯三亚 8月 人均 6000 内」——目的地、时间窗、预算、偏好，落成一张结构化闹钟卡。缺什么，Agent 只追问什么。</p>
+    </div>
+    <div class="step">
+      <div class="no">02 · WATCH</div>
+      <h3>Agent 代守</h3>
+      <p>每日扫价：多闹钟共享 SKU 去重后批量取价；<code>总价 ≤ 预算</code> 是唯一触发硬约束，偏好评分只用来在达标者里择优。</p>
+    </div>
+    <div class="step">
+      <div class="no">03 · WAKE</div>
+      <h3>好价叫醒</h3>
+      <p>命中即推送到你的 IM（飞书 / Telegram / ntfy），带价格区间和锁价建议；回 <code>/lock</code> 一键锁定——human-in-the-loop。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="chat">
+  <div class="sec-label">Dialogue</div>
+  <h2>同一个产品，<span class="accent">两张皮</span></h2>
+  <p class="lede">切换看看：消费旅行与企业差旅，改变的只是约束的来源——个人预算，或差旅政策。</p>
+  <div class="mode-toggle" role="tablist">
+    <button id="btn-leisure" class="on" onclick="setMode('leisure')">🏖 消费旅行</button>
+    <button id="btn-biz" onclick="setMode('biz')">💼 企业差旅</button>
+  </div>
+
+  <div id="chat-box" class="chat mode-leisure">
+    <!-- leisure -->
+    <div class="bubble user mode-leisure-only">帮我盯三亚，8 月，2 个人，人均 4000 以内，酒店可以住好点</div>
+    <div class="bubble agent mode-leisure-only"><span class="who">TRIPALARM</span><pre>闹钟已设置 ────────────────
+  去哪    三亚 (SYX)
+  时间    08/01 → 08/31 灵活
+  停留    4-6 晚
+  人数    2 人
+  预算    ¥4,000/人
+  酒店偏好 ▰▰▰▰▱
+────────────────────────</pre></div>
+    <div class="bubble agent mode-leisure-only"><span class="who">TRIPALARM · 平替（当前已满足预算）</span><pre>  1. 北海      ¥2,890/人  ▼28%
+  2. 涠洲岛    ¥3,150/人  ▼21%
+  3. 海口      ¥3,420/人  ▼14%</pre></div>
+
+    <!-- biz -->
+    <div class="bubble user mode-biz-only">下周三去上海出差，周五回。按公司差旅政策帮我盯，别超标</div>
+    <div class="bubble agent mode-biz-only"><span class="who">TRIPALARM · 差旅模式</span><pre>差旅单已立 ────────────────
+  行程    北京 ⇌ 上海
+  出行窗  周三去 · 周五回（固定）
+  政策    经济舱 · 酒店 ≤¥800/晚
+  盯什么  政策内 机+酒 组合最优
+  升舱位  政策外 → 不看
+────────────────────────</pre></div>
+    <div class="bubble agent mode-biz-only"><span class="who">TRIPALARM · 合规平替（同窗口）</span><pre> 1. 早班直飞+协议酒店 ¥1,860 政策内
+ 2. 晚班直飞+协议酒店 ¥1,720 政策内
+ 3. 高铁二等+协议酒店 ¥1,490 ▼22%</pre></div>
+  </div>
+  <p class="mode-note" id="mode-note">时间窗灵活、预算是个人意愿——命中后由本人锁价。</p>
+</section>
+
+<section class="wrap" id="live">
+  <div class="sec-label">Watch it work</div>
+  <h2>看它盯 30 天</h2>
+  <p class="lede">下面是一次代守过程的回放（演示数据）：预算线 ¥4,000，Agent 每天扫一次。</p>
+
+  <div class="watch-card">
+    <div class="watch-head">
+      <div class="watch-title">⏰ 三亚 · 08月 · 2人 · 预算 ¥4,000/人</div>
+      <div class="watch-meta" id="watch-status">待开始</div>
+    </div>
+    <div class="chart-box">
+      <svg class="chart" id="chart" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-label="30天价格走势演示图">
+        <!-- grid: ¥5.5k(y20) → ¥3.0k(y250), 230px / ¥2500 -->
+        <line x1="48" y1="20"  x2="620" y2="20"  stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="48" y1="66"  x2="620" y2="66"  stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="48" y1="112" x2="620" y2="112" stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="48" y1="158" x2="620" y2="158" stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="48" y1="204" x2="620" y2="204" stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="48" y1="250" x2="620" y2="250" stroke="#EDE6D6" stroke-width="1"/>
+        <text class="axis-label" x="42" y="24"  text-anchor="end">¥5.5k</text>
+        <text class="axis-label" x="42" y="70"  text-anchor="end">¥5.0k</text>
+        <text class="axis-label" x="42" y="116" text-anchor="end">¥4.5k</text>
+        <text class="axis-label" x="42" y="162" text-anchor="end">¥4.0k</text>
+        <text class="axis-label" x="42" y="208" text-anchor="end">¥3.5k</text>
+        <text class="axis-label" x="42" y="254" text-anchor="end">¥3.0k</text>
+        <!-- budget line at y=158 (¥4000) -->
+        <line x1="48" y1="158" x2="620" y2="158" stroke="#E5B53D" stroke-width="1.6" stroke-dasharray="6 5"/>
+        <text class="budget-label" x="614" y="152" text-anchor="end">预算线 ¥4,000</text>
+        <polyline id="price-line" fill="none" stroke="#8B6F47" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points=""/>
+        <g id="hit-dot" style="display:none">
+          <circle id="hit-pulse" cx="0" cy="0" r="6" fill="none" stroke="#B85450" stroke-width="2"/>
+          <circle id="hit-core"  cx="0" cy="0" r="3.5" fill="#B85450"/>
+        </g>
+      </svg>
+    </div>
+    <div class="ticker">
+      <span id="day-label">第 — 天</span>
+      <span class="price" id="price-label">¥ —</span>
+    </div>
+    <div class="demo-tag" style="margin-top:.3rem">每走一格 = 当日一条扫价汇总——没命中也报告，"没消息"和"没在扫"必须可区分。</div>
+    <div class="btn-row">
+      <button class="btn" id="btn-start" onclick="startWatch()">▶ 开始盯价</button>
+      <button class="btn ghost" id="btn-replay" onclick="resetWatch()" disabled>↺ 重放</button>
+    </div>
+
+    <div class="push-wrap" id="push-wrap">
+      <div class="push-label">📳 PUSH · 你的手机在第 23 天早上震了一下</div>
+      <div class="push-card">┌─────────────────────────────┐
+│  <span class="hl">三亚 · 好价到了</span>
+├─────────────────────────────┤
+│  08/15 → 08/20    2人 5晚
+│  单价    ¥3,280
+│  预算    ¥4,000
+│  节省    <span class="save">¥720  (-18%)</span>
+├─────────────────────────────┤
+│  近30天价格区间
+│  ¥3,280 ●━━━━━━┿━━━━━━━ ¥5,360
+│         ↑此次   ↑P50:¥4,610
+├─────────────────────────────┤
+│  锁价建议: <span class="hl">强</span>  (低于中位 29%)
+└─────────────────────────────┘</div>
+      <div class="push-actions">
+        <span class="cmd-chip">/lock SYX-202608 → 锁定这个价</span>
+        <span class="cmd-chip">/pause SYX → 先不看了</span>
+      </div>
+      <div class="demo-tag">※ 演示数据（本地 mock 价格）。真实模式下由 self-hosted server 扫真实报价源。</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="corp">
+  <div class="sec-label">Enterprise transplant</div>
+  <h2>移植到<span class="accent">企业差旅</span>，只换约束不换范式</h2>
+  <p class="lede">差旅的特殊在于：预算不是个人偏好，而是<b>公司政策</b>——硬约束天然存在、天然结构化。这恰好是"硬约束触发 + 偏好择优"这套判定架构的主场。约束更多，问题反而更规整：窗口写死、政策机读，剩下的核心是一个带 deadline 的<b>下单时机</b>问题。</p>
+  <p class="lede">这一形态已落成可运行实体（skill 形态，立约 → 代守 → 审批三段脚本，全离线演示）：好价腿之外多一条 <b>deadline 兜底腿</b>——度假可以不去，出差必须成行，宁可原价、不可误机。</p>
+
+  <div class="map-table">
+    <div class="map-row head">
+      <div class="map-cell">消费版（已运行）</div>
+      <div class="map-arrow"></div>
+      <div class="map-cell">差旅版（同一原语）</div>
+    </div>
+    <div class="map-row">
+      <div class="map-cell"><b>个人预算</b><span class="d">"人均 4000 以内"</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-cell"><b>差旅政策</b><span class="d">舱位 / 酒店标准 / 城市档位，天然机读</span></div>
+    </div>
+    <div class="map-row">
+      <div class="map-cell"><b>灵活时间窗</b><span class="d">"8 月里 4-6 晚都行"</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-cell"><b>固定行程窗</b><span class="d">会议日期定死，盯的是窗口内的组合与时机</span></div>
+    </div>
+    <div class="map-row">
+      <div class="map-cell"><b>平替推荐</b><span class="d">北海 / 涠洲岛，预算内立即可去</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-cell"><b>合规平替</b><span class="d">高铁 / 协议酒店 / 邻近航班，政策内更省</span></div>
+    </div>
+    <div class="map-row">
+      <div class="map-cell"><b>/lock 人工锁价</b><span class="d">好价由本人拍板</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-cell"><b>审批流对接</b><span class="d">命中 → 发起审批 → 通过即自动出票</span></div>
+    </div>
+    <div class="map-row">
+      <div class="map-cell"><b>扫价汇总日报</b><span class="d">没命中也告诉你"我扫了"</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-cell"><b>成本可观测</b><span class="d">每单"政策价 vs 成交价"留痕，财务可对账</span></div>
+    </div>
+  </div>
+
+  <div class="insight">💡 <b>为什么"盯价"比"订票"更该先做 Agent 化：</b>订票是低频单次动作，人 5 分钟能完成；盯价是高频持续动作，人根本不会执行。Agent 的边际价值在"人做不到的持续性"上，而不是"人本来就会做的事"上。命中后把决策权交还给人（锁价 / 审批），恰好落在企业最关心的可控与合规上。</div>
+  <div class="insight">🎯 <b>两个受益人，一套账：</b>对员工，把"记得去订票"变成"等它叫我"——出行的心智负担归零；对公司，每一单都留下"为什么是这个价、为什么是这个时机"的可解释记录——省钱第一次变得<b>可审计</b>。</div>
+</section>
+
+<section class="wrap" id="eval">
+  <div class="sec-label">Evaluation</div>
+  <h2>怎么知道它盯得准？</h2>
+  <p class="lede">代守型 Agent 的信任来自评测口径，不来自话术。三个问题，用固定历史价格样本做回归对照：</p>
+  <div class="eval-qs">
+    <div class="eval-q">
+      <div class="q">该叫没叫？</div>
+      <p>预算内的真实好价出现了，闹钟没响。</p>
+      <div class="m">漏报率 · 直接伤信任</div>
+    </div>
+    <div class="eval-q">
+      <div class="q">不该叫乱叫？</div>
+      <p>推送来了，点开发现并不划算或已过期。</p>
+      <div class="m">误报率 · 三次狼来了就静音</div>
+    </div>
+    <div class="eval-q">
+      <div class="q">叫得是时候吗？</div>
+      <p>命中价 vs 窗口内事后最低价的差距。</p>
+      <div class="m">时机成本 · 择优质量</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="judge">
+  <div class="sec-label">Design judgments</div>
+  <h2>四个值得辩护的设计判断</h2>
+  <div class="judge-list">
+    <div class="judge">
+      <span class="tag">TRIGGER ≠ SCORE</span>
+      <b>硬约束与评分分离。</b>
+      <p>触发命中只看「总价 ≤ 预算」一件事；偏好评分（如酒店权重）只用于在达标候选里择优。阈值混进评分，用户就再也说不清"它为什么响 / 为什么不响"。</p>
+    </div>
+    <div class="judge">
+      <span class="tag">OBSERVABILITY</span>
+      <b>没命中，也要发扫价汇总。</b>
+      <p>"没消息"和"没在扫"必须可区分——沉默的自动化系统会被用户默认为已经坏了。（这条纪律同样长在我的求职 agent 里：报警通道与数据通道分离。）</p>
+    </div>
+    <div class="judge">
+      <span class="tag">NO SILENT DROP</span>
+      <b>推送失败不置"已通知"。</b>
+      <p>通知发送失败时命中状态保持 active，下一轮扫价重试——好价宁可迟到，不可静默丢弃。异常不允许降级成合法的空。</p>
+    </div>
+    <div class="judge">
+      <span class="tag">COST ENGINEERING</span>
+      <b>SKU 反向索引去重。</b>
+      <p>N 条闹钟盯同一航段 / 酒店时只查一次价。取价是最贵的外部调用，成本随用户数是否线性，架构在第一天就要给答案。</p>
+    </div>
+    <div class="judge">
+      <span class="tag">SCOPE DISCIPLINE</span>
+      <b>V0 不做清单。</b>
+      <p>不做订票执行（那是 OTA / TMC 的执行层，我们是其上的时机层）；不做政策生成（政策是机读输入，不靠猜）；不做团行拼单。每条"不做"都有场景依据——收敛范围本身是产品判断，不是妥协。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="arch">
+  <div class="sec-label">Architecture</div>
+  <h2>薄客户端，胖服务端</h2>
+  <div class="arch">
+<pre>[skill @ 用户侧 runtime]      [self-hosted TripAlarm server]      [用户的 IM]
+  · 对话立约 / 查看闹钟   ⇄     · 24/7 watcher 扫价            →   飞书 / TG / ntfy
+  · /lock /pause          REST   · 命中判定 + 择优                    直达推送
+                                 · 闹钟 / 用户 / 运行日志集中存
+</pre>
+    <div class="note">V1：全套逻辑可离线本地跑（mock 取价层），演示零依赖；V2：skill 退成 REST 薄客户端，server 集中代守——REST 契约与推送架构文档随项目分发。数据接入走 adapter 抽象层，报价源可插拔。</div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div class="sec-label">About</div>
+  <p class="lede">TripAlarm 是我的个人项目：产品定义、交互文案、判定口径、评测设计与工程实现（AI 结对）。本页所有价格均为演示数据。</p>
+  <div class="foot-links">
+    <a href="https://pacificapie.github.io">个人网站 · 更多运行中的系统</a>
+    <a href="https://github.com/PacificaPie">GitHub</a>
+  </div>
+  <div class="colophon">张若阳 Pacifica Zhang · 2026<br>Builder × Evaluator — 用 AI 把想法变成运行中的系统，再证明它们有效。</div>
+</footer>
+
+<script>
+  /* ---------- mode toggle ---------- */
+  function setMode(m) {
+    const box = document.getElementById('chat-box');
+    box.className = 'chat mode-' + m;
+    document.getElementById('btn-leisure').className = m === 'leisure' ? 'on' : '';
+    document.getElementById('btn-biz').className = m === 'biz' ? 'on' : '';
+    document.getElementById('mode-note').innerHTML = m === 'leisure'
+      ? '时间窗灵活、预算是个人意愿——命中后由本人锁价。'
+      : '时间窗固定、约束来自<span class="biz-highlight">差旅政策</span>——命中后走审批，通过即出票。';
+  }
+
+  /* ---------- price watch replay ---------- */
+  // 30 天演示价格（人均总价）：4300–5400 区间游走，第 23 天跌破预算线
+  const PRICES = [5140,5020,5210,5360,5280,5090,4950,5060,5180,5240,
+                  5110,4980,4860,4790,4900,5030,5150,5070,4940,4820,
+                  4700,4610,3280,0,0,0,0,0,0,0]; // 命中后停止绘制
+  const HIT_INDEX = 22;           // 第 23 天
+  const X0 = 48, X1 = 620;
+  const P_TOP = 5500, P_BOT = 3000, Y_TOP = 20, Y_BOT = 250;  // ¥5.5k→y20, ¥3.0k→y250
+  const xOf = i => X0 + (X1 - X0) * (i / 29);
+  const yOf = p => Y_TOP + (P_TOP - p) * (Y_BOT - Y_TOP) / (P_TOP - P_BOT);
+  let timer = null, idx = 0, started = false;
+
+  const fmt = n => '¥' + n.toLocaleString('zh-CN');
+
+  function drawUpTo(n) {
+    const pts = [];
+    for (let i = 0; i <= n; i++) pts.push(xOf(i).toFixed(1) + ',' + yOf(PRICES[i]).toFixed(1));
+    document.getElementById('price-line').setAttribute('points', pts.join(' '));
+    document.getElementById('day-label').textContent = '第 ' + (n + 1) + ' 天';
+    const pl = document.getElementById('price-label');
+    pl.textContent = fmt(PRICES[n]) + ' /人';
+    pl.className = 'price' + (n === HIT_INDEX ? ' hit' : '');
+  }
+
+  function onHit() {
+    const hx = xOf(HIT_INDEX), hy = yOf(PRICES[HIT_INDEX]);
+    const dot = document.getElementById('hit-dot');
+    dot.style.display = '';
+    ['hit-pulse','hit-core'].forEach(id => {
+      const c = document.getElementById(id);
+      c.setAttribute('cx', hx.toFixed(1)); c.setAttribute('cy', hy.toFixed(1));
+    });
+    document.getElementById('watch-status').textContent = '命中 · 已推送';
+    document.getElementById('push-wrap').className = 'push-wrap show';
+    document.getElementById('hero').classList.add('rings');
+    document.getElementById('btn-replay').disabled = false;
+  }
+
+  function startWatch() {
+    if (started) return; started = true;
+    document.getElementById('btn-start').disabled = true;
+    document.getElementById('watch-status').textContent = '每日扫价中…';
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      drawUpTo(HIT_INDEX); onHit(); return;
+    }
+    idx = 0;
+    timer = setInterval(() => {
+      drawUpTo(idx);
+      if (idx === HIT_INDEX) { clearInterval(timer); onHit(); return; }
+      idx++;
+    }, 130);
+  }
+
+  function resetWatch() {
+    clearInterval(timer); started = false;
+    document.getElementById('price-line').setAttribute('points', '');
+    document.getElementById('hit-dot').style.display = 'none';
+    document.getElementById('push-wrap').className = 'push-wrap';
+    document.getElementById('watch-status').textContent = '待开始';
+    document.getElementById('day-label').textContent = '第 — 天';
+    document.getElementById('price-label').textContent = '¥ —';
+    document.getElementById('price-label').className = 'price';
+    document.getElementById('hero').classList.remove('rings');
+    document.getElementById('btn-start').disabled = false;
+    document.getElementById('btn-replay').disabled = true;
+  }
+</script>
+</body>
+</html>
