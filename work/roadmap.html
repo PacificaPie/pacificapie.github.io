@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Collaborative Roadmap — Case Study" data-zh="协作式路线图 — 案例">Collaborative Roadmap — Case Study</title>
+  <meta name="description" content="A two-person roadmap tool taken from local storage to real-time cloud sync, with a conversational 'talk to change the data' update loop packaged as a portable skill.">
+  <link rel="icon" href="../favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../skills.html">
+        <span class="lang-en">skills</span>
+        <span class="lang-zh">工具集</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="article-header">
+      <div class="article-eyebrow-block cream">
+        <span class="lang-en">case study · agent-driven tool</span>
+        <span class="lang-zh">案例研究 · Agent 驱动工具</span>
+      </div>
+      <h1 class="article-title">
+        <span class="lang-en">Collaborative Roadmap — Cloud Sync &amp; a Conversational Update Loop</span>
+        <span class="lang-zh">协作式路线图 —— 云端实时同步与对话驱动更新</span>
+      </h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-personal">Personal · Collaboration</span>
+        <span class="badge badge-shipped">Shipped</span>
+        <span class="case-layer">Agents · Skills</span>
+      </div>
+      <div class="article-meta">
+        <span class="lang-en">
+          two-person tool, one repo &nbsp;·&nbsp;
+          led the front-end rework, cloud persistence, and the update-loop skill
+        </span>
+        <span class="lang-zh">
+          双人工具、同一仓库 &nbsp;·&nbsp;
+          主导前端改版、云端持久化与更新链路技能
+        </span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+
+        <h2>The problem</h2>
+
+        <p>
+          A two-person roadmap and gantt tool, one repo — but my collaborator built through an
+          AI code-generation platform that kept regenerating the UI and quietly overwriting
+          hand edits. And with local-only storage, two devices could never really share state.
+        </p>
+
+        <h2>My call</h2>
+
+        <p>
+          I treated it as an engineering-discipline problem, not a styling one: centralize what
+          the platform AI keeps clobbering, move shared state to a real-time cloud, and turn
+          "update it by talking to it" into a portable skill.
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-rm-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
+            <text class="pl-name" x="115" y="52" text-anchor="middle">本地存储</text>
+            <rect class="pl-box" x="285" y="24" width="150" height="48" rx="8"/>
+            <text class="pl-name" x="360" y="52" text-anchor="middle">云端实时同步</text>
+            <rect class="pl-box" x="530" y="24" width="150" height="48" rx="8"/>
+            <text class="pl-name" x="605" y="52" text-anchor="middle">对话驱动更新</text>
+            <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rm-en)"/>
+            <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rm-en)"/>
+            <text class="pl-note" x="360" y="90" text-anchor="middle">每人一行 JSON · 无写冲突</text>
+            <text class="pl-note" x="605" y="90" text-anchor="middle">自然语言→改数据→即刷新</text>
+            <!-- collaboration strip -->
+            <rect class="pl-box" x="20" y="128" width="270" height="40" rx="8"/>
+            <text class="pl-name" x="155" y="152" text-anchor="middle">我:状态分离·抗覆盖·写入纪律</text>
+            <rect class="pl-box" x="330" y="128" width="150" height="40" rx="8"/>
+            <text class="pl-name" x="405" y="152" text-anchor="middle">theme.js 集中化</text>
+            <rect class="pl-box" x="520" y="128" width="170" height="40" rx="8"/>
+            <text class="pl-name" x="605" y="152" text-anchor="middle">平台 AI 生成 UI</text>
+            <line class="pl-line" x1="294" y1="148" x2="326" y2="148" marker-end="url(#arr-rm-en)"/>
+            <line class="pl-line" x1="484" y1="148" x2="516" y2="148" marker-end="url(#arr-rm-en)"/>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Local → real-time cloud → conversational update; underneath, the discipline that keeps a platform-AI collaborator from overwriting the work.</span>
+            <span class="lang-zh">本地 → 实时云端 → 对话驱动更新;下方是让"平台 AI 协作者"不覆盖成果的那套纪律。</span>
+          </figcaption>
+        </figure>
+
+        <h2>What shipped</h2>
+
+        <ul>
+          <li><strong>Overwrite-resistant theming</strong> — the platform AI kept resetting colors,
+            so I pulled the whole palette into a single <code>theme.js</code>: restore in one place,
+            and the design is back.</li>
+          <li><strong>Real-time cloud sync</strong> — Supabase (PostgREST + realtime subscriptions);
+            data modeled as one row per person, a single JSON blob, so two writers never conflict;
+            least privilege — anonymous role can read/write but not delete rows.</li>
+          <li><strong>A conversational update loop</strong> — a self-contained Node CLI (native
+            fetch, no dependencies) that turns "natural language → change the data → live refresh"
+            into a globally callable skill.</li>
+        </ul>
+
+        <h2>The discipline</h2>
+
+        <p>
+          Two writers on one repo needed a rule, not heroics: fetch / rebase before pushing, merge
+          rather than force. When the platform AI reshaped the structure wholesale, I stopped
+          fighting the conflict and instead re-aligned to their latest, then re-applied the theme.
+        </p>
+
+        <h2>What iterating taught me</h2>
+
+        <blockquote>
+          Collaborating with an AI code-generation platform is really a state-management problem:
+          separate what it regenerates from what must persist, and give every change a
+          disciplined path in.
+        </blockquote>
+
+        <p>
+          The shift that stuck: from "human edits the file" to "an agent edits by natural
+          language" — the moment updating a product becomes a pipeline, not a chore.
+        </p>
+
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+
+        <h2>问题</h2>
+
+        <p>
+          双人协作的路线图 / 甘特工具，同一个仓库 —— 但另一位开发者通过 AI 代码生成平台施工，
+          平台会反复重新生成 UI、悄悄覆盖手工改动。而纯本地存储，意味着两台设备根本无法真正共享状态。
+        </p>
+
+        <h2>我的判断</h2>
+
+        <p>
+          我把它当工程纪律问题，而非配色问题：把平台 AI 反复覆盖的东西集中化、
+          把共享状态搬到实时云端、并把“用自然语言改它”封装成可移植的技能。
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-rm-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
+            <text class="pl-name" x="115" y="52" text-anchor="middle">本地存储</text>
+            <rect class="pl-box" x="285" y="24" width="150" height="48" rx="8"/>
+            <text class="pl-name" x="360" y="52" text-anchor="middle">云端实时同步</text>
+            <rect class="pl-box" x="530" y="24" width="150" height="48" rx="8"/>
+            <text class="pl-name" x="605" y="52" text-anchor="middle">对话驱动更新</text>
+            <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rm-zh)"/>
+            <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rm-zh)"/>
+            <text class="pl-note" x="360" y="90" text-anchor="middle">每人一行 JSON · 无写冲突</text>
+            <text class="pl-note" x="605" y="90" text-anchor="middle">自然语言→改数据→即刷新</text>
+            <!-- collaboration strip -->
+            <rect class="pl-box" x="20" y="128" width="270" height="40" rx="8"/>
+            <text class="pl-name" x="155" y="152" text-anchor="middle">我:状态分离·抗覆盖·写入纪律</text>
+            <rect class="pl-box" x="330" y="128" width="150" height="40" rx="8"/>
+            <text class="pl-name" x="405" y="152" text-anchor="middle">theme.js 集中化</text>
+            <rect class="pl-box" x="520" y="128" width="170" height="40" rx="8"/>
+            <text class="pl-name" x="605" y="152" text-anchor="middle">平台 AI 生成 UI</text>
+            <line class="pl-line" x1="294" y1="148" x2="326" y2="148" marker-end="url(#arr-rm-zh)"/>
+            <line class="pl-line" x1="484" y1="148" x2="516" y2="148" marker-end="url(#arr-rm-zh)"/>
+          </svg>
+          <figcaption>
+            <span class="lang-en">Local → real-time cloud → conversational update; underneath, the discipline that keeps a platform-AI collaborator from overwriting the work.</span>
+            <span class="lang-zh">本地 → 实时云端 → 对话驱动更新;下方是让"平台 AI 协作者"不覆盖成果的那套纪律。</span>
+          </figcaption>
+        </figure>
+
+        <h2>交付</h2>
+
+        <ul>
+          <li><strong>抗覆盖的主题化</strong> —— 平台 AI 反复把配色改回去，于是我把全站配色抽到单一
+            <code>theme.js</code>：一处恢复，设计即复原。</li>
+          <li><strong>云端实时同步</strong> —— Supabase（PostgREST + 实时订阅）；数据建模为
+            “每人一行、单个 JSON blob”，两人各写各行、天然无写冲突；最小权限 ——
+            匿名角色可读写但无删行权。</li>
+          <li><strong>对话驱动更新链路</strong> —— 自包含 Node CLI（原生 fetch、零依赖），
+            把“自然语言 → 改数据 → 实时刷新”封装成可全局调用的技能。</li>
+        </ul>
+
+        <h2>纪律</h2>
+
+        <p>
+          两人写同一个仓库，靠的是规则不是蛮力：先 fetch / rebase 再推、用 merge 不强推。
+          当平台 AI 把结构整体大改，我不再硬解冲突，而是先对齐对方最新结构、再重套主题。
+        </p>
+
+        <h2>认知迭代</h2>
+
+        <blockquote>
+          与 AI 代码生成平台协作，本质是个状态管理问题：把它反复生成的、和必须持久的分开，
+          再给每次改动一条有纪律的入口。
+        </blockquote>
+
+        <p>
+          真正留下的转变：从“人改文件”到“让 agent 用自然语言改” ——
+          更新一个产品从此是一条链路，而不是一件苦差。
+        </p>
+
+      </div>
+
+      <!-- Article-end signoff -->
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
