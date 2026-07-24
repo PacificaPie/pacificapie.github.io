@@ -61,7 +61,7 @@
       </div>
       <div class="skills-count-strip" aria-label="Portfolio counts">
         <span class="skills-count">15 <span class="lang-en">built</span><span class="lang-zh">个已建</span></span>
-        <span class="skills-count">7 <span class="lang-en">components public</span><span class="lang-zh">个组件公开</span></span>
+        <span class="skills-count">8 <span class="lang-en">components public</span><span class="lang-zh">个组件公开</span></span>
         <span class="skills-count">3 <span class="lang-en">compositions running</span><span class="lang-zh">个组合在跑</span></span>
       </div>
     </div>
@@ -73,12 +73,12 @@
           A skill is a small, versioned playbook an AI agent can load: trigger conditions,
           an execution order, and hard stops — with the knowledge it needs living in one
           authoritative document it points to. Whenever a workflow of mine starts repeating,
-          I compile it into one. These are the seven I can show.
+          I compile it into one. These are the eight I can show.
         </span>
         <span class="lang-zh">
           skill 是 agent 可加载的小型剧本：触发条件、执行序、硬中止，
           它依赖的知识正文放在它指向的唯一权威文档里。
-          一个工作流开始重复出现，我就把它固化成一个 skill。这里是可以公开的 7 个。
+          一个工作流开始重复出现，我就把它固化成一个 skill。这里是可以公开的 8 个。
         </span>
       </p>
 
@@ -106,203 +106,119 @@
         </div>
       </div>
 
+      <!-- ============ LEVEL 1 · COMPONENTS (skimmable inventory) ============ -->
       <h2>
-        <span class="lang-en">Components — the seven skills</span>
-        <span class="lang-zh">组件——七个 skill</span>
+        <span class="lang-en">Components — the eight skills</span>
+        <span class="lang-zh">组件——八个 skill</span>
       </h2>
       <p>
-        <span class="lang-en">One axis, no overlap: each skill belongs to exactly one domain it serves.</span>
-        <span class="lang-zh">唯一分类轴：每个 skill 恰好属于它所服务的一个领域。</span>
+        <span class="lang-en">The building blocks — each a thin, single-purpose playbook. Skim them; the orchestration below is where they add up.</span>
+        <span class="lang-zh">构成模块——每个都是薄而单一职责的剧本。扫一眼即可；下面的编排，才是它们相加的地方。</span>
       </p>
 
-      <!-- ============ GROUP 1 · TRAVEL ============ -->
-      <section class="skill-group">
-        <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Travel</span><span class="lang-zh">旅行</span></span>
-          <span class="skill-group-note">
-            <span class="lang-en">a product and its research harness, built as a pair</span>
-            <span class="lang-zh">产品与它的调研 harness，成对出现</span>
-          </span>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">tripalarm</span>
-              <span class="skill-form-tag"><span class="lang-en">product</span><span class="lang-zh">产品</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                TripAlarm — say where, when, and your budget; a server watches prices
-                year-round and pushes the moment they hit (ntfy / Feishu / Telegram).
-                The skill is the product's front door.
-              </span>
-              <span class="lang-zh">
-                旅行闹钟——说出目的地、时间和预算，server 全年盯价，
-                到价即主动推送（ntfy / 飞书 / Telegram）。skill 本身就是产品入口。
-              </span>
-            </p>
-          </div>
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">competitor-research</span>
-              <span class="skill-form-tag"><span class="lang-en">research harness</span><span class="lang-zh">调研 harness</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                Exhaustive competitor research for TripAlarm: bilingual sweeps across apps,
-                web tools, and AI agents, with live screenshots — and a registry ledger that
-                refuses to stop until the search is truly exhausted.
-              </span>
-              <span class="lang-zh">
-                为 TripAlarm 做穷尽式竞品调研：中英双语横扫 App / 网页 / AI agent 三种形态并实地截图；
-                registry 登记簿保证搜到「搜无可搜」才允许收尾。
-              </span>
-            </p>
-          </div>
-        </div>
-      </section>
+      <div class="skill-grid skill-grid-compact">
 
-      <!-- ============ GROUP 2 · DIAGRAM TWINS ============ -->
-      <section class="skill-group">
-        <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Diagrams</span><span class="lang-zh">配图</span></span>
-          <span class="skill-group-note">
-            <span class="lang-en">one export craft, two visual grammars for two audiences</span>
-            <span class="lang-zh">同一套导出工艺，面向两种场合的两套语法</span>
-          </span>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">glass-diagram</span>
-              <span class="skill-form-tag"><span class="lang-en">workflow</span><span class="lang-zh">工作流</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                Business-report diagrams in a unified glass style: HTML skeleton → design
-                system → headless-Chrome self-check → 2× PNG. Consistency is the product —
-                the same object gets the same icon in every chart.
-              </span>
-              <span class="lang-zh">
-                蓝白玻璃质感的汇报配图流水线：HTML 骨干 → 设计系统渲染 → 无头 Chrome 截图自检 → 2 倍 PNG。
-                一致性即产品——同一业务物件在所有图里长同一个样。
-              </span>
-            </p>
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">career-archive</span>
+            <span class="skill-form-tag"><span class="lang-en">system</span><span class="lang-zh">系统</span></span>
           </div>
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">academic-diagram</span>
-              <span class="skill-form-tag"><span class="lang-en">workflow</span><span class="lang-zh">工作流</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                Paper-style layered architecture figures: a shape-semantics grammar
-                (cylinder = store, pill = AI capability…), figure-in-figure nesting,
-                and one hard rule — arrows are flows, no exceptions.
-              </span>
-              <span class="lang-zh">
-                学术风分层架构图：形状语义语法（圆柱=存储、胶囊=AI 能力…）、
-                图套图工序（子图独立渲染再嵌回父图），以及一条铁律——箭头即流向，没有例外。
-              </span>
-            </p>
-          </div>
+          <p class="skill-desc">
+            <span class="lang-en">Private experience archive: capture → organize → tailor, behind two human review gates. The material layer of my job-search agent.</span>
+            <span class="lang-zh">私有经历库：捕获 → 整理 → 裁剪，两道人工审核闸。求职 agent 的素材层。</span>
+          </p>
+          <a class="skill-related" href="work/jobagent.html">
+            <span class="lang-en">related case →</span>
+            <span class="lang-zh">相关案例 →</span>
+          </a>
         </div>
-      </section>
 
-      <!-- ============ GROUP 3 · PERSONAL SYSTEMS ============ -->
-      <section class="skill-group">
-        <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Career</span><span class="lang-zh">求职</span></span>
-          <span class="skill-group-note">
-            <span class="lang-en">the material layer of an agent that runs every day</span>
-            <span class="lang-zh">一个每天在跑的 agent 的素材层</span>
-          </span>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">career-archive</span>
-              <span class="skill-form-tag"><span class="lang-en">system</span><span class="lang-zh">系统</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                A private experience archive in three strict layers: capture (append-only
-                truth log) → organize (direction-neutral distillation) → tailor (reserved).
-                Two human review gates — nothing enters the archive without sign-off.
-                It is the material layer of my job-search agent.
-              </span>
-              <span class="lang-zh">
-                私有经历库，三层分工：捕获（只追加的流水真相源）→ 整理（方向中立的研磨）→ 裁剪（预留）。
-                两道人工审核闸，不经确认不入库；它是我求职 agent 的素材层。
-              </span>
-            </p>
-            <a class="skill-related" href="work/jobagent.html">
-              <span class="lang-en">related case: Job-search Agent →</span>
-              <span class="lang-zh">相关案例：求职 Agent →</span>
-            </a>
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">code-health</span>
+            <span class="skill-form-tag"><span class="lang-en">dev-check</span><span class="lang-zh">开发检查</span></span>
           </div>
+          <p class="skill-desc">
+            <span class="lang-en">A development-check skill grounded in an R&amp;D-method wiki I built at the company — structured code review graded P0–P3, plus lint / test / health baselines.</span>
+            <span class="lang-zh">扎根于我在公司搭的研发方法论 wiki 的开发检查 skill——P0–P3 分级代码 review，外加 lint／测试／体检基线。</span>
+          </p>
+          <a class="skill-related" href="work/resourceloop.html">
+            <span class="lang-en">related case →</span>
+            <span class="lang-zh">相关案例 →</span>
+          </a>
         </div>
-      </section>
 
-      <!-- ============ GROUP 4 · DECISION SYSTEMS ============ -->
-      <section class="skill-group">
-        <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Commerce</span><span class="lang-zh">跨境</span></span>
-          <span class="skill-group-note">
-            <span class="lang-en">funnels that update themselves after every run</span>
-            <span class="lang-zh">每跑一轮就自我更新的漏斗</span>
-          </span>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">crossborder-xuanpin</span>
-              <span class="skill-form-tag"><span class="lang-en">decision funnel</span><span class="lang-zh">决策漏斗</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                Product selection for cross-border commerce as a four-layer funnel —
-                market → category → variant → supplier — cross-validated by three
-                independent data sources, with lessons written back after every run.
-              </span>
-              <span class="lang-zh">
-                跨境选品四层漏斗：市场 → 品类 → 品种 → 货源，
-                三个独立数据源交叉验证，每跑一轮把经验写回知识库。
-              </span>
-            </p>
-            <a class="skill-related" href="work/crossborder.html">
-              <span class="lang-en">related case: Cross-border Commerce →</span>
-              <span class="lang-zh">相关案例：跨境电商 →</span>
-            </a>
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">crossborder-xuanpin</span>
+            <span class="skill-form-tag"><span class="lang-en">decision funnel</span><span class="lang-zh">决策漏斗</span></span>
           </div>
+          <p class="skill-desc">
+            <span class="lang-en">Cross-border product selection as a four-layer funnel — market → category → variant → supplier — three-source cross-check, lessons written back each run.</span>
+            <span class="lang-zh">跨境选品四层漏斗：市场 → 品类 → 品种 → 货源，三源交叉，每轮经验回写。</span>
+          </p>
+          <a class="skill-related" href="work/crossborder.html">
+            <span class="lang-en">related case →</span>
+            <span class="lang-zh">相关案例 →</span>
+          </a>
         </div>
-      </section>
 
-      <!-- ============ GROUP 5 · COLLABORATION TOOLS ============ -->
-      <section class="skill-group">
-        <div class="skill-group-head">
-          <span class="skill-group-label"><span class="lang-en">Collaboration</span><span class="lang-zh">协作</span></span>
-        </div>
-        <div class="skill-grid">
-          <div class="skill-card">
-            <div class="skill-card-top">
-              <span class="skill-name">roadmap-update</span>
-              <span class="skill-form-tag"><span class="lang-en">tool</span><span class="lang-zh">工具</span></span>
-            </div>
-            <p class="skill-desc">
-              <span class="lang-en">
-                Update a shared roadmap gantt by talking: natural language → cloud data
-                edit → the page refreshes live for everyone. Least-privilege by design —
-                the anonymous role can't even delete a row.
-              </span>
-              <span class="lang-zh">
-                用自然语言改共享甘特图：说一句 → 云端数据更新 → 网页对所有人实时刷新。
-                最小权限设计，匿名角色连删行都不行。
-              </span>
-            </p>
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">tripalarm</span>
+            <span class="skill-form-tag"><span class="lang-en">product</span><span class="lang-zh">产品</span></span>
           </div>
+          <p class="skill-desc">
+            <span class="lang-en">A price-watch travel product — say where, when, and your budget; the skill is its front door.</span>
+            <span class="lang-zh">盯价旅行产品——说出目的地、时间与预算；skill 就是它的入口。</span>
+          </p>
         </div>
-      </section>
+
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">roadmap-update</span>
+            <span class="skill-form-tag"><span class="lang-en">tool</span><span class="lang-zh">工具</span></span>
+          </div>
+          <p class="skill-desc">
+            <span class="lang-en">Edit a shared roadmap gantt by talking — natural language → cloud edit → live refresh. Least-privilege by default.</span>
+            <span class="lang-zh">用对话改共享甘特图——自然语言 → 云端更新 → 实时刷新。默认最小权限。</span>
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">competitor-research</span>
+            <span class="skill-form-tag"><span class="lang-en">research harness</span><span class="lang-zh">调研 harness</span></span>
+          </div>
+          <p class="skill-desc">
+            <span class="lang-en">Exhaustive bilingual competitor sweeps across apps, web, and AI agents — a ledger that won't stop until the search is truly dry.</span>
+            <span class="lang-zh">跨 App／网页／AI agent 的穷尽式双语竞品横扫——登记簿不到「搜无可搜」不收手。</span>
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">glass-diagram</span>
+            <span class="skill-form-tag"><span class="lang-en">workflow</span><span class="lang-zh">工作流</span></span>
+          </div>
+          <p class="skill-desc">
+            <span class="lang-en">Business-report diagrams in one glass style — same object, same icon in every chart.</span>
+            <span class="lang-zh">汇报配图流水线，统一玻璃质感——同一物件在所有图里长同一个样。</span>
+          </p>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-top">
+            <span class="skill-name">academic-diagram</span>
+            <span class="skill-form-tag"><span class="lang-en">workflow</span><span class="lang-zh">工作流</span></span>
+          </div>
+          <p class="skill-desc">
+            <span class="lang-en">Paper-style layered architecture figures with a shape-semantics grammar — arrows are flows, no exceptions.</span>
+            <span class="lang-zh">论文风分层架构图，带形状语义语法——箭头即流向，没有例外。</span>
+          </p>
+        </div>
+
+      </div>
 
       <!-- ============ LEVEL 2 · COMPOSITIONS ============ -->
       <section class="skill-group">
@@ -397,12 +313,12 @@
 
       <p class="skills-foot">
         <span class="lang-en">
-          Eight more skills run in work contexts — delivery pipelines, PRD methodology,
-          engineering health checks, data-query SOPs. Those stay internal; the three
-          principles above are the skeleton they all share.
+          Seven more skills run in work contexts — delivery pipelines, PRD methodology,
+          data-query SOPs, and more. Those stay internal; the three principles above are the
+          skeleton they all share.
         </span>
         <span class="lang-zh">
-          另有 8 个 skill 服务于工作场景——交付流水线、PRD 方法论、工程体检、取数 SOP。
+          另有 7 个 skill 服务于工作场景——交付流水线、PRD 方法论、取数 SOP 等。
           它们不公开；但上面那三条原则，是它们共同的骨架。
         </span>
       </p>

@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title data-en="ResourceLoop — Case Study" data-zh="ResourceLoop — 案例">ResourceLoop — Case Study</title>
-  <meta name="description" content="An internal operations system for a three-role request, review, and deployment workflow, from product definition to delivery.">
+  <meta name="description" content="A three-role request–review–deploy system defined from zero at Meituan: mechanism design, heat modeling, an LLM material recommender, two-stage image generation, and a frontend engineering baseline.">
   <link rel="icon" href="../favicon.ico">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ResourceLoop — a B-Side System Defined and Shipped from Zero">
+  <meta property="og:description" content="Three role consoles, four domain engines, one source of truth — mechanism design, latent-variable heat modeling, and an engineering baseline.">
+  <meta property="og:url" content="https://pacificapie.github.io/work/resourceloop.html">
+  <meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
+  <meta name="twitter:card" content="summary">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,8 +59,8 @@
         <span class="lang-zh">案例研究 · B 端系统</span>
       </div>
       <h1 class="article-title">
-        <span class="lang-en">ResourceLoop — a B-Side System Delivered Pairing with AI</span>
-        <span class="lang-zh">ResourceLoop —— 与 AI 结对交付的 B 端系统</span>
+        <span class="lang-en">ResourceLoop — a B-Side System Defined and Shipped from Zero</span>
+        <span class="lang-zh">ResourceLoop —— 从零定义并交付的 B 端系统</span>
       </h1>
       <div class="case-meta-strip">
         <span class="origin-pill origin-internship">Internship · Meituan</span>
@@ -63,11 +70,11 @@
       <div class="article-meta">
         <span class="lang-en">
           internship project (internal) &nbsp;·&nbsp;
-          defined the workflow, interaction model, and acceptance criteria; co-developed with the team
+          I defined the workflow, data model, interaction, and incentive mechanism; the team validated, and we co-developed pairing with AI
         </span>
         <span class="lang-zh">
           实习项目（内部） &nbsp;·&nbsp;
-          定义工作流、交互模型与验收标准，和团队协同开发
+          我定义工作流、数据模型、交互与激励机制，团队校验，和 AI 结对协同开发
         </span>
       </div>
     </div>
@@ -80,72 +87,297 @@
         <h2>The problem</h2>
 
         <p>
-          Resource requests and reviews for trending events had no systematic process —
-          the request-and-approval loop lived nowhere in particular.
+          Trending events in travel — concerts, matches, festivals — need BD teams to claim platform
+          resources to support them. There was no systematic way to do it: the request-and-approval
+          loop lived nowhere in particular, and no one could see which requests were actually worth
+          granting.
         </p>
 
-        <h2>My call</h2>
+        <h2>My role &amp; the collaboration model</h2>
 
         <p>
-          I defined the workflow, interaction model, incentive mechanism, and acceptance criteria.
-          The team validated the operating assumptions, and we co-developed the implementation with
-          AI-assisted prototyping.
+          I defined the whole thing from zero — the workflow, the data model, the interaction, the
+          incentive mechanism, and the acceptance criteria. The team validated the operating
+          assumptions; we co-developed the implementation, pairing with AI for prototyping. Working
+          with AI has to be driven by your own structured thinking: a PM can build, but never at the
+          cost of time spent thinking about direction.
         </p>
 
         <figure class="pipeline-fig">
           <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-rl-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="115" y="52" text-anchor="middle">BD 申报</text>
+            <text class="pl-name" x="115" y="52" text-anchor="middle">BD request</text>
             <rect class="pl-box" x="285" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="360" y="52" text-anchor="middle">审核</text>
+            <text class="pl-name" x="360" y="52" text-anchor="middle">Review</text>
             <rect class="pl-box" x="530" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="605" y="52" text-anchor="middle">投放</text>
+            <text class="pl-name" x="605" y="52" text-anchor="middle">Deploy</text>
             <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rl-en)"/>
             <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rl-en)"/>
-            <text class="pl-note" x="115" y="90" text-anchor="middle">成功率半外显</text>
-            <text class="pl-note" x="360" y="90" text-anchor="middle">申诉解耦+记分卡</text>
+            <text class="pl-note" x="115" y="90" text-anchor="middle">success rate semi-visible</text>
+            <text class="pl-note" x="360" y="90" text-anchor="middle">appeals decoupled + scorecard</text>
             <!-- collaboration strip -->
             <rect class="pl-box" x="20" y="128" width="250" height="40" rx="8"/>
-            <text class="pl-name" x="145" y="152" text-anchor="middle">我:需求·数据模型·交互 提出</text>
+            <text class="pl-name" x="145" y="152" text-anchor="middle">Me: needs · data model · UX</text>
             <rect class="pl-box" x="310" y="128" width="130" height="40" rx="8"/>
-            <text class="pl-name" x="375" y="152" text-anchor="middle">团队校验</text>
+            <text class="pl-name" x="375" y="152" text-anchor="middle">Team validates</text>
             <rect class="pl-box" x="480" y="128" width="170" height="40" rx="8"/>
-            <text class="pl-name" x="565" y="152" text-anchor="middle">AI 结对实现</text>
+            <text class="pl-name" x="565" y="152" text-anchor="middle">AI pair-builds</text>
             <line class="pl-line" x1="274" y1="148" x2="306" y2="148" marker-end="url(#arr-rl-en)"/>
             <line class="pl-line" x1="444" y1="148" x2="476" y2="148" marker-end="url(#arr-rl-en)"/>
           </svg>
           <figcaption>
-            <span class="lang-en">Three-role flow, with the collaboration model underneath: I propose, team validates, AI pair-builds.</span>
-            <span class="lang-zh">三角色流程;下方是协作模型:我提出、团队校验、AI 结对实现。</span>
+            Three-role flow, with the collaboration model underneath: I propose, the team validates, AI pair-builds.
           </figcaption>
         </figure>
 
-        <h2>What shipped</h2>
-
-        <ul>
-          <li><strong>A three-role system</strong>: request → review → deploy.</li>
-          <li><strong>Incentive-mechanism design</strong> — success rates semi-visible to prevent
-            gaming; appeals decoupled from review, with scorecards for two-way accountability.</li>
-          <li><strong>Multiple iterations driven by user feedback</strong> — an event calendar with a
-            pinned request zone, explicit draft-state backfill, and error messages rewritten in
-            plain human language.</li>
-        </ul>
-
-        <h2>Validation</h2>
+        <h2>System architecture</h2>
 
         <p>
-          A launchable system, iterated over multiple rounds. A frontend engineering baseline was
-          part of the delivery — unit tests caught a real <code>Number(null) === 0</code> bug
-          on the spot.
+          Three role consoles — request, review, deploy — sit on a realtime Postgres BaaS with
+          row-level security, realtime subscriptions, and SSO role mapping. Underneath are four
+          domain engines: a success-rate engine, a heat model, an LLM material recommender, and a
+          two-stage image generator, each reading and writing its own tables. One rule shaped the
+          backend: <strong>the success rate is computed once, on the server — the single
+          authoritative source of truth</strong>. The frontend went from double-computing to a thin
+          consumer with a defensive fallback, so when the pricing model was later upgraded from two
+          tiers to three, the frontend didn't change a line.
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-arch-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+
+            <!-- Layer labels -->
+            <text class="pl-anno" x="16" y="24">Presentation · React + Vite + Tailwind + shadcn/ui</text>
+            <text class="pl-anno" x="16" y="100">Data platform &amp; auth</text>
+            <text class="pl-anno" x="16" y="176">Domain engines</text>
+            <text class="pl-anno" x="16" y="250">Data &amp; signals</text>
+
+            <!-- Band A: role consoles -->
+            <rect class="pl-box" x="16"  y="30" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="115" y="55" text-anchor="middle">BD console</text>
+            <rect class="pl-box" x="232" y="30" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="331" y="55" text-anchor="middle">Reviewer console</text>
+            <rect class="pl-box" x="448" y="30" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="547" y="55" text-anchor="middle">Deployment board</text>
+
+            <!-- Band B: platform -->
+            <rect class="pl-box" x="16"  y="106" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="115" y="131" text-anchor="middle">Postgres BaaS · RLS</text>
+            <rect class="pl-box" x="232" y="106" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="331" y="131" text-anchor="middle">Realtime · pub/sub</text>
+            <rect class="pl-box" x="448" y="106" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="547" y="131" text-anchor="middle">SSO role mapping</text>
+
+            <!-- Band C: engines -->
+            <rect class="pl-box" x="16"  y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="88"  y="204" text-anchor="middle">Success-rate</text>
+            <text class="pl-note" x="88"  y="219" text-anchor="middle">source of truth</text>
+            <rect class="pl-box" x="177" y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="249" y="204" text-anchor="middle">Heat model</text>
+            <text class="pl-note" x="249" y="219" text-anchor="middle">latent · supervised</text>
+            <rect class="pl-box" x="338" y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="410" y="204" text-anchor="middle">Material rec · LLM</text>
+            <text class="pl-note" x="410" y="219" text-anchor="middle">7 versions · 103 cases</text>
+            <rect class="pl-box" x="499" y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="571" y="204" text-anchor="middle">Two-stage imagegen</text>
+            <text class="pl-note" x="571" y="219" text-anchor="middle">offline · precomputed</text>
+
+            <!-- Band D: data -->
+            <rect class="pl-box" x="16"  y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="88"  y="278" text-anchor="middle">Events</text>
+            <text class="pl-note" x="88"  y="293" text-anchor="middle">selection source</text>
+            <rect class="pl-box" x="177" y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="249" y="278" text-anchor="middle">Images</text>
+            <text class="pl-note" x="249" y="293" text-anchor="middle">url + scene</text>
+            <rect class="pl-box" x="338" y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="410" y="278" text-anchor="middle">Scorecards</text>
+            <text class="pl-note" x="410" y="293" text-anchor="middle">two-way audit</text>
+            <rect class="pl-box" x="499" y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="571" y="278" text-anchor="middle">Delivery daily</text>
+            <text class="pl-note" x="571" y="293" text-anchor="middle">state-decoupled</text>
+
+            <!-- Inter-band connectors -->
+            <line class="pl-line" x1="115" y1="72"  x2="115" y2="106" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="331" y1="72"  x2="331" y2="106" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="547" y1="72"  x2="547" y2="106" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="115" y1="148" x2="115" y2="182" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="331" y1="148" x2="331" y2="182" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="547" y1="148" x2="547" y2="182" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="115" y1="230" x2="115" y2="256" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="331" y1="230" x2="331" y2="256" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="547" y1="230" x2="547" y2="256" marker-end="url(#arr-arch-en)"/>
+
+            <!-- Evaluation rail -->
+            <path class="pl-dash" d="M 666 30 V 304"/>
+            <text class="pl-anno" transform="rotate(-90 684 167)" x="684" y="167" text-anchor="middle">Evaluation across every layer</text>
+          </svg>
+          <figcaption>
+            Four layers, one system: three role consoles over a realtime BaaS, four domain engines, and the data they read and write. Evaluation runs across every layer.
+          </figcaption>
+        </figure>
+
+        <h2>Mechanism design</h2>
+
+        <p>
+          The system isn't a form — it's a small market, so I designed it like one. Mechanism design
+          means taking &ldquo;how will people game this?&rdquo; as a first-class input.
+        </p>
+
+        <ul>
+          <li><strong>Success rates are semi-visible</strong> — enough to guide a request, not enough
+            to reverse-engineer and game for arbitrage.</li>
+          <li><strong>Appeals are decoupled from review, and reviewers carry a scorecard</strong> —
+            the power to reject comes with matching accountability. Two-way, not one.</li>
+          <li><strong>One submission per event</strong>; cards stay locked to an event ID across days,
+            so the same event can't be quietly double-claimed.</li>
+        </ul>
+
+        <p>
+          Every item on the &ldquo;won't build&rdquo; list has a concrete scenario behind it — landing
+          pages, withdrawals, client-side ordering, frontend allow-lists. I kept the surface small on
+          purpose.
+        </p>
+
+        <h2>Modeling heat as a latent variable</h2>
+
+        <p>
+          Which events deserve resources? <em>Heat</em> is a latent variable — there's no clean
+          ground truth for it. So I didn't pretend there was. An LLM produces first-pass labels,
+          <strong>pairwise comparison calibrates them</strong> into a consistent ordering, a
+          supervised model learns from that, and its output drives the request-and-selection engine.
+          The discipline is admitting where truth is manufactured — and building the calibration that
+          makes it trustworthy.
+        </p>
+
+        <h2>LLM material recommendation</h2>
+
+        <p>
+          When a BD claims an event, the system suggests matching support materials. Two product
+          calls shaped it. First, the LLM's job here is to <strong>widen the consideration set, not to
+          decide</strong> — the output is a candidate list a human checks off, never a verdict.
+          Second, evaluation comes before optimization: without a fixed sample, &ldquo;it feels
+          better&rdquo; is worthless.
+        </p>
+
+        <p>
+          Seven prompt versions on 103 real events, each compared head-to-head against the last. The
+          lesson was in a badcase: <em>a Mongolian artist's concert in a stadium</em> once produced
+          <em>grassland shuttle buses</em> — the model doing surface association after its examples
+          were stripped of their reasoning paths. Restore the reasoning, add counter-examples, and
+          that whole class of error disappears.
+        </p>
+
+        <h2>Two-stage image generation</h2>
+
+        <p>
+          Every event card needs a banner, and AI image models garbling Chinese text is an
+          industry-wide problem. I read it as a <strong>pipeline problem, not a wording one</strong>:
+          any title string that enters a text-to-image prompt gets rendered as picture text. So a text
+          model first translates the event into a pure visual scene — stripped of every name and word
+          — and only then hits the image model; titles are composed in the DOM afterward, cleanly.
+          Generation runs offline and batched, and the frontend only ever reads the table, so a slow
+          model call never sits on a user request. Even the style was weakness-driven: impressionist
+          brushwork, because it hides the model's detail slips and matches the brand palette —
+          choosing to conceal, not to show off.
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-img-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+
+            <text class="pl-anno" x="14" y="18">Offline · nightly batch</text>
+            <rect class="pl-box" x="14"  y="28" width="96"  height="44" rx="8"/>
+            <text class="pl-name" x="62"  y="54" text-anchor="middle">Events</text>
+            <rect class="pl-box" x="128" y="28" width="118" height="44" rx="8"/>
+            <text class="pl-name" x="187" y="48" text-anchor="middle">Scheduler</text>
+            <text class="pl-note" x="187" y="62" text-anchor="middle">incremental</text>
+            <rect class="pl-box" x="264" y="28" width="150" height="44" rx="8"/>
+            <text class="pl-name" x="339" y="48" text-anchor="middle">① Text → scene</text>
+            <text class="pl-note" x="339" y="62" text-anchor="middle">strip every word</text>
+            <rect class="pl-box" x="432" y="28" width="150" height="44" rx="8"/>
+            <text class="pl-name" x="507" y="48" text-anchor="middle">② Text-to-image</text>
+            <text class="pl-note" x="507" y="62" text-anchor="middle">→ permanent CDN</text>
+            <line class="pl-line" x1="110" y1="50" x2="126" y2="50" marker-end="url(#arr-img-en)"/>
+            <line class="pl-line" x1="246" y1="50" x2="262" y2="50" marker-end="url(#arr-img-en)"/>
+            <line class="pl-line" x1="414" y1="50" x2="430" y2="50" marker-end="url(#arr-img-en)"/>
+
+            <!-- ② drops into the table -->
+            <path class="pl-line" d="M 507 72 C 507 92, 430 96, 402 104" fill="none" marker-end="url(#arr-img-en)"/>
+
+            <rect class="pl-box" x="300" y="104" width="180" height="44" rx="8"/>
+            <text class="pl-name" x="390" y="124" text-anchor="middle">Image table</text>
+            <text class="pl-note" x="390" y="138" text-anchor="middle">url + scene (attribution)</text>
+
+            <text class="pl-anno" x="520" y="94">Online · read-only</text>
+            <rect class="pl-box" x="520" y="104" width="186" height="44" rx="8"/>
+            <text class="pl-name" x="613" y="124" text-anchor="middle">Frontend · read-only</text>
+            <text class="pl-note" x="613" y="138" text-anchor="middle">lazy-load · 3-state banner</text>
+            <line class="pl-line" x1="518" y1="126" x2="482" y2="126" marker-end="url(#arr-img-en)"/>
+          </svg>
+          <figcaption>
+            Generation is offline and batched; the frontend only reads the table — a slow model call never sits on a user request. Two stages, because any title fed to an image model renders as garbled text.
+          </figcaption>
+        </figure>
+
+        <h2>Engineering discipline</h2>
+
+        <p>
+          Product depth here meant engineering discipline, four ways:
+        </p>
+
+        <ul>
+          <li><strong>Single source of truth</strong> — I proposed the success-rate algorithm, the
+            team validated it, then I pushed the sub-scores to close on the backend, handing over a
+            four-piece package: a JS reference, a Java reference, a numeric oracle, and a README.</li>
+          <li><strong>Contract governance</strong> — the interface spec shipped three versions in a
+            week; each one I diffed into an integration checklist, froze a snapshot on submit to
+            preserve historical semantics, and treated units (cents vs. yuan) as part of the
+            contract.</li>
+          <li><strong>No silent failures</strong> — a core relational field was being written as an
+            empty array, silently, breaking the relationship; I traced it layer by layer and made it
+            a rule: never downgrade an exception into a valid-looking empty value.
+            <code>Number(null) === 0</code> got caught three separate times by tests — language traps
+            are stopped by tests, not by discipline.</li>
+          <li><strong>An engineering baseline</strong> — I ran a ~4,300-line full review, graded
+            findings P0–P3, and sequenced a roadmap by &ldquo;probability of breaking × how fast
+            you'd notice.&rdquo; Vitest, react-query, route splitting, and lint all landed — lint
+            caught a real bug the moment it went in; a 918-line file became seven, behavior-unchanged,
+            triple-verified.</li>
+        </ul>
+
+        <p>
+          Then I compiled the recurring parts into engineering-method skills — a reusable methodology
+          wiki, so the next person doesn't relearn it from scratch.
+        </p>
+
+        <h2>On-site pilot &amp; two-sided research</h2>
+
+        <p>
+          Then I ran the pilot on-site, solo: briefing dozens of BDs face-to-face, taking their
+          requests and shipping front- and back-end changes live, so <em>propose → build →
+          feedback</em> closed right on the floor. The interaction model was rebuilt from that
+          feedback — a Gantt accordion torn down for an event calendar with a pinned request zone,
+          explicit draft-state backfill, and error messages rewritten in plain human language for
+          non-engineer users. Alongside it I designed and ran two-sided research — BD and merchant —
+          using the prototype as an interview stimulus, quota self-checks to keep the sample
+          representative, and classification by objective orders rather than self-report. It converged
+          on three corrections to the product direction.
         </p>
 
         <h2>What iterating taught me</h2>
 
         <blockquote>
-          Working with AI has to be driven by your own structured thinking. A PM can take part
-          in development — but never at the cost of time spent thinking about the big direction.
+          Working with AI has to be driven by your own structured thinking. A PM can take part in
+          development — but never at the cost of time spent thinking about the big direction.
         </blockquote>
+
+        <p>
+          A merchant's offhand <em>&ldquo;I can just ask an AI for this&rdquo;</em> reframed the
+          endgame for me: the moat was never a trending-events calendar — it's the closed loop of
+          information, resources, and outcome feedback.
+        </p>
 
       </div>
 
@@ -155,14 +387,16 @@
         <h2>问题</h2>
 
         <p>
-          热点事件的资源申请—审核没有系统化流程，申请与审批的循环无处安放。
+          酒旅的热点事件 —— 演唱会、赛事、节庆 —— 需要 BD 申请平台资源来承接，此前没有系统化流程：
+          申请与审批的循环无处安放，也没人看得清哪些申请真正值得批。
         </p>
 
-        <h2>我的判断</h2>
+        <h2>我的角色与协作模型</h2>
 
         <p>
-          我定义工作流、交互模型、激励机制与验收标准，团队共同校验业务假设，
-          并借助 AI 原型能力协同完成实现。
+          我从零定义了整套东西 —— 工作流、数据模型、交互、激励机制与验收标准。团队校验业务假设，
+          我们借助 AI 的原型能力协同实现。与 AI 协同必须用自己的结构化思考带动：产品可以参与开发，
+          但绝不能牺牲对大方向的思考时间。
         </p>
 
         <figure class="pipeline-fig">
@@ -177,10 +411,10 @@
             <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rl-zh)"/>
             <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rl-zh)"/>
             <text class="pl-note" x="115" y="90" text-anchor="middle">成功率半外显</text>
-            <text class="pl-note" x="360" y="90" text-anchor="middle">申诉解耦+记分卡</text>
+            <text class="pl-note" x="360" y="90" text-anchor="middle">申诉解耦 + 记分卡</text>
             <!-- collaboration strip -->
             <rect class="pl-box" x="20" y="128" width="250" height="40" rx="8"/>
-            <text class="pl-name" x="145" y="152" text-anchor="middle">我:需求·数据模型·交互 提出</text>
+            <text class="pl-name" x="145" y="152" text-anchor="middle">我：需求 · 数据模型 · 交互</text>
             <rect class="pl-box" x="310" y="128" width="130" height="40" rx="8"/>
             <text class="pl-name" x="375" y="152" text-anchor="middle">团队校验</text>
             <rect class="pl-box" x="480" y="128" width="170" height="40" rx="8"/>
@@ -189,26 +423,217 @@
             <line class="pl-line" x1="444" y1="148" x2="476" y2="148" marker-end="url(#arr-rl-zh)"/>
           </svg>
           <figcaption>
-            <span class="lang-en">Three-role flow, with the collaboration model underneath: I propose, team validates, AI pair-builds.</span>
-            <span class="lang-zh">三角色流程;下方是协作模型:我提出、团队校验、AI 结对实现。</span>
+            三角色流程；下方是协作模型：我提出、团队校验、AI 结对实现。
           </figcaption>
         </figure>
 
-        <h2>交付</h2>
-
-        <ul>
-          <li><strong>三角色系统</strong>：申报 → 审核 → 投放。</li>
-          <li><strong>激励机制设计</strong> —— 成功率半外显防套利；申诉与审核解耦 +
-            记分卡双向问责。</li>
-          <li><strong>按用户反馈多轮迭代</strong> —— 事件日历 + 钉死申报区、
-            草稿态显式回填、报错用人话外显。</li>
-        </ul>
-
-        <h2>验证</h2>
+        <h2>系统架构</h2>
 
         <p>
-          可上线系统，多轮迭代。交付里包含前端工程化基线 ——
-          单测当场抓到 <code>Number(null) === 0</code> 的真 bug。
+          三个角色台 —— 申报、审核、投放 —— 跑在一套实时 Postgres BaaS 之上，配行级权限（RLS）、
+          实时订阅与 SSO 角色映射。下面是四个领域引擎：成功率引擎、热度模型、LLM 物料推荐、
+          两段式生图，各自读写自己的表。有一条规矩塑造了整个后端：
+          <strong>成功率只在服务端算一次 —— 权威唯一来源</strong>。前端从「双重计算」瘦身为
+          「消费 + 防御性兜底」，所以后来定价体系从两价升到三价时，前端一行没改。
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-arch-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+
+            <!-- Layer labels -->
+            <text class="pl-anno" x="16" y="24">呈现层 · React + Vite + Tailwind + shadcn/ui</text>
+            <text class="pl-anno" x="16" y="100">数据平台与鉴权</text>
+            <text class="pl-anno" x="16" y="176">领域引擎</text>
+            <text class="pl-anno" x="16" y="250">数据与信号</text>
+
+            <!-- Band A: role consoles -->
+            <rect class="pl-box" x="16"  y="30" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="115" y="55" text-anchor="middle">BD 申报台</text>
+            <rect class="pl-box" x="232" y="30" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="331" y="55" text-anchor="middle">审核台</text>
+            <rect class="pl-box" x="448" y="30" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="547" y="55" text-anchor="middle">投放看板</text>
+
+            <!-- Band B: platform -->
+            <rect class="pl-box" x="16"  y="106" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="115" y="131" text-anchor="middle">Postgres BaaS · RLS</text>
+            <rect class="pl-box" x="232" y="106" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="331" y="131" text-anchor="middle">Realtime · 发布订阅</text>
+            <rect class="pl-box" x="448" y="106" width="198" height="42" rx="8"/>
+            <text class="pl-name" x="547" y="131" text-anchor="middle">SSO 角色映射</text>
+
+            <!-- Band C: engines -->
+            <rect class="pl-box" x="16"  y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="88"  y="204" text-anchor="middle">成功率引擎</text>
+            <text class="pl-note" x="88"  y="219" text-anchor="middle">权威唯一来源</text>
+            <rect class="pl-box" x="177" y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="249" y="204" text-anchor="middle">热度模型</text>
+            <text class="pl-note" x="249" y="219" text-anchor="middle">潜变量 · 监督学习</text>
+            <rect class="pl-box" x="338" y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="410" y="204" text-anchor="middle">物料推荐 · LLM</text>
+            <text class="pl-note" x="410" y="219" text-anchor="middle">7 版 · 103 条</text>
+            <rect class="pl-box" x="499" y="182" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="571" y="204" text-anchor="middle">两段式生图</text>
+            <text class="pl-note" x="571" y="219" text-anchor="middle">离线预生成</text>
+
+            <!-- Band D: data -->
+            <rect class="pl-box" x="16"  y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="88"  y="278" text-anchor="middle">事件底表</text>
+            <text class="pl-note" x="88"  y="293" text-anchor="middle">招选之源</text>
+            <rect class="pl-box" x="177" y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="249" y="278" text-anchor="middle">图片表</text>
+            <text class="pl-note" x="249" y="293" text-anchor="middle">url + scene</text>
+            <rect class="pl-box" x="338" y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="410" y="278" text-anchor="middle">审核记分卡</text>
+            <text class="pl-note" x="410" y="293" text-anchor="middle">双向问责</text>
+            <rect class="pl-box" x="499" y="256" width="145" height="48" rx="8"/>
+            <text class="pl-name" x="571" y="278" text-anchor="middle">投放日报</text>
+            <text class="pl-note" x="571" y="293" text-anchor="middle">与状态机解耦</text>
+
+            <!-- Inter-band connectors -->
+            <line class="pl-line" x1="115" y1="72"  x2="115" y2="106" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="331" y1="72"  x2="331" y2="106" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="547" y1="72"  x2="547" y2="106" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="115" y1="148" x2="115" y2="182" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="331" y1="148" x2="331" y2="182" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="547" y1="148" x2="547" y2="182" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="115" y1="230" x2="115" y2="256" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="331" y1="230" x2="331" y2="256" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="547" y1="230" x2="547" y2="256" marker-end="url(#arr-arch-zh)"/>
+
+            <!-- Evaluation rail -->
+            <path class="pl-dash" d="M 666 30 V 304"/>
+            <text class="pl-anno" transform="rotate(-90 684 167)" x="684" y="167" text-anchor="middle">评测贯穿每一层</text>
+          </svg>
+          <figcaption>
+            四层一体：三个角色台跑在实时 BaaS 之上，四个领域引擎，以及它们读写的数据。评测贯穿每一层。
+          </figcaption>
+        </figure>
+
+        <h2>机制设计</h2>
+
+        <p>
+          这套系统不是一张表单 —— 它是个小市场，所以我按市场来设计。机制设计的第一性输入，
+          是「人会怎么钻空子」。
+        </p>
+
+        <ul>
+          <li><strong>成功率半外显</strong> —— 足以指导一次申报，又不足以被逆向、被拿去套利刷单。</li>
+          <li><strong>申诉与审核解耦，审核员带记分卡</strong> —— 驳回的权力配上对应的问责。
+            双向，不是单向。</li>
+          <li><strong>一事件一次提交</strong>；卡片按事件 ID 跨天一致锁定，同一事件无法被悄悄重复申报。</li>
+        </ul>
+
+        <p>
+          「不做」清单上每一条都有具体场景撑着 —— landing 页、撤回、前端排序、前端白名单。
+          我是刻意把暴露面保持得小。
+        </p>
+
+        <h2>把热度当潜变量建模</h2>
+
+        <p>
+          哪些事件值得给资源？<em>热度</em>是个潜变量 —— 它没有干净的真值。所以我没假装它有。
+          由 LLM 产出首轮标签，<strong>用 pairwise 比较把它们校准</strong>成一致的排序，
+          监督学习模型再从中学习，其输出驱动招选引擎。纪律在于：承认真值是被制造出来的 ——
+          再把让它可信的那层校准搭起来。
+        </p>
+
+        <h2>LLM 物料推荐</h2>
+
+        <p>
+          BD 申报某事件时，系统会推荐配套物料。两个产品级判断。其一，LLM 在这里的职责是
+          <strong>扩大考虑集，而不是替人拍板</strong> —— 输出是 BD 勾选的候选清单，不是标准答案。
+          其二，评测先于优化：没有固定样本，「感觉变好了」一文不值。
+        </p>
+
+        <p>
+          7 个 prompt 版本、103 条真实事件、每版对上一版逐条对照。教训藏在一个 badcase 里：
+          <em>「蒙古族艺人在体育馆开演唱会」</em>曾输出<em>「草原接驳车」</em> ——
+          示例被砍掉推理路径后，模型做了形似关联。补回推理路径、加上反面示例，这一类错误就整类消失。
+        </p>
+
+        <h2>两段式事件配图</h2>
+
+        <p>
+          每张事件卡都要一张 banner，而 AI 生图把中文渲染成乱码是行业通病。我把它读成
+          <strong>链路结构问题，而非措辞问题</strong>：任何标题字符串一旦进入文生图 prompt，
+          就会被当画面文字画出来。于是让文本模型先把事件翻译成纯画面场景 —— 剥掉所有名称和文字 ——
+          再喂给图像模型；标题交给前端 DOM 事后叠加，天然清晰。生成离线批量跑，前端只读表，
+          几十秒的模型调用绝不挂在用户请求上。连画风都是「弱点驱动选型」：选印象派笔触，
+          因为它天然掩盖模型的细节翻车、又贴品牌色板 —— 是藏拙，不是炫技。
+        </p>
+
+        <figure class="pipeline-fig">
+          <svg viewBox="0 0 720 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-img-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+
+            <text class="pl-anno" x="14" y="18">离线 · 每晚批量</text>
+            <rect class="pl-box" x="14"  y="28" width="96"  height="44" rx="8"/>
+            <text class="pl-name" x="62"  y="54" text-anchor="middle">事件底表</text>
+            <rect class="pl-box" x="128" y="28" width="118" height="44" rx="8"/>
+            <text class="pl-name" x="187" y="48" text-anchor="middle">调度任务</text>
+            <text class="pl-note" x="187" y="62" text-anchor="middle">增量选题</text>
+            <rect class="pl-box" x="264" y="28" width="150" height="44" rx="8"/>
+            <text class="pl-name" x="339" y="48" text-anchor="middle">① 文本 → 场景</text>
+            <text class="pl-note" x="339" y="62" text-anchor="middle">剥离所有文字</text>
+            <rect class="pl-box" x="432" y="28" width="150" height="44" rx="8"/>
+            <text class="pl-name" x="507" y="48" text-anchor="middle">② 文生图</text>
+            <text class="pl-note" x="507" y="62" text-anchor="middle">→ 永久 CDN</text>
+            <line class="pl-line" x1="110" y1="50" x2="126" y2="50" marker-end="url(#arr-img-zh)"/>
+            <line class="pl-line" x1="246" y1="50" x2="262" y2="50" marker-end="url(#arr-img-zh)"/>
+            <line class="pl-line" x1="414" y1="50" x2="430" y2="50" marker-end="url(#arr-img-zh)"/>
+
+            <!-- ② drops into the table -->
+            <path class="pl-line" d="M 507 72 C 507 92, 430 96, 402 104" fill="none" marker-end="url(#arr-img-zh)"/>
+
+            <rect class="pl-box" x="300" y="104" width="180" height="44" rx="8"/>
+            <text class="pl-name" x="390" y="124" text-anchor="middle">图片表</text>
+            <text class="pl-note" x="390" y="138" text-anchor="middle">url + scene（归因留痕）</text>
+
+            <text class="pl-anno" x="520" y="94">在线 · 只读</text>
+            <rect class="pl-box" x="520" y="104" width="186" height="44" rx="8"/>
+            <text class="pl-name" x="613" y="124" text-anchor="middle">前端 · 只读</text>
+            <text class="pl-note" x="613" y="138" text-anchor="middle">懒加载 · 三态 banner</text>
+            <line class="pl-line" x1="518" y1="126" x2="482" y2="126" marker-end="url(#arr-img-zh)"/>
+          </svg>
+          <figcaption>
+            生成离线批量跑，前端只读表 —— 几十秒的模型调用绝不挂在用户请求上。两段式，是因为任何标题塞进图像模型都会被画成乱码字。
+          </figcaption>
+        </figure>
+
+        <h2>工程纪律</h2>
+
+        <p>
+          这里的产品深度，落成四条工程纪律：
+        </p>
+
+        <ul>
+          <li><strong>权威唯一来源</strong> —— 成功率算法我先提出、团队校验落地，之后我推动子分数
+            闭环到后端，交付一套四件套：JS 参考版、Java 参考版、数值对照 oracle、README。</li>
+          <li><strong>契约治理</strong> —— 接口文档一周三版；每版我都 diff 成对接清单，提交时冻结快照
+            以保住历史口径，并把单位（分 vs 元）当作契约的一部分。</li>
+          <li><strong>不静默吞错</strong> —— 一个核心关联字段被静默写成空数组、关系因此断裂；
+            我逐层定位后立下规矩：不许把异常静默降级成看起来合法的空值。
+            <code>Number(null) === 0</code> 被单测三次逮到 —— 语言陷阱靠测试防，不靠纪律。</li>
+          <li><strong>工程化基线</strong> —— 我发起约 4,300 行的全量 review，P0–P3 分级，
+            按「改坏概率 × 能否立即发现」排序路线图。vitest、react-query、路由分包、lint 全部落地 ——
+            lint 补上当场就拦到一个真 bug；918 行的大文件拆成 7 个，行为零变更、三重验证。</li>
+        </ul>
+
+        <p>
+          最后我把其中反复出现的部分固化成研发方法论 skills —— 一份可复用的方法论 wiki，
+          让下一个人不必从头重学。
+        </p>
+
+        <h2>驻场试点与双侧调研</h2>
+
+        <p>
+          随后我以「一人驻场」跑通试点：面向数十名 BD 现场宣讲答疑、当场承接需求改前后端即时上线，
+          让<em>提出 → 实现 → 反馈</em>在现场闭环。交互模型正是从这些反馈里重建的 ——
+          甘特手风琴被推翻、换成事件日历 + 钉死申报区，草稿态显式回填，报错信息为非工程用户
+          改成人话外显。同时我设计并执行了双侧（BD／商家）调研 —— 以产品原型作访谈刺激物、
+          配额自查保样本代表性、按客观订单归类而非用户自称 —— 收敛出三处产品方向修正。
         </p>
 
         <h2>认知迭代</h2>
@@ -216,6 +641,11 @@
         <blockquote>
           与 AI 协同要用结构化思考带动；产品可以参与开发，但不能牺牲对大方向的思考时间。
         </blockquote>
+
+        <p>
+          商家一句<em>「这些我用 AI 一问就有」</em>点破了产品终局：壁垒从来不是热点日历，
+          而是「信息 + 资源 + 效果回流」的闭环。
+        </p>
 
       </div>
 
