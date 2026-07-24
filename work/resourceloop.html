@@ -134,87 +134,122 @@
         <h2>System architecture</h2>
 
         <p>
-          Three role consoles — request, review, deploy — sit on a realtime Postgres BaaS with
-          row-level security, realtime subscriptions, and SSO role mapping. Underneath are four
-          domain engines: a success-rate engine, a heat model, an LLM material recommender, and a
-          two-stage image generator, each reading and writing its own tables. One rule shaped the
-          backend: <strong>the success rate is computed once, on the server — the single
-          authoritative source of truth</strong>. The frontend went from double-computing to a thin
-          consumer with a defensive fallback, so when the pricing model was later upgraded from two
-          tiers to three, the frontend didn't change a line.
+          The system runs as four layers. A <strong>data layer</strong> normalizes event, supply, and
+          web-search signals into one heat scale. A <strong>strategy engine</strong> is the core — a
+          three-tier recommendation chain: (a) an event heat score, (b) a default recommendation for
+          BD at apply time, and (c) a final resource-slot lock at review. An <strong>AI layer</strong>
+          generates materials, event-card images, and landing pages, and <strong>role consoles</strong>
+          for BD and reviewers sit on top (React SPA, SSO role routing). One rule shaped the backend:
+          <strong>the success rate is computed once, on the server — the single authoritative source
+          of truth</strong>; the frontend is a thin consumer with a defensive fallback, so when the
+          scoring model was later upgraded, the frontend didn't change a line.
         </p>
 
         <figure class="pipeline-fig">
-          <svg viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg viewBox="0 0 800 474" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-arch-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
 
-            <!-- Layer labels -->
-            <text class="pl-anno" x="16" y="24">Presentation · React + Vite + Tailwind + shadcn/ui</text>
-            <text class="pl-anno" x="16" y="100">Data platform &amp; auth</text>
-            <text class="pl-anno" x="16" y="176">Domain engines</text>
-            <text class="pl-anno" x="16" y="250">Data &amp; signals</text>
+            <!-- strategy grouping container -->
+            <rect class="pl-dash" x="8" y="100" width="784" height="192" rx="12"/>
 
-            <!-- Band A: role consoles -->
-            <rect class="pl-box" x="16"  y="30" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="115" y="55" text-anchor="middle">BD console</text>
-            <rect class="pl-box" x="232" y="30" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="331" y="55" text-anchor="middle">Reviewer console</text>
-            <rect class="pl-box" x="448" y="30" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="547" y="55" text-anchor="middle">Deployment board</text>
+            <!-- layer labels -->
+            <text class="pl-anno" x="16" y="20">Data layer</text>
+            <text class="pl-anno" x="16" y="94">Strategy engine · three-tier recommendation</text>
+            <text class="pl-anno" x="16" y="318">AI generation</text>
+            <text class="pl-anno" x="16" y="396">Presentation · React SPA · SSO routing</text>
 
-            <!-- Band B: platform -->
-            <rect class="pl-box" x="16"  y="106" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="115" y="131" text-anchor="middle">Postgres BaaS · RLS</text>
-            <rect class="pl-box" x="232" y="106" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="331" y="131" text-anchor="middle">Realtime · pub/sub</text>
-            <rect class="pl-box" x="448" y="106" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="547" y="131" text-anchor="middle">SSO role mapping</text>
+            <!-- DATA -->
+            <rect class="pl-box" x="16"  y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="106" y="49" text-anchor="middle">Event + POI tables</text>
+            <text class="pl-note" x="106" y="63" text-anchor="middle">+ web-search feed</text>
+            <rect class="pl-box" x="211" y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="302" y="49" text-anchor="middle">Heat normalization</text>
+            <text class="pl-note" x="302" y="63" text-anchor="middle">→ S / high / mid / low</text>
+            <rect class="pl-box" x="406" y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="496" y="49" text-anchor="middle">Supply data</text>
+            <text class="pl-note" x="496" y="63" text-anchor="middle">price · rights</text>
+            <rect class="pl-box" x="601" y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="691" y="49" text-anchor="middle">Config · delivery</text>
+            <text class="pl-note" x="691" y="63" text-anchor="middle">slot catalog · byday</text>
 
-            <!-- Band C: engines -->
-            <rect class="pl-box" x="16"  y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="88"  y="204" text-anchor="middle">Success-rate</text>
-            <text class="pl-note" x="88"  y="219" text-anchor="middle">source of truth</text>
-            <rect class="pl-box" x="177" y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="249" y="204" text-anchor="middle">Heat model</text>
-            <text class="pl-note" x="249" y="219" text-anchor="middle">latent · supervised</text>
-            <rect class="pl-box" x="338" y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="410" y="204" text-anchor="middle">Material rec · LLM</text>
-            <text class="pl-note" x="410" y="219" text-anchor="middle">7 versions · 103 cases</text>
-            <rect class="pl-box" x="499" y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="571" y="204" text-anchor="middle">Two-stage imagegen</text>
-            <text class="pl-note" x="571" y="219" text-anchor="middle">offline · precomputed</text>
+            <!-- data -> engines -->
+            <line class="pl-line" x1="106" y1="74" x2="106" y2="110" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="302" y1="74" x2="302" y2="110" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="496" y1="74" x2="496" y2="110" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="691" y1="74" x2="691" y2="110" marker-end="url(#arr-arch-en)"/>
 
-            <!-- Band D: data -->
-            <rect class="pl-box" x="16"  y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="88"  y="278" text-anchor="middle">Events</text>
-            <text class="pl-note" x="88"  y="293" text-anchor="middle">selection source</text>
-            <rect class="pl-box" x="177" y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="249" y="278" text-anchor="middle">Images</text>
-            <text class="pl-note" x="249" y="293" text-anchor="middle">url + scene</text>
-            <rect class="pl-box" x="338" y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="410" y="278" text-anchor="middle">Scorecards</text>
-            <text class="pl-note" x="410" y="293" text-anchor="middle">two-way audit</text>
-            <rect class="pl-box" x="499" y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="571" y="278" text-anchor="middle">Delivery daily</text>
-            <text class="pl-note" x="571" y="293" text-anchor="middle">state-decoupled</text>
+            <!-- STRATEGY ENGINES -->
+            <rect class="pl-box" x="16"  y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="106" y="135" text-anchor="middle">Event recall + recommend</text>
+            <rect class="pl-box" x="211" y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="302" y="128" text-anchor="middle">Supply-quality engine</text>
+            <text class="pl-note" x="302" y="143" text-anchor="middle">success-rate</text>
+            <rect class="pl-box" x="406" y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="496" y="128" text-anchor="middle">Apply + review flow</text>
+            <text class="pl-note" x="496" y="143" text-anchor="middle">state machine</text>
+            <rect class="pl-box" x="601" y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="691" y="135" text-anchor="middle">Delivery queue + report</text>
 
-            <!-- Inter-band connectors -->
-            <line class="pl-line" x1="115" y1="72"  x2="115" y2="106" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="331" y1="72"  x2="331" y2="106" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="547" y1="72"  x2="547" y2="106" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="115" y1="148" x2="115" y2="182" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="331" y1="148" x2="331" y2="182" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="547" y1="148" x2="547" y2="182" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="115" y1="230" x2="115" y2="256" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="331" y1="230" x2="331" y2="256" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="547" y1="230" x2="547" y2="256" marker-end="url(#arr-arch-en)"/>
+            <!-- engines -> chain -->
+            <line class="pl-line" x1="138" y1="152" x2="138" y2="168" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="400" y1="152" x2="400" y2="168" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="662" y1="152" x2="662" y2="168" marker-end="url(#arr-arch-en)"/>
 
-            <!-- Evaluation rail -->
-            <path class="pl-dash" d="M 666 30 V 304"/>
-            <text class="pl-anno" transform="rotate(-90 684 167)" x="684" y="167" text-anchor="middle">Evaluation across every layer</text>
+            <!-- THREE-TIER CHAIN -->
+            <rect class="pl-box" x="16"  y="168" width="244" height="118" rx="8"/>
+            <text class="pl-name" x="30" y="189">(a) Event heat score</text>
+            <text class="pl-note" x="30" y="212">labels: LLM eval + pairwise</text>
+            <text class="pl-note" x="30" y="232">ML train: buzz · search · orders</text>
+            <text class="pl-note" x="30" y="252">→ heat score 0–100</text>
+            <rect class="pl-box" x="278" y="168" width="244" height="118" rx="8"/>
+            <text class="pl-name" x="292" y="189">(b) BD default rec</text>
+            <text class="pl-note" x="292" y="212">heat percentile → slot tier</text>
+            <text class="pl-note" x="292" y="232">reach: tier 1 high → tier 5 low</text>
+            <text class="pl-note" x="292" y="252">type → subsidy / slot</text>
+            <rect class="pl-box" x="540" y="168" width="244" height="118" rx="8"/>
+            <text class="pl-name" x="554" y="189">(c) Review lock</text>
+            <text class="pl-note" x="554" y="212">allocate by value score</text>
+            <text class="pl-note" x="554" y="232">conflict: same-city ≠ same slot</text>
+            <text class="pl-note" x="554" y="252">→ one slot per event</text>
+
+            <!-- strategy -> AI -->
+            <text class="pl-anno" x="150" y="310">eventId ↓</text>
+            <line class="pl-line" x1="138" y1="292" x2="138" y2="326" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="400" y1="292" x2="400" y2="326" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="662" y1="292" x2="662" y2="326" marker-end="url(#arr-arch-en)"/>
+
+            <!-- AI GENERATION -->
+            <rect class="pl-box" x="16"  y="326" width="244" height="50" rx="8"/>
+            <text class="pl-name" x="138" y="347" text-anchor="middle">Material-list gen · LLM</text>
+            <text class="pl-note" x="138" y="363" text-anchor="middle">event → materials</text>
+            <rect class="pl-box" x="278" y="326" width="244" height="50" rx="8"/>
+            <text class="pl-name" x="400" y="347" text-anchor="middle">Event-card image</text>
+            <text class="pl-note" x="400" y="363" text-anchor="middle">two-stage · pre-generated</text>
+            <rect class="pl-box" x="540" y="326" width="244" height="50" rx="8"/>
+            <text class="pl-name" x="662" y="347" text-anchor="middle">AI landing-page builder</text>
+            <text class="pl-note" x="662" y="363" text-anchor="middle">auto-built per event</text>
+
+            <!-- AI -> presentation -->
+            <line class="pl-line" x1="138" y1="376" x2="138" y2="404" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="400" y1="376" x2="400" y2="404" marker-end="url(#arr-arch-en)"/>
+            <line class="pl-line" x1="662" y1="376" x2="662" y2="404" marker-end="url(#arr-arch-en)"/>
+
+            <!-- PRESENTATION -->
+            <rect class="pl-box" x="16"  y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="106" y="429" text-anchor="middle">Hotspot calendar</text>
+            <text class="pl-note" x="106" y="446" text-anchor="middle">BD</text>
+            <rect class="pl-box" x="211" y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="302" y="429" text-anchor="middle">Supply-apply console</text>
+            <text class="pl-note" x="302" y="446" text-anchor="middle">BD</text>
+            <rect class="pl-box" x="406" y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="496" y="429" text-anchor="middle">Review console</text>
+            <text class="pl-note" x="496" y="446" text-anchor="middle">reviewer</text>
+            <rect class="pl-box" x="601" y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="691" y="429" text-anchor="middle">Report delivery</text>
+            <text class="pl-note" x="691" y="446" text-anchor="middle">BD</text>
           </svg>
           <figcaption>
-            Four layers, one system: three role consoles over a realtime BaaS, four domain engines, and the data they read and write. Evaluation runs across every layer.
+            Four layers: a data layer normalizes events into one heat scale; the strategy engine runs a three-tier recommendation chain (heat score → BD default → review lock); an AI layer generates materials, card images, and landing pages; role consoles sit on top. Internal system, table, and slot names are generalized.
           </figcaption>
         </figure>
 
@@ -244,11 +279,13 @@
 
         <p>
           Which events deserve resources? <em>Heat</em> is a latent variable — there's no clean
-          ground truth for it. So I didn't pretend there was. An LLM produces first-pass labels,
-          <strong>pairwise comparison calibrates them</strong> into a consistent ordering, a
-          supervised model learns from that, and its output drives the request-and-selection engine.
-          The discipline is admitting where truth is manufactured — and building the calibration that
-          makes it trustworthy.
+          ground truth for it. So I didn't pretend there was. The pipeline is
+          <strong>LLM-evaluated labeling plus machine-learning training</strong>: an LLM evaluates and
+          labels events, pairwise comparison calibrates those labels into a consistent ordering, and a
+          supervised model trains on them — learning to predict a 0–100 heat score from the observable
+          signals (off-site social buzz, on-site search intent, hotel-order contribution). That score
+          drives the whole recommendation chain. The discipline is admitting where truth is
+          manufactured, and building the calibration that makes it trustworthy.
         </p>
 
         <h2>LLM material recommendation</h2>
@@ -430,84 +467,119 @@
         <h2>系统架构</h2>
 
         <p>
-          三个角色台 —— 申报、审核、投放 —— 跑在一套实时 Postgres BaaS 之上，配行级权限（RLS）、
-          实时订阅与 SSO 角色映射。下面是四个领域引擎：成功率引擎、热度模型、LLM 物料推荐、
-          两段式生图，各自读写自己的表。有一条规矩塑造了整个后端：
-          <strong>成功率只在服务端算一次 —— 权威唯一来源</strong>。前端从「双重计算」瘦身为
-          「消费 + 防御性兜底」，所以后来定价体系从两价升到三价时，前端一行没改。
+          系统分四层。<strong>数据层</strong>把事件、供给与联网信源归一成一套热度刻度；
+          <strong>策略引擎</strong>是核心——一条三级推荐链：(a) 事件热度分、(b) 申报时给 BD 的
+          默认推荐、(c) 审核时的资源位终局锁位；<strong>AI 层</strong>生成物料、事件卡配图与落地页；
+          最上是给 BD 与审核员的<strong>角色台</strong>（React SPA、SSO 角色分流）。有一条规矩塑造了
+          后端：<strong>成功率只在服务端算一次 —— 权威唯一来源</strong>；前端是「消费 + 防御性兜底」
+          的薄层，所以后来评分模型升级时，前端一行没改。
         </p>
 
         <figure class="pipeline-fig">
-          <svg viewBox="0 0 720 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <svg viewBox="0 0 800 474" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-arch-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
 
-            <!-- Layer labels -->
-            <text class="pl-anno" x="16" y="24">呈现层 · React + Vite + Tailwind + shadcn/ui</text>
-            <text class="pl-anno" x="16" y="100">数据平台与鉴权</text>
-            <text class="pl-anno" x="16" y="176">领域引擎</text>
-            <text class="pl-anno" x="16" y="250">数据与信号</text>
+            <!-- strategy grouping container -->
+            <rect class="pl-dash" x="8" y="100" width="784" height="192" rx="12"/>
 
-            <!-- Band A: role consoles -->
-            <rect class="pl-box" x="16"  y="30" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="115" y="55" text-anchor="middle">BD 申报台</text>
-            <rect class="pl-box" x="232" y="30" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="331" y="55" text-anchor="middle">审核台</text>
-            <rect class="pl-box" x="448" y="30" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="547" y="55" text-anchor="middle">投放看板</text>
+            <!-- layer labels -->
+            <text class="pl-anno" x="16" y="20">数据层</text>
+            <text class="pl-anno" x="16" y="94">策略引擎 · 三级推荐链</text>
+            <text class="pl-anno" x="16" y="318">AI 生成</text>
+            <text class="pl-anno" x="16" y="396">展示层 · React SPA · SSO 分流</text>
 
-            <!-- Band B: platform -->
-            <rect class="pl-box" x="16"  y="106" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="115" y="131" text-anchor="middle">Postgres BaaS · RLS</text>
-            <rect class="pl-box" x="232" y="106" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="331" y="131" text-anchor="middle">Realtime · 发布订阅</text>
-            <rect class="pl-box" x="448" y="106" width="198" height="42" rx="8"/>
-            <text class="pl-name" x="547" y="131" text-anchor="middle">SSO 角色映射</text>
+            <!-- DATA -->
+            <rect class="pl-box" x="16"  y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="106" y="49" text-anchor="middle">事件 + POI 表</text>
+            <text class="pl-note" x="106" y="63" text-anchor="middle">+ 联网信源</text>
+            <rect class="pl-box" x="211" y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="302" y="49" text-anchor="middle">热度统一化</text>
+            <text class="pl-note" x="302" y="63" text-anchor="middle">→ S / 高 / 中 / 低</text>
+            <rect class="pl-box" x="406" y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="496" y="49" text-anchor="middle">供给数据</text>
+            <text class="pl-note" x="496" y="63" text-anchor="middle">实价 · 权益</text>
+            <rect class="pl-box" x="601" y="28" width="181" height="46" rx="8"/>
+            <text class="pl-name" x="691" y="49" text-anchor="middle">配置 · 投放</text>
+            <text class="pl-note" x="691" y="63" text-anchor="middle">资源位目录 · byday</text>
 
-            <!-- Band C: engines -->
-            <rect class="pl-box" x="16"  y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="88"  y="204" text-anchor="middle">成功率引擎</text>
-            <text class="pl-note" x="88"  y="219" text-anchor="middle">权威唯一来源</text>
-            <rect class="pl-box" x="177" y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="249" y="204" text-anchor="middle">热度模型</text>
-            <text class="pl-note" x="249" y="219" text-anchor="middle">潜变量 · 监督学习</text>
-            <rect class="pl-box" x="338" y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="410" y="204" text-anchor="middle">物料推荐 · LLM</text>
-            <text class="pl-note" x="410" y="219" text-anchor="middle">7 版 · 103 条</text>
-            <rect class="pl-box" x="499" y="182" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="571" y="204" text-anchor="middle">两段式生图</text>
-            <text class="pl-note" x="571" y="219" text-anchor="middle">离线预生成</text>
+            <!-- data -> engines -->
+            <line class="pl-line" x1="106" y1="74" x2="106" y2="110" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="302" y1="74" x2="302" y2="110" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="496" y1="74" x2="496" y2="110" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="691" y1="74" x2="691" y2="110" marker-end="url(#arr-arch-zh)"/>
 
-            <!-- Band D: data -->
-            <rect class="pl-box" x="16"  y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="88"  y="278" text-anchor="middle">事件底表</text>
-            <text class="pl-note" x="88"  y="293" text-anchor="middle">招选之源</text>
-            <rect class="pl-box" x="177" y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="249" y="278" text-anchor="middle">图片表</text>
-            <text class="pl-note" x="249" y="293" text-anchor="middle">url + scene</text>
-            <rect class="pl-box" x="338" y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="410" y="278" text-anchor="middle">审核记分卡</text>
-            <text class="pl-note" x="410" y="293" text-anchor="middle">双向问责</text>
-            <rect class="pl-box" x="499" y="256" width="145" height="48" rx="8"/>
-            <text class="pl-name" x="571" y="278" text-anchor="middle">投放日报</text>
-            <text class="pl-note" x="571" y="293" text-anchor="middle">与状态机解耦</text>
+            <!-- STRATEGY ENGINES -->
+            <rect class="pl-box" x="16"  y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="106" y="135" text-anchor="middle">事件圈选与推荐</text>
+            <rect class="pl-box" x="211" y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="302" y="128" text-anchor="middle">供给质量引擎</text>
+            <text class="pl-note" x="302" y="143" text-anchor="middle">成功率</text>
+            <rect class="pl-box" x="406" y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="496" y="128" text-anchor="middle">申报与审核流转</text>
+            <text class="pl-note" x="496" y="143" text-anchor="middle">状态机</text>
+            <rect class="pl-box" x="601" y="110" width="181" height="42" rx="8"/>
+            <text class="pl-name" x="691" y="135" text-anchor="middle">投放队列 · 战报</text>
 
-            <!-- Inter-band connectors -->
-            <line class="pl-line" x1="115" y1="72"  x2="115" y2="106" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="331" y1="72"  x2="331" y2="106" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="547" y1="72"  x2="547" y2="106" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="115" y1="148" x2="115" y2="182" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="331" y1="148" x2="331" y2="182" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="547" y1="148" x2="547" y2="182" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="115" y1="230" x2="115" y2="256" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="331" y1="230" x2="331" y2="256" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="547" y1="230" x2="547" y2="256" marker-end="url(#arr-arch-zh)"/>
+            <!-- engines -> chain -->
+            <line class="pl-line" x1="138" y1="152" x2="138" y2="168" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="400" y1="152" x2="400" y2="168" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="662" y1="152" x2="662" y2="168" marker-end="url(#arr-arch-zh)"/>
 
-            <!-- Evaluation rail -->
-            <path class="pl-dash" d="M 666 30 V 304"/>
-            <text class="pl-anno" transform="rotate(-90 684 167)" x="684" y="167" text-anchor="middle">评测贯穿每一层</text>
+            <!-- THREE-TIER CHAIN -->
+            <rect class="pl-box" x="16"  y="168" width="244" height="118" rx="8"/>
+            <text class="pl-name" x="30" y="189">(a) 事件热度分</text>
+            <text class="pl-note" x="30" y="212">打标：LLM 评测 + pairwise</text>
+            <text class="pl-note" x="30" y="232">机器学习：声量 · 搜索 · 订单</text>
+            <text class="pl-note" x="30" y="252">→ 热度分 0–100</text>
+            <rect class="pl-box" x="278" y="168" width="244" height="118" rx="8"/>
+            <text class="pl-name" x="292" y="189">(b) BD 申报默认</text>
+            <text class="pl-note" x="292" y="212">热度分位 → 资源位档位</text>
+            <text class="pl-note" x="292" y="232">触达：档 1 高 → 档 5 低</text>
+            <text class="pl-note" x="292" y="252">类型 → 补贴 / 资源位</text>
+            <rect class="pl-box" x="540" y="168" width="244" height="118" rx="8"/>
+            <text class="pl-name" x="554" y="189">(c) 审核锁位</text>
+            <text class="pl-note" x="554" y="212">按价值分排序分配</text>
+            <text class="pl-note" x="554" y="232">冲突：同城 ≠ 同资源位</text>
+            <text class="pl-note" x="554" y="252">→ 每事件锁一个位</text>
+
+            <!-- strategy -> AI -->
+            <text class="pl-anno" x="150" y="310">eventId ↓</text>
+            <line class="pl-line" x1="138" y1="292" x2="138" y2="326" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="400" y1="292" x2="400" y2="326" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="662" y1="292" x2="662" y2="326" marker-end="url(#arr-arch-zh)"/>
+
+            <!-- AI GENERATION -->
+            <rect class="pl-box" x="16"  y="326" width="244" height="50" rx="8"/>
+            <text class="pl-name" x="138" y="347" text-anchor="middle">物料清单生成 · LLM</text>
+            <text class="pl-note" x="138" y="363" text-anchor="middle">事件 → 物料</text>
+            <rect class="pl-box" x="278" y="326" width="244" height="50" rx="8"/>
+            <text class="pl-name" x="400" y="347" text-anchor="middle">事件卡配图</text>
+            <text class="pl-note" x="400" y="363" text-anchor="middle">两段式 · 预生成</text>
+            <rect class="pl-box" x="540" y="326" width="244" height="50" rx="8"/>
+            <text class="pl-name" x="662" y="347" text-anchor="middle">AI 落地页搭建</text>
+            <text class="pl-note" x="662" y="363" text-anchor="middle">按事件自动搭建</text>
+
+            <!-- AI -> presentation -->
+            <line class="pl-line" x1="138" y1="376" x2="138" y2="404" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="400" y1="376" x2="400" y2="404" marker-end="url(#arr-arch-zh)"/>
+            <line class="pl-line" x1="662" y1="376" x2="662" y2="404" marker-end="url(#arr-arch-zh)"/>
+
+            <!-- PRESENTATION -->
+            <rect class="pl-box" x="16"  y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="106" y="429" text-anchor="middle">热点日历</text>
+            <text class="pl-note" x="106" y="446" text-anchor="middle">BD</text>
+            <rect class="pl-box" x="211" y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="302" y="429" text-anchor="middle">供给申报台</text>
+            <text class="pl-note" x="302" y="446" text-anchor="middle">BD</text>
+            <rect class="pl-box" x="406" y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="496" y="429" text-anchor="middle">审核工作台</text>
+            <text class="pl-note" x="496" y="446" text-anchor="middle">审核员</text>
+            <rect class="pl-box" x="601" y="404" width="181" height="58" rx="8"/>
+            <text class="pl-name" x="691" y="429" text-anchor="middle">战报速递</text>
+            <text class="pl-note" x="691" y="446" text-anchor="middle">BD</text>
           </svg>
           <figcaption>
-            四层一体：三个角色台跑在实时 BaaS 之上，四个领域引擎，以及它们读写的数据。评测贯穿每一层。
+            四层：数据层把事件归一成一套热度刻度；策略引擎跑三级推荐链（热度分 → BD 默认 → 审核锁位）；AI 层生成物料、事件卡配图与落地页；最上是角色台。内部系统 / 表 / 资源位真名均已泛化。
           </figcaption>
         </figure>
 
@@ -534,9 +606,10 @@
 
         <p>
           哪些事件值得给资源？<em>热度</em>是个潜变量 —— 它没有干净的真值。所以我没假装它有。
-          由 LLM 产出首轮标签，<strong>用 pairwise 比较把它们校准</strong>成一致的排序，
-          监督学习模型再从中学习，其输出驱动招选引擎。纪律在于：承认真值是被制造出来的 ——
-          再把让它可信的那层校准搭起来。
+          链路是<strong>LLM 评测打标 + 机器学习训练</strong>：先让 LLM 评测并给事件打标，
+          用 pairwise 比较把标签校准成一致排序，再由监督模型在其上训练 —— 学着从可观测信号
+          （站外社媒声量、站内搜索意愿、酒店订单贡献）预测 0–100 的热度分，驱动整条推荐链。
+          纪律在于：承认真值是被制造出来的，再把让它可信的那层校准搭起来。
         </p>
 
         <h2>LLM 物料推荐</h2>
