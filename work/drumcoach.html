@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Rhythm Coach — building" data-zh="节奏教练 — 施工中">节奏教练 — 施工中</title>
+  <meta name="description" content="An AI drumming buddy, still under construction: local ±ms feedback in the browser + a three-part coach report from Claude. / AI 打鼓陪练，施工中：本地算毫秒 + Claude 出诊断处方解释三段报告。">
+  <link rel="icon" href="../favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+
+  <style>
+    /* --- a warm taiko-game skin, scoped to this little page --- */
+    .drum-page {
+      --warm-bg:    #faf3e7;
+      --warm-card:  #fffaf0;
+      --warm-ink:   #3a2f22;
+      --warm-soft:  #7a6a54;
+      --warm-line:  #e6d6b8;
+      --taiko:      #d1483f;
+      --accent-b:   #2f6fb0;
+      --ok:   #3c9a5f;
+      --mid:  #e0a92e;
+      --miss: #cf5b52;
+      background: var(--warm-bg);
+      color: var(--warm-ink);
+      border-radius: 20px;
+      padding: clamp(1.6rem, 4vw, 3rem);
+      margin: 1.5rem 0 2.5rem;
+      border: 1px solid var(--warm-line);
+      box-shadow: 0 14px 40px rgba(120, 80, 30, 0.10);
+    }
+    .drum-eyebrow {
+      font-family: var(--font-sans-en), var(--font-sans-cn);
+      font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--taiko); font-weight: 600; margin-bottom: 0.6rem;
+    }
+    html[lang="zh"] .drum-eyebrow { text-transform: none; letter-spacing: 0.1em; }
+    .drum-title {
+      font-family: var(--font-serif-cn), var(--font-serif-en);
+      font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 700; line-height: 1.1;
+      color: var(--warm-ink); margin: 0 0 0.3rem;
+    }
+    html[lang="en"] .drum-title { font-family: var(--font-serif-en); }
+    .drum-title .wt {
+      font-family: var(--font-sans-en); font-size: 0.9rem; font-weight: 500;
+      color: var(--warm-soft); letter-spacing: 0.04em; vertical-align: middle;
+      margin-left: 0.6rem; border: 1px dashed var(--warm-line); border-radius: 999px; padding: 2px 10px;
+    }
+    .drum-tagline {
+      font-size: 1.08rem; line-height: 1.6; color: var(--warm-soft);
+      max-width: 32ch; margin: 0.7rem 0 1.6rem;
+    }
+    .drum-hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.5rem; align-items: center; }
+    @media (max-width: 640px) { .drum-hero { grid-template-columns: 1fr; } }
+    .drum-art svg { width: 100%; height: auto; display: block; }
+
+    .drum-h3 {
+      font-family: var(--font-serif-cn), var(--font-serif-en);
+      font-size: 1.15rem; color: var(--warm-ink); margin: 2rem 0 0.9rem;
+    }
+    .drum-layers { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .drum-layers { grid-template-columns: 1fr; } }
+    .drum-layer {
+      background: var(--warm-card); border: 1px solid var(--warm-line);
+      border-radius: 14px; padding: 1.15rem 1.25rem;
+    }
+    .drum-layer .tag {
+      display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      border-radius: 999px; padding: 2px 10px; margin-bottom: 0.55rem;
+    }
+    .drum-layer.instant .tag { background: rgba(47,111,176,0.14); color: var(--accent-b); }
+    .drum-layer.coach   .tag { background: rgba(209,72,63,0.14);  color: var(--taiko); }
+    .drum-layer p { font-size: 0.94rem; line-height: 1.6; color: var(--warm-soft); margin: 0; }
+    .drum-layer strong { color: var(--warm-ink); }
+
+    .judge-legend { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1rem 0 0.2rem; }
+    .judge-chip {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.82rem; color: var(--warm-soft);
+      background: var(--warm-card); border: 1px solid var(--warm-line);
+      border-radius: 999px; padding: 4px 12px;
+    }
+    .judge-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+    .drum-note {
+      font-size: 0.9rem; line-height: 1.6; color: var(--warm-soft);
+      background: var(--warm-card); border: 1px solid var(--warm-line);
+      border-left: 3px solid var(--taiko); border-radius: 8px;
+      padding: 0.9rem 1.1rem; margin-top: 1.4rem;
+    }
+    .drum-status {
+      font-family: var(--font-sans-en), var(--font-sans-cn);
+      font-size: 0.9rem; color: var(--warm-soft); margin-top: 1.5rem;
+      display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .drum-status .dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--mid);
+      box-shadow: 0 0 0 0 rgba(224,169,46,0.6); animation: drum-pulse 1.8s ease-out infinite;
+    }
+    @keyframes drum-pulse { 0%{box-shadow:0 0 0 0 rgba(224,169,46,0.55);} 70%{box-shadow:0 0 0 8px rgba(224,169,46,0);} 100%{box-shadow:0 0 0 0 rgba(224,169,46,0);} }
+    .drum-codename { font-size: 0.82rem; color: var(--warm-soft); margin-top: 1.4rem; font-style: italic; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html"><span class="lang-en">about</span><span class="lang-zh">关于</span></a>
+      <a href="../index.html#work"><span class="lang-en">work</span><span class="lang-zh">作品</span></a>
+      <a href="../skills.html"><span class="lang-en">skills</span><span class="lang-zh">工具集</span></a>
+      <a href="../index.html#writing"><span class="lang-en">writing</span><span class="lang-zh">写作</span></a>
+      <a href="../cv.html" class="cv-link"><span class="lang-en">cv</span><span class="lang-zh">简历</span></a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+
+    <div class="drum-page">
+
+      <div class="drum-hero">
+        <div>
+          <div class="drum-eyebrow">
+            <span class="lang-en">side quest · still building</span>
+            <span class="lang-zh">副本 · 施工中</span>
+          </div>
+          <h1 class="drum-title">
+            <span class="lang-en">Rhythm Coach</span>
+            <span class="lang-zh">节奏教练</span>
+            <span class="wt"><span class="lang-en">working title</span><span class="lang-zh">暂定名</span></span>
+          </h1>
+          <p class="drum-tagline">
+            <span class="lang-en">Practice drums at home — tap it out, and get coached the moment you stop.</span>
+            <span class="lang-zh">在家练鼓，敲完就有教练点评。</span>
+          </p>
+        </div>
+
+        <!-- hand-drawn taiko drum + floating notes -->
+        <div class="drum-art">
+          <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- floating notes -->
+            <g fill="#2f6fb0">
+              <circle cx="40"  cy="40" r="7"/><rect x="45.5" y="16" width="2.6" height="26"/>
+              <circle cx="272" cy="30" r="6"/><rect x="277" y="9" width="2.4" height="23"/>
+              <circle cx="300" cy="86" r="5"/>
+            </g>
+            <!-- drum shadow -->
+            <ellipse cx="160" cy="212" rx="92" ry="14" fill="rgba(120,80,30,0.12)"/>
+            <!-- barrel body -->
+            <path d="M78 118 Q160 96 242 118 L232 190 Q160 210 88 190 Z" fill="#c9772f"/>
+            <path d="M78 118 Q160 96 242 118 L240 132 Q160 112 80 132 Z" fill="#b5641f" opacity="0.5"/>
+            <!-- barrel staves -->
+            <g stroke="#8f4e18" stroke-width="1.4" opacity="0.5">
+              <path d="M108 106 L112 197" fill="none"/>
+              <path d="M160 100 L160 205" fill="none"/>
+              <path d="M212 106 L208 197" fill="none"/>
+            </g>
+            <!-- gold rings with rivets -->
+            <path d="M80 130 Q160 110 240 130 L240 140 Q160 120 80 140 Z" fill="#e6b53d"/>
+            <path d="M88 184 Q160 202 232 184 L232 174 Q160 192 88 174 Z" fill="#e6b53d"/>
+            <g fill="#8f6a17">
+              <circle cx="100" cy="131" r="2"/><circle cx="160" cy="123" r="2"/><circle cx="220" cy="131" r="2"/>
+            </g>
+            <!-- drum head -->
+            <ellipse cx="160" cy="118" rx="84" ry="26" fill="#f6ead2" stroke="#d1483f" stroke-width="5"/>
+            <ellipse cx="160" cy="117" rx="70" ry="20" fill="none" stroke="#e9d6ad" stroke-width="1.5"/>
+            <!-- cute face on the head -->
+            <g fill="#3a2f22">
+              <circle cx="142" cy="114" r="3.2"/><circle cx="178" cy="114" r="3.2"/>
+            </g>
+            <path d="M150 124 Q160 131 170 124" fill="none" stroke="#3a2f22" stroke-width="2.2" stroke-linecap="round"/>
+            <circle cx="132" cy="122" r="4" fill="#d1483f" opacity="0.35"/>
+            <circle cx="188" cy="122" r="4" fill="#d1483f" opacity="0.35"/>
+            <!-- crossed bachi (sticks) -->
+            <g stroke="#a9773f" stroke-width="7" stroke-linecap="round">
+              <line x1="196" y1="62" x2="150" y2="120"/>
+              <line x1="124" y1="62" x2="170" y2="120"/>
+            </g>
+            <!-- impact spark -->
+            <g stroke="#e0a92e" stroke-width="2.4" stroke-linecap="round">
+              <line x1="160" y1="92" x2="160" y2="82"/>
+              <line x1="172" y1="96" x2="180" y2="90"/>
+              <line x1="148" y1="96" x2="140" y2="90"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="drum-h3">
+        <span class="lang-en">What it actually is</span>
+        <span class="lang-zh">在干嘛</span>
+      </h2>
+
+      <div class="drum-layers">
+        <div class="drum-layer instant">
+          <span class="tag"><span class="lang-en">instant layer</span><span class="lang-zh">即时层</span></span>
+          <p>
+            <span class="lang-en">A local, deterministic engine in the browser — <strong>lookahead metronome, ±ms feedback on every hit, session stats</strong>. Milliseconds are code's job, so the timing never lies.</span>
+            <span class="lang-zh">浏览器本地的确定性引擎——<strong>lookahead 节拍器、每一击 ±ms 反馈、会话统计</strong>。毫秒的事交给代码，判定不含糊。</span>
+          </p>
+        </div>
+        <div class="drum-layer coach">
+          <span class="tag"><span class="lang-en">coaching layer</span><span class="lang-zh">教学层</span></span>
+          <p>
+            <span class="lang-en">When you stop, Claude turns the structured data into a three-part report — <strong>diagnosis · prescription · why</strong> — and it remembers you: an anonymous profile tracks growth, so each report can answer last time's prescription.</span>
+            <span class="lang-zh">敲完，Claude 把结构化数据写成<strong>「诊断 · 处方 · 解释」</strong>三段报告；而且记得你——匿名档案追踪成长，报告会回应上次的处方。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="judge-legend" aria-label="judgment colors">
+        <span class="judge-chip"><span class="judge-dot" style="background:#3c9a5f"></span><span class="lang-en">on-beat</span><span class="lang-zh">准</span></span>
+        <span class="judge-chip"><span class="judge-dot" style="background:#e0a92e"></span><span class="lang-en">close</span><span class="lang-zh">偏</span></span>
+        <span class="judge-chip"><span class="judge-dot" style="background:#cf5b52"></span><span class="lang-en">miss</span><span class="lang-zh">丢</span></span>
+      </div>
+
+      <div class="drum-note">
+        <span class="lang-en">Taiko-game feel: notes flow to the judgment ring and you tap — space, touch, or an e-drum. All drum sounds are synthesized (stick click + kick + snare), zero samples, zero licensing. Only public-domain and traditional scores.</span>
+        <span class="lang-zh">太鼓音游风：音符流到判定圈就敲——空格 / 触屏 / 电子鼓都行。鼓声全部合成（鼓棒 click + 底鼓 + 军鼓），零采样、零版权；乐谱只收公有领域与传统素材。</span>
+      </div>
+
+      <p class="drum-status">
+        <span class="dot" aria-hidden="true"></span>
+        <span class="lang-en"><strong>Status:</strong>&nbsp; runs locally, not deployed yet — and the name is still in the parking lot.</span>
+        <span class="lang-zh"><strong>状态：</strong>&nbsp;本地能跑，还没部署——名字也还在停车场里。</span>
+      </p>
+
+      <p class="drum-codename">
+        <span class="lang-en">internal codename: 爆裂鼓手 🥁 (after the movie <em>Whiplash</em>).</span>
+        <span class="lang-zh">内部代号：爆裂鼓手 🥁（对，就是那部电影）。</span>
+      </p>
+
+    </div>
+
+    <div class="article-end">
+      <div class="signoff">
+        <a href="../index.html#building" style="text-decoration:none;">
+          <span class="lang-en">← back to what's under construction</span>
+          <span class="lang-zh">← 回到「施工中」</span>
+        </a>
+      </div>
+    </div>
+
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— tapping away in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 敲敲打打于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>

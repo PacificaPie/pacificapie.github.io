@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>张若阳 — 简历</title>
+  <title>张若阳 — 简历（AI产品经理）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,321 +11,120 @@
     html, body { background: #f4f4f4; }
     body {
       font-family: 'Inter', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans CN', 'Hiragino Sans GB', sans-serif;
-      font-size: 10.5pt;
-      line-height: 1.62;
-      color: #2a2a2a;
-      max-width: 8.5in;
-      margin: 0 auto;
-      padding: 0.5in 0.55in;
-      background: #fff;
+      font-size: 9.6pt; line-height: 1.45; color: #2a2a2a;
+      max-width: 210mm; margin: 0 auto; padding: 0.5in 0.55in; background: #fff;
       box-shadow: 0 1px 6px rgba(0,0,0,0.08);
       font-feature-settings: "tnum" on, "lnum" on, "kern" on;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
     }
-
-    /* === Header with photo === */
-    .header-row {
-      display: grid;
-      grid-template-columns: 1fr 1.4in;
-      gap: 24px;
-      align-items: start;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #1a3a6c;
-    }
-    .header-left h1 {
-      font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
-      font-size: 26pt;
-      font-weight: 700;
-      letter-spacing: 8px;
-      color: #111;
-      margin-bottom: 2px;
-    }
-    .header-left .name-en {
-      font-family: 'Inter', sans-serif;
-      font-size: 11pt;
-      font-weight: 400;
-      color: #888;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-    .header-left .objective {
-      font-size: 10pt;
-      color: #1a3a6c;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      margin-bottom: 10px;
-      padding: 4px 10px;
-      background: #f0f3f9;
-      border-radius: 3px;
-      display: inline-block;
-    }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3px 20px;
-      font-size: 9.5pt;
-      color: #555;
-      font-variant-numeric: tabular-nums;
-    }
+    .header-row { display: grid; grid-template-columns: 1fr 1.4in; gap: 24px; align-items: start;
+      margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #1a3a6c; }
+    .header-left h1 { font-family: 'Noto Sans SC','PingFang SC',sans-serif; font-size: 22pt; font-weight: 700;
+      letter-spacing: 8px; color: #111; margin-bottom: 2px; }
+    .header-left .name-en { font-family: 'Inter',sans-serif; font-size: 11pt; font-weight: 400; color: #888;
+      letter-spacing: 1.5px; margin-bottom: 8px; }
+    .header-left .objective { font-size: 10pt; color: #1a3a6c; font-weight: 500; letter-spacing: 0.5px;
+      margin-bottom: 10px; padding: 4px 10px; background: #f0f3f9; border-radius: 3px; display: inline-block; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 20px; font-size: 9.5pt; color: #555;
+      font-variant-numeric: tabular-nums; }
     .contact-grid a { color: #555; text-decoration: none; }
-    .contact-grid .label {
-      font-weight: 600;
-      color: #1a3a6c;
-      margin-right: 6px;
-      letter-spacing: 0.5px;
-    }
-    .photo-wrap {
-      width: 1.4in;
-      display: flex;
-      justify-content: center;
-    }
-    .photo {
-      width: 1.3in;
-      height: 1.65in;
-      object-fit: cover;
-      border-radius: 3px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.18);
-    }
-
-    /* === Section headers === */
-    h2 {
-      font-family: 'Noto Sans SC', 'PingFang SC', sans-serif;
-      font-size: 12pt;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #1a3a6c;
-      border-left: 3px solid #1a3a6c;
-      padding-left: 10px;
-      margin-top: 16px;
-      margin-bottom: 8px;
-    }
-
-    /* === Entries === */
-    .entry { margin-bottom: 10px; }
-    .entry-row1 {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 1px;
-    }
-    .entry-org {
-      font-weight: 600;
-      font-size: 11pt;
-      color: #111;
-      letter-spacing: 0.3px;
-    }
-    .entry-date {
-      font-family: 'Inter', sans-serif;
-      font-size: 9.5pt;
-      color: #666;
-      white-space: nowrap;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.3px;
-    }
-    .entry-row2 {
-      font-size: 10pt;
-      color: #444;
-      margin-bottom: 3px;
-    }
-    .entry-row2 .role {
-      font-weight: 500;
-      color: #333;
-    }
-    .entry-row2 .divider {
-      margin: 0 8px;
-      color: #bbb;
-    }
+    .contact-grid .label { font-weight: 600; color: #1a3a6c; margin-right: 6px; letter-spacing: 0.5px; }
+    .photo-wrap { width: 1.15in; display: flex; justify-content: center; }
+    .photo { width: 1.1in; height: 1.4in; object-fit: cover; border-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,0.18); }
+    h2 { font-family: 'Noto Sans SC','PingFang SC',sans-serif; font-size: 12pt; font-weight: 700; letter-spacing: 2px;
+      color: #1a3a6c; border-left: 3px solid #1a3a6c; padding-left: 10px; margin-top: 8px; margin-bottom: 4px; }
+    .entry { margin-bottom: 5px; }
+    .entry-row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 1px; }
+    .entry-org { font-weight: 600; font-size: 11pt; color: #111; letter-spacing: 0.3px; }
+    .entry-date { font-family: 'Inter',sans-serif; font-size: 9.5pt; color: #666; white-space: nowrap;
+      font-variant-numeric: tabular-nums; letter-spacing: 0.3px; }
+    .entry-row2 { font-size: 10pt; color: #444; margin-bottom: 3px; }
+    .entry-row2 .role { font-weight: 500; color: #333; }
+    .entry-row2 .divider { margin: 0 8px; color: #bbb; }
     .entry-row2 a { color: #1a3a6c; text-decoration: none; }
-
     ul { padding-left: 18px; margin-top: 2px; }
-    li {
-      margin-bottom: 4px;
-      font-size: 10pt;
-      line-height: 1.65;
-    }
-    li strong {
-      color: #1a3a6c;
-      font-weight: 600;
-    }
-    li .num {
-      font-family: 'Inter', sans-serif;
-      color: #c0392b;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.2px;
-    }
-
-    /* === Self-summary block === */
-    .summary-block {
-      font-size: 10pt;
-      line-height: 1.75;
-    }
-    .summary-block .row {
-      display: grid;
-      grid-template-columns: 95px 1fr;
-      gap: 12px;
-      margin-bottom: 3px;
-    }
-    .summary-block .label {
-      font-weight: 600;
-      color: #1a3a6c;
-      letter-spacing: 1px;
-    }
-
+    li { margin-bottom: 2px; font-size: 9.5pt; line-height: 1.45; }
+    li strong { color: #1a3a6c; font-weight: 600; }
+    li .num { font-family: 'Inter',sans-serif; color: #c0392b; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: 0.2px; }
+    .summary-block { font-size: 10pt; line-height: 1.75; }
+    .summary-block .row { display: grid; grid-template-columns: 95px 1fr; gap: 12px; margin-bottom: 3px; }
+    .summary-block .label { font-weight: 600; color: #1a3a6c; letter-spacing: 1px; }
     a { color: #1a3a6c; text-decoration: none; }
-
-    @media print {
-      html, body { background: #fff; }
-      body {
-        max-width: none;
-        margin: 0;
-        padding: 0.4in 0.5in;
-        box-shadow: none;
-      }
-      .header-left .objective { background: transparent; padding: 0; }
-    }
-    @page { size: A4; margin: 0.4in 0.5in; }
+    @media print { html, body { background: #fff; } body { max-width: none; margin: 0; padding: 0; box-shadow: none; zoom: 0.86; }
+      .header-left .objective { background: transparent; padding: 0; } }
+    @page { size: A4; margin: 0.32in 0.45in; }
   </style>
 </head>
 <body>
-
   <div class="header-row">
     <div class="header-left">
       <h1>张若阳</h1>
       <div class="name-en">Ruoyang (Pacifica) Zhang</div>
-      <div class="objective">AI 产品——从模型后训练、Agent 系统到应用落地全链路 hands-on;统计与因果推断功底。</div>
+      <div class="objective">求职意向：AI 产品经理（2027 届校招）· AIGC / Agent / 大模型应用方向</div>
       <div class="contact-grid">
-        <div><span class="label">手机</span>+1 (203) 780-1858</div>
+        <div><span class="label">手机</span>+1-203-780-1858</div>
         <div><span class="label">邮箱</span><a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a></div>
         <div><span class="label">微信</span>pie030606</div>
         <div><span class="label">GitHub</span><a href="https://github.com/PacificaPie">PacificaPie</a></div>
         <div><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/pacifica-zhang">pacifica-zhang</a></div>
-        <div><span class="label">性别</span>女</div>
         <div style="grid-column: 1 / -1;"><span class="label">个人网站</span><a href="https://pacificapie.github.io">pacificapie.github.io</a> &nbsp;<span style="color:#999; font-size:9pt;">— 案例研究 / 写作 / 简历</span></div>
       </div>
     </div>
-    <div class="photo-wrap">
-      <img src="IMG_3122.jpg" class="photo" alt="个人照片">
-    </div>
+    <div class="photo-wrap"><img src="IMG_3122.jpg" class="photo" alt="个人照片"></div>
   </div>
 
   <h2>教育经历</h2>
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">耶鲁大学（Yale University）</span>
-      <span class="entry-date">2025.08 &ndash; 2027.05</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">生物统计学 · 理学硕士</span>
-    </div>
-    <ul>
-      <li>相关课程：因果推断 ｜ 大语言模型 ｜ 机器学习 ｜ 统计推断 ｜ 高级回归</li>
-    </ul>
+    <div class="entry-row1"><span class="entry-org">耶鲁大学（Yale University）</span><span class="entry-date">2025.08 – 2027.05</span></div>
+    <div class="entry-row2"><span class="role">生物统计学与数据科学 · 理学硕士（统计学/数据方向，理工科）</span></div>
+    <ul><li>相关课程：因果推断 ｜ 大语言模型 ｜ 机器学习 ｜ 统计推断 ｜ 高级回归</li></ul>
   </div>
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">中央财经大学</span>
-      <span class="entry-date">2021.09 &ndash; 2025.06</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">国际经济与贸易（国际贸易 / 金融风险管理） · 应用经济学学士</span>
-      <span class="divider">·</span>
-      GPA：3.92/4.00（排名前 5%）
-      <span class="divider">·</span>
-      优秀毕业生
-    </div>
-    <ul>
-      <li>相关课程：计量经济学 ｜ 实证资产定价 ｜ 金融风险管理 ｜ 宏微观经济学 ｜ 会计学 ｜ 组织行为学</li>
-    </ul>
+    <div class="entry-row1"><span class="entry-org">中央财经大学</span><span class="entry-date">2021.09 – 2025.06</span></div>
+    <div class="entry-row2"><span class="role">国际经济与贸易（国际贸易 / 金融风险管理） · 应用经济学学士</span><span class="divider">·</span>GPA：3.92/4.00（排名前 5%）<span class="divider">·</span>优秀毕业生</div>
+    <ul><li>相关课程：计量经济学 ｜ 实证资产定价 ｜ 金融风险管理 ｜ 宏微观经济学</li></ul>
   </div>
 
   <h2>实习经历</h2>
-
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">美团</span>
-      <span class="entry-date">2026.05 &ndash; 至今</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">策略产品经理实习生</span>
-    </div>
+    <div class="entry-row1"><span class="entry-org">美团 · 到店酒旅（策略）</span><span class="entry-date">2026.05 – 至今</span></div>
+    <div class="entry-row2"><span class="role">策略产品经理实习生</span><span class="divider">·</span>本地生活电商 · 酒旅供给侧</div>
     <ul>
-      <li data-tags="product,b2b,ai-pair"><strong>B 端产品从 0 到 1</strong>：提出并定义"热点事件驱动的资源申请-审核"三角色系统的需求、数据模型与交互，经团队校验后协同开发（AI 结对实现）；站在用户角度多轮迭代——按一线反馈重构申报流程、草稿态显式回填、报错信息用人话外显。</li>
-      <li data-tags="ai,llm,evaluation"><strong>LLM 功能上线与评测纪律</strong>：独立设计"事件→配套物料"推荐模块的 prompt 与评估方式，7 个版本在 103 条真实生产事件上固定样本对照迭代；把输出定位为人工可否决的候选清单而非标准答案。</li>
-      <li data-tags="ai,pipeline,delivery"><strong>两段式生成链路</strong>：定位 AI 生图中文乱码根源为链路结构问题而非措辞问题——文本模型先译纯画面场景再生成图像；作为产品人独立走完后端"代码→构建→部署→调度→数据回填"全流程交付该链路。</li>
-      <li data-tags="data,analysis,experiment"><strong>数据分析驱动产品决策</strong>：重定义静态战报为按日更新的投放日报，8 层转化漏斗在口径跳变处加显式警示；以实验与统计方法验收策略效果，主动降级证据不足的显著结论。</li>
-    </ul>
+      <li><strong>B 端系统从 0 到 1 · 端到端 owner</strong>：主导“热点事件驱动的资源申请-审核”三角色系统——需求、数据模型、激励机制（成功率半外显防套利、审核记分卡双向问责）均由我定方向、团队校验后 AI 结对落地；以“一人驻场”把产品带到一线闭环：向数十名 BD 现场宣讲、当场承接需求改前后端即时上线。</li>
+      <li><strong>用户洞察反哺策略方向</strong>：自设计并执行双侧（BD／商家）质性研究——原型作访谈刺激物、配额自查控样本偏、按客观订单而非自称归类，把 VoC 归因到 <span class="num">3</span> 处策略方向修正；另主导某用户流失研究的严谨性设计（交叉校验、证据化判断卡）。</li>
+      <li><strong>LLM 推荐能力的评测闭环</strong>：独立设计“事件→配套物料”推荐模块的 prompt 与评测方式，固定样本对照迭代 <span class="num">7</span> 版／<span class="num">103</span> 条真实生产事件；badcase 归因到“示例缺推理路径”、补丁后该类清零；输出定位为人工可否决候选而非标准答案。</li>
+      <li><strong>从零搭策略迭代评估体系</strong>：为四维推荐策略从零设计评估方案 v1→v1.3、拆 <span class="num">16</span> 项可验收需求；把定价 A/B 验收从聚合 DiD 升级为数万 POI×<span class="num">14</span> 天面板 DiD＋随机化推断稳健性体系，显著性被质疑时用独立方法反验、主动降级证据不足的结论。</li>
+      <li><strong>两段式生成链路 · 后端全流程</strong>：判断 AI 生图中文乱码是链路结构而非 prompt 措辞问题——重构为“文本先译纯画面场景→再文生图”；作为产品人独立走完后端“代码→构建→部署→分布式调度→回填”全流程，交付全量事件配图。</li></ul>
   </div>
-
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">腾讯 · 微信小程序生态</span>
-      <span class="entry-date">2023.07 &ndash; 2023.08</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">交易评价策略实习生</span>
-    </div>
+    <div class="entry-row1"><span class="entry-org">腾讯 · 微信小程序生态</span><span class="entry-date">2023.07 – 2023.08</span></div>
+    <div class="entry-row2"><span class="role">交易评价策略实习生</span><span class="divider">·</span>小程序电商交易生态</div>
     <ul>
-      <li data-tags="strategy,nlp,collab,product"><strong>评价标签自动化</strong>：撰写数据标注规范与功能需求文档，协同数据科学团队完成 NLP 分类模型训练与上线，实现商家评价自动化打标。</li>
-      <li data-tags="strategy,nlp,risk,moderation"><strong>交易评价反作弊策略</strong>：从内容侧（文本/图片语义、违规词库）与账号侧（异常行为、关联识别）双维构建风控信号体系，提升平台合规覆盖。</li>
-    </ul>
+      <li><strong>评价标签自动化 — 从需求文档到模型上线</strong>：撰写数据标注规范与功能需求文档，协同数据科学团队完成 NLP 分类模型训练与上线，实现商家评价自动化打标。</li>
+      <li><strong>交易评价反作弊策略</strong>：从内容侧（文本/图片语义、违规词库）与账号侧（异常行为、关联识别）双维构建风控信号体系，提升平台合规覆盖；基于差评文本挖掘 B 端商家履约风险模式，治理建议被产品采纳。</li></ul>
   </div>
 
   <h2>项目经历</h2>
-
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">求职自动化系统</span>
-      <span class="entry-date">2026.06 &ndash; 至今</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">个人项目</span>
-      <span class="divider">·</span>
-      运行中
-    </div>
-    <ul>
-      <li data-tags="ai,agent,pipeline"><strong>端到端 AI Agent 管线</strong>：多信源岗位发现→画像筛选去重→LLM 富化（官方入口/JD/匹配度）→每日推送，全链路故障报警；human-in-the-loop 铁律——投递不自动提交、简历数字必须可溯源。架构、提示词与三个编排 skill 已开源：<a href="https://github.com/PacificaPie/job-search-agent">github.com/PacificaPie/job-search-agent</a></li>
-    </ul>
+    <div class="entry-row1"><span class="entry-org">求职自动化系统 — 端到端 AI Agent 管线（个人项目，运行中）</span><span class="entry-date">2026.06 – 至今</span></div>
+    <div class="entry-row2"><span class="role">产品 Owner + 架构</span><span class="divider">·</span><a href="https://github.com/PacificaPie/job-search-agent">github.com/PacificaPie/job-search-agent</a></div>
+    <ul><li>多信源岗位发现→画像筛选去重→LLM 富化（官方入口/JD/匹配度）→每日推送，全链路故障报警；human-in-the-loop 铁律——投递不自动提交、简历数字必须可溯源。架构、提示词与三个编排 skill 已开源。</li></ul>
   </div>
-
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">跨境电商全流程体系</span>
-      <span class="entry-date">2026.07 &ndash; 至今</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">个人项目</span>
-      <span class="divider">·</span>
-      运营中
-    </div>
-    <ul>
-      <li data-tags="ai,commerce,pipeline"><strong>独立运营马来西亚 TikTok Shop 店铺</strong>：六环节 AI 流水线（调研→选品→货源→定价→素材→上架），三源数据交叉验证的四层选品漏斗封装为可复用 skill，ERP API 全链路实测跑通；12 天交付约 950 行 Python、21 个达标货源（单件预估利润 ¥8-26）、月度数据成本控制在 $5 内。</li>
-    </ul>
+    <div class="entry-row1"><span class="entry-org">跨境电商全流程体系（个人项目，运营中）</span><span class="entry-date">2026.07 – 至今</span></div>
+    <div class="entry-row2"><span class="role">独立卖家 · 马来西亚 TikTok Shop</span></div>
+    <ul><li>六环节 AI 流水线（调研→选品→货源→定价→素材→上架）：三源交叉验证的四层选品漏斗封装为可复用 skill，ERP API 全链路实测跑通；<span class="num">12</span> 天交付约 <span class="num">950</span> 行 Python、<span class="num">21</span> 个达标货源（单件预估利润 <span class="num">¥8-26</span>）、月度数据成本控制在 <span class="num">$5</span> 内。</li></ul>
   </div>
-
   <div class="entry">
-    <div class="entry-row1">
-      <span class="entry-org">GeoQA</span>
-      <span class="entry-date">2026.03 &ndash; 2026.04</span>
-    </div>
-    <div class="entry-row2">
-      <span class="role">耶鲁课程团队项目（三人）</span>
-      <span class="divider">·</span>
-      开源
-    </div>
-    <ul>
-      <li data-tags="ai,vlm,training,evaluation"><strong>负责数据管线、奖励设计与 Pass@K 筛选实验</strong>：将 Pass@K 改造为训练时数据筛选准则，仅保留模型仍不确定的 33.5% 样本恢复奖励方差；项目在 InternVL3-8B 上完成两阶段后训练（SFT+GRPO），测试准确率 73.4%→80.2%。<a href="https://github.com/PacificaPie/vlm">github.com/PacificaPie/vlm</a></li>
-    </ul>
+    <div class="entry-row1"><span class="entry-org">GeoQA — 多模态几何推理后训练（耶鲁课程团队项目·开源）</span><span class="entry-date">2026.03 – 2026.04</span></div>
+    <div class="entry-row2"><span class="role">负责数据管线、奖励设计与 Pass@K 筛选</span><span class="divider">·</span><a href="https://github.com/PacificaPie/vlm">github.com/PacificaPie/vlm</a></div>
+    <ul><li>将 Pass@K 改造为训练时数据筛选准则，仅保留模型仍不确定的 <span class="num">33.5%</span> 样本恢复奖励方差；项目在 InternVL3-8B 上完成两阶段后训练（SFT+GRPO），测试准确率 <span class="num">73.4%→80.2%</span>。</li></ul>
   </div>
-
-  <h2>技能</h2>
+<h2>技能</h2>
   <div class="summary-block">
-    <div class="row"><span class="label">AI 工程</span><span>LLM 应用与 prompt 评测、Agent/Skill 编排（MCP）、图生图链路、后训练（LoRA/GRPO）</span></div>
-    <div class="row"><span class="label">产品与数据</span><span>需求与 PRD、机制设计、A/B 实验、SQL/Python、口径治理</span></div>
+    <div class="row"><span class="label">AI / Builder</span><span>LLM/VLM 微调（LoRA, GRPO）｜ RAG（LangChain, ChromaDB）｜ AI 辅助编码（Claude Code skills / CLI）｜ Agent 工具化 ｜ 大模型应用</span></div>
+    <div class="row"><span class="label">产品与策略</span><span>策略设计与 A/B 测试 ｜ 机制设计（激励/防套利）｜ 质性用户研究（访谈设计/交叉验证）｜ 需求文档撰写 ｜ 用户行为分析 ｜ 跨团队协作推动落地</span></div>
+    <div class="row"><span class="label">数据与建模</span><span>数据分析：Python（Pandas）/ SQL（窗口函数）/ R / Stata ｜ 因果推断（DiD）｜ 机器学习（XGBoost, LR）｜ NLP</span></div>
   </div>
-
 </body>
 </html>
