@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TripAlarm 旅行闹钟 · 让好价叫醒你 — 差旅场景 Demo</title>
 <meta name="description" content="盯价 Agent：意图说一次，Agent 7×24 代守，到价叫醒你，人来拍板。消费旅行与企业差旅，同一套代守范式。个人项目 · 演示数据。">
+<meta name="theme-color" content="#F8F4ED">
+<meta property="og:title" content="TripAlarm 旅行闹钟 — 让好价叫醒你">
+<meta property="og:description" content="盯价 Agent：意图说一次，7×24 代守，到价叫醒你，人来拍板。消费旅行与企业差旅，同一套代守范式。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pacificapie.github.io/tripalarm/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E⏰%3C/text%3E%3C/svg%3E">
 <style>
   :root {
@@ -125,11 +130,21 @@
   .push-wrap.show { display:block; animation:rise .45s cubic-bezier(.2,.9,.3,1.2); }
   @keyframes rise { from { opacity:0; transform:translateY(14px);} to { opacity:1; transform:none; } }
   .push-label { font-size:.72rem; letter-spacing:.2em; color:var(--seal); margin-bottom:.4rem; }
+  .push-head {
+    background:#3A362F; color:#CFC6B4; border-radius:14px 14px 0 0; padding:.5rem 1.05rem;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:.74rem; letter-spacing:.06em; border-bottom:1px solid #4A453C;
+  }
+  .push-head .app { font-weight:600; color:#F2EBDD; }
   .push-card {
-    background:#2E2B26; color:#F2EBDD; border-radius:14px; padding:1rem 1.05rem;
+    background:#2E2B26; color:#F2EBDD; border-radius:0 0 14px 14px; padding:1rem 1.05rem;
     font-family:var(--mono); font-size:.78rem; line-height:1.6; overflow-x:auto; white-space:pre;
     box-shadow:0 10px 30px rgba(42,42,40,.18);
   }
+  #hit-pulse { transform-box:fill-box; transform-origin:center; animation:pulse 1.5s ease-out infinite; }
+  @keyframes pulse { from { transform:scale(1); opacity:.85; } to { transform:scale(2.8); opacity:0; } }
+  .reveal { opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.vis { opacity:1; transform:none; }
   .push-card .hl { color:var(--saffron); }
   .push-card .save { color:#E9A6A3; }
   .push-actions { display:flex; gap:.6rem; margin-top:.7rem; flex-wrap:wrap; }
@@ -261,13 +276,14 @@
     <div class="bubble agent mode-biz-only"><span class="who">TRIPALARM · 差旅模式</span><pre>差旅单已立 ────────────────
   行程    北京 ⇌ 上海
   出行窗  周三去 · 周五回（固定）
+  锚点    上海分公司 · 4km 圈
   政策    经济舱 · 酒店 ≤¥800/晚
-  盯什么  政策内 机+酒 组合最优
+  盯什么  锚点圈内 机+酒 总账最优
   升舱位  政策外 → 不看
 ────────────────────────</pre></div>
-    <div class="bubble agent mode-biz-only"><span class="who">TRIPALARM · 合规平替（同窗口）</span><pre> 1. 早班直飞+协议酒店 ¥1,860 政策内
- 2. 晚班直飞+协议酒店 ¥1,720 政策内
- 3. 高铁二等+协议酒店 ¥1,490 ▼22%</pre></div>
+    <div class="bubble agent mode-biz-only"><span class="who">TRIPALARM · 合规平替（同窗口 · 锚点圈内）</span><pre> 1. 早班直飞+协议A(0.9km) ¥1,860
+ 2. 晚班直飞+协议A(0.9km) ¥1,720
+ 3. 高铁二等+协议A(0.9km) ¥1,490 ▼22%</pre></div>
   </div>
   <p class="mode-note" id="mode-note">时间窗灵活、预算是个人意愿——命中后由本人锁价。</p>
 </section>
@@ -300,6 +316,7 @@
         <!-- budget line at y=158 (¥4000) -->
         <line x1="48" y1="158" x2="620" y2="158" stroke="#E5B53D" stroke-width="1.6" stroke-dasharray="6 5"/>
         <text class="budget-label" x="614" y="152" text-anchor="end">预算线 ¥4,000</text>
+        <polygon id="price-area" fill="#8B6F47" fill-opacity="0.07" points=""/>
         <polyline id="price-line" fill="none" stroke="#8B6F47" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points=""/>
         <g id="hit-dot" style="display:none">
           <circle id="hit-pulse" cx="0" cy="0" r="6" fill="none" stroke="#B85450" stroke-width="2"/>
@@ -319,6 +336,7 @@
 
     <div class="push-wrap" id="push-wrap">
       <div class="push-label">📳 PUSH · 你的手机在第 23 天早上震了一下</div>
+      <div class="push-head"><span class="app">⏰ TripAlarm</span><span>现在</span></div>
       <div class="push-card">┌─────────────────────────────┐
 │  <span class="hl">三亚 · 好价到了</span>
 ├─────────────────────────────┤
@@ -345,7 +363,7 @@
 <section class="wrap" id="corp">
   <div class="sec-label">Enterprise transplant</div>
   <h2>移植到<span class="accent">企业差旅</span>，只换约束不换范式</h2>
-  <p class="lede">差旅的特殊在于：预算不是个人偏好，而是<b>公司政策</b>——硬约束天然存在、天然结构化。这恰好是"硬约束触发 + 偏好择优"这套判定架构的主场。约束更多，问题反而更规整：窗口写死、政策机读，剩下的核心是一个带 deadline 的<b>下单时机</b>问题。</p>
+  <p class="lede">差旅的特殊在于：预算不是个人偏好，而是<b>公司政策</b>——硬约束天然存在、天然结构化。这恰好是"硬约束触发 + 偏好择优"这套判定架构的主场。约束更多，问题反而更规整：窗口写死、政策机读、<b>目的地是个点不是城市</b>（去分公司/客户/会场——锚点半径圈内召回酒店），剩下的核心是一个带 deadline 的<b>下单时机</b>问题。</p>
   <p class="lede">这一形态已落成可运行实体（skill 形态，立约 → 代守 → 审批三段脚本，全离线演示）：好价腿之外多一条 <b>deadline 兜底腿</b>——度假可以不去，出差必须成行，宁可原价、不可误机。</p>
 
   <div class="map-table">
@@ -363,6 +381,11 @@
       <div class="map-cell"><b>灵活时间窗</b><span class="d">"8 月里 4-6 晚都行"</span></div>
       <div class="map-arrow">→</div>
       <div class="map-cell"><b>固定行程窗</b><span class="d">会议日期定死，盯的是窗口内的组合与时机</span></div>
+    </div>
+    <div class="map-row">
+      <div class="map-cell"><b>目的地 = 城市</b><span class="d">"想去三亚"——全城酒店都是候选</span></div>
+      <div class="map-arrow">→</div>
+      <div class="map-cell"><b>锚点 = 一个点</b><span class="d">去分公司 / 客户 / 会场——半径圈内召回，通勤计入总账（房价便宜 ¥40/晚买不回每天两趟车）</span></div>
     </div>
     <div class="map-row">
       <div class="map-cell"><b>平替推荐</b><span class="d">北海 / 涠洲岛，预算内立即可去</span></div>
@@ -518,6 +541,8 @@
     const pts = [];
     for (let i = 0; i <= n; i++) pts.push(xOf(i).toFixed(1) + ',' + yOf(PRICES[i]).toFixed(1));
     document.getElementById('price-line').setAttribute('points', pts.join(' '));
+    document.getElementById('price-area').setAttribute('points',
+      xOf(0).toFixed(1) + ',250 ' + pts.join(' ') + ' ' + xOf(n).toFixed(1) + ',250');
     document.getElementById('day-label').textContent = '第 ' + (n + 1) + ' 天';
     const pl = document.getElementById('price-label');
     pl.textContent = fmt(PRICES[n]) + ' /人';
@@ -556,6 +581,7 @@
   function resetWatch() {
     clearInterval(timer); started = false;
     document.getElementById('price-line').setAttribute('points', '');
+    document.getElementById('price-area').setAttribute('points', '');
     document.getElementById('hit-dot').style.display = 'none';
     document.getElementById('push-wrap').className = 'push-wrap';
     document.getElementById('watch-status').textContent = '待开始';
@@ -565,6 +591,20 @@
     document.getElementById('hero').classList.remove('rings');
     document.getElementById('btn-start').disabled = false;
     document.getElementById('btn-replay').disabled = true;
+  }
+
+  /* ---------- scroll reveal (progressive; no-JS = fully visible) ---------- */
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); }
+    }), { threshold: 0.1 });
+    document.querySelectorAll('section').forEach(s => { s.classList.add('reveal'); io.observe(s); });
+    // 兜底：IO 异常时任何滚进视口的段落也强制显形（宁可少动效，不可藏内容）
+    const failsafe = () => document.querySelectorAll('.reveal:not(.vis)').forEach(el => {
+      if (el.getBoundingClientRect().top < window.innerHeight * 1.15) el.classList.add('vis');
+    });
+    window.addEventListener('scroll', failsafe, { passive: true });
+    setTimeout(failsafe, 2000);
   }
 </script>
 </body>
