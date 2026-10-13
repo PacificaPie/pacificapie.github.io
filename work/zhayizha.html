@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Zhayizha — Travel Saves to Google Maps" data-zh="扎一扎 — 把想去的地方，扎进地图">Zhayizha — Travel Saves to Google Maps</title>
+  <meta name="description" content="扎一扎 / Zhayizha: a personal tool that turns Xiaohongshu travel posts into confirmed places saved to your own Google Maps. Currently in local trial.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="扎一扎 / Zhayizha — Travel Saves to Google Maps">
+  <meta property="og:description" content="From saved travel posts to places in your own Google Maps. A personal project in local trial.">
+  <meta property="og:url" content="https://pacificapie.github.io/work/zhayizha.html">
+  <link rel="icon" href="../favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../skills.html">
+        <span class="lang-en">skills</span>
+        <span class="lang-zh">工具集</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+    <div class="article-header">
+      <div class="article-eyebrow-block cream"><span class="lang-en">personal project · travel</span><span class="lang-zh">个人项目 · 旅行</span></div>
+      <h1 class="article-title"><span class="lang-en">Zhayizha</span><span class="lang-zh">扎一扎</span></h1>
+      <p class="section-intro"><span class="lang-en">From saved travel posts to places in your own Google Maps.</span><span class="lang-zh">把想去的地方，扎进地图。</span></p>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-personal"><span class="lang-en">Built with Codex</span><span class="lang-zh">与 Codex 协作开发</span></span>
+        <span class="badge badge-building"><span class="lang-en">Local trial</span><span class="lang-zh">本机试用中</span></span>
+        <span class="case-layer">2026.10</span>
+      </div>
+    </div>
+    <div class="article-body">
+      <div class="lang-en">
+        <p>I kept saving travel posts on Xiaohongshu, then looking up the same places again before a trip. Zhayizha reads the text and images, extracts place candidates, and saves confirmed locations to my own Google Maps list. Each save is checked in Maps before it is marked complete.</p>
+        <p>I defined the use case and acceptance criteria, supplied real travel posts, and iterated with Codex on implementation and testing. As the prototype grew, I narrowed the app to account connections, source and destination settings, and necessary reviews. The places belong in the map people already use.</p>
+        <p>The workflow works locally. New locations still need confirmation, and a ready-to-install public app is not yet available. The next steps are more reliable background processing and fewer manual checks.</p>
+      </div>
+      <div class="lang-zh">
+        <p>旅行攻略收藏了很多，出发前却还要逐个查店名、辨认分店、再存一遍地图。扎一扎读取小红书攻略的正文与图片，提取地点候选；确认具体位置后，保存到自己的 Google Maps 列表，并在地图中复核结果。</p>
+        <p>我负责定义需求、提供真实攻略和验收反馈，与 Codex 协作完成实现与测试。迭代后，我把 App 收缩到账号连接、来源与目标设置、必要核对，让地点留在用户已经习惯使用的地图里。</p>
+        <p>目前已跑通本机使用流程，新地点仍需确认，尚未提供面向大众的即用安装版。接下来重点完善后台处理的可靠性，减少逐项操作。</p>
+      </div>
+      <p><a class="more-link" href="../index.html#building"><span class="lang-en">← More projects in progress</span><span class="lang-zh">← 查看其他迭代中的项目</span></a></p>
+    </div>
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../script.js"></script>
+</body>
+</html>
