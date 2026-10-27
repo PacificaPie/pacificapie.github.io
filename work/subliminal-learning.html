@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Subliminal Learning — Pacifica Zhang" data-zh="Subliminal Learning — 张若阳">Subliminal Learning — Pacifica Zhang</title>
+<meta name="description" content="The project asks whether a model’s behavior can shift through data that does not explicitly describe that behavior. The first job is to reproduce the effect before proposing a defense."><meta property="og:type" content="article"><meta property="og:title" content="Subliminal Learning — Pacifica Zhang"><meta property="og:description" content="The project asks whether a model’s behavior can shift through data that does not explicitly describe that behavior. The first job is to reproduce the effect before proposing a defense."><meta property="og:url" content="https://pacificapie.github.io/work/subliminal-learning.html"><meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
+<link rel="icon" type="image/png" href="../assets/pacifica-avatar.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../work-map.css?v=20261027"></head><body><nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../skills.html">
+        <span class="lang-en">skills</span>
+        <span class="lang-zh">工具集</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+<main class="wrap-wide research-note"><a class="research-back" href="../index.html#work">← <span class="lang-en">Back to the work map</span><span class="lang-zh">返回作品地图</span></a>
+<header class="research-intro" data-layer="model"><div><p class="research-eyebrow"><span class="lang-en">Trustworthy ML · Team research</span><span class="lang-zh">Trustworthy ML · 团队研究</span></p><h1><span class="lang-en">Subliminal Learning</span><span class="lang-zh">Subliminal Learning</span></h1><p class="research-question"><span class="lang-en">Can seemingly unrelated training data carry a preference?</span><span class="lang-zh">看起来无关的训练数据，会悄悄传递偏好吗？</span></p></div><figure><svg class="work-art art-subliminal" viewBox="0 0 250 132" aria-hidden="true" focusable="false"><ellipse class="art-wash" cx="124" cy="76" rx="94" ry="43"/><g class="art-paper art-tilt"><path d="M25 25h64v85H25Z"/><path class="art-ink" d="M36 42h9m7 0h5m7 0h12M36 54h4m7 0h13m7 0h9M36 66h12m7 0h5m7 0h9M36 78h6m7 0h12m7 0h8M36 90h12m7 0h9"/></g><path class="art-route" pathLength="1" d="M89 66h27m24 0h25m-25 0q12-30 26-30m-26 30q12 30 26 30"/><g class="art-arrive"><circle class="art-paper" cx="127" cy="66" r="15"/><circle class="art-pin" cx="127" cy="66" r="4"/></g><g class="art-shift"><path class="art-paper" d="M168 23h54v26h-54Zm0 31h54v26h-54Zm0 31h54v26h-54Z"/><path class="art-ink" d="M179 35h31m-31 31h31m-31 31h31"/><circle class="art-accent" cx="187" cy="35" r="4"/><circle class="art-accent" cx="204" cy="66" r="4"/><circle class="art-accent" cx="193" cy="97" r="4"/></g></svg><figcaption><span class="lang-en">A conceptual illustration</span><span class="lang-zh">机制示意</span></figcaption></figure></header>
+<p class="research-lead"><span class="lang-en">The project asks whether a model’s behavior can shift through data that does not explicitly describe that behavior. The first job is to reproduce the effect before proposing a defense.</span><span class="lang-zh">这个项目关心：数据没有直接说出某种偏好，模型的行为是否仍可能随训练改变？第一步是把现象复现清楚，再谈如何防御。</span></p><p class="research-checkpoint"><span class="lang-en">Evidence checkpoint</span><span class="lang-zh">证据检查点</span> · <time datetime="2026-10-20">2026-10-20</time></p>
+<div class="research-panels"><section class="research-panel"><h2><span class="lang-en">Why it matters</span><span class="lang-zh">为什么值得研究</span></h2><p><span class="lang-en">A clean-looking dataset is not enough to establish how a trained model will behave. The useful question is what behavior changes, under which conditions, and whether that change persists.</span><span class="lang-zh">数据表面看起来干净，不足以说明训练后的模型会怎样行动。更值得追问的是：什么行为变了，在什么条件下变了，换个条件是否还成立？</span></p></section><section class="research-panel"><h2><span class="lang-en">What we have</span><span class="lang-zh">目前做到哪</span></h2><p><span class="lang-en">The team has completed cat-versus-neutral replication with three seeds under a fixed model and configuration. Variation across seeds is substantial; the result should be read within those conditions.</span><span class="lang-zh">团队已在固定模型与配置下，完成 cat / neutral 的三种子复现。不同种子间差异明显，因此目前结果应限定在这组条件内理解。</span></p></section><section class="research-panel"><h2><span class="lang-en">The research discipline</span><span class="lang-zh">研究中的取舍</span></h2><p><span class="lang-en">Keep replication, robustness, and defense claims separate. A result from one setting is a starting point for a test plan—not a general safety guarantee. This page summarizes a team course project.</span><span class="lang-zh">把复现、稳健性与防御结论分开。一组条件下的结果，是下一轮验证的起点，不能直接当成普遍的安全结论。本页是团队课程项目的阶段摘要。</span></p></section></div><section class="research-next"><h2><span class="lang-en">The next useful test</span><span class="lang-zh">下一步，验证什么</span></h2><p><span class="lang-en">Vary the relevant conditions and test candidate defenses against explicit baselines. New robustness and defense experiments had not run at the checkpoint above; no defense effectiveness is claimed here.</span><span class="lang-zh">下一步改变关键条件，并让候选防御接受明确基线的检验。截至上述检查点，新稳健性与防御实验尚未运行；目前不宣称防御有效。</span></p></section>
+<a class="research-back" href="../index.html#work">← <span class="lang-en">Explore another project</span><span class="lang-zh">回到总览，看看其他项目</span></a></main><footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer><script src="../script.js"></script></body></html>

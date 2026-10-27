@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="Beyond the Heatmap — Pacifica Zhang" data-zh="看懂热图之后 — 张若阳">Beyond the Heatmap — Pacifica Zhang</title>
+<meta name="description" content="A heatmap can make an answer feel intuitive. I am more interested in the next step: what happens when the information it highlights is changed or removed?"><meta property="og:type" content="article"><meta property="og:title" content="Beyond the Heatmap — Pacifica Zhang"><meta property="og:description" content="A heatmap can make an answer feel intuitive. I am more interested in the next step: what happens when the information it highlights is changed or removed?"><meta property="og:url" content="https://pacificapie.github.io/work/beyond-the-heatmap.html"><meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
+<link rel="icon" type="image/png" href="../assets/pacifica-avatar.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../work-map.css?v=20261027"></head><body><nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../skills.html">
+        <span class="lang-en">skills</span>
+        <span class="lang-zh">工具集</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+<main class="wrap-wide research-note"><a class="research-back" href="../index.html#work">← <span class="lang-en">Back to the work map</span><span class="lang-zh">返回作品地图</span></a>
+<header class="research-intro" data-layer="model"><div><p class="research-eyebrow"><span class="lang-en">Trustworthy ML · Course notes</span><span class="lang-zh">Trustworthy ML · 课程笔记</span></p><h1><span class="lang-en">Beyond the Heatmap</span><span class="lang-zh">看懂热图之后</span></h1><p class="research-question"><span class="lang-en">If an explanation looks right, does the model understand?</span><span class="lang-zh">解释看起来合理，就说明模型理解了吗？</span></p></div><figure><svg class="work-art art-interpretability" viewBox="0 0 250 132" aria-hidden="true" focusable="false"><ellipse class="art-wash" cx="125" cy="75" rx="93" ry="44"/><g class="art-paper art-tilt"><path d="M29 25h81v83H29Z"/><g class="art-heat"><path opacity=".2" d="M38 35h19v19H38Zm44 0h19v19H82ZM60 79h19v19H60Z"/><path opacity=".45" d="M60 35h19v19H60ZM38 57h19v19H38Zm44 22h19v19H82Z"/><path opacity=".8" d="M60 57h19v19H60Z"/><path opacity=".3" d="M82 57h19v19H82ZM38 79h19v19H38Z"/></g></g><path class="art-route" pathLength="1" d="M111 66h31"/><g class="art-paper art-shift"><path d="M146 25h76v83h-76Z"/><path class="art-ink" d="M157 40h51m-51 10h36m-36 10h51m-51 30h51"/><path class="art-mask" d="M157 67h51v13h-51Z"/></g><g class="art-arrive"><circle class="art-glass" cx="88" cy="86" r="18"/><path class="art-strong" d="m100 100 13 13"/></g></svg><figcaption><span class="lang-en">A conceptual illustration</span><span class="lang-zh">机制示意</span></figcaption></figure></header>
+<p class="research-lead"><span class="lang-en">A heatmap can make an answer feel intuitive. I am more interested in the next step: what happens when the information it highlights is changed or removed?</span><span class="lang-zh">一张热图很容易让回答显得直观。我更关心接下来的一步：改变或删掉它标出的信息，模型的行为真的会跟着变化吗？</span></p><p class="research-checkpoint"><span class="lang-en">Evidence checkpoint</span><span class="lang-zh">证据检查点</span> · <time datetime="2026-10-20">2026-10-20</time></p>
+<div class="research-panels"><section class="research-panel"><h2><span class="lang-en">The question</span><span class="lang-zh">关注的问题</span></h2><p><span class="lang-en">Use explanations to form a testable hypothesis. Compare attribution with behavior after an intervention, rather than treating a plausible picture as the conclusion.</span><span class="lang-zh">让解释帮助提出可验证的假设，再把归因与干预后的行为对照，而不是把一张合理的图当成结论。</span></p></section><section class="research-panel"><h2><span class="lang-en">What the notes contain</span><span class="lang-zh">目前积累了什么</span></h2><p><span class="lang-en">Coursework includes attribution comparisons on limited samples. Multimodal classroom analysis also surfaced repeated “no” answers—a collapse worth diagnosing rather than reading as understanding.</span><span class="lang-zh">课程作业包含有限样本上的归因方法比较。多模态课堂分析也出现了持续回答 no 的塌缩现象；这更值得诊断，不能直接解释成模型理解。</span></p></section><section class="research-panel"><h2><span class="lang-en">How I read the evidence</span><span class="lang-zh">怎样看待证据</span></h2><p><span class="lang-en">Keep sample scope, failure cases, and alternative explanations visible. The cover is a conceptual illustration, not an experimental heatmap or a performance chart.</span><span class="lang-zh">保留样本范围、失败案例和其他可能解释。封面是机制插画，不是实验热图，也不承载性能或准确率结论。</span></p></section></div><section class="research-next"><h2><span class="lang-en">The next useful test</span><span class="lang-zh">下一步，验证什么</span></h2><p><span class="lang-en">Turn selected assignments into focused notes: one question, one comparison, and the limits of what it establishes. Use these checks to inform product evaluation, not to overstate model understanding.</span><span class="lang-zh">下一步把精选作业整理成短笔记：一个问题、一次对照，以及它能说明和不能说明什么。让这些检查服务产品评测，而不是夸大模型理解。</span></p></section>
+<a class="research-back" href="../index.html#work">← <span class="lang-en">Explore another project</span><span class="lang-zh">回到总览，看看其他项目</span></a></main><footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer><script src="../script.js"></script></body></html>

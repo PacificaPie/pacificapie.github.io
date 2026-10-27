@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-en="TGF Monitor — Pacifica Zhang" data-zh="TGF Monitor — 张若阳">TGF Monitor — Pacifica Zhang</title>
+<meta name="description" content="An execution log tells us what happened. A useful monitor should help us ask the next question—and bring the answer back to a specific piece of evidence."><meta property="og:type" content="article"><meta property="og:title" content="TGF Monitor — Pacifica Zhang"><meta property="og:description" content="An execution log tells us what happened. A useful monitor should help us ask the next question—and bring the answer back to a specific piece of evidence."><meta property="og:url" content="https://pacificapie.github.io/work/tgf-monitor.html"><meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
+<link rel="icon" type="image/png" href="../assets/pacifica-avatar.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../work-map.css?v=20261027"></head><body><nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../skills.html">
+        <span class="lang-en">skills</span>
+        <span class="lang-zh">工具集</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+<main class="wrap-wide research-note"><a class="research-back" href="../index.html#work">← <span class="lang-en">Back to the work map</span><span class="lang-zh">返回作品地图</span></a>
+<header class="research-intro" data-layer="agent"><div><p class="research-eyebrow"><span class="lang-en">Frontier Models · Team research</span><span class="lang-zh">Frontier Models · 团队研究</span></p><h1><span class="lang-en">TGF Monitor</span><span class="lang-zh">TGF Monitor</span></h1><p class="research-question"><span class="lang-en">When an agent says “done,” what evidence should we ask for?</span><span class="lang-zh">Agent 说“完成了”，我们该追问什么证据？</span></p></div><figure><svg class="work-art art-tgf" viewBox="0 0 250 132" aria-hidden="true" focusable="false"><ellipse class="art-wash" cx="125" cy="75" rx="91" ry="46"/><g class="art-paper art-tilt"><path d="M32 22h102v87H32Z"/><path class="art-faint" d="M47 37v58m0-54h69m-69 22h69m-69 22h69"/><circle class="art-pin" cx="47" cy="41" r="3"/><circle class="art-pin" cx="47" cy="63" r="3"/><circle class="art-pin" cx="47" cy="85" r="3"/><path class="art-ink" d="M58 41h40m-40 22h53m-53 22h30"/></g><path class="art-route" pathLength="1" d="M99 63h48v19h28"/><g class="art-paper art-shift"><path d="M155 51h66v49h-66Z"/><path class="art-ink" d="M167 64h42m-42 10h28m-28 10h37"/></g><g class="art-arrive"><circle class="art-glass" cx="118" cy="61" r="19"/><path class="art-strong" d="m131 75 16 16"/><path class="art-check" d="m109 61 6 6 11-13"/></g></svg><figcaption><span class="lang-en">A conceptual illustration</span><span class="lang-zh">机制示意</span></figcaption></figure></header>
+<p class="research-lead"><span class="lang-en">An execution log tells us what happened. A useful monitor should help us ask the next question—and bring the answer back to a specific piece of evidence.</span><span class="lang-zh">执行日志能记录发生了什么。真正有用的监控，还应该帮助人继续追问，并把回答落回一条可核查的证据。</span></p><p class="research-checkpoint"><span class="lang-en">Evidence checkpoint</span><span class="lang-zh">证据检查点</span> · <time datetime="2026-10-21">2026-10-21</time></p>
+<div class="research-panels"><section class="research-panel"><h2><span class="lang-en">The product question</span><span class="lang-zh">产品问题</span></h2><p><span class="lang-en">Make an agent’s work inspectable without asking a person to read every event. The interaction moves from a trace, to a targeted question, to an evidence location.</span><span class="lang-zh">让人不必逐条读完日志，也能检查 Agent 的工作：从执行轨迹出发，提出有针对性的追问，再回到证据所在。</span></p></section><section class="research-panel"><h2><span class="lang-en">What we have</span><span class="lang-zh">目前做到哪</span></h2><p><span class="lang-en">The team has an implementation and development-set replays. Evaluation currently uses the same 64 development records and provisional, non-blind AI labels. These are development signals, not an independent advantage claim.</span><span class="lang-zh">团队已形成实现与开发集回放。当前评测仍使用同一批 64 条开发记录，标签来自暂定的 AI 非盲审核；这些是开发信号，还不能证明独立评测优势。</span></p></section><section class="research-panel"><h2><span class="lang-en">What I focus on</span><span class="lang-zh">我关注的判断</span></h2><p><span class="lang-en">My focus is execution contracts, source checks, the distinction between public and private evidence, and evaluation endpoints and label audits. This is team work; the method and replay work are not all mine.</span><span class="lang-zh">我关注执行约定与来源核查、公开与私有证据的区分，以及评测端点和标签审计。这是团队研究，方法实现与回放工作不全部归于我。</span></p></section></div><section class="research-next"><h2><span class="lang-en">The next useful test</span><span class="lang-zh">下一步，验证什么</span></h2><p><span class="lang-en">Compare against baselines under matched cost and question budgets, then test whether the conclusions survive a more independent evaluation. A more persuasive answer is not automatically better evidence.</span><span class="lang-zh">下一步在匹配成本和问题数的条件下与基线比较，再检查更独立的评测是否支持结论。回答更有说服力，不自动等于证据更可靠。</span></p></section>
+<a class="research-back" href="../index.html#work">← <span class="lang-en">Explore another project</span><span class="lang-zh">回到总览，看看其他项目</span></a></main><footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (中)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer><script src="../script.js"></script></body></html>

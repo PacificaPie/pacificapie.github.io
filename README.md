@@ -3,6 +3,16 @@
 Static personal website built in plain HTML / CSS / vanilla JS.
 No build step, no framework, no dependencies. Just open `index.html`.
 
+## Work map (October 2026)
+
+`index.html#work` is a compact three-layer project map. `work-map.css` contains its layout and original vector illustration styles; `work-map.js` adds hover/focus previews, touch preview-then-open behavior, and return focus. Every project is a native link and remains reachable without JavaScript. Other existing projects are retained in the expandable index below the map.
+
+The nine illustrations are inline, original SVG mechanism vignettes in `index.html`, with three reused in the research notes. They are conceptual, not product screenshots, measured heatmaps, or experiment plots. The palette inherits the site's cream, dusty blue, sage, and purple. Motion is interaction-triggered and respects reduced-motion preferences.
+
+To update a project, edit its link, caption, accessible question, and `.work-summary` template in the same card. Keep both languages in sync. Research summaries live in `work/tgf-monitor.html`, `work/subliminal-learning.html`, and `work/beyond-the-heatmap.html`; each includes its evidence checkpoint and limits. Raw course reports, traces, account information, and private project data are not part of this site.
+
+Check desktop and 320px layouts, keyboard focus/Enter, touch first/second tap, language switching, return navigation, and local links after changes. The project uses GitHub Pages from `main`, with no additional hosting service.
+
 ---
 
 ## File structure
