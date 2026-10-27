@@ -24,6 +24,11 @@
 
   function setLang(lang, persist) {
     root.setAttribute('lang', lang);
+    document.querySelectorAll('[data-product-demo]').forEach((link) => {
+      const url = new URL(link.getAttribute('href'), location.href);
+      url.searchParams.set('lang', lang);
+      link.setAttribute('href', url.href);
+    });
     // Persist only explicit user choices — never overwrite a manual
     // selection with auto-detected language.
     if (persist) localStorage.setItem(STORAGE_KEY, lang);
