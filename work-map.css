@@ -159,6 +159,34 @@
   .work-archive-grid { grid-template-columns:minmax(0,1fr); }
 }
 @media(hover:none){ .work-desktop-hint{display:none}.work-touch-hint{display:inline} }
+/* Give the illustration paper, ink, and card states their own night palette. */
+@media (prefers-color-scheme: dark) {
+  .work-stratum { --work-color:#AFCAA7; --work-wash:#3D4B3D; --work-band:#292E29; }
+  .research-intro { --work-color:#D0B6DF; --work-wash:#4B3B56; }
+  .work-stratum[data-layer=agent],.research-intro[data-layer=agent] {
+    --work-color:#A6C9E3; --work-wash:#344956; --work-band:#262E35;
+  }
+  .work-stratum[data-layer=model],.research-intro[data-layer=model] {
+    --work-color:#D0B6DF; --work-wash:#4B3B56; --work-band:#2E2835;
+  }
+  .work-card { background:#302D28; border-bottom-color:#756D5F; }
+  .work-card:hover,.work-card.is-preview,.work-card:focus-visible {
+    background:#3B3730; box-shadow:0 5px 13px rgba(0,0,0,.2);
+  }
+  .work-collection { border-right-color:#756D5F; }
+  .work-evaluation { border-left-color:#756D5F; }
+  .work-evaluation::before { background:#756D5F; }
+  .art-paper { fill:#363B39; stroke:#A0A99E; }
+  .art-faint { stroke:#879083; }
+  .art-fold { fill:#4C5149; stroke:#A0A99E; }
+  .art-accent { fill:#D69480; }
+  .art-glass { fill:rgba(54,59,57,.75); }
+  .art-mountain { fill:#829EB5; }
+  .art-sun { fill:#CEAF70; }
+  .art-label { fill:#665633; stroke:#BDA477; }
+  .art-heat { fill:#B99BC9; }
+  .art-mask { fill:#AD91BC; }
+}
 @media(prefers-reduced-motion:reduce){
   .work-showcase *, .research-note * { transition:none!important; animation:none!important; }
   .work-card:is(:hover,:focus-visible,.is-preview) { transform:none; }

@@ -103,6 +103,21 @@
     }
     @keyframes drum-pulse { 0%{box-shadow:0 0 0 0 rgba(224,169,46,0.55);} 70%{box-shadow:0 0 0 8px rgba(224,169,46,0);} 100%{box-shadow:0 0 0 0 rgba(224,169,46,0);} }
     .drum-codename { font-size: 0.82rem; color: var(--warm-soft); margin-top: 1.4rem; font-style: italic; }
+    @media (prefers-color-scheme: dark) {
+      .drum-page {
+        --warm-bg: #28231e;
+        --warm-card: #332c24;
+        --warm-ink: #ede7da;
+        --warm-soft: #c6b8a3;
+        --warm-line: #65513a;
+        --taiko: #f09d90;
+        --accent-b: #a6c9e3;
+        --ok: #7bc799;
+        --mid: #e0b75e;
+        --miss: #e69a91;
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.2);
+      }
+    }
   </style>
   <script src="../script.js"></script>
 </head>
@@ -148,7 +163,7 @@
         <div class="drum-art">
           <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <!-- floating notes -->
-            <g fill="#2f6fb0">
+            <g fill="var(--accent-b)">
               <circle cx="40"  cy="40" r="7"/><rect x="45.5" y="16" width="2.6" height="26"/>
               <circle cx="272" cy="30" r="6"/><rect x="277" y="9" width="2.4" height="23"/>
               <circle cx="300" cy="86" r="5"/>
@@ -218,9 +233,9 @@
       </div>
 
       <div class="judge-legend" aria-label="judgment colors" data-i18n-aria-label-en="judgment colors" data-i18n-aria-label-zh="节奏判定颜色图例">
-        <span class="judge-chip"><span class="judge-dot" style="background:#3c9a5f"></span><span class="lang-en">on-beat</span><span class="lang-zh">准</span></span>
-        <span class="judge-chip"><span class="judge-dot" style="background:#e0a92e"></span><span class="lang-en">close</span><span class="lang-zh">偏</span></span>
-        <span class="judge-chip"><span class="judge-dot" style="background:#cf5b52"></span><span class="lang-en">miss</span><span class="lang-zh">丢</span></span>
+        <span class="judge-chip"><span class="judge-dot" style="background:var(--ok)"></span><span class="lang-en">on-beat</span><span class="lang-zh">准</span></span>
+        <span class="judge-chip"><span class="judge-dot" style="background:var(--mid)"></span><span class="lang-en">close</span><span class="lang-zh">偏</span></span>
+        <span class="judge-chip"><span class="judge-dot" style="background:var(--miss)"></span><span class="lang-en">miss</span><span class="lang-zh">丢</span></span>
       </div>
 
       <div class="drum-note">

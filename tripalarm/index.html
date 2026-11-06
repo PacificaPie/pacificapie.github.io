@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BizWiz · 差旅代守 — 企业差旅的下单时机层</title>
 <meta name="description" content="BizWiz（差旅代守）：约束驱动的企业差旅盯价 Agent。锚点召回 → 政策触发 → 总账择优，好价即审批，D-2 兜底强制成行。个人项目 · 演示数据。">
-<meta name="theme-color" content="#F8F4ED">
+<meta name="theme-color" content="#F8F4ED" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#201E1A" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="BizWiz · 差旅代守 — 企业差旅的下单时机层">
 <meta property="og:description" content="锚点召回 → 政策触发 → 总账择优。好价是赏金，deadline 是底线。">
 <meta property="og:type" content="website">
@@ -13,6 +14,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20viewBox=%220%200%2016%2018%22%20shape-rendering=%22crispEdges%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Crect%20x=%228%22%20y=%220%22%20width=%222%22%20height=%221%22%20fill=%22%234F6E8C%22/%3E%3Crect%20x=%228%22%20y=%221%22%20width=%223%22%20height=%221%22%20fill=%22%234F6E8C%22/%3E%3Crect%20x=%2213%22%20y=%221%22%20width=%221%22%20height=%221%22%20fill=%22%23E5B53D%22/%3E%3Crect%20x=%227%22%20y=%222%22%20width=%223%22%20height=%221%22%20fill=%22%234F6E8C%22/%3E%3Crect%20x=%227%22%20y=%223%22%20width=%224%22%20height=%221%22%20fill=%22%234F6E8C%22/%3E%3Crect%20x=%226%22%20y=%224%22%20width=%225%22%20height=%221%22%20fill=%22%234F6E8C%22/%3E%3Crect%20x=%226%22%20y=%225%22%20width=%226%22%20height=%221%22%20fill=%22%234F6E8C%22/%3E%3Crect%20x=%225%22%20y=%226%22%20width=%226%22%20height=%221%22%20fill=%22%23E5B53D%22/%3E%3Crect%20x=%223%22%20y=%227%22%20width=%2210%22%20height=%221%22%20fill=%22%233E5871%22/%3E%3Crect%20x=%224%22%20y=%228%22%20width=%228%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%223%22%20y=%229%22%20width=%2210%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%222%22%20y=%2210%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%223%22%20y=%2210%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%224%22%20y=%2210%22%20width=%223%22%20height=%221%22%20fill=%22%23FFFDF8%22/%3E%3Crect%20x=%227%22%20y=%2210%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%229%22%20y=%2210%22%20width=%223%22%20height=%221%22%20fill=%22%23FFFDF8%22/%3E%3Crect%20x=%2212%22%20y=%2210%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%2213%22%20y=%2210%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%222%22%20y=%2211%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%223%22%20y=%2211%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%224%22%20y=%2211%22%20width=%221%22%20height=%221%22%20fill=%22%23FFFDF8%22/%3E%3Crect%20x=%225%22%20y=%2211%22%20width=%222%22%20height=%221%22%20fill=%22%232A2A28%22/%3E%3Crect%20x=%227%22%20y=%2211%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%229%22%20y=%2211%22%20width=%221%22%20height=%221%22%20fill=%22%23FFFDF8%22/%3E%3Crect%20x=%2210%22%20y=%2211%22%20width=%222%22%20height=%221%22%20fill=%22%232A2A28%22/%3E%3Crect%20x=%2212%22%20y=%2211%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%2213%22%20y=%2211%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%222%22%20y=%2212%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%223%22%20y=%2212%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%224%22%20y=%2212%22%20width=%221%22%20height=%221%22%20fill=%22%23FFFDF8%22/%3E%3Crect%20x=%225%22%20y=%2212%22%20width=%222%22%20height=%221%22%20fill=%22%232A2A28%22/%3E%3Crect%20x=%227%22%20y=%2212%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%229%22%20y=%2212%22%20width=%221%22%20height=%221%22%20fill=%22%23FFFDF8%22/%3E%3Crect%20x=%2210%22%20y=%2212%22%20width=%222%22%20height=%221%22%20fill=%22%232A2A28%22/%3E%3Crect%20x=%2212%22%20y=%2212%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%2213%22%20y=%2212%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%222%22%20y=%2213%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%223%22%20y=%2213%22%20width=%224%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%227%22%20y=%2213%22%20width=%222%22%20height=%221%22%20fill=%22%23E5B53D%22/%3E%3Crect%20x=%229%22%20y=%2213%22%20width=%224%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%2213%22%20y=%2213%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%222%22%20y=%2214%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%223%22%20y=%2214%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%225%22%20y=%2214%22%20width=%226%22%20height=%221%22%20fill=%22%23C4A77D%22/%3E%3Crect%20x=%2211%22%20y=%2214%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%2213%22%20y=%2214%22%20width=%221%22%20height=%221%22%20fill=%22%236E5637%22/%3E%3Crect%20x=%223%22%20y=%2215%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%224%22%20y=%2215%22%20width=%228%22%20height=%221%22%20fill=%22%23C4A77D%22/%3E%3Crect%20x=%2212%22%20y=%2215%22%20width=%221%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%224%22%20y=%2216%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%226%22%20y=%2216%22%20width=%224%22%20height=%221%22%20fill=%22%23C4A77D%22/%3E%3Crect%20x=%2210%22%20y=%2216%22%20width=%222%22%20height=%221%22%20fill=%22%238B6F47%22/%3E%3Crect%20x=%225%22%20y=%2217%22%20width=%222%22%20height=%221%22%20fill=%22%23E5B53D%22/%3E%3Crect%20x=%229%22%20y=%2217%22%20width=%222%22%20height=%221%22%20fill=%22%23E5B53D%22/%3E%3C/svg%3E">
 <style>
   :root {
+    color-scheme: light;
     --bg:          #F8F4ED;
     --bg-tint:     #F1EBDF;
     --card:        #FFFDF8;
@@ -22,6 +24,7 @@
     --accent:      #8B6F47;
     --accent-soft: #C4A77D;
     --rule:        #DCD2BD;
+    --chart-grid:  #EDE6D6;
     --saffron:     #E5B53D;
     --saffron-soft:#F4E4BC;
     --blue:        #4F6E8C;
@@ -204,6 +207,31 @@
   .foot-links a:hover { border-color:var(--accent-soft); }
   .colophon { margin-top:1.4rem; font-size:.78rem; color:var(--muted); line-height:1.7; }
 
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --bg: #201E1A;
+      --bg-tint: #282520;
+      --card: #2B2823;
+      --ink: #EDE7DA;
+      --ink-soft: #CFC7B6;
+      --muted: #BBB2A3;
+      --accent: #D4B78E;
+      --accent-soft: #C4A77D;
+      --rule: #514B41;
+      --chart-grid: #514B41;
+      --saffron-soft: #453718;
+      --blue: #A6C9E3;
+      --blue-soft: #31424F;
+      --seal: #E69A91;
+      --purple: #D0B6DF;
+    }
+    .chip.live, .badge.local { color: #F4D68C; }
+    .badge.cloud { color: var(--blue); }
+    .bubble.user { border-color: #75623C; }
+    .budget-label { fill: #F4D68C; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { animation:none !important; transition:none !important; }
   }
@@ -261,22 +289,22 @@
       <div class="no">LAYER 1 · 召回</div>
       <h3>锚点圈，不是城市</h3>
       <svg viewBox="0 0 220 170" aria-label="锚点召回示意：以上海分公司为圆心的半径圈">
-        <circle cx="105" cy="88" r="72" fill="none" stroke="#DCD2BD" stroke-width="1.2" stroke-dasharray="4 4"/>
-        <circle cx="105" cy="88" r="38" fill="#F4E4BC" fill-opacity=".35" stroke="#C4A77D" stroke-width="1.2"/>
+        <circle cx="105" cy="88" r="72" fill="none" stroke="var(--rule)" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <circle cx="105" cy="88" r="38" fill="var(--saffron-soft)" fill-opacity=".35" stroke="var(--accent-soft)" stroke-width="1.2"/>
         <text class="svg-t" x="105" y="26" text-anchor="middle">4km 圈</text>
         <text x="105" y="93" text-anchor="middle" font-size="13">★</text>
         <text class="svg-t2" x="105" y="108" text-anchor="middle">上海分公司</text>
         <!-- 圈内 5 -->
-        <circle cx="96"  cy="70" r="4.5" fill="#8B6F47"/><text class="svg-t" x="88" y="62">A·0.9km</text>
-        <circle cx="128" cy="118" r="4.5" fill="#8B6F47"/><text class="svg-t" x="130" y="132">B·2.6</text>
-        <circle cx="60"  cy="120" r="4.5" fill="#8B6F47"/><text class="svg-t" x="42" y="134">E·3.4</text>
-        <circle cx="140" cy="62" r="4.5" fill="#8B6F47"/><text class="svg-t" x="144" y="56">F·1.8</text>
-        <circle cx="58"  cy="56" r="4.5" fill="#8B6F47"/><text class="svg-t" x="40" y="48">G·3.1</text>
+        <circle cx="96"  cy="70" r="4.5" fill="var(--accent)"/><text class="svg-t" x="88" y="62">A·0.9km</text>
+        <circle cx="128" cy="118" r="4.5" fill="var(--accent)"/><text class="svg-t" x="130" y="132">B·2.6</text>
+        <circle cx="60"  cy="120" r="4.5" fill="var(--accent)"/><text class="svg-t" x="42" y="134">E·3.4</text>
+        <circle cx="140" cy="62" r="4.5" fill="var(--accent)"/><text class="svg-t" x="144" y="56">F·1.8</text>
+        <circle cx="58"  cy="56" r="4.5" fill="var(--accent)"/><text class="svg-t" x="40" y="48">G·3.1</text>
         <!-- 圈外 grey -->
-        <circle cx="196" cy="30"  r="4" fill="#DCD2BD"/>
-        <circle cx="204" cy="120" r="4" fill="#DCD2BD"/>
-        <circle cx="24"  cy="150" r="4" fill="#DCD2BD"/>
-        <circle cx="180" cy="156" r="4" fill="#DCD2BD"/>
+        <circle cx="196" cy="30"  r="4" fill="var(--rule)"/>
+        <circle cx="204" cy="120" r="4" fill="var(--rule)"/>
+        <circle cx="24"  cy="150" r="4" fill="var(--rule)"/>
+        <circle cx="180" cy="156" r="4" fill="var(--rule)"/>
         <text class="svg-t" x="196" y="146" text-anchor="middle">圈外不看</text>
       </svg>
       <div class="cap"><b>差旅目的地是一个点</b>（分公司 / 客户 / 会场），酒店只在锚点半径圈内召回。12 家 → 圈内 <b>5</b> 家。</div>
@@ -286,14 +314,14 @@
       <div class="no">LAYER 2 · 触发</div>
       <h3>政策是闸，不是分</h3>
       <svg viewBox="0 0 220 170" aria-label="政策硬约束触发示意：每晚房价对照政策线">
-        <line x1="167" y1="14" x2="167" y2="150" stroke="#E5B53D" stroke-width="1.6" stroke-dasharray="5 4"/>
+        <line x1="167" y1="14" x2="167" y2="150" stroke="var(--saffron)" stroke-width="1.6" stroke-dasharray="5 4"/>
         <text class="budget-label" x="171" y="24">≤¥800/晚</text>
         <!-- bars: A760 B720 E700 F850 G880  scale x = v/6 -->
-        <rect x="34" y="30"  width="127" height="12" rx="3" fill="#8B6F47"/><text class="svg-t2" x="34" y="26">A ¥760</text>
-        <rect x="34" y="56"  width="120" height="12" rx="3" fill="#8B6F47"/><text class="svg-t2" x="34" y="52">B ¥720</text>
-        <rect x="34" y="82"  width="117" height="12" rx="3" fill="#8B6F47"/><text class="svg-t2" x="34" y="78">E ¥700</text>
-        <rect x="34" y="108" width="142" height="12" rx="3" fill="#DCD2BD"/><text class="svg-t" x="34" y="104">F ¥850 ✕</text>
-        <rect x="34" y="134" width="147" height="12" rx="3" fill="#DCD2BD"/><text class="svg-t" x="34" y="130">G ¥880 ✕</text>
+        <rect x="34" y="30"  width="127" height="12" rx="3" fill="var(--accent)"/><text class="svg-t2" x="34" y="26">A ¥760</text>
+        <rect x="34" y="56"  width="120" height="12" rx="3" fill="var(--accent)"/><text class="svg-t2" x="34" y="52">B ¥720</text>
+        <rect x="34" y="82"  width="117" height="12" rx="3" fill="var(--accent)"/><text class="svg-t2" x="34" y="78">E ¥700</text>
+        <rect x="34" y="108" width="142" height="12" rx="3" fill="var(--rule)"/><text class="svg-t" x="34" y="104">F ¥850 ✕</text>
+        <rect x="34" y="134" width="147" height="12" rx="3" fill="var(--rule)"/><text class="svg-t" x="34" y="130">G ¥880 ✕</text>
         <text class="svg-t" x="34" y="164">三道闸：单段 · 每晚 · 全程</text>
       </svg>
       <div class="cap">政策机读，<b>只做闸门不做评分</b>（图示"每晚"一道）；触发双腿——好价腿（低于窗口 P25）和 <b>D-2 兜底腿</b>。5 家 → 达标 <b>3</b> 家。</div>
@@ -305,24 +333,24 @@
       <svg viewBox="0 0 220 170" aria-label="通勤总账择优示意：房费加通勤的堆叠比较">
         <!-- stacked: A 760+0=760 win; B 720+210=930; E 700+260=960 ; scale x=v/8 -->
         <text class="svg-t2" x="34" y="30">A</text>
-        <rect x="50" y="20" width="95" height="14" rx="3" fill="#8B6F47"/>
-        <text class="svg-num" x="150" y="32" fill="#B85450">¥760 ✓</text>
-        <rect x="46" y="16" width="112" height="22" rx="6" fill="none" stroke="#B85450" stroke-width="1.4"/>
+        <rect x="50" y="20" width="95" height="14" rx="3" fill="var(--accent)"/>
+        <text class="svg-num" x="150" y="32" fill="var(--seal)">¥760 ✓</text>
+        <rect x="46" y="16" width="112" height="22" rx="6" fill="none" stroke="var(--seal)" stroke-width="1.4"/>
         <text class="svg-t" x="50" y="50">房 ¥760 · 0.9km 步行 ¥0</text>
 
         <text class="svg-t2" x="34" y="80">B</text>
-        <rect x="50" y="70" width="90" height="14" rx="3" fill="#8B6F47"/>
-        <rect x="140" y="70" width="26" height="14" rx="3" fill="#4F6E8C"/>
+        <rect x="50" y="70" width="90" height="14" rx="3" fill="var(--accent)"/>
+        <rect x="140" y="70" width="26" height="14" rx="3" fill="var(--blue)"/>
         <text class="svg-num" x="170" y="82">¥930</text>
         <text class="svg-t" x="50" y="100">房 ¥720 · 打车 ¥210/日</text>
 
         <text class="svg-t2" x="34" y="130">E</text>
-        <rect x="50" y="120" width="87" height="14" rx="3" fill="#8B6F47"/>
-        <rect x="137" y="120" width="33" height="14" rx="3" fill="#4F6E8C"/>
+        <rect x="50" y="120" width="87" height="14" rx="3" fill="var(--accent)"/>
+        <rect x="137" y="120" width="33" height="14" rx="3" fill="var(--blue)"/>
         <text class="svg-num" x="174" y="132">¥960</text>
         <text class="svg-t" x="50" y="150">房 ¥700 · 打车 ¥260/日</text>
-        <rect x="50" y="158" width="10" height="6" fill="#8B6F47"/><text class="svg-t" x="64" y="164">房费</text>
-        <rect x="96" y="158" width="10" height="6" fill="#4F6E8C"/><text class="svg-t" x="110" y="164">通勤</text>
+        <rect x="50" y="158" width="10" height="6" fill="var(--accent)"/><text class="svg-t" x="64" y="164">房费</text>
+        <rect x="96" y="158" width="10" height="6" fill="var(--blue)"/><text class="svg-t" x="110" y="164">通勤</text>
       </svg>
       <div class="cap">便宜 ¥40/晚的房，买不回每天两趟车。<b>通勤入择优、不入触发</b>——政策口径保持干净可审计。3 家 → <b>1</b> 个最优。</div>
     </div>
@@ -345,12 +373,12 @@
     <div class="chart-box">
       <svg class="chart" id="chart" viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" aria-label="30天组合总价走势演示图">
         <!-- grid: ¥2.4k(y20) → ¥1.4k(y250), 230px / ¥1000 -->
-        <line x1="48" y1="20"  x2="620" y2="20"  stroke="#EDE6D6" stroke-width="1"/>
-        <line x1="48" y1="66"  x2="620" y2="66"  stroke="#EDE6D6" stroke-width="1"/>
-        <line x1="48" y1="112" x2="620" y2="112" stroke="#EDE6D6" stroke-width="1"/>
-        <line x1="48" y1="158" x2="620" y2="158" stroke="#EDE6D6" stroke-width="1"/>
-        <line x1="48" y1="204" x2="620" y2="204" stroke="#EDE6D6" stroke-width="1"/>
-        <line x1="48" y1="250" x2="620" y2="250" stroke="#EDE6D6" stroke-width="1"/>
+        <line x1="48" y1="20"  x2="620" y2="20"  stroke="var(--chart-grid)" stroke-width="1"/>
+        <line x1="48" y1="66"  x2="620" y2="66"  stroke="var(--chart-grid)" stroke-width="1"/>
+        <line x1="48" y1="112" x2="620" y2="112" stroke="var(--chart-grid)" stroke-width="1"/>
+        <line x1="48" y1="158" x2="620" y2="158" stroke="var(--chart-grid)" stroke-width="1"/>
+        <line x1="48" y1="204" x2="620" y2="204" stroke="var(--chart-grid)" stroke-width="1"/>
+        <line x1="48" y1="250" x2="620" y2="250" stroke="var(--chart-grid)" stroke-width="1"/>
         <text class="axis-label" x="42" y="24"  text-anchor="end">¥2.4k</text>
         <text class="axis-label" x="42" y="70"  text-anchor="end">¥2.2k</text>
         <text class="axis-label" x="42" y="116" text-anchor="end">¥2.0k</text>
@@ -358,16 +386,16 @@
         <text class="axis-label" x="42" y="208" text-anchor="end">¥1.6k</text>
         <text class="axis-label" x="42" y="254" text-anchor="end">¥1.4k</text>
         <!-- policy cap at y=66 (¥2,200) -->
-        <line x1="48" y1="66" x2="620" y2="66" stroke="#E5B53D" stroke-width="1.6" stroke-dasharray="6 5"/>
+        <line x1="48" y1="66" x2="620" y2="66" stroke="var(--saffron)" stroke-width="1.6" stroke-dasharray="6 5"/>
         <text class="budget-label" x="614" y="60" text-anchor="end">政策上限 ¥2,200</text>
         <!-- deadline leg at day 28: x = 48 + 572*(27/29) = 580.5 -->
-        <line x1="580.5" y1="14" x2="580.5" y2="250" stroke="#B85450" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <line x1="580.5" y1="14" x2="580.5" y2="250" stroke="var(--seal)" stroke-width="1.4" stroke-dasharray="4 4"/>
         <text class="ddl-label" x="576" y="14" text-anchor="end">D-2 兜底腿</text>
-        <polygon id="price-area" fill="#8B6F47" fill-opacity="0.07" points=""/>
-        <polyline id="price-line" fill="none" stroke="#8B6F47" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points=""/>
+        <polygon id="price-area" fill="var(--accent)" fill-opacity="0.07" points=""/>
+        <polyline id="price-line" fill="none" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round" points=""/>
         <g id="hit-dot" style="display:none">
-          <circle id="hit-pulse" cx="0" cy="0" r="6" fill="none" stroke="#B85450" stroke-width="2"/>
-          <circle id="hit-core"  cx="0" cy="0" r="3.5" fill="#B85450"/>
+          <circle id="hit-pulse" cx="0" cy="0" r="6" fill="none" stroke="var(--seal)" stroke-width="2"/>
+          <circle id="hit-core"  cx="0" cy="0" r="3.5" fill="var(--seal)"/>
         </g>
       </svg>
     </div>
@@ -410,44 +438,44 @@
   <div class="arch-svg">
     <svg viewBox="0 0 640 170" aria-label="架构图：IM、skill 薄客户端、self-hosted server 三段">
       <!-- IM box -->
-      <rect x="10" y="46" width="130" height="78" rx="12" fill="#F4E4BC" fill-opacity=".45" stroke="#C4A77D"/>
+      <rect x="10" y="46" width="130" height="78" rx="12" fill="var(--saffron-soft)" fill-opacity=".45" stroke="var(--accent-soft)"/>
       <text class="svg-t2" x="75" y="76" text-anchor="middle">员工侧 IM</text>
       <text class="svg-t" x="75" y="94" text-anchor="middle">飞书 / TG / ntfy</text>
       <text class="svg-t" x="75" y="110" text-anchor="middle">收推送 · 回 /approve</text>
       <!-- skill box -->
-      <rect x="200" y="46" width="150" height="78" rx="12" fill="#FFFDF8" stroke="#DCD2BD"/>
+      <rect x="200" y="46" width="150" height="78" rx="12" fill="var(--card)" stroke="var(--rule)"/>
       <text class="svg-t2" x="275" y="72" text-anchor="middle">skill 薄客户端</text>
       <text class="svg-t" x="275" y="90" text-anchor="middle">对话立约 · 查询</text>
       <text class="svg-t" x="275" y="106" text-anchor="middle">REST 契约</text>
       <!-- server box -->
-      <rect x="410" y="26" width="220" height="118" rx="12" fill="#FFFDF8" stroke="#8B6F47" stroke-width="1.4"/>
+      <rect x="410" y="26" width="220" height="118" rx="12" fill="var(--card)" stroke="var(--accent)" stroke-width="1.4"/>
       <text class="svg-t2" x="520" y="50" text-anchor="middle">self-hosted server（24/7）</text>
-      <rect x="426" y="62" width="86" height="30" rx="7" fill="#F1EBDF"/><text class="svg-t" x="469" y="81" text-anchor="middle">watcher 扫价</text>
-      <rect x="426" y="100" width="86" height="30" rx="7" fill="#F1EBDF"/><text class="svg-t" x="469" y="119" text-anchor="middle">三层判定</text>
-      <rect x="524" y="62" width="90" height="30" rx="7" fill="#F1EBDF"/><text class="svg-t" x="569" y="81" text-anchor="middle">存储 · 审计线</text>
-      <rect x="524" y="100" width="90" height="30" rx="7" fill="#F1EBDF"/><text class="svg-t" x="569" y="119" text-anchor="middle">报价源 adapter</text>
+      <rect x="426" y="62" width="86" height="30" rx="7" fill="var(--bg-tint)"/><text class="svg-t" x="469" y="81" text-anchor="middle">watcher 扫价</text>
+      <rect x="426" y="100" width="86" height="30" rx="7" fill="var(--bg-tint)"/><text class="svg-t" x="469" y="119" text-anchor="middle">三层判定</text>
+      <rect x="524" y="62" width="90" height="30" rx="7" fill="var(--bg-tint)"/><text class="svg-t" x="569" y="81" text-anchor="middle">存储 · 审计线</text>
+      <rect x="524" y="100" width="90" height="30" rx="7" fill="var(--bg-tint)"/><text class="svg-t" x="569" y="119" text-anchor="middle">报价源 adapter</text>
       <!-- arrows -->
-      <line x1="140" y1="85" x2="196" y2="85" stroke="#8A8479" stroke-width="1.3"/>
+      <line x1="140" y1="85" x2="196" y2="85" stroke="var(--muted)" stroke-width="1.3"/>
       <text class="svg-t" x="168" y="78" text-anchor="middle">⇄</text>
-      <line x1="350" y1="85" x2="406" y2="85" stroke="#8A8479" stroke-width="1.3"/>
+      <line x1="350" y1="85" x2="406" y2="85" stroke="var(--muted)" stroke-width="1.3"/>
       <text class="svg-t" x="378" y="78" text-anchor="middle">⇄</text>
-      <path d="M 410 150 Q 220 168 90 128" fill="none" stroke="#B85450" stroke-width="1.3" stroke-dasharray="5 4"/>
-      <text class="svg-t" x="250" y="160" text-anchor="middle" fill="#B85450">命中 → 直达推送 · 审批</text>
+      <path d="M 410 150 Q 220 168 90 128" fill="none" stroke="var(--seal)" stroke-width="1.3" stroke-dasharray="5 4"/>
+      <text class="svg-t" x="250" y="160" text-anchor="middle" fill="var(--seal)">命中 → 直达推送 · 审批</text>
     </svg>
   </div>
   <div class="eng-grid">
     <div class="eng-card">
       <span class="tag">COST · SKU 反向索引</span>
       <svg viewBox="0 0 280 90" aria-label="SKU 去重：多条差旅单共享一次取价">
-        <circle cx="26" cy="20" r="7" fill="#C4A77D"/><text class="svg-t" x="40" y="24">差旅单 ①</text>
-        <circle cx="26" cy="45" r="7" fill="#C4A77D"/><text class="svg-t" x="40" y="49">差旅单 ②</text>
-        <circle cx="26" cy="70" r="7" fill="#C4A77D"/><text class="svg-t" x="40" y="74">差旅单 ③</text>
-        <line x1="96" y1="20" x2="150" y2="45" stroke="#DCD2BD" stroke-width="1.2"/>
-        <line x1="96" y1="45" x2="150" y2="45" stroke="#DCD2BD" stroke-width="1.2"/>
-        <line x1="96" y1="70" x2="150" y2="45" stroke="#DCD2BD" stroke-width="1.2"/>
-        <rect x="152" y="30" width="72" height="30" rx="8" fill="#F1EBDF" stroke="#C4A77D"/>
+        <circle cx="26" cy="20" r="7" fill="var(--accent-soft)"/><text class="svg-t" x="40" y="24">差旅单 ①</text>
+        <circle cx="26" cy="45" r="7" fill="var(--accent-soft)"/><text class="svg-t" x="40" y="49">差旅单 ②</text>
+        <circle cx="26" cy="70" r="7" fill="var(--accent-soft)"/><text class="svg-t" x="40" y="74">差旅单 ③</text>
+        <line x1="96" y1="20" x2="150" y2="45" stroke="var(--rule)" stroke-width="1.2"/>
+        <line x1="96" y1="45" x2="150" y2="45" stroke="var(--rule)" stroke-width="1.2"/>
+        <line x1="96" y1="70" x2="150" y2="45" stroke="var(--rule)" stroke-width="1.2"/>
+        <rect x="152" y="30" width="72" height="30" rx="8" fill="var(--bg-tint)" stroke="var(--accent-soft)"/>
         <text class="svg-t2" x="188" y="49" text-anchor="middle">京沪 SKU</text>
-        <line x1="224" y1="45" x2="252" y2="45" stroke="#8A8479" stroke-width="1.3"/>
+        <line x1="224" y1="45" x2="252" y2="45" stroke="var(--muted)" stroke-width="1.3"/>
         <text class="svg-num" x="258" y="49">1 次取价</text>
       </svg>
       <p>N 条差旅单盯同一航段/酒店，只查一次价——取价是最贵的外部调用，成本不随单量线性涨。</p>
@@ -455,13 +483,13 @@
     <div class="eng-card">
       <span class="tag">RELIABILITY · 无声失败杜绝</span>
       <svg viewBox="0 0 280 90" aria-label="推送失败重试状态机">
-        <rect x="8"  y="30" width="58" height="30" rx="8" fill="#F1EBDF"/><text class="svg-t" x="37" y="49" text-anchor="middle">命中</text>
-        <rect x="92" y="30" width="66" height="30" rx="8" fill="#F1EBDF"/><text class="svg-t" x="125" y="49" text-anchor="middle">推送 ✕</text>
-        <rect x="188" y="30" width="84" height="30" rx="8" fill="#F4E4BC" stroke="#E5B53D"/><text class="svg-t" x="230" y="49" text-anchor="middle">保持 active</text>
-        <line x1="66" y1="45" x2="88" y2="45" stroke="#8A8479" stroke-width="1.2"/>
-        <line x1="158" y1="45" x2="184" y2="45" stroke="#8A8479" stroke-width="1.2"/>
-        <path d="M 230 62 Q 230 84 125 84 Q 37 84 37 64" fill="none" stroke="#B85450" stroke-width="1.2" stroke-dasharray="4 3"/>
-        <text class="svg-t" x="133" y="80" text-anchor="middle" fill="#B85450">下一轮扫价重试 ↻</text>
+        <rect x="8"  y="30" width="58" height="30" rx="8" fill="var(--bg-tint)"/><text class="svg-t" x="37" y="49" text-anchor="middle">命中</text>
+        <rect x="92" y="30" width="66" height="30" rx="8" fill="var(--bg-tint)"/><text class="svg-t" x="125" y="49" text-anchor="middle">推送 ✕</text>
+        <rect x="188" y="30" width="84" height="30" rx="8" fill="var(--saffron-soft)" stroke="var(--saffron)"/><text class="svg-t" x="230" y="49" text-anchor="middle">保持 active</text>
+        <line x1="66" y1="45" x2="88" y2="45" stroke="var(--muted)" stroke-width="1.2"/>
+        <line x1="158" y1="45" x2="184" y2="45" stroke="var(--muted)" stroke-width="1.2"/>
+        <path d="M 230 62 Q 230 84 125 84 Q 37 84 37 64" fill="none" stroke="var(--seal)" stroke-width="1.2" stroke-dasharray="4 3"/>
+        <text class="svg-t" x="133" y="80" text-anchor="middle" fill="var(--seal)">下一轮扫价重试 ↻</text>
       </svg>
       <p>推送失败不置"已通知"——好价宁可迟到，不可静默丢弃。异常不允许降级成合法的空。</p>
     </div>

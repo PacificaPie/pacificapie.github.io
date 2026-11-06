@@ -105,6 +105,18 @@
       .entry-meta { white-space: normal; }
     }
 
+    /* Screen-only: printed / PDF resumes retain their white paper palette. */
+    @media screen and (prefers-color-scheme: dark) {
+      html { color-scheme: dark; background: #171613; }
+      body { background: #201e1a; color: #ede7da; }
+      h1, .entry-title, li strong { color: #ede7da; }
+      .contact-row, .contact-row a, .entry-meta { color: #bbb2a3; }
+      .entry-sub, .summary { color: #cfc7b6; }
+      .summary { background: #282520; border-color: #a6c9e3; }
+      h2, a, .entry-sub a, li em, .skill-cat { color: #a6c9e3; }
+      h2 { border-color: #a6c9e3; }
+    }
+
     @media print {
       html, body { background: #fff; }
       body {

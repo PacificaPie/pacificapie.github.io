@@ -21,6 +21,12 @@ Articles retain the `.wrap` gutters. Card grids must fit widths below their pref
 
 For release QA, check both languages at 320, 375, 430, 768, and 1280px; also check CV printing and mouse vs. touch navigation. Run `bash scripts/validate-site.sh` for syntax and local-file checks. The standalone `tripalarm/` BizWiz demo is still Chinese-only and is labeled as such in the English project index.
 
+### Dark-mode maintenance
+
+Colors follow the system preference. Use `--blue` / `--purple` for text and illustration ink, and `--blue-panel` / `--purple-panel` for filled panels with cream text. Card surfaces use theme tokens; avoid translucent white backgrounds behind inherited light text. `work-map.css` supplies dark paper, strokes, and hover/focus states for the original SVG illustrations. The avatar is slightly dimmed in dark mode; screenshots and photographs retain their original colors.
+
+The Rhythm Coach and BizWiz demo have scoped dark palettes, including diagram fills. Both CV documents apply dark colors only on screen, preserving their print palette. Check the home hero, all three work-map layers (including hover/focus), skills cards, research illustrations, case diagrams, and both CVs in dark mode at desktop and mobile widths.
+
 ---
 
 ## File structure

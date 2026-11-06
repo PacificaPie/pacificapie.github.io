@@ -59,6 +59,19 @@
       .entry-date { white-space: normal; }
       .summary-block .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
     }
+    /* Screen-only: printed / PDF resumes retain their white paper palette. */
+    @media screen and (prefers-color-scheme: dark) {
+      html { color-scheme: dark; background: #171613; }
+      body { background: #201e1a; color: #ede7da; }
+      .header-left h1, .entry-org { color: #ede7da; }
+      .header-left .name-en, .contact-grid, .contact-grid a, .entry-date { color: #bbb2a3; }
+      .entry-row2, .entry-row2 .role { color: #cfc7b6; }
+      h2, a, .entry-row2 a, li strong, .summary-block .label,
+      .contact-grid .label, .header-left .objective { color: #a6c9e3; }
+      .header-left .objective { background: #282520; }
+      h2, .header-row { border-color: #a6c9e3; }
+      li .num { color: #e69a91; }
+    }
     @media print { html, body { background: #fff; } body { max-width: none; margin: 0; padding: 0; box-shadow: none; zoom: 0.86; }
       .header-left .objective { background: transparent; padding: 0; } }
     @page { size: A4; margin: 0.32in 0.45in; }

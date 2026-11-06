@@ -4,6 +4,7 @@
    ========================================================= */
 
 :root {
+  color-scheme: light;
   /* Color — base */
   --bg:           #F8F4ED;   /* cream */
   --bg-tint:      #F1EBDF;   /* subtle section divider */
@@ -23,6 +24,13 @@
   --purple-soft: #C9B5D1;    /* pale lilac */
   --seal:         #B85450;   /* tiny accent only — vermilion */
   --note-edge:    #E0CC95;
+  /* Text accents and filled panels need different contrast in dark mode. */
+  --blue-panel:   #4F6E8C;
+  --purple-panel: #7A5C8A;
+  --surface:      rgba(255, 255, 255, 0.5);
+  --surface-card: rgba(255, 255, 255, 0.55);
+  --surface-icon: #fff;
+  --highlight:    rgba(229, 181, 61, 0.38);
 
   /* Type */
   --font-serif-cn:  'Noto Serif SC', 'Songti SC', serif;
@@ -355,8 +363,8 @@ html[lang|="zh"] .article-eyebrow-block {
   text-transform: none;
   letter-spacing: 0.18em;
 }
-.article-eyebrow-block.blue { background: var(--blue); color: #FAF7EE; }
-.article-eyebrow-block.purple { background: var(--purple); color: #FAF7EE; }
+.article-eyebrow-block.blue { background: var(--blue-panel); color: #FAF7EE; }
+.article-eyebrow-block.purple { background: var(--purple-panel); color: #FAF7EE; }
 .article-eyebrow-block.cream { background: var(--bg-tint); color: var(--accent); border: 1px solid var(--accent-soft); }
 .article-eyebrow-block::before {
   content: "";
@@ -394,11 +402,11 @@ html[lang|="en"] .drop-cap > p:first-of-type::first-letter {
   letter-spacing: 0.005em;
 }
 .pull-quote-block.blue {
-  background: var(--blue);
+  background: var(--blue-panel);
   color: #FAF7EE;
 }
 .pull-quote-block.purple {
-  background: var(--purple);
+  background: var(--purple-panel);
   color: #FAF7EE;
 }
 .pull-quote-block::before {
@@ -517,14 +525,14 @@ html[lang|="zh"] .color-band {
   align-self: flex-start;
 }
 .color-band.blue {
-  background: var(--blue);
+  background: var(--blue-panel);
   color: #FAF7EE;
   width: clamp(60%, 65%, 72%);
   align-self: flex-end;
   margin-top: -0.3rem;
 }
 .color-band.purple {
-  background: var(--purple);
+  background: var(--purple-panel);
   color: #FAF7EE;
   width: clamp(78%, 85%, 92%);
   align-self: flex-start;
@@ -1215,7 +1223,7 @@ html[lang|="zh"] .footer-signoff {
   transition: transform 0.3s ease, background 0.3s ease;
 }
 .work-item:hover .work-item-icon {
-  background: #fff;
+  background: var(--surface-icon);
   transform: rotate(-2deg);
 }
 .work-item-icon svg {
@@ -1578,19 +1586,30 @@ html[lang|="zh"] .node-card-desc { font-family: var(--font-sans-cn); }
    ========================================================= */
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --bg:           #201E1A;
     --bg-tint:      #282520;
     --ink:          #EDE7DA;
     --ink-soft:     #CFC7B6;
-    --muted:        #948C7C;
-    --accent:       #C4A77D;
+    --muted:        #BBB2A3;
+    --accent:       #D4B78E;
     --accent-soft:  #8B6F47;
-    --rule:         #3B372F;
+    --rule:         #514B41;
     --note-edge:    #5A4F33;
     /* pastel tints darken so inherited light ink stays readable */
     --yellow:       #453718;
     --blue-soft:    #31424F;
     --purple-soft:  #413347;
+    --blue:         #A6C9E3;
+    --purple:       #D0B6DF;
+    --seal:         #E69A91;
+    --blue-panel:   #364D63;
+    --purple-panel: #53405F;
+    --surface:      #2B2823;
+    --surface-card: #2B2823;
+    --surface-icon: #33302A;
+    --highlight:    rgba(229, 181, 61, 0.12);
+    --portrait-filter: brightness(0.9) saturate(0.95);
     --live-green:   #6FBF8A;
     --live-green-glow: rgba(111, 191, 138, 0.4);
     --build-amber:  #D9A855;
@@ -2033,7 +2052,7 @@ html[lang|="zh"] .hero-statement {
 }
 .statement-highlight {
   color: var(--blue);
-  background: linear-gradient(transparent 70%, rgba(229, 181, 61, 0.38) 0);
+  background: linear-gradient(transparent 70%, var(--highlight) 0);
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
@@ -2115,6 +2134,7 @@ html[lang|="zh"] .hero-statement {
   display: block;
   width: 100%;
   height: auto;
+  filter: var(--portrait-filter, none);
   border: 1px solid color-mix(in srgb, var(--rule) 70%, transparent);
   border-radius: 50%;
   box-shadow: 0 22px 60px rgba(74, 70, 66, 0.12);
@@ -2387,7 +2407,7 @@ html[lang|="zh"] .featured-work-card h3 {
 .skill-principle {
   border: 1px solid var(--rule);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--surface);
   padding: 1rem 1.1rem;
 }
 .skill-principle h3 {
@@ -2435,7 +2455,7 @@ html[lang|="zh"] .featured-work-card h3 {
   min-width: 0;
   border: 1px solid var(--rule);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--surface-card);
   padding: 1.15rem 1.25rem;
 }
 .skill-card-top {
@@ -2498,7 +2518,7 @@ html[lang|="zh"] .featured-work-card h3 {
   min-width: 0;
   border: 1px solid var(--rule);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--surface-card);
   padding: 1.15rem 1.25rem;
 }
 .orch-row-head {
