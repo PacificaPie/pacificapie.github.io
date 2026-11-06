@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="Job-Search Automation — Case Study" data-zh="求职自动化系统 — 案例">Job-Search Automation — Case Study</title>
-  <meta name="description" content="How Pacifica designed a human-in-the-loop job-search agent that runs twice daily without auto-submitting applications.">
+  <title data-en="Job Search — Codex, Notion &amp; Muse" data-zh="Job Search — Codex、Notion 与 Muse">Job Search — Codex, Notion &amp; Muse</title>
+  <meta name="description" content="A personal job-search workflow: Codex discovers roles, Notion holds application state and profile information, and Muse fills and submits applications.">
   <link rel="icon" href="../favicon.ico">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +29,6 @@
         <span class="lang-en">work</span>
         <span class="lang-zh">作品</span>
       </a>
-      <a href="../skills.html">
-        <span class="lang-en">skills</span>
-        <span class="lang-zh">工具集</span>
-      </a>
       <a href="../index.html#writing">
         <span class="lang-en">writing</span>
         <span class="lang-zh">写作</span>
@@ -46,304 +42,96 @@
   </nav>
 
   <article class="article wrap">
-
     <div class="article-header">
-      <div class="article-eyebrow-block">
-        <span class="lang-en">case study · ai agent pipeline</span>
-        <span class="lang-zh">案例研究 · AI Agent 管线</span>
-      </div>
-      <h1 class="article-title">
-        <span class="lang-en">Job-Search Automation — an End-to-End AI Agent Pipeline</span>
-        <span class="lang-zh">求职自动化系统 —— 端到端 AI Agent 管线</span>
-      </h1>
+      <div class="article-eyebrow-block"><span class="lang-en">case study · agent products &amp; system design</span><span class="lang-zh">案例 · Agent 产品与系统设计</span></div>
+      <h1 class="article-title"><span class="lang-en">Job Search — Codex, Notion &amp; Muse</span><span class="lang-zh">Job Search —— Codex、Notion 与 Muse</span></h1>
       <div class="case-meta-strip">
-        <span class="origin-pill origin-personal"><span class="lang-en">Personal Project</span><span class="lang-zh">个人项目</span></span>
-        <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span><span class="lang-en">Running</span><span class="lang-zh">运行中</span></span>
-        <a class="badge badge-oss" href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener"><span class="lang-en">Public repo</span><span class="lang-zh">公开仓库</span></a>
-        <span class="case-layer"><span class="lang-en">Agents &amp; Skills</span><span class="lang-zh">智能体与技能</span></span>
+        <span class="origin-pill origin-personal"><span class="lang-en">Personal project</span><span class="lang-zh">个人项目</span></span>
+        <span class="case-layer"><span class="lang-en">Agent systems</span><span class="lang-zh">Agent 系统</span></span>
       </div>
-      <div class="article-meta">
-        <span class="lang-en">
-          Jun 2026 – present &nbsp;·&nbsp; personal project &nbsp;·&nbsp;
-          product owner + architecture, implementation paired with AI &nbsp;·&nbsp;
-          <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
-        </span>
-        <span class="lang-zh">
-          2026.06 至今 &nbsp;·&nbsp; 个人项目 &nbsp;·&nbsp;
-          产品 Owner + 架构，实现与 AI 结对完成 &nbsp;·&nbsp;
-          <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>运行中</span>
-        </span>
-      </div>
+      <div class="article-meta"><span class="lang-en">Product owner · task design, architecture &amp; acceptance · implementation with AI</span><span class="lang-zh">产品 Owner · 任务设计、系统架构与验收 · 与 AI 协作实现</span></div>
     </div>
 
     <dl class="case-summary" aria-label="Case study summary" data-i18n-aria-label-en="Case study summary" data-i18n-aria-label-zh="案例摘要">
-      <div>
-        <dt><span class="lang-en">Context</span><span class="lang-zh">场景</span></dt>
-        <dd><span class="lang-en">A fragmented, repetitive campus job-search loop</span><span class="lang-zh">分散且重复的校招求职流程</span></dd>
-      </div>
-      <div>
-        <dt><span class="lang-en">My role</span><span class="lang-zh">我的角色</span></dt>
-        <dd><span class="lang-en">Product owner · system architecture · acceptance</span><span class="lang-zh">产品 Owner · 系统架构 · 验收</span></dd>
-      </div>
-      <div>
-        <dt><span class="lang-en">Key decision</span><span class="lang-zh">关键判断</span></dt>
-        <dd><span class="lang-en">Automate preparation, never the final submission</span><span class="lang-zh">自动准备，但永不自动代投</span></dd>
-      </div>
-      <div>
-        <dt><span class="lang-en">Evidence</span><span class="lang-zh">证据</span></dt>
-        <dd><span class="lang-en">2 runs/day · 3 failure classes caught · public repo</span><span class="lang-zh">每日 2 次 · 捕获 3 类故障 · 公开仓库</span></dd>
-      </div>
+      <div><dt><span class="lang-en">Problem</span><span class="lang-zh">问题</span></dt><dd><span class="lang-en">A recurring job search spread across tools and websites</span><span class="lang-zh">跨工具、跨网站、持续发生的求职任务</span></dd></div>
+      <div><dt><span class="lang-en">My focus</span><span class="lang-zh">能力侧重</span></dt><dd><span class="lang-en">Task boundaries · shared state · result checks</span><span class="lang-zh">任务分工 · 共享状态 · 结果核验</span></dd></div>
+      <div><dt><span class="lang-en">Architecture</span><span class="lang-zh">架构</span></dt><dd><span class="lang-en">Codex + Notion + Muse</span><span class="lang-zh">Codex + Notion + Muse</span></dd></div>
+      <div><dt><span class="lang-en">Key decision</span><span class="lang-zh">关键判断</span></dt><dd><span class="lang-en">Separate discovery, memory, and execution</span><span class="lang-zh">让召回、记忆和执行各有归属</span></dd></div>
     </dl>
 
-    <div class="stats-row">
-      <div class="stat-item">
-        <span class="stat-num">2026.06 —</span>
-        <span class="stat-label">
-          <span class="lang-en">running unattended</span>
-          <span class="lang-zh">无人值守运行中</span>
-        </span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num"><span class="lang-en">2×/day</span><span class="lang-zh">每日 2 次</span></span>
-        <span class="stat-label">
-          <span class="lang-en">scheduled runs</span>
-          <span class="lang-zh">每日两班</span>
-        </span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num"><span class="lang-en">≤ 10 min</span><span class="lang-zh">≤ 10 分钟</span></span>
-        <span class="stat-label">
-          <span class="lang-en">daily loop budget</span>
-          <span class="lang-zh">每日循环时间预算</span>
-        </span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-num">3</span>
-        <span class="stat-label">
-          <span class="lang-en">failure classes caught by alerts</span>
-          <span class="lang-zh">靠报警发现的环境故障类别</span>
-        </span>
-      </div>
-    </div>
-
-    <div class="article-body drop-cap">
-
-      <!-- ============ ENGLISH ============ -->
+    <div class="article-body">
       <div class="lang-en">
-
-        <h2>The problem</h2>
-
-        <p>
-          Campus-recruiting information is scattered across sources, and the work of tracking it
-          is mostly repeated labor. The requirement I set for myself: the entire daily loop —
-          <em>see a new opening → judge it → produce a résumé → apply</em> — has to finish
-          in under 10 minutes a day.
-        </p>
-
-        <h2>My call</h2>
-
-        <p>
-          For a personal tool, the core metric isn't feature count — it's the
-          <strong>friction of the daily loop</strong>. And two human-in-the-loop rules are
-          non-negotiable: applications are never auto-submitted, and every number on a résumé
-          must trace back to a ledger of verified facts.
-        </p>
-
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-ja-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-            <!-- main chain -->
-            <rect class="pl-box" x="10" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="75" y="50" text-anchor="middle">Multiple sources</text>
-            <text class="pl-note" x="75" y="66" text-anchor="middle">Tables + APIs</text>
-            <rect class="pl-box" x="175" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="240" y="50" text-anchor="middle">Filter + dedupe</text>
-            <text class="pl-note" x="240" y="66" text-anchor="middle">Profile matching</text>
-            <rect class="pl-box" x="340" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="405" y="50" text-anchor="middle">LLM enrichment</text>
-            <text class="pl-note" x="405" y="66" text-anchor="middle">Official link / JD / fit</text>
-            <rect class="pl-box" x="505" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="570" y="50" text-anchor="middle">Daily digest</text>
-            <text class="pl-note" x="570" y="66" text-anchor="middle">Feishu</text>
-            <line class="pl-line" x1="144" y1="54" x2="168" y2="54" marker-end="url(#arr-ja-en)"/>
-            <line class="pl-line" x1="309" y1="54" x2="333" y2="54" marker-end="url(#arr-ja-en)"/>
-            <line class="pl-line" x1="474" y1="54" x2="498" y2="54" marker-end="url(#arr-ja-en)"/>
-            <!-- alerting rail (dashed drops from every node) -->
-            <path class="pl-dash" d="M 75 80 V 160"/>
-            <path class="pl-dash" d="M 240 80 V 160"/>
-            <path class="pl-dash" d="M 405 80 V 160"/>
-            <path class="pl-dash" d="M 570 80 V 160"/>
-            <path class="pl-dash" d="M 75 160 H 570"/>
-            <path class="pl-dash" d="M 95 160 V 180" marker-end="url(#arr-ja-en)"/>
-            <rect class="pl-box" x="10" y="186" width="170" height="44" rx="8"/>
-            <text class="pl-name" x="95" y="204" text-anchor="middle">Failure alerts</text>
-            <text class="pl-note" x="95" y="220" text-anchor="middle">Separate credentials</text>
-            <!-- ledger feedback loop -->
-            <rect class="pl-box" x="575" y="186" width="105" height="40" rx="8"/>
-            <text class="pl-name" x="627" y="210" text-anchor="middle">Application ledger</text>
-            <path class="pl-line" d="M 635 54 C 692 62, 692 150, 640 180" marker-end="url(#arr-ja-en)"/>
-            <path class="pl-line" d="M 575 206 C 420 246, 275 165, 244 88" marker-end="url(#arr-ja-en)"/>
-            <text class="pl-anno" x="415" y="243" text-anchor="middle">Skip prior applications</text>
-          </svg>
-          <figcaption>Daily pipeline: discovery → filter → LLM enrichment → push, with an independent alerting rail and a ledger feedback loop.</figcaption>
-        </figure>
-
-        <h2>What shipped</h2>
-
-        <ul>
-          <li><strong>Multi-source job discovery</strong> — structured tables + recruiting-platform APIs.</li>
-          <li><strong>Profile-based filtering and dedup</strong> ahead of anything expensive.</li>
-          <li><strong>LLM-agent enrichment</strong> — finds the official application entry, pulls the JD,
-            and judges the match.</li>
-          <li><strong>Daily scheduled digest</strong> pushed on a fixed cadence.</li>
-          <li><strong>Full-pipeline failure alerting</strong>, with alerting-channel credentials kept
-            separate from data-channel credentials.</li>
-          <li><strong>Cross-channel suppression</strong> of jobs already applied to.</li>
-        </ul>
-
-        <h2>Validation</h2>
-
-        <p>
-          The pipeline has been running unattended since June 2026, on two scheduled runs per day.
-          The alerting mechanism has already caught — and led to fixes for — three distinct
-          classes of environment failure.
-        </p>
-
-        <h2>System Artifacts</h2>
-
-        <p>
-          The architecture, agent prompts, and the three Claude Code skills that orchestrate
-          this system are public:
-        </p>
-
-        <ul>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Architecture &amp; design decisions (README)</a></li>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Agent prompts: discovery &amp; enrichment</a></li>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Skills: career-archive · resume-tailor · apply (sanitized)</a></li>
-        </ul>
-
-        <h2>What iterating taught me</h2>
-
-        <blockquote>
-          In an automated system, &ldquo;no news&rdquo; and &ldquo;no hits&rdquo; must never be
-          indistinguishable. That ambiguity is the cardinal sin of automation.
-        </blockquote>
-
-        <blockquote>
-          The biggest enemy of accumulation isn't the tool — it's friction.
-        </blockquote>
-
+        <h2>A job search keeps going after the search ends</h2>
+        <p>Finding a relevant opening starts another sequence of work: checking the role, locating the application, collecting personal information, filling out forms, and tracking what happened. Across repeated sessions, the same context has to survive. I wanted a workflow that could carry a role through these steps and pick up where it stopped.</p>
+        <h2>Three tools, with explicit responsibilities</h2>
+        <p>The current system uses <strong>Codex for discovery, Notion for shared state and information, and Muse for application execution</strong>. Codex can also attempt applications. The useful design question is how these tools hand work to one another and recognize the result.</p>
+        <ol>
+          <li><strong>Codex — find and assess roles.</strong> Use web search to recall relevant openings, consult the profile and existing roles in Notion to find similar opportunities, and attempt applications where possible.</li>
+          <li><strong>Notion — hold the workflow's memory.</strong> Keep the job database, application state, and personal information together. Codex uses this context for matching; Muse uses the same information to fill applications.</li>
+          <li><strong>Muse — carry out applications.</strong> Read the relevant information, fill out the application, and submit it. If a step needs my judgment or missing information, preserve it as unfinished work.</li>
+        </ol>
       </div>
-
-      <!-- ============ 中文 ============ -->
       <div class="lang-zh">
-
-        <h2>问题</h2>
-
-        <p>
-          校招信息散落在各处，跟进它们的工作大部分是重复劳动。我给自己定的要求是：
-          每天 10 分钟内完成 <em>"看到新岗 → 判断 → 出简历 → 投出"</em> 这整个循环。
-        </p>
-
-        <h2>我的判断</h2>
-
-        <p>
-          个人工具的核心指标不是功能数量，是<strong>"每日循环的摩擦"</strong>。
-          另外有两条 human-in-the-loop 铁律不可协商：投递不自动提交；
-          简历上每个数字必须可溯源到事实台账。
-        </p>
-
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-ja-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-            <!-- main chain -->
-            <rect class="pl-box" x="10" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="75" y="50" text-anchor="middle">多信源</text>
-            <text class="pl-note" x="75" y="66" text-anchor="middle">结构化表+平台API</text>
-            <rect class="pl-box" x="175" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="240" y="50" text-anchor="middle">筛选+去重</text>
-            <text class="pl-note" x="240" y="66" text-anchor="middle">画像匹配</text>
-            <rect class="pl-box" x="340" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="405" y="50" text-anchor="middle">LLM Agent 富化</text>
-            <text class="pl-note" x="405" y="66" text-anchor="middle">官方入口·JD·匹配度</text>
-            <rect class="pl-box" x="505" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="570" y="50" text-anchor="middle">每日推送</text>
-            <text class="pl-note" x="570" y="66" text-anchor="middle">Feishu</text>
-            <line class="pl-line" x1="144" y1="54" x2="168" y2="54" marker-end="url(#arr-ja-zh)"/>
-            <line class="pl-line" x1="309" y1="54" x2="333" y2="54" marker-end="url(#arr-ja-zh)"/>
-            <line class="pl-line" x1="474" y1="54" x2="498" y2="54" marker-end="url(#arr-ja-zh)"/>
-            <!-- alerting rail (dashed drops from every node) -->
-            <path class="pl-dash" d="M 75 80 V 160"/>
-            <path class="pl-dash" d="M 240 80 V 160"/>
-            <path class="pl-dash" d="M 405 80 V 160"/>
-            <path class="pl-dash" d="M 570 80 V 160"/>
-            <path class="pl-dash" d="M 75 160 H 570"/>
-            <path class="pl-dash" d="M 95 160 V 180" marker-end="url(#arr-ja-zh)"/>
-            <rect class="pl-box" x="10" y="186" width="170" height="44" rx="8"/>
-            <text class="pl-name" x="95" y="204" text-anchor="middle">故障报警</text>
-            <text class="pl-note" x="95" y="220" text-anchor="middle">独立凭证通道</text>
-            <!-- ledger feedback loop -->
-            <rect class="pl-box" x="575" y="186" width="105" height="40" rx="8"/>
-            <text class="pl-name" x="627" y="210" text-anchor="middle">投递台账</text>
-            <path class="pl-line" d="M 635 54 C 692 62, 692 150, 640 180" marker-end="url(#arr-ja-zh)"/>
-            <path class="pl-line" d="M 575 206 C 420 246, 275 165, 244 88" marker-end="url(#arr-ja-zh)"/>
-            <text class="pl-anno" x="415" y="243" text-anchor="middle">已投抑制 / applied-suppression</text>
-          </svg>
-          <figcaption>每日管线:发现→筛选→LLM富化→推送;独立报警轨 + 台账回流抑制。</figcaption>
-        </figure>
-
-        <h2>交付</h2>
-
-        <ul>
-          <li><strong>多信源岗位发现</strong> —— 结构化表 + 招聘平台 API。</li>
-          <li><strong>画像筛选去重</strong>，放在一切昂贵操作之前。</li>
-          <li><strong>LLM agent 富化</strong> —— 搜官方入口、抓 JD、判匹配度。</li>
-          <li><strong>每日定时推送</strong>。</li>
-          <li><strong>全链路故障报警</strong>，报警通道与数据通道凭证分离。</li>
-          <li><strong>已投岗位跨渠道自动抑制</strong>。</li>
-        </ul>
-
-        <h2>验证</h2>
-
-        <p>
-          系统自 2026 年 6 月起无人值守运行中，每日两班。
-          曾靠报警机制发现并修复三类环境故障。
-        </p>
-
-        <h2>系统构件</h2>
-
-        <p>
-          这套系统的架构、agent 提示词与三个编排 skill 已公开：
-        </p>
-
-        <ul>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Architecture &amp; design decisions / 架构与设计决策 (README)</a></li>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Agent prompts: discovery &amp; enrichment / 发现与富化提示词</a></li>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Skills: career-archive · resume-tailor · apply / 三个编排 skill（已脱敏）</a></li>
-        </ul>
-
-        <h2>认知迭代</h2>
-
-        <blockquote>
-          "没消息" 和 "没命中" 不可区分，是自动化系统的大忌。
-        </blockquote>
-
-        <blockquote>
-          沉淀的最大敌人是摩擦，不是工具。
-        </blockquote>
-
+        <h2>搜索结束以后，求职才刚开始</h2>
+        <p>找到一个合适的岗位，后面还有一串工作：判断是否匹配、找投递入口、整理个人资料、填写表单，再记录到底投到了哪一步。这些事会反复发生，也经常跨越不同的对话和网站。我想做的是让一个岗位能沿着这条链路往前走，中间停下以后也能继续。</p>
+        <h2>三个工具，各自承担一部分工作</h2>
+        <p>现在的架构是 <strong>Codex 负责召回，Notion 承担状态和信息，Muse 负责实际投递</strong>。Codex 也会尝试投递。这里需要设计的是分工、任务交接，以及怎样判断一次执行有没有完成。</p>
+        <ol>
+          <li><strong>Codex：找到并判断岗位。</strong> 通过 web search 召回岗位，调用 Notion 里的个人信息与已有岗位寻找相似机会，并在可执行的环节尝试投递。</li>
+          <li><strong>Notion：保存流程的记忆。</strong> 同时承担岗位数据库、状态机和个人信息库。Codex 用它辅助匹配，Muse 读取同一份资料用于填写申请。</li>
+          <li><strong>Muse：完成投递动作。</strong> 读取相关资料，填写并提交申请。需要我判断或者补充信息的地方，保留成后续可以继续处理的任务。</li>
+        </ol>
       </div>
 
-      <!-- Article-end signoff -->
-      <div class="article-end">
-        <div class="signoff">
-          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
-          <span class="lang-zh">若阳 &nbsp;·&nbsp; 写于 New Haven, CT 06511 &nbsp;·&nbsp; 2026</span>
-        </div>
+      <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Codex, Notion and Muse workflow" data-i18n-aria-label-en="Codex, Notion and Muse workflow" data-i18n-aria-label-zh="Codex、Notion 与 Muse 的协作流程">
+        <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs><marker id="job-flow-arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+          <rect class="pl-box" x="20" y="30" width="180" height="72" rx="8"/>
+          <text class="pl-name" x="110" y="57" text-anchor="middle">Codex</text>
+          <text class="pl-note lang-en" x="110" y="81" text-anchor="middle">Search · match · attempt</text><text class="pl-note lang-zh" x="110" y="81" text-anchor="middle">搜索 · 匹配 · 尝试投递</text>
+          <rect class="pl-box" x="270" y="30" width="180" height="72" rx="8"/>
+          <text class="pl-name" x="360" y="57" text-anchor="middle">Notion</text>
+          <text class="pl-note lang-en" x="360" y="81" text-anchor="middle">Jobs · state · profile</text><text class="pl-note lang-zh" x="360" y="81" text-anchor="middle">岗位 · 状态 · 个人资料</text>
+          <rect class="pl-box" x="520" y="30" width="180" height="72" rx="8"/>
+          <text class="pl-name" x="610" y="57" text-anchor="middle">Muse</text>
+          <text class="pl-note lang-en" x="610" y="81" text-anchor="middle">Fill · submit</text><text class="pl-note lang-zh" x="610" y="81" text-anchor="middle">填写 · 提交</text>
+          <path class="pl-line" d="M205 55h57" marker-end="url(#job-flow-arrow)"/>
+          <path class="pl-line" d="M265 81h-57" marker-end="url(#job-flow-arrow)"/>
+          <path class="pl-line" d="M455 66h57" marker-end="url(#job-flow-arrow)"/>
+          <path class="pl-line" d="M610 108v70H368v-68" marker-end="url(#job-flow-arrow)"/>
+          <text class="pl-note lang-en" x="490" y="204" text-anchor="middle">Check the result · update the state</text><text class="pl-note lang-zh" x="490" y="204" text-anchor="middle">核对结果 · 更新状态</text>
+          <path class="pl-dash" d="M110 108v70h243" marker-end="url(#job-flow-arrow)"/>
+        </svg>
+        <figcaption><span class="lang-en">Shared information and explicit state connect discovery to execution.</span><span class="lang-zh">共享资料与明确状态，把岗位召回和投递执行接起来。</span></figcaption>
+      </figure>
+
+      <div class="lang-en">
+        <h2>What I designed</h2>
+        <p>My work centers on the task boundaries, the information each step needs, and the criteria for moving to the next state. Notion makes the context available across tools. A role discovered by Codex can carry its source and matching context forward; Muse can use the personal information without asking me to reconstruct it for every form.</p>
+        <p>An attempted action and a completed application need distinct records. A blocked step needs enough context to resume it. These decisions determine whether the workflow is useful over time.</p>
+        <h2>How I judge the workflow</h2>
+        <ul>
+          <li><strong>Traceable discovery:</strong> a role has a source and an application entry that can be checked.</li>
+          <li><strong>Consistent information:</strong> matching and form filling use the same personal information.</li>
+          <li><strong>Verifiable completion:</strong> an application is recorded as submitted only with an official confirmation or receipt; unfinished attempts stay visible for follow-up.</li>
+        </ul>
+        <p>A related implementation, <a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Reachout in the public repository</a>, covers role discovery, evaluation, and application preparation with manual submission. This page describes my personal workflow with Codex, Notion, and Muse.</p>
+      </div>
+      <div class="lang-zh">
+        <h2>我具体设计了什么</h2>
+        <p>我的工作集中在任务边界、每一步需要的信息，以及进入下一个状态的条件。Notion 让上下文可以在工具之间继续使用：Codex 找到的岗位可以带着来源和匹配依据往下走，Muse 填表时也可以直接使用个人资料，减少每次重新提供信息的工作。</p>
+        <p>尝试过一个动作，和完成一次投递，需要留下不同的记录。中途卡住的环节，也要保留足够的信息才能继续。这些设计决定了这个流程能不能长期使用。</p>
+        <h2>我用什么判断这条链路是否成立</h2>
+        <ul>
+          <li><strong>召回可回看：</strong>岗位有明确来源，投递入口可以核对。</li>
+          <li><strong>资料一致：</strong>岗位匹配和表单填写使用同一份个人信息。</li>
+          <li><strong>完成可确认：</strong>拿到官方确认或回执后才记为已投；没有完成的尝试继续保留，方便后续处理。</li>
+        </ul>
+        <p>相关实现可以看<a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">公开仓库中的 Reachout</a>，它覆盖岗位发现、评估与投递准备，采用人工提交。这页介绍的是我使用 Codex、Notion 与 Muse 的个人工作流。</p>
       </div>
 
+      <div class="article-end"><div class="signoff"><span class="lang-en">Pacifica Zhang · Agent products, state, and execution</span><span class="lang-zh">若阳 · Agent 产品、状态与执行</span></div><p><a href="../index.html#work-jobagent"><span class="lang-en">← Back to the work map</span><span class="lang-zh">← 返回作品地图</span></a></p></div>
     </div>
-
   </article>
 
   <footer>

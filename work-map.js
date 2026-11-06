@@ -1,80 +1,72 @@
-/* Native links remain useful without JS; previews are a progressive enhancement. */
+/* Native details and links also work without JavaScript. */
 (() => {
   'use strict';
   const map = document.querySelector('.work-showcase');
   if (!map) return;
-  const cards = Array.from(map.querySelectorAll('.work-card'));
-  const panels = new Map(Array.from(map.querySelectorAll('.work-stratum')).map(row => {
-    const panel = row.querySelector('.work-evaluation-content');
-    return [row, { panel, initial: panel.innerHTML }];
-  }));
-  const announcement = map.querySelector('#work-announcement');
-  let active = null;
-  let armed = null;
-  let pointerType = '';
   const returnKey = 'pz-work-return';
+  const states = new Map();
+  const hoverLayout = matchMedia('(min-width: 801px) and (hover: hover) and (pointer: fine)');
 
-  function announceCard(card) {
-    if (!announcement) return;
-    const lang = document.documentElement.lang === 'zh' ? 'zh' : 'en';
-    announcement.textContent = card ? card.querySelector(`.work-sr .lang-${lang}`).textContent : '';
-  }
+  map.querySelectorAll('.work-stratum').forEach(row => {
+    const cards = Array.from(row.querySelectorAll('details.work-card'));
+    const state = { pinned: null, suppressFocus: false };
+    const select = card => cards.forEach(item => { item.open = item === card; });
+    states.set(row, { state, select });
 
-  function preview(card, announce = false) {
-    if (active === card) return;
-    active = card;
-    cards.forEach(item => item.classList.toggle('is-preview', item === card));
-    panels.forEach(({panel, initial}, row) => {
-      if (card && row.contains(card)) {
-        panel.replaceChildren(card.querySelector('.work-summary').content.cloneNode(true));
-      } else panel.innerHTML = initial;
-    });
-    if (announce || !card) announceCard(card);
-  }
-
-  cards.forEach(card => {
-    card.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'mouse') preview(card);
-    });
-    card.addEventListener('pointerdown', event => { pointerType = event.pointerType; });
-    card.addEventListener('focus', () => preview(card, true));
-    card.addEventListener('click', event => {
-      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      const touch = event.detail !== 0 && (pointerType === 'touch' || (!pointerType && matchMedia('(hover: none)').matches));
-      if (touch && armed !== card) {
+    cards.forEach(card => {
+      const trigger = card.querySelector('summary');
+      card.addEventListener('pointerenter', event => {
+        // Touch uses the explicit disclosure; hover is only an enhancement.
+        if (event.pointerType === 'mouse' && hoverLayout.matches) select(card);
+      });
+      trigger.addEventListener('focus', () => {
+        if (!state.suppressFocus && trigger.matches(':focus-visible')) select(card);
+      });
+      trigger.addEventListener('click', event => {
         event.preventDefault();
-        armed = card;
-        preview(card, true);
-        return;
+        state.pinned = state.pinned === card ? null : card;
+        select(state.pinned);
+      });
+    });
+    row.addEventListener('pointerleave', event => {
+      if (event.pointerType === 'mouse' && !row.querySelector(':focus-visible')) select(state.pinned);
+    });
+    row.addEventListener('focusout', () => {
+      queueMicrotask(() => {
+        if (!row.contains(document.activeElement)) select(state.pinned);
+      });
+    });
+    row.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const card = event.target.closest('details.work-card');
+      if (card) {
+        state.suppressFocus = true;
+        card.querySelector('summary').focus({ preventScroll: true });
+        state.suppressFocus = false;
       }
-      try { sessionStorage.setItem(returnKey, card.id); } catch (_) { /* Optional navigation memory. */ }
+      state.pinned = null;
+      select(null);
     });
   });
-  map.querySelector('.work-strata').addEventListener('pointerleave', event => {
-    if (event.pointerType === 'mouse' && !map.querySelector(':focus-visible')) preview(null);
-  });
-  map.addEventListener('focusout', event => {
-    if (!map.contains(event.relatedTarget)) { armed = null; preview(null); }
-  });
-  document.addEventListener('pointerdown', event => {
-    if (!map.contains(event.target)) { armed = null; preview(null); }
-  });
-  map.addEventListener('keydown', event => {
-    if (event.key === 'Escape') { armed = null; preview(null); }
-  });
-  document.addEventListener('languagechange', () => { if (active) announceCard(active); });
+
   map.addEventListener('click', event => {
-    if (!event.target.closest('.work-detail-link') || !active) return;
-    try { sessionStorage.setItem(returnKey, active.id); } catch (_) { /* Links still work. */ }
+    const link = event.target.closest('a[href]');
+    const card = link?.closest('.work-card');
+    if (!card || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try { sessionStorage.setItem(returnKey, card.id); } catch (_) { /* Links still work. */ }
   });
   window.addEventListener('pageshow', () => {
-    armed = null;
     try {
       const id = sessionStorage.getItem(returnKey);
-      const card = cards.find(item => item.id === id);
-      if (!card) return;
+      const card = id && document.getElementById(id);
+      if (!card || !map.contains(card)) return;
       sessionStorage.removeItem(returnKey);
-      card.focus({ preventScroll: true });
-    } catch (_) { /* Browsers may disable session storage. */ }
+      if (card.matches('details')) {
+        const { state, select } = states.get(card.closest('.work-stratum'));
+        state.pinned = card;
+        select(card);
+      }
+      card.querySelector('.work-card-top').focus({ preventScroll: true });
+    } catch (_) { /* Navigation also works when session storage is unavailable. */ }
   });
 })();
