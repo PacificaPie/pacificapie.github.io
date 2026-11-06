@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="ResourceLoop — Case Study" data-zh="ResourceLoop — 案例">ResourceLoop — Case Study</title>
-  <meta name="description" content="A three-role request–review–deploy system defined from zero at Meituan: mechanism design, heat modeling, an LLM material recommender, two-stage image generation, and a frontend engineering baseline.">
+  <title data-en="ResourceLoop — Campaign Themes &amp; Product Matching" data-zh="ResourceLoop — 活动主题与商品匹配">ResourceLoop — Campaign Themes &amp; Product Matching</title>
+  <meta name="description" content="Campaign-theme selection, product retrieval, and human review upstream of an internal ad-building agent. Product strategy and system delivery with AI-assisted development.">
   <link rel="icon" href="../favicon.ico">
 
   <meta property="og:type" content="article">
-  <meta property="og:title" content="ResourceLoop — a B-Side System Defined and Shipped from Zero">
-  <meta property="og:description" content="Three role consoles, four domain engines, one source of truth — mechanism design, latent-variable heat modeling, and an engineering baseline.">
+  <meta property="og:title" content="ResourceLoop — Matching Campaign Themes with the Right Products">
+  <meta property="og:description" content="Selecting themes and matching products by price, stock, location, and driving distance, with human review and a clear downstream handoff.">
   <meta property="og:url" content="https://pacificapie.github.io/work/resourceloop.html">
   <meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
   <meta name="twitter:card" content="summary">
@@ -56,12 +56,12 @@
 
     <div class="article-header">
       <div class="article-eyebrow-block cream">
-        <span class="lang-en">case study · b-side system</span>
-        <span class="lang-zh">案例研究 · B 端系统</span>
+        <span class="lang-en">case study · product strategy &amp; systems</span>
+        <span class="lang-zh">案例研究 · 产品策略与系统交付</span>
       </div>
       <h1 class="article-title">
-        <span class="lang-en">ResourceLoop — a B-Side System Defined and Shipped from Zero</span>
-        <span class="lang-zh">ResourceLoop —— 从零定义并交付的 B 端系统</span>
+        <span class="lang-en">ResourceLoop — Matching Campaign Themes with the Right Products</span>
+        <span class="lang-zh">ResourceLoop —— 为活动主题匹配合适的商品</span>
       </h1>
       <div class="case-meta-strip">
         <span class="origin-pill origin-internship"><span class="lang-en">Internship · Meituan</span><span class="lang-zh">美团实习</span></span>
@@ -71,11 +71,11 @@
       <div class="article-meta">
         <span class="lang-en">
           internship project (internal) &nbsp;·&nbsp;
-          I defined the workflow, data model, interaction, and incentive mechanism; the team validated, and we co-developed pairing with AI
+          Workflow, data model, recommendation rules, and acceptance criteria · frontend and backend implementation with AI
         </span>
         <span class="lang-zh">
           实习项目（内部） &nbsp;·&nbsp;
-          我定义工作流、数据模型、交互与激励机制，团队校验，和 AI 结对协同开发
+          工作流、数据模型、推荐规则与验收标准 · 与 AI 协作完成前后端实现
         </span>
       </div>
     </div>
@@ -85,640 +85,306 @@
       <!-- ============ ENGLISH ============ -->
       <div class="lang-en">
 
-        <h2>The problem</h2>
-
         <p>
-          Trending events in travel — concerts, matches, festivals — need BD teams to claim platform
-          resources to support them. There was no systematic way to do it: the request-and-approval
-          loop lived nowhere in particular, and no one could see which requests were actually worth
-          granting.
+          A concert, match, or festival can suggest a campaign theme. Making that theme useful takes
+          another set of decisions: which products fit, whether the price and stock work, and whether
+          customers can reasonably get from the event to the product location. ResourceLoop brings
+          those decisions into one workflow, upstream of an internal advertising-page builder.
         </p>
 
-        <h2>My role &amp; the collaboration model</h2>
+        <h2>Where this system fits</h2>
 
         <p>
-          I defined the whole thing from zero — the workflow, the data model, the interaction, the
-          incentive mechanism, and the acceptance criteria. The team validated the operating
-          assumptions; we co-developed the implementation, pairing with AI for prototyping. Working
-          with AI has to be driven by your own structured thinking: a PM can build, but never at the
-          cost of time spent thinking about direction.
+          ResourceLoop selects activity themes, retrieves and screens product supply, and gives people
+          a place to review and adjust the recommendations. Its handoff is a structured set of
+          <strong>selected themes, suitable products, and resource suggestions</strong>.
+          A separate team owns the downstream ad-building agent, which uses the company's internal
+          tools to assemble page components, product shelves, and advertising AIGC.
         </p>
 
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-rl-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-            <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="115" y="52" text-anchor="middle">BD request</text>
-            <rect class="pl-box" x="285" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="360" y="52" text-anchor="middle">Review</text>
-            <rect class="pl-box" x="530" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="605" y="52" text-anchor="middle">Deploy</text>
-            <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rl-en)"/>
-            <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rl-en)"/>
-            <text class="pl-note" x="115" y="90" text-anchor="middle">success rate semi-visible</text>
-            <text class="pl-note" x="360" y="90" text-anchor="middle">appeals decoupled + scorecard</text>
-            <!-- collaboration strip -->
-            <rect class="pl-box" x="20" y="128" width="250" height="40" rx="8"/>
-            <text class="pl-name" x="145" y="152" text-anchor="middle">Me: needs · data model · UX</text>
-            <rect class="pl-box" x="310" y="128" width="130" height="40" rx="8"/>
-            <text class="pl-name" x="375" y="152" text-anchor="middle">Team validates</text>
-            <rect class="pl-box" x="480" y="128" width="170" height="40" rx="8"/>
-            <text class="pl-name" x="565" y="152" text-anchor="middle">AI pair-builds</text>
-            <line class="pl-line" x1="274" y1="148" x2="306" y2="148" marker-end="url(#arr-rl-en)"/>
-            <line class="pl-line" x1="444" y1="148" x2="476" y2="148" marker-end="url(#arr-rl-en)"/>
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable system boundary diagram" data-i18n-aria-label-en="Scrollable system boundary diagram" data-i18n-aria-label-zh="可横向滚动的系统分工图">
+          <svg viewBox="0 0 720 364" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-scope-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <text class="pl-name" style="font-size:16px" x="18" y="22">ResourceLoop · my upstream scope</text>
+            <rect class="pl-dash" x="12" y="36" width="696" height="184" rx="12"/>
+            <rect class="pl-box" x="26" y="56" width="200" height="74" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="126" y="84" text-anchor="middle">Choose a theme</text>
+            <text class="pl-note" style="font-size:14px" x="126" y="108" text-anchor="middle">Event context · heat</text>
+            <rect class="pl-box" x="260" y="56" width="200" height="74" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="360" y="80" text-anchor="middle">Match products</text>
+            <text class="pl-note" style="font-size:13px" x="360" y="101" text-anchor="middle">Price · stock · location</text>
+            <text class="pl-note" style="font-size:14px" x="360" y="119" text-anchor="middle">Driving distance</text>
+            <rect class="pl-box" x="494" y="56" width="200" height="74" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="594" y="84" text-anchor="middle">Review &amp; adjust</text>
+            <text class="pl-note" style="font-size:14px" x="594" y="108" text-anchor="middle">Human judgment</text>
+            <line class="pl-line" x1="228" y1="93" x2="256" y2="93" marker-end="url(#arr-scope-en)"/>
+            <line class="pl-line" x1="462" y1="93" x2="490" y2="93" marker-end="url(#arr-scope-en)"/>
+            <path class="pl-line" d="M594 130 V146 H360 V163" marker-end="url(#arr-scope-en)"/>
+            <rect class="pl-box" x="160" y="166" width="400" height="38" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="360" y="190" text-anchor="middle">Theme + products + resource suggestions</text>
+            <line class="pl-line" x1="360" y1="205" x2="360" y2="282" marker-end="url(#arr-scope-en)"/>
+            <text class="pl-name" style="font-size:14px" x="18" y="260">Downstream · separate team</text>
+            <rect class="pl-box" x="140" y="286" width="440" height="66" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="360" y="312" text-anchor="middle">Internal ad-building agent</text>
+            <text class="pl-note" style="font-size:14px" x="360" y="336" text-anchor="middle">Page components · product shelves · AIGC</text>
           </svg>
-          <figcaption>
-            Three-role flow, with the collaboration model underneath: I propose, the team validates, AI pair-builds.
-          </figcaption>
+          <figcaption>ResourceLoop prepares the campaign inputs. The downstream team assembles the advertising page with internal tools.</figcaption>
         </figure>
 
-        <h2>System architecture</h2>
+        <h2>Turning “suitable” into decisions people can inspect</h2>
 
         <p>
-          The system runs as four layers. A <strong>data layer</strong> normalizes event, supply, and
-          web-search signals into one heat scale. A <strong>strategy engine</strong> is the core — a
-          three-tier recommendation chain: (a) an event heat score, (b) a default recommendation for
-          BD at apply time, and (c) a final resource-slot lock at review. An <strong>AI layer</strong>
-          generates materials, event-card images, and landing pages, and <strong>role consoles</strong>
-          for BD and reviewers sit on top (React SPA, SSO role routing). One rule shaped the backend:
-          <strong>the success rate is computed once, on the server — the single authoritative source
-          of truth</strong>; the frontend is a thin consumer with a defensive fallback, so when the
-          scoring model was later upgraded, the frontend didn't change a line.
-        </p>
-
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 800 474" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-arch-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-
-            <!-- strategy grouping container -->
-            <rect class="pl-dash" x="8" y="100" width="784" height="192" rx="12"/>
-
-            <!-- layer labels -->
-            <text class="pl-anno" x="16" y="20">Data layer</text>
-            <text class="pl-anno" x="16" y="94">Strategy engine · three-tier recommendation</text>
-            <text class="pl-anno" x="16" y="318">AI generation</text>
-            <text class="pl-anno" x="16" y="396">Presentation · React SPA · SSO routing</text>
-
-            <!-- DATA -->
-            <rect class="pl-box" x="16"  y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="106" y="49" text-anchor="middle">Event + POI tables</text>
-            <text class="pl-note" x="106" y="63" text-anchor="middle">+ web-search feed</text>
-            <rect class="pl-box" x="211" y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="302" y="49" text-anchor="middle">Heat normalization</text>
-            <text class="pl-note" x="302" y="63" text-anchor="middle">→ S / high / mid / low</text>
-            <rect class="pl-box" x="406" y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="496" y="49" text-anchor="middle">Supply data</text>
-            <text class="pl-note" x="496" y="63" text-anchor="middle">price · rights</text>
-            <rect class="pl-box" x="601" y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="691" y="49" text-anchor="middle">Config · delivery</text>
-            <text class="pl-note" x="691" y="63" text-anchor="middle">slot catalog · byday</text>
-
-            <!-- data -> engines -->
-            <line class="pl-line" x1="106" y1="74" x2="106" y2="110" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="302" y1="74" x2="302" y2="110" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="496" y1="74" x2="496" y2="110" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="691" y1="74" x2="691" y2="110" marker-end="url(#arr-arch-en)"/>
-
-            <!-- STRATEGY ENGINES -->
-            <rect class="pl-box" x="16"  y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="106" y="135" text-anchor="middle">Event recall + recommend</text>
-            <rect class="pl-box" x="211" y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="302" y="128" text-anchor="middle">Supply-quality engine</text>
-            <text class="pl-note" x="302" y="143" text-anchor="middle">success-rate</text>
-            <rect class="pl-box" x="406" y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="496" y="128" text-anchor="middle">Apply + review flow</text>
-            <text class="pl-note" x="496" y="143" text-anchor="middle">state machine</text>
-            <rect class="pl-box" x="601" y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="691" y="135" text-anchor="middle">Delivery queue + report</text>
-
-            <!-- engines -> chain -->
-            <line class="pl-line" x1="138" y1="152" x2="138" y2="168" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="400" y1="152" x2="400" y2="168" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="662" y1="152" x2="662" y2="168" marker-end="url(#arr-arch-en)"/>
-
-            <!-- THREE-TIER CHAIN -->
-            <rect class="pl-box" x="16"  y="168" width="244" height="118" rx="8"/>
-            <text class="pl-name" x="30" y="189">(a) Event heat score</text>
-            <text class="pl-note" x="30" y="212">labels: LLM eval + pairwise</text>
-            <text class="pl-note" x="30" y="232">ML train: buzz · search · orders</text>
-            <text class="pl-note" x="30" y="252">→ heat score 0–100</text>
-            <rect class="pl-box" x="278" y="168" width="244" height="118" rx="8"/>
-            <text class="pl-name" x="292" y="189">(b) BD default rec</text>
-            <text class="pl-note" x="292" y="212">heat percentile → slot tier</text>
-            <text class="pl-note" x="292" y="232">reach: tier 1 high → tier 5 low</text>
-            <text class="pl-note" x="292" y="252">type → subsidy / slot</text>
-            <rect class="pl-box" x="540" y="168" width="244" height="118" rx="8"/>
-            <text class="pl-name" x="554" y="189">(c) Review lock</text>
-            <text class="pl-note" x="554" y="212">allocate by value score</text>
-            <text class="pl-note" x="554" y="232">conflict: same-city ≠ same slot</text>
-            <text class="pl-note" x="554" y="252">→ one slot per event</text>
-
-            <!-- strategy -> AI -->
-            <text class="pl-anno" x="150" y="310">eventId ↓</text>
-            <line class="pl-line" x1="138" y1="292" x2="138" y2="326" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="400" y1="292" x2="400" y2="326" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="662" y1="292" x2="662" y2="326" marker-end="url(#arr-arch-en)"/>
-
-            <!-- AI GENERATION -->
-            <rect class="pl-box" x="16"  y="326" width="244" height="50" rx="8"/>
-            <text class="pl-name" x="138" y="347" text-anchor="middle">Material-list gen · LLM</text>
-            <text class="pl-note" x="138" y="363" text-anchor="middle">event → materials</text>
-            <rect class="pl-box" x="278" y="326" width="244" height="50" rx="8"/>
-            <text class="pl-name" x="400" y="347" text-anchor="middle">Event-card image</text>
-            <text class="pl-note" x="400" y="363" text-anchor="middle">two-stage · pre-generated</text>
-            <rect class="pl-box" x="540" y="326" width="244" height="50" rx="8"/>
-            <text class="pl-name" x="662" y="347" text-anchor="middle">AI landing-page builder</text>
-            <text class="pl-note" x="662" y="363" text-anchor="middle">auto-built per event</text>
-
-            <!-- AI -> presentation -->
-            <line class="pl-line" x1="138" y1="376" x2="138" y2="404" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="400" y1="376" x2="400" y2="404" marker-end="url(#arr-arch-en)"/>
-            <line class="pl-line" x1="662" y1="376" x2="662" y2="404" marker-end="url(#arr-arch-en)"/>
-
-            <!-- PRESENTATION -->
-            <rect class="pl-box" x="16"  y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="106" y="429" text-anchor="middle">Hotspot calendar</text>
-            <text class="pl-note" x="106" y="446" text-anchor="middle">BD</text>
-            <rect class="pl-box" x="211" y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="302" y="429" text-anchor="middle">Supply-apply console</text>
-            <text class="pl-note" x="302" y="446" text-anchor="middle">BD</text>
-            <rect class="pl-box" x="406" y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="496" y="429" text-anchor="middle">Review console</text>
-            <text class="pl-note" x="496" y="446" text-anchor="middle">reviewer</text>
-            <rect class="pl-box" x="601" y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="691" y="429" text-anchor="middle">Report delivery</text>
-            <text class="pl-note" x="691" y="446" text-anchor="middle">BD</text>
-          </svg>
-          <figcaption>
-            Four layers: a data layer normalizes events into one heat scale; the strategy engine runs a three-tier recommendation chain (heat score → BD default → review lock); an AI layer generates materials, card images, and landing pages; role consoles sit on top. Internal system, table, and slot names are generalized.
-          </figcaption>
-        </figure>
-
-        <h2>Mechanism design</h2>
-
-        <p>
-          The system isn't a form — it's a small market, so I designed it like one. Mechanism design
-          means taking &ldquo;how will people game this?&rdquo; as a first-class input.
+          I defined the workflow, data model, recommendation rules, interactions, and acceptance
+          criteria. The team checked the business assumptions, and I used AI to help implement the
+          frontend and backend. The central product work was making the selection criteria concrete:
         </p>
 
         <ul>
-          <li><strong>Success rates are semi-visible</strong> — enough to guide a request, not enough
-            to reverse-engineer and game for arbitrage.</li>
-          <li><strong>Appeals are decoupled from review, and reviewers carry a scorecard</strong> —
-            the power to reject comes with matching accountability. Two-way, not one.</li>
-          <li><strong>One submission per event</strong>; cards stay locked to an event ID across days,
-            so the same event can't be quietly double-claimed.</li>
+          <li><strong>Theme:</strong> which event provides the reason for this campaign?</li>
+          <li><strong>Price and stock:</strong> does the available supply support the proposed offer?</li>
+          <li><strong>Location and driving distance:</strong> is the product practical for someone
+            attending the event? Proximity on a map alone does not settle that question.</li>
+          <li><strong>Human review:</strong> what can the system recommend, and what should an operator
+            adjust before handing the selection downstream?</li>
         </ul>
 
         <p>
-          Every item on the &ldquo;won't build&rdquo; list has a concrete scenario behind it — landing
-          pages, withdrawals, client-side ordering, frontend allow-lists. I kept the surface small on
-          purpose.
+          Event heat is one input to this decision. A highly ranked event still needs appropriate
+          supply and workable resource conditions. Keeping those judgments distinct makes it possible
+          to inspect why a theme is attractive and why a particular product belongs with it.
         </p>
 
-        <h2>Modeling heat as a latent variable</h2>
+        <h2>Making review part of the workflow</h2>
 
         <p>
-          Which events deserve resources? <em>Heat</em> is a latent variable — there's no clean
-          ground truth for it. So I didn't pretend there was. The pipeline is
-          <strong>LLM-evaluated labeling plus machine-learning training</strong>: an LLM evaluates and
-          labels events, pairwise comparison calibrates those labels into a consistent ordering, and a
-          supervised model trains on them — learning to predict a 0–100 heat score from the observable
-          signals (off-site social buzz, on-site search intent, hotel-order contribution). That score
-          drives the whole recommendation chain. The discipline is admitting where truth is
-          manufactured, and building the calibration that makes it trustworthy.
-        </p>
-
-        <h2>LLM material recommendation</h2>
-
-        <p>
-          When a BD claims an event, the system suggests matching support materials. Two product
-          calls shaped it. First, the LLM's job here is to <strong>widen the consideration set, not to
-          decide</strong> — the output is a candidate list a human checks off, never a verdict.
-          Second, evaluation comes before optimization: without a fixed sample, &ldquo;it feels
-          better&rdquo; is worthless.
+          Business-development teams need to propose and adjust selections; reviewers need to evaluate
+          requests and allocate resources. I designed the request, review, and appeal steps around
+          those responsibilities. The mechanism includes one submission per event, a partially visible
+          success-rate estimate to guide requests, and a separate appeal path with reviewer scorecards.
         </p>
 
         <p>
-          Seven prompt versions on 103 real events, each compared head-to-head against the last. The
-          lesson was in a badcase: <em>a Mongolian artist's concert in a stadium</em> once produced
-          <em>grassland shuttle buses</em> — the model doing surface association after its examples
-          were stripped of their reasoning paths. Restore the reasoning, add counter-examples, and
-          that whole class of error disappears.
+          These choices connect recommendation to action. Operators can consider the suggestions,
+          change the selection, and move an agreed set of inputs toward the downstream system.
         </p>
 
-        <h2>Two-stage image generation</h2>
+        <h2>Focused AI modules and their evaluation</h2>
+
+        <h3>Event heat: AI-as-judge + BT ranking</h3>
 
         <p>
-          Every event card needs a banner, and AI image models garbling Chinese text is an
-          industry-wide problem. I read it as a <strong>pipeline problem, not a wording one</strong>:
-          any title string that enters a text-to-image prompt gets rendered as picture text. So a text
-          model first translates the event into a pure visual scene — stripped of every name and word
-          — and only then hits the image model; titles are composed in the DOM afterward, cleanly.
-          Generation runs offline and batched, and the frontend only ever reads the table, so a slow
-          model call never sits on a user request. Even the style was weakness-driven: impressionist
-          brushwork, because it hides the model's detail slips and matches the brand palette —
-          choosing to conceal, not to show off.
+          The heat-quantification subtask uses AI-as-judge and a BT ranking model to support event
+          comparison and ordering. Heat has no single clean target label, so the comparison criteria
+          and the resulting order need review. I treat this as evidence for theme selection, alongside
+          the product and resource constraints that determine the final recommendation.
         </p>
 
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 720 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-img-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-
-            <text class="pl-anno" x="14" y="18">Offline · nightly batch</text>
-            <rect class="pl-box" x="14"  y="28" width="96"  height="44" rx="8"/>
-            <text class="pl-name" x="62"  y="54" text-anchor="middle">Events</text>
-            <rect class="pl-box" x="128" y="28" width="118" height="44" rx="8"/>
-            <text class="pl-name" x="187" y="48" text-anchor="middle">Scheduler</text>
-            <text class="pl-note" x="187" y="62" text-anchor="middle">incremental</text>
-            <rect class="pl-box" x="264" y="28" width="150" height="44" rx="8"/>
-            <text class="pl-name" x="339" y="48" text-anchor="middle">① Text → scene</text>
-            <text class="pl-note" x="339" y="62" text-anchor="middle">strip every word</text>
-            <rect class="pl-box" x="432" y="28" width="150" height="44" rx="8"/>
-            <text class="pl-name" x="507" y="48" text-anchor="middle">② Text-to-image</text>
-            <text class="pl-note" x="507" y="62" text-anchor="middle">→ permanent CDN</text>
-            <line class="pl-line" x1="110" y1="50" x2="126" y2="50" marker-end="url(#arr-img-en)"/>
-            <line class="pl-line" x1="246" y1="50" x2="262" y2="50" marker-end="url(#arr-img-en)"/>
-            <line class="pl-line" x1="414" y1="50" x2="430" y2="50" marker-end="url(#arr-img-en)"/>
-
-            <!-- ② drops into the table -->
-            <path class="pl-line" d="M 507 72 C 507 92, 430 96, 402 104" fill="none" marker-end="url(#arr-img-en)"/>
-
-            <rect class="pl-box" x="300" y="104" width="180" height="44" rx="8"/>
-            <text class="pl-name" x="390" y="124" text-anchor="middle">Image table</text>
-            <text class="pl-note" x="390" y="138" text-anchor="middle">url + scene (attribution)</text>
-
-            <text class="pl-anno" x="520" y="94">Online · read-only</text>
-            <rect class="pl-box" x="520" y="104" width="186" height="44" rx="8"/>
-            <text class="pl-name" x="613" y="124" text-anchor="middle">Frontend · read-only</text>
-            <text class="pl-note" x="613" y="138" text-anchor="middle">lazy-load · 3-state banner</text>
-            <line class="pl-line" x1="518" y1="126" x2="482" y2="126" marker-end="url(#arr-img-en)"/>
-          </svg>
-          <figcaption>
-            Generation is offline and batched; the frontend only reads the table — a slow model call never sits on a user request. Two stages, because any title fed to an image model renders as garbled text.
-          </figcaption>
-        </figure>
-
-        <h2>Engineering discipline</h2>
+        <h3>Header images for event cards</h3>
 
         <p>
-          Product depth here meant engineering discipline, four ways:
+          I also built a two-stage workflow for event-card header images: a text model turns event
+          information into a visual scene, an image model generates the background, and the frontend
+          overlays the title. This separates readable typography from image generation. Images are
+          generated in batches and read by the frontend. Advertising images and page assembly remain
+          with the downstream team.
+          <a href="imagegen.html">Read the header-image implementation →</a>
+        </p>
+
+        <h3>Fixed samples for a recommendation subtask</h3>
+
+        <p>
+          For the LLM capability that suggests supporting materials for an event, I designed the
+          prompt and evaluation method: seven prompt versions, compared on the same 103 real events.
+          One failure linked a Mongolian artist's stadium concert to “grassland shuttle buses.”
+          After restoring reasoning in the examples and adding negative examples, that targeted
+          failure did not recur on the fixed regression set. This is evidence about that subtask
+          and sample, rather than a measure of end-to-end advertising performance.
+          <a href="llm-feature.html">Read the evaluation case →</a>
+        </p>
+
+        <h2>Building with AI, checking the implementation</h2>
+
+        <p>
+          AI assisted the frontend and backend development. My responsibility was to translate the
+          business rules into a consistent system and check that its behavior matched the intended
+          decisions. Three implementation details made that work concrete:
         </p>
 
         <ul>
-          <li><strong>Single source of truth</strong> — I proposed the success-rate algorithm, the
-            team validated it, then I pushed the sub-scores to close on the backend, handing over a
-            four-piece package: a JS reference, a Java reference, a numeric oracle, and a README.</li>
-          <li><strong>Contract governance</strong> — the interface spec shipped three versions in a
-            week; each one I diffed into an integration checklist, froze a snapshot on submit to
-            preserve historical semantics, and treated units (cents vs. yuan) as part of the
-            contract.</li>
-          <li><strong>No silent failures</strong> — a core relational field was being written as an
-            empty array, silently, breaking the relationship; I traced it layer by layer and made it
-            a rule: never downgrade an exception into a valid-looking empty value.
-            <code>Number(null) === 0</code> got caught three separate times by tests — language traps
-            are stopped by tests, not by discipline.</li>
-          <li><strong>An engineering baseline</strong> — I ran a ~4,300-line full review, graded
-            findings P0–P3, and sequenced a roadmap by &ldquo;probability of breaking × how fast
-            you'd notice.&rdquo; Vitest, react-query, route splitting, and lint all landed — lint
-            caught a real bug the moment it went in; a 918-line file became seven, behavior-unchanged,
-            triple-verified.</li>
+          <li><strong>One place to calculate a score.</strong> I proposed the success-rate calculation,
+            the team validated it, and the backend became its authoritative source. Reference
+            implementations and numeric comparison cases made the calculation checkable.</li>
+          <li><strong>Explicit handoff semantics.</strong> Interface changes became integration
+            checklists. Price units and submission snapshots were part of the contract, so a changed
+            rule would not silently change the meaning of an earlier request.</li>
+          <li><strong>Visible failures.</strong> A relationship field written as an empty array and
+            the conversion <code>Number(null) === 0</code> showed why missing data needs explicit
+            handling. I worked through those failures and used checks to distinguish missing values
+            from valid business values.</li>
         </ul>
 
+        <h2>What feedback changed</h2>
+
         <p>
-          Then I compiled the recurring parts into engineering-method skills — a reusable methodology
-          wiki, so the next person doesn't relearn it from scratch.
+          During the on-site pilot, I worked with business-development users, collected feedback,
+          and iterated on the frontend and backend with AI. That feedback changed the interface from
+          a Gantt-style accordion to an event calendar with a persistent request area, made draft
+          restoration explicit, and turned technical errors into messages operators could act on.
+          Interviews with both business-development staff and merchants informed the product direction.
         </p>
 
-        <h2>On-site pilot &amp; two-sided research</h2>
-
         <p>
-          Then I ran the pilot on-site, solo: briefing dozens of BDs face-to-face, taking their
-          requests and shipping front- and back-end changes live, so <em>propose → build →
-          feedback</em> closed right on the floor. The interaction model was rebuilt from that
-          feedback — a Gantt accordion torn down for an event calendar with a pinned request zone,
-          explicit draft-state backfill, and error messages rewritten in plain human language for
-          non-engineer users. Alongside it I designed and ran two-sided research — BD and merchant —
-          using the prototype as an interview stimulus, quota self-checks to keep the sample
-          representative, and classification by objective orders rather than self-report. It converged
-          on three corrections to the product direction.
+          The contribution I want this case to show is the connection between business judgment and
+          system delivery: defining a suitable theme and product set, making the decisions inspectable,
+          and producing inputs another system can use. Broader impact needs to be assessed through
+          selection quality, manual rework, and downstream usability; the subtask evaluation above
+          does not establish campaign-level lift.
         </p>
 
-        <h2>What iterating taught me</h2>
-
-        <blockquote>
-          Working with AI has to be driven by your own structured thinking. A PM can take part in
-          development — but never at the cost of time spent thinking about the big direction.
-        </blockquote>
-
         <p>
-          A merchant's offhand <em>&ldquo;I can just ask an AI for this&rdquo;</em> reframed the
-          endgame for me: the moat was never a trending-events calendar — it's the closed loop of
-          information, resources, and outcome feedback.
+          <a href="../writing/ai-builder-as-pm.html">Reflection: on building a product with AI →</a>
         </p>
 
       </div>
 
+
       <!-- ============ 中文 ============ -->
       <div class="lang-zh">
 
-        <h2>问题</h2>
-
         <p>
-          酒旅的热点事件 —— 演唱会、赛事、节庆 —— 需要 BD 申请平台资源来承接，此前没有系统化流程：
-          申请与审批的循环无处安放，也没人看得清哪些申请真正值得批。
+          一场演唱会、赛事或节庆，可以成为一次活动的主题。要把主题变成可用的活动方案，还需要回答另一组问题：
+          哪些商品适合，价格和库存能否支持，用户从活动地点到商品所在地是否方便。
+          ResourceLoop 把这些判断组织成一套工作流，位于公司内部广告搭建系统的上游。
         </p>
 
-        <h2>我的角色与协作模型</h2>
+        <h2>这套系统负责哪一段</h2>
 
         <p>
-          我从零定义了整套东西 —— 工作流、数据模型、交互、激励机制与验收标准。团队校验业务假设，
-          我们借助 AI 的原型能力协同实现。与 AI 协同必须用自己的结构化思考带动：产品可以参与开发，
-          但绝不能牺牲对大方向的思考时间。
+          ResourceLoop 筛选活动主题、召回和筛选商品供给，并让人能够查看、判断和调整推荐。
+          最终交给下游的是<strong>选定的主题、合适的商品供给和资源建议</strong>。
+          下游广告搭建 Agent 由其他团队负责，依托公司内部工具搭建页面组件、商品货架，并生成广告端需要的 AIGC 内容。
         </p>
 
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-rl-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-            <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="115" y="52" text-anchor="middle">BD 申报</text>
-            <rect class="pl-box" x="285" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="360" y="52" text-anchor="middle">审核</text>
-            <rect class="pl-box" x="530" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="605" y="52" text-anchor="middle">投放</text>
-            <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rl-zh)"/>
-            <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rl-zh)"/>
-            <text class="pl-note" x="115" y="90" text-anchor="middle">成功率半外显</text>
-            <text class="pl-note" x="360" y="90" text-anchor="middle">申诉解耦 + 记分卡</text>
-            <!-- collaboration strip -->
-            <rect class="pl-box" x="20" y="128" width="250" height="40" rx="8"/>
-            <text class="pl-name" x="145" y="152" text-anchor="middle">我：需求 · 数据模型 · 交互</text>
-            <rect class="pl-box" x="310" y="128" width="130" height="40" rx="8"/>
-            <text class="pl-name" x="375" y="152" text-anchor="middle">团队校验</text>
-            <rect class="pl-box" x="480" y="128" width="170" height="40" rx="8"/>
-            <text class="pl-name" x="565" y="152" text-anchor="middle">AI 结对实现</text>
-            <line class="pl-line" x1="274" y1="148" x2="306" y2="148" marker-end="url(#arr-rl-zh)"/>
-            <line class="pl-line" x1="444" y1="148" x2="476" y2="148" marker-end="url(#arr-rl-zh)"/>
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable system boundary diagram" data-i18n-aria-label-en="Scrollable system boundary diagram" data-i18n-aria-label-zh="可横向滚动的系统分工图">
+          <svg viewBox="0 0 720 364" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs><marker id="arr-scope-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
+            <text class="pl-name" style="font-size:16px" x="18" y="22">ResourceLoop · 我负责的上游环节</text>
+            <rect class="pl-dash" x="12" y="36" width="696" height="184" rx="12"/>
+            <rect class="pl-box" x="26" y="56" width="200" height="74" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="126" y="84" text-anchor="middle">筛选活动主题</text>
+            <text class="pl-note" style="font-size:14px" x="126" y="108" text-anchor="middle">事件背景 · 热度量化</text>
+            <rect class="pl-box" x="260" y="56" width="200" height="74" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="360" y="80" text-anchor="middle">召回与匹配商品</text>
+            <text class="pl-note" style="font-size:13px" x="360" y="101" text-anchor="middle">价格 · 库存 · 地理位置</text>
+            <text class="pl-note" style="font-size:14px" x="360" y="119" text-anchor="middle">驾车距离</text>
+            <rect class="pl-box" x="494" y="56" width="200" height="74" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="594" y="84" text-anchor="middle">人工判断与调整</text>
+            <text class="pl-note" style="font-size:14px" x="594" y="108" text-anchor="middle">确认候选与资源建议</text>
+            <line class="pl-line" x1="228" y1="93" x2="256" y2="93" marker-end="url(#arr-scope-zh)"/>
+            <line class="pl-line" x1="462" y1="93" x2="490" y2="93" marker-end="url(#arr-scope-zh)"/>
+            <path class="pl-line" d="M594 130 V146 H360 V163" marker-end="url(#arr-scope-zh)"/>
+            <rect class="pl-box" x="160" y="166" width="400" height="38" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="360" y="190" text-anchor="middle">活动主题 + 商品供给 + 资源建议</text>
+            <line class="pl-line" x1="360" y1="205" x2="360" y2="282" marker-end="url(#arr-scope-zh)"/>
+            <text class="pl-name" style="font-size:14px" x="18" y="260">下游 · 其他团队负责</text>
+            <rect class="pl-box" x="140" y="286" width="440" height="66" rx="8"/>
+            <text class="pl-name" style="font-size:16px" x="360" y="312" text-anchor="middle">内部广告搭建 Agent</text>
+            <text class="pl-note" style="font-size:14px" x="360" y="336" text-anchor="middle">页面组件 · 商品货架 · AIGC</text>
           </svg>
-          <figcaption>
-            三角色流程；下方是协作模型：我提出、团队校验、AI 结对实现。
-          </figcaption>
+          <figcaption>ResourceLoop 准备活动输入；下游团队使用内部工具完成广告页面搭建。</figcaption>
         </figure>
 
-        <h2>系统架构</h2>
+        <h2>把“合适”拆成可以检查的选择依据</h2>
 
         <p>
-          系统分四层。<strong>数据层</strong>把事件、供给与联网信源归一成一套热度刻度；
-          <strong>策略引擎</strong>是核心——一条三级推荐链：(a) 事件热度分、(b) 申报时给 BD 的
-          默认推荐、(c) 审核时的资源位终局锁位；<strong>AI 层</strong>生成物料、事件卡配图与落地页；
-          最上是给 BD 与审核员的<strong>角色台</strong>（React SPA、SSO 角色分流）。有一条规矩塑造了
-          后端：<strong>成功率只在服务端算一次 —— 权威唯一来源</strong>；前端是「消费 + 防御性兜底」
-          的薄层，所以后来评分模型升级时，前端一行没改。
-        </p>
-
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 800 474" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-arch-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-
-            <!-- strategy grouping container -->
-            <rect class="pl-dash" x="8" y="100" width="784" height="192" rx="12"/>
-
-            <!-- layer labels -->
-            <text class="pl-anno" x="16" y="20">数据层</text>
-            <text class="pl-anno" x="16" y="94">策略引擎 · 三级推荐链</text>
-            <text class="pl-anno" x="16" y="318">AI 生成</text>
-            <text class="pl-anno" x="16" y="396">展示层 · React SPA · SSO 分流</text>
-
-            <!-- DATA -->
-            <rect class="pl-box" x="16"  y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="106" y="49" text-anchor="middle">事件 + POI 表</text>
-            <text class="pl-note" x="106" y="63" text-anchor="middle">+ 联网信源</text>
-            <rect class="pl-box" x="211" y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="302" y="49" text-anchor="middle">热度统一化</text>
-            <text class="pl-note" x="302" y="63" text-anchor="middle">→ S / 高 / 中 / 低</text>
-            <rect class="pl-box" x="406" y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="496" y="49" text-anchor="middle">供给数据</text>
-            <text class="pl-note" x="496" y="63" text-anchor="middle">实价 · 权益</text>
-            <rect class="pl-box" x="601" y="28" width="181" height="46" rx="8"/>
-            <text class="pl-name" x="691" y="49" text-anchor="middle">配置 · 投放</text>
-            <text class="pl-note" x="691" y="63" text-anchor="middle">资源位目录 · byday</text>
-
-            <!-- data -> engines -->
-            <line class="pl-line" x1="106" y1="74" x2="106" y2="110" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="302" y1="74" x2="302" y2="110" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="496" y1="74" x2="496" y2="110" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="691" y1="74" x2="691" y2="110" marker-end="url(#arr-arch-zh)"/>
-
-            <!-- STRATEGY ENGINES -->
-            <rect class="pl-box" x="16"  y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="106" y="135" text-anchor="middle">事件圈选与推荐</text>
-            <rect class="pl-box" x="211" y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="302" y="128" text-anchor="middle">供给质量引擎</text>
-            <text class="pl-note" x="302" y="143" text-anchor="middle">成功率</text>
-            <rect class="pl-box" x="406" y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="496" y="128" text-anchor="middle">申报与审核流转</text>
-            <text class="pl-note" x="496" y="143" text-anchor="middle">状态机</text>
-            <rect class="pl-box" x="601" y="110" width="181" height="42" rx="8"/>
-            <text class="pl-name" x="691" y="135" text-anchor="middle">投放队列 · 战报</text>
-
-            <!-- engines -> chain -->
-            <line class="pl-line" x1="138" y1="152" x2="138" y2="168" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="400" y1="152" x2="400" y2="168" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="662" y1="152" x2="662" y2="168" marker-end="url(#arr-arch-zh)"/>
-
-            <!-- THREE-TIER CHAIN -->
-            <rect class="pl-box" x="16"  y="168" width="244" height="118" rx="8"/>
-            <text class="pl-name" x="30" y="189">(a) 事件热度分</text>
-            <text class="pl-note" x="30" y="212">打标：LLM 评测 + pairwise</text>
-            <text class="pl-note" x="30" y="232">机器学习：声量 · 搜索 · 订单</text>
-            <text class="pl-note" x="30" y="252">→ 热度分 0–100</text>
-            <rect class="pl-box" x="278" y="168" width="244" height="118" rx="8"/>
-            <text class="pl-name" x="292" y="189">(b) BD 申报默认</text>
-            <text class="pl-note" x="292" y="212">热度分位 → 资源位档位</text>
-            <text class="pl-note" x="292" y="232">触达：档 1 高 → 档 5 低</text>
-            <text class="pl-note" x="292" y="252">类型 → 补贴 / 资源位</text>
-            <rect class="pl-box" x="540" y="168" width="244" height="118" rx="8"/>
-            <text class="pl-name" x="554" y="189">(c) 审核锁位</text>
-            <text class="pl-note" x="554" y="212">按价值分排序分配</text>
-            <text class="pl-note" x="554" y="232">冲突：同城 ≠ 同资源位</text>
-            <text class="pl-note" x="554" y="252">→ 每事件锁一个位</text>
-
-            <!-- strategy -> AI -->
-            <text class="pl-anno" x="150" y="310">eventId ↓</text>
-            <line class="pl-line" x1="138" y1="292" x2="138" y2="326" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="400" y1="292" x2="400" y2="326" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="662" y1="292" x2="662" y2="326" marker-end="url(#arr-arch-zh)"/>
-
-            <!-- AI GENERATION -->
-            <rect class="pl-box" x="16"  y="326" width="244" height="50" rx="8"/>
-            <text class="pl-name" x="138" y="347" text-anchor="middle">物料清单生成 · LLM</text>
-            <text class="pl-note" x="138" y="363" text-anchor="middle">事件 → 物料</text>
-            <rect class="pl-box" x="278" y="326" width="244" height="50" rx="8"/>
-            <text class="pl-name" x="400" y="347" text-anchor="middle">事件卡配图</text>
-            <text class="pl-note" x="400" y="363" text-anchor="middle">两段式 · 预生成</text>
-            <rect class="pl-box" x="540" y="326" width="244" height="50" rx="8"/>
-            <text class="pl-name" x="662" y="347" text-anchor="middle">AI 落地页搭建</text>
-            <text class="pl-note" x="662" y="363" text-anchor="middle">按事件自动搭建</text>
-
-            <!-- AI -> presentation -->
-            <line class="pl-line" x1="138" y1="376" x2="138" y2="404" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="400" y1="376" x2="400" y2="404" marker-end="url(#arr-arch-zh)"/>
-            <line class="pl-line" x1="662" y1="376" x2="662" y2="404" marker-end="url(#arr-arch-zh)"/>
-
-            <!-- PRESENTATION -->
-            <rect class="pl-box" x="16"  y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="106" y="429" text-anchor="middle">热点日历</text>
-            <text class="pl-note" x="106" y="446" text-anchor="middle">BD</text>
-            <rect class="pl-box" x="211" y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="302" y="429" text-anchor="middle">供给申报台</text>
-            <text class="pl-note" x="302" y="446" text-anchor="middle">BD</text>
-            <rect class="pl-box" x="406" y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="496" y="429" text-anchor="middle">审核工作台</text>
-            <text class="pl-note" x="496" y="446" text-anchor="middle">审核员</text>
-            <rect class="pl-box" x="601" y="404" width="181" height="58" rx="8"/>
-            <text class="pl-name" x="691" y="429" text-anchor="middle">战报速递</text>
-            <text class="pl-note" x="691" y="446" text-anchor="middle">BD</text>
-          </svg>
-          <figcaption>
-            四层：数据层把事件归一成一套热度刻度；策略引擎跑三级推荐链（热度分 → BD 默认 → 审核锁位）；AI 层生成物料、事件卡配图与落地页；最上是角色台。内部系统 / 表 / 资源位真名均已泛化。
-          </figcaption>
-        </figure>
-
-        <h2>机制设计</h2>
-
-        <p>
-          这套系统不是一张表单 —— 它是个小市场，所以我按市场来设计。机制设计的第一性输入，
-          是「人会怎么钻空子」。
+          我负责定义工作流、数据模型、推荐规则、交互与验收标准。团队校验业务假设，我与 AI 协作完成前后端实现。
+          其中最核心的产品工作，是把选品与活动判断落实到具体条件：
         </p>
 
         <ul>
-          <li><strong>成功率半外显</strong> —— 足以指导一次申报，又不足以被逆向、被拿去套利刷单。</li>
-          <li><strong>申诉与审核解耦，审核员带记分卡</strong> —— 驳回的权力配上对应的问责。
-            双向，不是单向。</li>
-          <li><strong>一事件一次提交</strong>；卡片按事件 ID 跨天一致锁定，同一事件无法被悄悄重复申报。</li>
+          <li><strong>主题：</strong>这次活动围绕什么事件展开，为什么值得组织？</li>
+          <li><strong>价格与库存：</strong>现有供给能否支持活动准备提供的商品与优惠？</li>
+          <li><strong>地理位置与驾车距离：</strong>参加活动的人能否方便地到达商品所在地？地图上接近，还需要结合实际出行判断。</li>
+          <li><strong>人工审核：</strong>哪些内容由系统推荐，哪些需要运营在递交下游前调整？</li>
         </ul>
 
         <p>
-          「不做」清单上每一条都有具体场景撑着 —— landing 页、撤回、前端排序、前端白名单。
-          我是刻意把暴露面保持得小。
+          事件热度是其中一个输入。热度较高的事件，仍然需要合适的商品和资源条件才能推进。
+          把这些判断分别保留下来，才能解释主题为什么值得考虑，以及某个商品为什么适合放进这次活动。
         </p>
 
-        <h2>把热度当潜变量建模</h2>
+        <h2>让人工判断有明确的位置</h2>
 
         <p>
-          哪些事件值得给资源？<em>热度</em>是个潜变量 —— 它没有干净的真值。所以我没假装它有。
-          链路是<strong>LLM 评测打标 + 机器学习训练</strong>：先让 LLM 评测并给事件打标，
-          用 pairwise 比较把标签校准成一致排序，再由监督模型在其上训练 —— 学着从可观测信号
-          （站外社媒声量、站内搜索意愿、酒店订单贡献）预测 0–100 的热度分，驱动整条推荐链。
-          纪律在于：承认真值是被制造出来的，再把让它可信的那层校准搭起来。
-        </p>
-
-        <h2>LLM 物料推荐</h2>
-
-        <p>
-          BD 申报某事件时，系统会推荐配套物料。两个产品级判断。其一，LLM 在这里的职责是
-          <strong>扩大考虑集，而不是替人拍板</strong> —— 输出是 BD 勾选的候选清单，不是标准答案。
-          其二，评测先于优化：没有固定样本，「感觉变好了」一文不值。
+          BD 需要提出并调整方案，审核员需要判断申请、分配资源。我围绕这些职责设计了申报、审核与申诉流程：
+          一个事件一次提交，适度展示成功率估计来帮助申报，并将申诉与审核分开，为审核员设置记分卡。
         </p>
 
         <p>
-          7 个 prompt 版本、103 条真实事件、每版对上一版逐条对照。教训藏在一个 badcase 里：
-          <em>「蒙古族艺人在体育馆开演唱会」</em>曾输出<em>「草原接驳车」</em> ——
-          示例被砍掉推理路径后，模型做了形似关联。补回推理路径、加上反面示例，这一类错误就整类消失。
+          这些机制把推荐接到实际操作中。使用者能够考虑系统建议、修改选择，再把确认过的主题、商品与资源建议交给下游。
         </p>
 
-        <h2>两段式事件配图</h2>
+        <h2>AI 子任务分别解决什么问题</h2>
+
+        <h3>事件热度：AI-as-judge + BT 排序</h3>
 
         <p>
-          每张事件卡都要一张 banner，而 AI 生图把中文渲染成乱码是行业通病。我把它读成
-          <strong>链路结构问题，而非措辞问题</strong>：任何标题字符串一旦进入文生图 prompt，
-          就会被当画面文字画出来。于是让文本模型先把事件翻译成纯画面场景 —— 剥掉所有名称和文字 ——
-          再喂给图像模型；标题交给前端 DOM 事后叠加，天然清晰。生成离线批量跑，前端只读表，
-          几十秒的模型调用绝不挂在用户请求上。连画风都是「弱点驱动选型」：选印象派笔触，
-          因为它天然掩盖模型的细节翻车、又贴品牌色板 —— 是藏拙，不是炫技。
+          热度量化子任务使用 AI-as-judge 与 BT 排序模型，支持事件之间的比较与排序。
+          “热度”没有一个天然、干净的标签，因此比较依据和排序结果都需要检查。
+          它为主题选择提供参考，再结合商品与资源条件形成最终推荐。
         </p>
 
-        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
-          <svg viewBox="0 0 720 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <defs><marker id="arr-img-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
-
-            <text class="pl-anno" x="14" y="18">离线 · 每晚批量</text>
-            <rect class="pl-box" x="14"  y="28" width="96"  height="44" rx="8"/>
-            <text class="pl-name" x="62"  y="54" text-anchor="middle">事件底表</text>
-            <rect class="pl-box" x="128" y="28" width="118" height="44" rx="8"/>
-            <text class="pl-name" x="187" y="48" text-anchor="middle">调度任务</text>
-            <text class="pl-note" x="187" y="62" text-anchor="middle">增量选题</text>
-            <rect class="pl-box" x="264" y="28" width="150" height="44" rx="8"/>
-            <text class="pl-name" x="339" y="48" text-anchor="middle">① 文本 → 场景</text>
-            <text class="pl-note" x="339" y="62" text-anchor="middle">剥离所有文字</text>
-            <rect class="pl-box" x="432" y="28" width="150" height="44" rx="8"/>
-            <text class="pl-name" x="507" y="48" text-anchor="middle">② 文生图</text>
-            <text class="pl-note" x="507" y="62" text-anchor="middle">→ 永久 CDN</text>
-            <line class="pl-line" x1="110" y1="50" x2="126" y2="50" marker-end="url(#arr-img-zh)"/>
-            <line class="pl-line" x1="246" y1="50" x2="262" y2="50" marker-end="url(#arr-img-zh)"/>
-            <line class="pl-line" x1="414" y1="50" x2="430" y2="50" marker-end="url(#arr-img-zh)"/>
-
-            <!-- ② drops into the table -->
-            <path class="pl-line" d="M 507 72 C 507 92, 430 96, 402 104" fill="none" marker-end="url(#arr-img-zh)"/>
-
-            <rect class="pl-box" x="300" y="104" width="180" height="44" rx="8"/>
-            <text class="pl-name" x="390" y="124" text-anchor="middle">图片表</text>
-            <text class="pl-note" x="390" y="138" text-anchor="middle">url + scene（归因留痕）</text>
-
-            <text class="pl-anno" x="520" y="94">在线 · 只读</text>
-            <rect class="pl-box" x="520" y="104" width="186" height="44" rx="8"/>
-            <text class="pl-name" x="613" y="124" text-anchor="middle">前端 · 只读</text>
-            <text class="pl-note" x="613" y="138" text-anchor="middle">懒加载 · 三态 banner</text>
-            <line class="pl-line" x1="518" y1="126" x2="482" y2="126" marker-end="url(#arr-img-zh)"/>
-          </svg>
-          <figcaption>
-            生成离线批量跑，前端只读表 —— 几十秒的模型调用绝不挂在用户请求上。两段式，是因为任何标题塞进图像模型都会被画成乱码字。
-          </figcaption>
-        </figure>
-
-        <h2>工程纪律</h2>
+        <h3>事件卡片的头图生成</h3>
 
         <p>
-          这里的产品深度，落成四条工程纪律：
+          我还做了两阶段的头图生成：先由文本模型把事件信息转成画面场景，再交给图像模型生成背景，标题由前端叠加。
+          这样可以分别处理画面生成和文字可读性。图片批量生成后供前端读取。
+          广告端的图片生成和页面搭建由下游团队负责。
+          <a href="imagegen.html">查看头图生成的实现细节 →</a>
+        </p>
+
+        <h3>用固定样本检查推荐子能力</h3>
+
+        <p>
+          在“事件 → 配套物料”的 LLM 推荐子任务中，我负责 prompt 与评测方式：7 个 prompt 版本，
+          在同一批 103 条真实事件上逐版比较。一个具体错误是把“蒙古族艺人在体育馆开演唱会”关联到“草原接驳车”。
+          给示例补回推理路径、加入反面示例后，目标失败模式在这批固定回归样本中没有再次出现。
+          这个结果对应特定子任务与样本范围，不能直接用来衡量整套广告业务的效果。
+          <a href="llm-feature.html">查看评测案例 →</a>
+        </p>
+
+        <h2>与 AI 协作实现，也把实现逐项检查清楚</h2>
+
+        <p>
+          AI 参与了前后端开发。我需要把业务规则转成一致的系统行为，并检查实现是否符合预期。
+          三个具体问题体现了这部分工作：
         </p>
 
         <ul>
-          <li><strong>权威唯一来源</strong> —— 成功率算法我先提出、团队校验落地，之后我推动子分数
-            闭环到后端，交付一套四件套：JS 参考版、Java 参考版、数值对照 oracle、README。</li>
-          <li><strong>契约治理</strong> —— 接口文档一周三版；每版我都 diff 成对接清单，提交时冻结快照
-            以保住历史口径，并把单位（分 vs 元）当作契约的一部分。</li>
-          <li><strong>不静默吞错</strong> —— 一个核心关联字段被静默写成空数组、关系因此断裂；
-            我逐层定位后立下规矩：不许把异常静默降级成看起来合法的空值。
-            <code>Number(null) === 0</code> 被单测三次逮到 —— 语言陷阱靠测试防，不靠纪律。</li>
-          <li><strong>工程化基线</strong> —— 我发起约 4,300 行的全量 review，P0–P3 分级，
-            按「改坏概率 × 能否立即发现」排序路线图。vitest、react-query、路由分包、lint 全部落地 ——
-            lint 补上当场就拦到一个真 bug；918 行的大文件拆成 7 个，行为零变更、三重验证。</li>
+          <li><strong>分数在哪里计算。</strong>我提出成功率算法，团队校验后将后端作为统一计算来源，
+            用参考实现与数值对照样例检查结果。</li>
+          <li><strong>交接时字段代表什么。</strong>接口变更逐项整理成对接清单，价格单位和提交快照都纳入约定，
+            避免新规则悄悄改变历史申请的含义。</li>
+          <li><strong>错误怎样被发现。</strong>关联字段被写成空数组、<code>Number(null) === 0</code>
+            把缺失值变成零，都需要沿链路定位，并通过检查区分缺失数据和有效业务值。</li>
         </ul>
 
+        <h2>反馈怎样改变了产品</h2>
+
         <p>
-          最后我把其中反复出现的部分固化成研发方法论 skills —— 一份可复用的方法论 wiki，
-          让下一个人不必从头重学。
+          驻场试点中，我面对 BD 收集反馈，与 AI 协作迭代前后端。反馈推动交互从甘特手风琴调整为事件日历与固定申报区，
+          补上明确的草稿回填，并把技术报错改成使用者知道怎样处理的信息。
+          面向 BD 与商家的双侧调研，也帮助我修正产品方向。
         </p>
 
-        <h2>驻场试点与双侧调研</h2>
-
         <p>
-          随后我以「一人驻场」跑通试点：面向数十名 BD 现场宣讲答疑、当场承接需求改前后端即时上线，
-          让<em>提出 → 实现 → 反馈</em>在现场闭环。交互模型正是从这些反馈里重建的 ——
-          甘特手风琴被推翻、换成事件日历 + 钉死申报区，草稿态显式回填，报错信息为非工程用户
-          改成人话外显。同时我设计并执行了双侧（BD／商家）调研 —— 以产品原型作访谈刺激物、
-          配额自查保样本代表性、按客观订单归类而非用户自称 —— 收敛出三处产品方向修正。
+          这个项目串起的是业务判断与系统交付：定义合适的主题和商品组合，让选择依据能够被检查，
+          再形成下游可以使用的输入。整体价值还需要结合选品质量、人工返工和下游可用性来衡量；
+          上面的子任务评测不能代替活动效果的验证。
         </p>
 
-        <h2>认知迭代</h2>
-
-        <blockquote>
-          与 AI 协同要用结构化思考带动；产品可以参与开发，但不能牺牲对大方向的思考时间。
-        </blockquote>
-
         <p>
-          商家一句<em>「这些我用 AI 一问就有」</em>点破了产品终局：壁垒从来不是热点日历，
-          而是「信息 + 资源 + 效果回流」的闭环。
+          <a href="../writing/ai-builder-as-pm.html">延伸思考：和 AI 一起做产品这件事 →</a>
         </p>
 
       </div>

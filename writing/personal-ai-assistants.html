@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="Why I’m Optimistic About Personal AI Assistants" data-zh="我为什么看好 AI 个人助手">Why I’m Optimistic About Personal AI Assistants</title>
+  <meta name="description" content="A personal thesis on consumer AI assistants: a familiar role, recurring tasks, and the relationship between token usage and a business people will keep paying for.">
+  <link rel="icon" href="../favicon.ico">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why I’m Optimistic About Personal AI Assistants">
+  <meta property="og:description" content="Why a familiar request can lead to substantial AI work—and what would make that work worth paying for.">
+  <meta property="og:url" content="https://pacificapie.github.io/writing/personal-ai-assistants.html">
+  <meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html"><span class="lang-en">about</span><span class="lang-zh">关于</span></a>
+      <a href="../index.html#work"><span class="lang-en">work</span><span class="lang-zh">作品</span></a>
+      <a href="../skills.html"><span class="lang-en">skills</span><span class="lang-zh">工具集</span></a>
+      <a href="../index.html#writing"><span class="lang-en">writing</span><span class="lang-zh">写作</span></a>
+      <a href="../cv.html" class="cv-link"><span class="lang-en">cv</span><span class="lang-zh">简历</span></a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap">
+    <div class="article-header">
+      <div class="article-eyebrow-block blue">
+        <span class="lang-en">writing · product · ai</span>
+        <span class="lang-zh">写作 · 产品 · AI</span>
+      </div>
+      <h1 class="article-title" style="text-wrap: balance;">
+        <span class="lang-en">Why I’m Optimistic About Personal AI Assistants</span>
+        <span class="lang-zh">我为什么看好 AI 个人助手</span>
+      </h1>
+      <div class="article-meta">
+        <span class="lang-en">November 2026</span>
+        <span class="lang-zh">2026 年 11 月</span>
+      </div>
+    </div>
+
+    <div class="article-body drop-cap">
+      <!-- ============ ENGLISH ============ -->
+      <div class="lang-en">
+        <p>
+          Lately, I have been thinking that personal AI assistants could be the next major direction for consumer AI. There are three things about them that seem promising together: people can picture what an assistant is for, there are plenty of tasks to give one, and carrying out those tasks can involve substantial token usage. That combination makes me optimistic about their commercial potential. I want to work through how those pieces actually connect.
+        </p>
+        <p>
+          The name already does some of the explaining. Tell someone a product orchestrates agents and workflows, and there is still a fair amount to unpack. Tell them it can help find suitable jobs, organize a trip, or keep track of unfinished tasks, and they have somewhere to start. A person can arrive with something they need done. My sense is that “personal assistant” gives them a fairly familiar way to describe what they expect, even if they have never used one before.
+        </p>
+        <p>
+          That is what I mean by a low barrier to understanding the product. Getting it to work can still take effort. If someone has to connect several accounts, organize their information, and repeatedly explain their preferences before a task can move forward, the product has plenty left to solve. The value has to become visible while they are doing that setup. Otherwise, even an appealing idea can become another thing to manage.
+        </p>
+        <p>
+          My current job-search workflow makes this fairly concrete. Codex searches the web for roles and attempts applications; Notion holds the job database, application states, and personal information; Muse uses that information to fill out and submit applications. There are several tools involved, but the request behind them is ordinary: find roles that fit, use the information already available, and keep track of where each application stands. Ideally, I should be able to return to a task without having to explain the whole thing again.
+        </p>
+        <p>
+          A request like that can lead to considerable work. Searching for roles may involve several rounds of retrieval, reading job descriptions, comparing requirements with a profile, checking duplicates, and recording progress. The final update might be quite short. Many of the model calls happen along the way. This is where I see room for substantial token usage: an ordinary personal task can require a sequence of decisions and actions, even when the person delegating it only needs a simple account of the result.
+        </p>
+        <p>
+          There is also a reason to come back. A job search continues over time, travel plans change, and new tasks arrive before the old ones are finished. If an assistant can carry useful context between those moments, each request may need less explanation. Google’s <a href="https://blog.google/innovation-and-ai/products/gemini-app/personal-intelligence/">Personal Intelligence announcement</a>, for example, describes connecting information from apps such as Gmail and Photos to personalize Gemini’s responses. To me, that points toward part of what “personal” has to mean: being able to use the relevant information when the next task comes along.
+        </p>
+        <p>
+          From a model provider’s perspective, those recurring tasks could add up to a significant source of demand. People would not need to invent elaborate prompts just to make use of more capable models; their unfinished work could give those models something useful to do. From an application’s perspective, recurring tasks also create more opportunities to demonstrate value and earn a subscription. That is the connection I see between a product people can understand, substantial usage, and a business they might keep paying for.
+        </p>
+        <p>
+          There is a cost calculation inside that argument, though. More token usage can bring revenue to a model provider and a larger bill to the application using it. Repeating a failed action or rereading irrelevant material also consumes tokens. The useful question is how much work gets completed for the cost of completing it, including the time a person spends checking and correcting the result. Heavy usage only helps the business if enough of it produces something worth paying for.
+        </p>
+        <p>
+          There are already products packaging higher usage for individual subscribers. Claude’s <a href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan">Max plan</a> is aimed at people who work with it frequently, offering greater capacity and support for longer tasks. That gives a concrete example of charging for more sustained use. It does not yet answer whether a broad consumer audience will find enough recurring value in a personal assistant, or whether the service can deliver it at a workable cost. Those are still parts of the thesis to test.
+        </p>
+        <p>
+          For now, I am optimistic about the combination: a role people can readily imagine, tasks that keep returning, and substantial work that AI can do behind a simple request. I would start by looking at a small piece of continuity. If I ask an assistant to continue yesterday’s job search, can it pick up from the right place, show me what changed, and make clear what still needs my decision? If that becomes dependable, I can see why I would give it the next task too. That is where I would begin looking for the business.
+        </p>
+      </div>
+
+      <!-- ============ 中文 ============ -->
+      <div class="lang-zh">
+        <p>
+          我最近有一个判断，AI 个人助手可能会是接下来很值得做的方向。它面向普通用户，“助手”这两个字又已经帮人理解了一部分产品，同时，真要把一个人的事情接过来做，背后可以消耗相当多的 token。这几件事放在一起，让我觉得它有很好的商业化前景。只是从“很多人能理解”，到“有人愿意一直付钱”，中间的关系还可以再想得具体一点。
+        </p>
+        <p>
+          先说用户心智。向一个人解释 agent、工作流和工具调用，需要交代的东西其实不少。但如果说，它可以帮你找合适的岗位、整理旅行安排、记住那些还没处理完的事情，对方大概就知道可以从哪里开始了。一个人带着自己要做的事来，就有机会用上这个产品。我觉得“个人助手”很有意思的一点就在这里，即使以前没有用过，听到名字，也能对它应该帮什么忙有一个想象。
+        </p>
+        <p>
+          当然，这里说的低门槛，主要是理解起来的门槛。真正用起来，如果还要先接好几个账户、整理一遍个人资料，再反复解释偏好，事情才能开始往下走，那产品要做的工作还有很多。它得在这个过程中让人看到一点实际的帮助，否则只是为了使用一个助手，又多了一项要自己管理的事情，听起来就已经有点累了。
+        </p>
+        <p>
+          我现在的求职流程就能把这件事说得具体一点。Codex 负责 web search 找岗位，也会尝试投递；Notion 放岗位数据库、投递状态和个人信息；Muse 读取这些信息，填写并完成投递。里面有几个工具，但从我的需求看，就是把符合条件的岗位找出来，用上已经整理过的信息，并且记得每一份申请走到了哪里。理想情况下，下一次再回来处理这件事，我不用从头介绍一遍自己，也不用先回忆上次做到哪了。
+        </p>
+        <p>
+          这样一句很普通的需求，往下展开其实会有不少工作。找岗位需要搜索，打开职位描述，把要求和个人信息放在一起看，还要检查重复、记录进度，可能来回几轮才能给出一个有用的结果。最后发给用户的更新可以很短，前面却已经发生了很多次模型调用。我说它能消耗大量 token，想到的就是这种情况：一个人只是交代了一件事，系统需要在背后做一连串判断和操作。
+        </p>
+        <p>
+          而且这些事情有继续发生的理由。求职会持续一段时间，旅行计划会改，旧的待办还没处理完，新的又来了。如果助手能在这些时刻之间保留有用的信息，下一次委托就可以少解释一点。Google 在 <a href="https://blog.google/innovation-and-ai/products/gemini-app/personal-intelligence/">Personal Intelligence 的介绍</a>里，已经把连接 Gmail、Photos 等应用中的信息，用来提供个性化回答，作为一个明确的产品方向。我的理解是，“个人”两个字最终得落到这里：下一件事来的时候，前面那些相关的信息还能派上用场。
+        </p>
+        <p>
+          从模型厂商看，这些持续发生的任务可能形成一个很大的用量入口。人不用为了用上更强的模型，专门想出一些复杂问题，自己原本没做完的事情就可以给模型提供工作。从应用方看，反复出现的需求，也给了产品持续证明价值、让用户留下来订阅的机会。这是我觉得用户心智、token 消耗和商业化能够连起来的地方，背后有一批事情会不断等着被处理。
+        </p>
+        <p>
+          不过这里也有一笔账。token 用得多，对模型厂商可能意味着收入，对调用模型的应用方也意味着成本。同一个动作失败后重试很多次，或者反复读了不相关的材料，用量一样会上去。还是得回到一件事花了多少成本、最后完成得怎么样，包括用户自己花在检查和返工上的时间。只有其中足够多的工作值得付费，更多的消耗才有机会支撑一个生意。
+        </p>
+        <p>
+          面向个人的更高用量套餐已经存在，例如 Claude 的 <a href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan">Max 计划</a>，就把频繁使用、更高额度和较长任务放在一起介绍。这提供了一种把持续使用变成付费的具体方式。至于更广泛的普通用户，会不会有足够多的事情交给个人助手，产品又能不能以合适的成本把它们做好，还需要继续验证，单凭有一个套餐当然回答不了。
+        </p>
+        <p>
+          所以我还是看好这个方向：人容易理解可以拿它做什么，事情会持续出现，而一次简单委托背后又确实有很多工作可以交给 AI。现阶段我想先看一个小一点的问题。假如我让它接着找昨天的岗位，它能不能从正确的位置继续，告诉我哪些东西变了、还有什么需要我决定。如果这一点可以稳定做到，我大概就会愿意把下一件事也交过去。商业化的可能性，可以从这里慢慢往下看。
+        </p>
+      </div>
+
+      <div class="article-end">
+        <div class="signoff">
+          <span class="lang-en">Pacifica Zhang &nbsp;·&nbsp; November 2026</span>
+          <span class="lang-zh">若阳 &nbsp;·&nbsp; 2026 年 11 月</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html"><span class="lang-en">cv (en)</span><span class="lang-zh">简历 (英)</span></a>
+          <a href="../cv/zh.html"><span class="lang-en">cv (zh)</span><span class="lang-zh">简历 (中)</span></a>
+        </div>
+        <div class="footer-signoff">
+          <a href="../index.html#writing"><span class="lang-en">← More writing</span><span class="lang-zh">← 其他文章</span></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

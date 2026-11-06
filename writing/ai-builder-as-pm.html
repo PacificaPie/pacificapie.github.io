@@ -3,9 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-en="The PM in the Age of AI Builders" data-zh="AI builder 时代的 PM">The PM in the Age of AI Builders</title>
-  <meta name="description" content="Where product judgment, engineering execution, and collaboration boundaries should sit when PMs build with AI.">
+  <title data-en="On Building a Product with AI" data-zh="和 AI 一起做产品这件事">On Building a Product with AI</title>
+  <meta name="description" content="Revisiting ResourceLoop while updating my website: how much AI a project uses, the decisions I made, and what the system actually delivers.">
   <link rel="icon" href="../favicon.ico">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="On Building a Product with AI">
+  <meta property="og:description" content="A personal reflection on ResourceLoop, product judgment, and building with AI.">
+  <meta property="og:url" content="https://pacificapie.github.io/writing/ai-builder-as-pm.html">
+  <meta property="og:image" content="https://pacificapie.github.io/assets/pacifica-avatar.png">
+  <meta name="twitter:card" content="summary">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,12 +60,12 @@
         <span class="lang-zh">写作 · 产品 · AI</span>
       </div>
       <h1 class="article-title">
-        <span class="lang-en">The PM in the Age of AI Builders: Where Collaboration Ends</span>
-        <span class="lang-zh">AI builder 时代的 PM：协同的边界</span>
+        <span class="lang-en">On Building a Product with AI</span>
+        <span class="lang-zh">和 AI 一起做产品这件事</span>
       </h1>
       <div class="article-meta">
-        <span class="lang-en">July 2026 &nbsp;·&nbsp; a short essay</span>
-        <span class="lang-zh">2026 年 7 月 &nbsp;·&nbsp; 短文</span>
+        <span class="lang-en">July 2026 &nbsp;·&nbsp; revised November 2026</span>
+        <span class="lang-zh">2026 年 7 月 &nbsp;·&nbsp; 2026 年 11 月修订</span>
       </div>
     </div>
 
@@ -68,39 +75,42 @@
       <div class="lang-en">
 
         <p>
-          After months of building products in pair with AI, my biggest takeaway isn't
-          &ldquo;it's faster.&rdquo; It's that you have to know where the boundary of your own
-          thinking sits. AI can carry the implementation, but what drives the collaboration
-          has to be your own structured thinking and methodology — what to build, to what
-          standard, and how it will be accepted. Hand those judgments over and the
-          collaboration falls apart. Decisions and product judgment are the part you
-          cannot outsource.
+          While updating my personal website, I hesitated over ResourceLoop. Much of the project is about product strategy. I built the frontend and backend with AI, and there are parts involving AI-as-judge, event ranking, and image generation. But when I explain what the system actually does, I keep coming back to campaign themes, products, and human decisions. I wondered whether it had enough AI in it to sit on a website that spans models through applications. Before I had even finished describing the work, I was worrying about which category it belonged in.
         </p>
 
         <p>
-          The second shift is relational. Product and engineering are no longer upstream
-          and downstream — we co-develop. The pipeline is shorter, iteration is faster,
-          and things that used to wait for a sprint now show running results the same day.
-          But light-speed iteration has a trap: it must never come at the cost of product
-          thinking. The faster the loop, the better the division of labor with AI has to
-          be — I've even started asking the AI to proactively remind me what, standing in
-          the product seat, I should be doing right now. A tool that guards your thinking
-          is a shape of collaboration that didn't exist before.
+          It probably helps to start with what it does. Our part comes before the advertising page is built. We select a campaign theme around an event, find suitable products, and pass the theme, product supply, and resource suggestions downstream after human review and adjustment. Another team builds the page with the company’s internal tools, using AIGC, product shelves, and other components. The images I generated are headers for event cards. Seen as part of that larger process, our role is quite specific: the next system needs to know what the campaign is about and which products can support it.
         </p>
 
         <p>
-          The last one is altitude. Pairing with AI for long stretches, it's easy to sink
-          into the concrete business scenario and the implementation details. What actually
-          works is stepping out and looking at the complete pipeline — from the abstract to
-          the concrete, and back to the abstract. First get clear on what the whole chain
-          needs to be true, then drop into one link and build it, then lift your head and
-          check where it sits in the chain.
+          “Suitable products” is easy to write. Working through what it means brings in price, stock, geography, and driving distance. A place that looks close on a map may be awkward to drive to; an attractive price still needs available stock behind it. A popular event also needs to meet other conditions before it makes sense for a particular campaign. That short description leaves quite a lot of work out. Even a word as ordinary as “nearby” needs another look once it becomes part of a system.
         </p>
 
-        <div class="pull-quote-block blue">
-          AI has made &ldquo;getting it built&rdquo; unprecedentedly cheap.
-          Which is exactly why &ldquo;getting it thought through&rdquo; has never been worth more.
-        </div>
+        <p>
+          I have to decide how those conditions enter the workflow, which checks the system can make first, what should remain a human decision, and what a person can change after reviewing the suggestions. The team checks the business assumptions, and I turn them into a data model, interactions, and acceptance criteria. There is strategy in that, along with plenty of small details. A field, a state, or a default choice may look minor on its own. Each can affect what someone sees, what they select, and whether the next system can use what it receives.
+        </p>
+
+        <p>
+          AI has specific jobs within this. AI-as-judge and BT ranking support the event-heat work. Header-image generation helps present the events. A recommendation subtask needs evaluation to check its output. Each part is useful within the question it can answer. Once the events are ranked, we still have to consider available stock and practical travel. Putting those capabilities in their proper places already gives me a way to explain why they are there, without asking every part to do the same amount of work.
+        </p>
+
+        <p>
+          I also want to say plainly that I built the frontend and backend with AI. I defined the workflow, data model, rules, and interactions; AI helped with implementation, and I worked with it to check the result. A different way of writing code brings some product questions forward. What happens when a field is missing, where a score is calculated, which unit a price uses at handoff—all of these eventually need a specific answer.
+        </p>
+
+        <p>
+          A missing value converted to zero is a small implementation detail, for example. In the business process, though, “we do not know yet” and “we have confirmed there is none” mean different things. If that distinction disappears, later calculations and decisions can keep going from a false premise. Looking at details like this, product definition and implementation feel very close. A sentence that sounded clear earlier has finally reached the point where it has to say exactly what it means.
+        </p>
+
+        <p>
+          When building with AI, it is easy to keep following the next visible result. Change a page, connect an interface, fix this error, then look at the next one. There is always something concrete to do. I still worry about spending so long inside those details that I leave too little time to revisit the original problem. I want to keep moving between the two: work through a detail, then look up and ask what it does for the whole process. Moving faster can help me see what a decision looks like in practice sooner, including the parts I need to change.
+        </p>
+
+        <p>
+          Writing this out gives me a little more confidence about how to introduce ResourceLoop. It can honestly be a business system centered on product strategy, implemented with AI, containing decisions I made as well as assumptions the team needs to check and selections people need to adjust. I would like someone to understand why these products fit this campaign, which judgments we made, and what we handed over. Once that is clear, there is probably still time to decide where it belongs.
+        </p>
+
+        <p><a href="../work/resourceloop.html">ResourceLoop: the project and its implementation →</a></p>
 
       </div>
 
@@ -108,29 +118,42 @@
       <div class="lang-zh">
 
         <p>
-          与 AI 结对做产品这几个月，我最大的体会不是 "效率高了"，而是必须先意识到思考的边界在哪里。
-          AI 可以承担实现，但带动协同的必须是我自己的结构化思考和方法论 ——
-          什么该做、做到什么程度、验收标准是什么。这些判断一旦交出去，协同就散了。
-          决策与产品把关，是不能外包的那一部分。
+          最近整理个人网站，写到 ResourceLoop 的时候有点犹豫。这个项目的主线其实很偏策略，前后端是和 AI 一起做的，里面也有 AI-as-judge、热度排序和生图，但如果要说整个系统到底在做什么，最后还是会落到活动主题、商品和人的判断上。我当时就在想，这样放进一个从模型写到应用的网站，会不会显得 AI 的成分不够。到介绍项目的时候，我反而先关心起它应该算在哪一类里。
         </p>
 
         <p>
-          第二个变化发生在关系上。产品和研发不再是上下游，而是共同开发：链路缩短，迭代提速，
-          很多过去要排期的事情，现在当天就能看到运行结果。但光速迭代有一个陷阱 ——
-          它不能以牺牲产品思考为代价。循环越快，越需要与 AI 更好地分工；
-          我甚至开始让 AI 主动提醒我：站在产品立场，此刻该做的事是什么。
-          工具反过来守护思考，这是以前没有过的协作形态。
+          还是先说它做什么吧。我们负责的是广告搭建之前的那一段：围绕一个事件筛选活动主题，再找出适合的商品，经过人的判断和调整，把主题、商品供给和资源建议交给下游。后面的广告页面由另一个团队依托公司内部工具搭建，里面有 AIGC，也有商品货架和各种组件。我做的生图只是事件卡片的头图。把这一段放回完整的链路里，它的位置就很具体了，下游需要知道这次活动讲什么，以及能拿什么商品来承接。
         </p>
 
         <p>
-          最后一条是视角。与 AI 结对久了，很容易陷进具体的业务场景和实现细节里。
-          真正有效的办法是跳脱出来，从完整链路看问题 —— 从抽象到具体，再回到抽象。
-          先想清楚整条链路要成立什么，再落到某一个环节去做，做完再抬头，检查它在链上的位置。
+          “合适的商品”几个字很容易写，真正往下拆的时候，价格、库存、地理位置、驾车距离都要进来。位置看起来很近，也可能并不方便开车过去；价格有吸引力，还要有库存支持。一个事件很热，和它适不适合做这次活动，中间也还有许多条件。说到这里就能发现，前面那句简单的介绍其实省略了很多工作，甚至连“附近”这种平时觉得不用解释的词，放到系统里都需要重新想一遍。
         </p>
 
-        <div class="pull-quote-block blue">
-          AI 让 "做出来" 变得空前便宜。正因为如此，"想清楚" 变得空前值钱。
-        </div>
+        <p>
+          我需要决定这些条件怎样进入工作流，哪些由系统先筛一遍，哪些要留给人判断，人看完以后又能改什么。团队会一起校验业务假设，我再把它们落到数据模型、交互和验收标准里。这里面当然有策略，也有一些非常细碎的东西，单独拿出来可能只是一个字段、一种状态或者一个默认选项，但它们会影响人最后看到什么、选到什么，以及下游拿到的东西能不能用。
+        </p>
+
+        <p>
+          AI 在其中有一些明确的工作。AI-as-judge 和 BT 排序用来支持事件热度量化，头图生成帮助呈现事件，推荐子任务则需要评测来检查输出。每一部分都有自己的作用，也有它能回答到哪里的问题。热度排序出来以后，商品有没有库存、出行是否方便，还得继续判断。我觉得把它们放在各自的位置上，已经能解释为什么需要这些能力，未必每一段都要承担同样多的事情。
+        </p>
+
+        <p>
+          至于前后端是和 AI 一起做的，这件事我也想直接写出来。我负责工作流、数据模型、规则和交互，AI 参与实现，再一起检查结果。写代码的方式变了，产品里那些原本可以暂时说得模糊一点的问题，也会更早地来到面前。一个字段缺失时要怎么办，分数在哪里计算，递交时价格的单位是什么，最终都需要有具体的处理方式。
+        </p>
+
+        <p>
+          比如缺失值被转成零，看起来只是实现里的一个小问题，但“还不知道”和“已经确认没有”在业务里是两回事。如果这个区别丢了，后面的计算和判断就可能顺着一个错误的前提继续走。检查这种细节的时候，我觉得产品定义和实现其实离得很近：前面说过的一句话，到了这里，终于需要回答它到底是什么意思。
+        </p>
+
+        <p>
+          和 AI 一起做东西，很容易被快速出现的结果带着继续往前。改一个页面，接一个接口，处理完这个错误，再看下一个，总有很具体的事情等着做。我还是会担心，自己在这些事情里待得太久，反而没时间回头想原来的问题。所以现在更想保留的是这种来回看的习惯：做进某个细节里，也记得看看它在整个流程里解决了什么。做得快一点，可以让我早一点看到自己的判断落地以后是什么样子，也早一点知道哪里还需要改。
+        </p>
+
+        <p>
+          这样重新写了一遍，我对 ResourceLoop 的介绍也稍微有了点把握。它可以很诚实地是一个偏策略、和 AI 协作完成实现的业务系统，里面有我做出的选择，也有需要团队校验和人工调整的部分。我想先让别人看懂这次活动为什么选这些商品，我们做了哪些判断，最后交付了什么。等这些都说清楚，再给它找一个合适的位置，大概也来得及。
+        </p>
+
+        <p><a href="../work/resourceloop.html">ResourceLoop：项目介绍与实现细节 →</a></p>
 
       </div>
 
