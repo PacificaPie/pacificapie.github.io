@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ruoyang Zhang — Resume</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -97,6 +98,12 @@
     }
     a { color: #1a3a6c; text-decoration: none; }
     a:hover { text-decoration: underline; }
+
+    @media screen and (max-width: 640px) {
+      body { padding: 24px 20px; overflow-wrap: anywhere; }
+      .entry-header { flex-wrap: wrap; gap: 2px 12px; }
+      .entry-meta { white-space: normal; }
+    }
 
     @media print {
       html, body { background: #fff; }

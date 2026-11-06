@@ -13,6 +13,14 @@ To update a project, edit its link, caption, accessible question, and `.work-sum
 
 Check desktop and 320px layouts, keyboard focus/Enter, touch first/second tap, language switching, return navigation, and local links after changes. The project uses GitHub Pages from `main`, with no additional hosting service.
 
+### Responsive and language maintenance
+
+Shared pages load `script.js` in the head so the saved/browser language is selected before the body is painted. Storage is optional: blocking it must not break switching or the rest of initialization. Keep visible copy in paired `lang-en` / `lang-zh` spans; translated `alt` and `aria-label` attributes use `data-i18n-alt-en/zh` and `data-i18n-aria-label-en/zh`. Brand names, code identifiers, and the two intentionally separate CV documents keep their original language.
+
+Articles retain the `.wrap` gutters. Card grids must fit widths below their preferred minimum. At 480px and below, work cards become single-column rows; touch previews retain an explicit detail link. Mobile navigation has 44px targets, and CV screen rules are isolated from print styles. Wide case-study diagrams scroll inside their figures.
+
+For release QA, check both languages at 320, 375, 430, 768, and 1280px; also check CV printing and mouse vs. touch navigation. Run `bash scripts/validate-site.sh` for syntax and local-file checks. The standalone `tripalarm/` BizWiz demo is still Chinese-only and is labeled as such in the English project index.
+
 ---
 
 ## File structure

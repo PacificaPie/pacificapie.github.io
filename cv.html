@@ -14,7 +14,7 @@
   <style>
     .cv-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
       gap: 1.5rem;
       margin: 2.5rem 0 3rem;
     }
@@ -102,6 +102,7 @@
       font-style: normal;
     }
   </style>
+  <script src="script.js"></script>
 </head>
 <body>
 
@@ -148,15 +149,15 @@
       </h1>
       <div class="article-meta">
         <span class="lang-en">AI Product — hands-on across post-training, agent systems, and applications; grounded in statistics &amp; causal inference.</span>
-        <span class="lang-zh">AI 产品——从模型后训练、Agent 系统到应用落地全链路 hands-on;统计与因果推断功底。</span>
+        <span class="lang-zh">AI 产品——亲手参与模型后训练、智能体系统与应用落地，具备统计与因果推断基础。</span>
       </div>
     </div>
 
     <div class="cv-grid">
 
       <a class="cv-card" href="cv/en.html">
-        <div class="cv-card-eyebrow">English · One Page · ATS</div>
-        <div class="cv-card-title">English CV</div>
+        <div class="cv-card-eyebrow"><span class="lang-en">English · One Page · ATS</span><span class="lang-zh">英文 · 单页 · 适配招聘系统</span></div>
+        <div class="cv-card-title"><span class="lang-en">English CV</span><span class="lang-zh">英文简历</span></div>
         <div class="cv-card-cta">
           <span class="lang-en">View →</span>
           <span class="lang-zh">查看 →</span>
@@ -164,8 +165,8 @@
       </a>
 
       <a class="cv-card" href="cv/zh.html">
-        <div class="cv-card-eyebrow">中文 · 字节 AIPM 版 · 含照片</div>
-        <div class="cv-card-title">中文简历</div>
+        <div class="cv-card-eyebrow"><span class="lang-en">Chinese · ByteDance AIPM edition · Photo included</span><span class="lang-zh">中文 · 字节 AIPM 版 · 含照片</span></div>
+        <div class="cv-card-title"><span class="lang-en">Chinese CV</span><span class="lang-zh">中文简历</span></div>
         <div class="cv-card-cta">
           <span class="lang-en">View →</span>
           <span class="lang-zh">查看 →</span>
@@ -201,7 +202,7 @@
             <span class="lang-zh">简历 (英)</span>
           </a>
           <a href="cv/zh.html">
-            <span class="lang-en">cv (中)</span>
+            <span class="lang-en">cv (zh)</span>
             <span class="lang-zh">简历 (中)</span>
           </a>
         </div>
@@ -213,6 +214,5 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

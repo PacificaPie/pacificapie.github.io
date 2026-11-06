@@ -16,14 +16,22 @@
   // (2) navigator.language starting with "zh" → Chinese
   // (3) default English
   function getInitialLang() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved === 'en' || saved === 'zh') return saved;
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'en' || saved === 'zh') return saved;
+    } catch (_) { /* Language switching also works when storage is unavailable. */ }
     const browserLang = (navigator.language || 'en').toLowerCase();
     return browserLang.startsWith('zh') ? 'zh' : 'en';
   }
 
   function setLang(lang, persist) {
     root.setAttribute('lang', lang);
+    document.querySelectorAll('[data-i18n-aria-label-en], [data-i18n-alt-en]').forEach((el) => {
+      ['aria-label', 'alt'].forEach((attribute) => {
+        const value = el.getAttribute(`data-i18n-${attribute}-${lang}`);
+        if (value !== null) el.setAttribute(attribute, value);
+      });
+    });
     document.querySelectorAll('[data-product-demo]').forEach((link) => {
       const url = new URL(link.getAttribute('href'), location.href);
       url.searchParams.set('lang', lang);
@@ -31,15 +39,18 @@
     });
     // Persist only explicit user choices — never overwrite a manual
     // selection with auto-detected language.
-    if (persist) localStorage.setItem(STORAGE_KEY, lang);
+    if (persist) {
+      try { localStorage.setItem(STORAGE_KEY, lang); } catch (_) { /* Keep the current page usable. */ }
+    }
     document.querySelectorAll('.lang-toggle').forEach((btn) => {
       btn.textContent = lang === 'en' ? '中文' : 'EN';
-      btn.setAttribute('aria-label', lang === 'en' ? 'Switch to Chinese' : 'Switch to English');
+      btn.setAttribute('aria-label', lang === 'en' ? 'Switch to Chinese' : '切换为英文');
     });
     const titleEl = document.querySelector('title');
     if (titleEl && titleEl.dataset.en && titleEl.dataset.zh) {
       titleEl.textContent = titleEl.dataset[lang];
     }
+    document.dispatchEvent(new CustomEvent('languagechange', { detail: { lang } }));
   }
 
   function bindToggles() {
@@ -295,8 +306,11 @@
     }
   }
 
+  // Loaded in <head>: choose the language before the bilingual body is painted.
+  root.setAttribute('lang', getInitialLang());
+
   document.addEventListener('DOMContentLoaded', () => {
-    setLang(getInitialLang());
+    setLang(root.getAttribute('lang'));
     bindToggles();
     setupSplashTimed();
     setupHeroBandTrigger();

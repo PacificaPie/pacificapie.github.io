@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js"></script>
 </head>
 <body>
 
@@ -56,9 +57,9 @@
         <span class="lang-zh">协作式路线图 —— 云端实时同步与对话驱动更新</span>
       </h1>
       <div class="case-meta-strip">
-        <span class="origin-pill origin-personal">Personal · Collaboration</span>
-        <span class="badge badge-shipped">Shipped</span>
-        <span class="case-layer">Agents · Skills</span>
+        <span class="origin-pill origin-personal"><span class="lang-en">Personal · Collaboration</span><span class="lang-zh">个人协作项目</span></span>
+        <span class="badge badge-shipped"><span class="lang-en">Shipped</span><span class="lang-zh">已交付</span></span>
+        <span class="case-layer"><span class="lang-en">Agents · Skills</span><span class="lang-zh">智能体 · 技能</span></span>
       </div>
       <div class="article-meta">
         <span class="lang-en">
@@ -93,33 +94,30 @@
           "update it by talking to it" into a portable skill.
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-rm-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="115" y="52" text-anchor="middle">本地存储</text>
+            <text class="pl-name" x="115" y="52" text-anchor="middle">Local storage</text>
             <rect class="pl-box" x="285" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="360" y="52" text-anchor="middle">云端实时同步</text>
+            <text class="pl-name" x="360" y="52" text-anchor="middle">Live cloud sync</text>
             <rect class="pl-box" x="530" y="24" width="150" height="48" rx="8"/>
-            <text class="pl-name" x="605" y="52" text-anchor="middle">对话驱动更新</text>
+            <text class="pl-name" x="605" y="52" text-anchor="middle">Chat updates</text>
             <line class="pl-line" x1="194" y1="48" x2="281" y2="48" marker-end="url(#arr-rm-en)"/>
             <line class="pl-line" x1="439" y1="48" x2="526" y2="48" marker-end="url(#arr-rm-en)"/>
-            <text class="pl-note" x="360" y="90" text-anchor="middle">每人一行 JSON · 无写冲突</text>
-            <text class="pl-note" x="605" y="90" text-anchor="middle">自然语言→改数据→即刷新</text>
+            <text class="pl-note" x="360" y="90" text-anchor="middle">One JSON row per user</text>
+            <text class="pl-note" x="605" y="90" text-anchor="middle">Chat → data → refresh</text>
             <!-- collaboration strip -->
             <rect class="pl-box" x="20" y="128" width="270" height="40" rx="8"/>
-            <text class="pl-name" x="155" y="152" text-anchor="middle">我:状态分离·抗覆盖·写入纪律</text>
+            <text class="pl-name" x="155" y="152" text-anchor="middle">My role: state + write boundaries</text>
             <rect class="pl-box" x="330" y="128" width="150" height="40" rx="8"/>
-            <text class="pl-name" x="405" y="152" text-anchor="middle">theme.js 集中化</text>
+            <text class="pl-name" x="405" y="152" text-anchor="middle">Shared theme.js</text>
             <rect class="pl-box" x="520" y="128" width="170" height="40" rx="8"/>
-            <text class="pl-name" x="605" y="152" text-anchor="middle">平台 AI 生成 UI</text>
+            <text class="pl-name" x="605" y="152" text-anchor="middle">AI-generated UI</text>
             <line class="pl-line" x1="294" y1="148" x2="326" y2="148" marker-end="url(#arr-rm-en)"/>
             <line class="pl-line" x1="484" y1="148" x2="516" y2="148" marker-end="url(#arr-rm-en)"/>
           </svg>
-          <figcaption>
-            <span class="lang-en">Local → real-time cloud → conversational update; underneath, the discipline that keeps a platform-AI collaborator from overwriting the work.</span>
-            <span class="lang-zh">本地 → 实时云端 → 对话驱动更新;下方是让"平台 AI 协作者"不覆盖成果的那套纪律。</span>
-          </figcaption>
+          <figcaption>Local → real-time cloud → conversational update; underneath, the discipline that keeps a platform-AI collaborator from overwriting the work.</figcaption>
         </figure>
 
         <h2>What shipped</h2>
@@ -176,7 +174,7 @@
           把共享状态搬到实时云端、并把“用自然语言改它”封装成可移植的技能。
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-rm-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <rect class="pl-box" x="40" y="24" width="150" height="48" rx="8"/>
@@ -199,10 +197,7 @@
             <line class="pl-line" x1="294" y1="148" x2="326" y2="148" marker-end="url(#arr-rm-zh)"/>
             <line class="pl-line" x1="484" y1="148" x2="516" y2="148" marker-end="url(#arr-rm-zh)"/>
           </svg>
-          <figcaption>
-            <span class="lang-en">Local → real-time cloud → conversational update; underneath, the discipline that keeps a platform-AI collaborator from overwriting the work.</span>
-            <span class="lang-zh">本地 → 实时云端 → 对话驱动更新;下方是让"平台 AI 协作者"不覆盖成果的那套纪律。</span>
-          </figcaption>
+          <figcaption>本地 → 实时云端 → 对话驱动更新;下方是让"平台 AI 协作者"不覆盖成果的那套纪律。</figcaption>
         </figure>
 
         <h2>交付</h2>
@@ -262,7 +257,7 @@
             <span class="lang-zh">简历 (英)</span>
           </a>
           <a href="../cv/zh.html">
-            <span class="lang-en">cv (中)</span>
+            <span class="lang-en">cv (zh)</span>
             <span class="lang-zh">简历 (中)</span>
           </a>
         </div>
@@ -274,6 +269,5 @@
     </div>
   </footer>
 
-  <script src="../script.js"></script>
 </body>
 </html>

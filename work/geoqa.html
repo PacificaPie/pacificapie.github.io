@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js"></script>
 </head>
 <body>
 
@@ -56,9 +57,9 @@
         <span class="lang-zh">GeoQA —— 强 SFT 之后 GRPO 为什么不动了</span>
       </h1>
       <div class="case-meta-strip">
-        <span class="origin-pill origin-course">Yale Course</span>
-        <span class="badge badge-oss">Open source</span>
-        <span class="case-layer">Post-training</span>
+        <span class="origin-pill origin-course"><span class="lang-en">Yale Course</span><span class="lang-zh">耶鲁课程项目</span></span>
+        <span class="badge badge-oss"><span class="lang-en">Open source</span><span class="lang-zh">开源</span></span>
+        <span class="case-layer"><span class="lang-en">Post-training</span><span class="lang-zh">后训练</span></span>
       </div>
       <div class="article-meta">
         <span class="lang-en">
@@ -83,7 +84,7 @@
         </span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">+6.8 pts</span>
+        <span class="stat-num"><span class="lang-en">+6.8 pts</span><span class="lang-zh">+6.8 个百分点</span></span>
         <span class="stat-label">
           <span class="lang-en">over zero-shot</span>
           <span class="lang-zh">相对 zero-shot</span>
@@ -127,7 +128,7 @@
           could give us meaningful gains, on a single A100.
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-gq-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <rect class="pl-box" x="2" y="44" width="100" height="56" rx="8"/>
@@ -138,8 +139,8 @@
             <text class="pl-name" x="300" y="68" text-anchor="middle">⚠ reward</text>
             <text class="pl-name" x="300" y="84" text-anchor="middle">saturation</text>
             <rect class="pl-box" x="374" y="44" width="100" height="56" rx="8"/>
-            <text class="pl-name" x="424" y="68" text-anchor="middle">Pass@K 筛选</text>
-            <text class="pl-note" x="424" y="84" text-anchor="middle">保留33.5%</text>
+            <text class="pl-name" x="424" y="68" text-anchor="middle">Pass@K filter</text>
+            <text class="pl-note" x="424" y="84" text-anchor="middle">Retain 33.5%</text>
             <rect class="pl-box" x="498" y="44" width="100" height="56" rx="8"/>
             <text class="pl-name" x="548" y="76" text-anchor="middle">GRPO</text>
             <rect class="pl-box" x="622" y="44" width="96" height="56" rx="8"/>
@@ -150,10 +151,7 @@
             <line class="pl-line" x1="476" y1="72" x2="494" y2="72" marker-end="url(#arr-gq-en)"/>
             <line class="pl-line" x1="600" y1="72" x2="618" y2="72" marker-end="url(#arr-gq-en)"/>
           </svg>
-          <figcaption>
-            <span class="lang-en">Post-training pipeline: Pass@K data filtering restored reward variance and unblocked GRPO.</span>
-            <span class="lang-zh">后训练管线:Pass@K 筛选恢复奖励方差,解锁 GRPO。</span>
-          </figcaption>
+          <figcaption>Post-training pipeline: Pass@K data filtering restored reward variance and unblocked GRPO.</figcaption>
         </figure>
 
         <h2>Stage 1 — two-phase SFT</h2>
@@ -276,7 +274,7 @@
           基座是 InternVL3-8B。研究问题是：在单卡 A100 上，两阶段 SFT + RL 这套配方能不能拿到有意义的提升。
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-gq-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <rect class="pl-box" x="2" y="44" width="100" height="56" rx="8"/>
@@ -299,10 +297,7 @@
             <line class="pl-line" x1="476" y1="72" x2="494" y2="72" marker-end="url(#arr-gq-zh)"/>
             <line class="pl-line" x1="600" y1="72" x2="618" y2="72" marker-end="url(#arr-gq-zh)"/>
           </svg>
-          <figcaption>
-            <span class="lang-en">Post-training pipeline: Pass@K data filtering restored reward variance and unblocked GRPO.</span>
-            <span class="lang-zh">后训练管线:Pass@K 筛选恢复奖励方差,解锁 GRPO。</span>
-          </figcaption>
+          <figcaption>后训练管线:Pass@K 筛选恢复奖励方差,解锁 GRPO。</figcaption>
         </figure>
 
         <h2>第一阶段 —— 两阶段 SFT</h2>
@@ -422,7 +417,7 @@
             <span class="lang-zh">简历 (英)</span>
           </a>
           <a href="../cv/zh.html">
-            <span class="lang-en">cv (中)</span>
+            <span class="lang-en">cv (zh)</span>
             <span class="lang-zh">简历 (中)</span>
           </a>
         </div>
@@ -434,6 +429,5 @@
     </div>
   </footer>
 
-  <script src="../script.js"></script>
 </body>
 </html>

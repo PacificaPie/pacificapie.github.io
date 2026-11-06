@@ -51,11 +51,15 @@ body {
   font-family: var(--font-sans-en), var(--font-sans-cn);
   font-size: 16px;
   line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
+img { max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
 /* ---------- i18n visibility (toggled by html[lang]) ---------- */
-html[lang="en"] .lang-zh,
-html[lang="zh"] .lang-en {
+html[lang|="en"] .lang-zh,
+html[lang|="zh"] .lang-en {
   display: none !important;
 }
 /* Inline variants: span elements stay inline */
@@ -82,7 +86,7 @@ html[lang="zh"] .lang-en {
   text-decoration: none;
   letter-spacing: 0.02em;
 }
-html[lang="zh"] .nav .brand { font-family: var(--font-serif-cn); font-style: normal; }
+html[lang|="zh"] .nav .brand { font-family: var(--font-serif-cn); font-style: normal; }
 .nav-links {
   display: flex;
   gap: 1.8rem;
@@ -212,7 +216,7 @@ section {
   margin: 0;
   animation: splashRise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
 }
-html[lang="zh"] .splash-name-primary {
+html[lang|="zh"] .splash-name-primary {
   font-family: var(--font-serif-cn);
   font-style: normal;
   letter-spacing: 0.05em;
@@ -227,7 +231,7 @@ html[lang="zh"] .splash-name-primary {
   margin-top: clamp(1rem, 2vw, 1.4rem);
   animation: splashRise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s backwards;
 }
-html[lang="zh"] .splash-name-secondary {
+html[lang|="zh"] .splash-name-secondary {
   font-family: var(--font-serif-en);
   font-style: italic;
   letter-spacing: 0.005em;
@@ -249,7 +253,7 @@ html[lang="zh"] .splash-name-secondary {
   text-transform: uppercase;
   gap: clamp(0.6rem, 1.6vw, 1.4rem);
 }
-html[lang="zh"] .splash-keyword-row {
+html[lang|="zh"] .splash-keyword-row {
   font-family: var(--font-sans-cn);
   letter-spacing: 0.16em;
   text-transform: none;
@@ -298,7 +302,7 @@ html[lang="zh"] .splash-keyword-row {
   gap: 0.7rem;
   flex-wrap: wrap;
 }
-html[lang="zh"] .hero-name {
+html[lang|="zh"] .hero-name {
   font-family: var(--font-serif-cn);
   letter-spacing: 0.06em;
 }
@@ -323,7 +327,7 @@ html[lang="zh"] .hero-name {
   color: var(--muted);
   letter-spacing: 0.08em;
 }
-html[lang="zh"] .hero-role {
+html[lang|="zh"] .hero-role {
   font-family: var(--font-sans-cn);
   letter-spacing: 0.04em;
 }
@@ -345,7 +349,7 @@ html[lang="zh"] .hero-role {
   margin-bottom: 1.5rem;
   animation: slideInDiagonal 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.1s backwards;
 }
-html[lang="zh"] .article-eyebrow-block {
+html[lang|="zh"] .article-eyebrow-block {
   font-family: var(--font-serif-cn);
   font-style: normal;
   text-transform: none;
@@ -364,7 +368,7 @@ html[lang="zh"] .article-eyebrow-block {
 }
 
 /* Drop cap (English only — Chinese first chars don't drop-cap traditionally) */
-html[lang="en"] .drop-cap > p:first-of-type::first-letter {
+html[lang|="en"] .drop-cap > p:first-of-type::first-letter {
   font-family: var(--font-serif-en);
   font-size: 3.6em;
   float: left;
@@ -406,7 +410,7 @@ html[lang="en"] .drop-cap > p:first-of-type::first-letter {
   opacity: 0.4;
   margin-bottom: 0.4rem;
 }
-html[lang="zh"] .pull-quote-block {
+html[lang|="zh"] .pull-quote-block {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 500;
@@ -439,7 +443,7 @@ html[lang="zh"] .pull-quote-block {
   letter-spacing: 0.04em;
   text-align: center;
 }
-html[lang="zh"] .article-end .signoff {
+html[lang|="zh"] .article-end .signoff {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -495,7 +499,7 @@ html[lang="zh"] .article-end .signoff {
   letter-spacing: -0.005em;
   transform-origin: left center;
 }
-html[lang="zh"] .color-band {
+html[lang|="zh"] .color-band {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 600;
@@ -563,7 +567,7 @@ html[lang="zh"] .color-band {
   color: var(--muted);
   letter-spacing: 0.05em;
 }
-html[lang="zh"] .hero-attribution-band {
+html[lang|="zh"] .hero-attribution-band {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -593,7 +597,7 @@ html[lang="zh"] .hero-attribution-band {
   position: relative;
   z-index: 1;
 }
-html[lang="zh"] .hero-poem {
+html[lang|="zh"] .hero-poem {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 500;
@@ -612,7 +616,7 @@ html[lang="zh"] .hero-poem {
   position: relative;
   z-index: 1;
 }
-html[lang="zh"] .hero-tagline {
+html[lang|="zh"] .hero-tagline {
   font-family: var(--font-sans-cn);
   letter-spacing: 0.02em;
 }
@@ -622,7 +626,7 @@ html[lang="zh"] .hero-tagline {
   color: var(--blue);
   font-weight: 500;
 }
-html[lang="zh"] .hero-tagline em {
+html[lang|="zh"] .hero-tagline em {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -637,7 +641,7 @@ html[lang="zh"] .hero-tagline em {
   position: relative;
   z-index: 1;
 }
-html[lang="zh"] .hero-attribution {
+html[lang|="zh"] .hero-attribution {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -699,7 +703,7 @@ html[lang="zh"] .hero-attribution {
   align-items: center;
   gap: 0.8rem;
 }
-html[lang="zh"] .section-heading {
+html[lang|="zh"] .section-heading {
   font-family: var(--font-serif-cn);
   font-style: normal;
   letter-spacing: 0.25em;
@@ -744,7 +748,7 @@ html[lang="zh"] .section-heading {
   letter-spacing: 0.005em;
   color: var(--ink);
 }
-html[lang="zh"] .work-item-title {
+html[lang|="zh"] .work-item-title {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 600;
@@ -791,7 +795,7 @@ html[lang="zh"] .work-item-title {
   color: var(--seal);
   border-color: rgba(184, 84, 80, 0.4);
 }
-html[lang="zh"] .work-item-tag {
+html[lang|="zh"] .work-item-tag {
   font-family: var(--font-sans-cn);
   text-transform: none;
   letter-spacing: 0.06em;
@@ -838,7 +842,7 @@ html[lang="zh"] .work-item-tag {
     0 6px 18px rgba(100, 70, 120, 0.12);
   transform: rotate(-2deg);
 }
-html[lang="zh"] .sticky-note {
+html[lang|="zh"] .sticky-note {
   font-family: var(--font-serif-cn);
   font-style: normal;
   letter-spacing: 0.04em;
@@ -863,7 +867,7 @@ html[lang="zh"] .sticky-note {
   color: var(--muted);
   letter-spacing: 0.06em;
 }
-html[lang="zh"] .sticky-note .note-source {
+html[lang|="zh"] .sticky-note .note-source {
   font-family: var(--font-sans-cn);
 }
 .sticky-note-wrap {
@@ -897,7 +901,7 @@ html[lang="zh"] .sticky-note .note-source {
   padding-bottom: 1px;
   transition: all 0.2s ease;
 }
-html[lang="zh"] .about-teaser .more-link {
+html[lang|="zh"] .about-teaser .more-link {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -908,7 +912,8 @@ html[lang="zh"] .about-teaser .more-link {
 
 /* ---------- Article (case study / blog post) ---------- */
 .article {
-  padding: clamp(2rem, 5vw, 4rem) 0;
+  padding-top: clamp(2rem, 5vw, 4rem);
+  padding-bottom: clamp(2rem, 5vw, 4rem);
 }
 .article-header {
   margin-bottom: 3rem;
@@ -924,7 +929,7 @@ html[lang="zh"] .about-teaser .more-link {
   margin-bottom: 0.7rem;
   text-transform: uppercase;
 }
-html[lang="zh"] .article-eyebrow {
+html[lang|="zh"] .article-eyebrow {
   font-family: var(--font-serif-cn);
   font-style: normal;
   text-transform: none;
@@ -938,7 +943,7 @@ html[lang="zh"] .article-eyebrow {
   margin: 0 0 0.8rem;
   color: var(--ink);
 }
-html[lang="zh"] .article-title {
+html[lang|="zh"] .article-title {
   font-family: var(--font-serif-cn);
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -965,7 +970,7 @@ html[lang="zh"] .article-title {
   letter-spacing: 0;
   line-height: 1.3;
 }
-html[lang="zh"] .article-body h2 {
+html[lang|="zh"] .article-body h2 {
   font-family: var(--font-serif-cn);
   font-weight: 600;
 }
@@ -977,7 +982,7 @@ html[lang="zh"] .article-body h2 {
   color: var(--ink);
   letter-spacing: 0;
 }
-html[lang="zh"] .article-body h3 { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .article-body h3 { font-family: var(--font-sans-cn); }
 .article-body blockquote {
   margin: 2rem 0;
   padding: 0.5rem 0 0.5rem 1.5rem;
@@ -988,7 +993,7 @@ html[lang="zh"] .article-body h3 { font-family: var(--font-sans-cn); }
   font-size: 1.05rem;
   line-height: 1.7;
 }
-html[lang="zh"] .article-body blockquote {
+html[lang|="zh"] .article-body blockquote {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -1027,7 +1032,7 @@ html[lang="zh"] .article-body blockquote {
   text-align: center;
   letter-spacing: 0.005em;
 }
-html[lang="zh"] .pull-quote {
+html[lang|="zh"] .pull-quote {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 500;
@@ -1054,7 +1059,7 @@ html[lang="zh"] .pull-quote {
   margin-top: 0.5rem;
   display: block;
 }
-html[lang="zh"] .stat-item .stat-label {
+html[lang|="zh"] .stat-item .stat-label {
   font-family: var(--font-sans-cn);
   text-transform: none;
   letter-spacing: 0.04em;
@@ -1091,7 +1096,7 @@ footer {
   color: var(--muted);
   letter-spacing: 0.02em;
 }
-html[lang="zh"] .footer-signoff {
+html[lang|="zh"] .footer-signoff {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -1347,7 +1352,7 @@ a.badge:hover { background: rgba(122, 92, 138, 0.1); }
   letter-spacing: 0.02em;
   transition: all 0.22s ease;
 }
-html[lang="zh"] .proof-chip { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .proof-chip { font-family: var(--font-sans-cn); }
 .proof-chip:hover {
   border-color: var(--accent);
   color: var(--ink);
@@ -1365,7 +1370,7 @@ html[lang="zh"] .proof-chip { font-family: var(--font-sans-cn); }
   margin: -0.8rem 0 1.2rem;
   font-family: var(--font-sans-en);
 }
-html[lang="zh"] .constellation-hint { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .constellation-hint { font-family: var(--font-sans-cn); }
 .constellation {
   position: relative;
   height: clamp(360px, 46vw, 500px);
@@ -1401,7 +1406,7 @@ html[lang="zh"] .constellation-hint { font-family: var(--font-sans-cn); }
   text-transform: uppercase;
   color: var(--panel-ink-soft);
 }
-html[lang="zh"] .axis-label sub,
+html[lang|="zh"] .axis-label sub,
 .axis-label .axis-zh {
   display: block;
   font-family: var(--font-sans-cn);
@@ -1472,7 +1477,7 @@ html[lang="zh"] .axis-label sub,
   color: #D8D2C4;
   white-space: nowrap;
 }
-html[lang="zh"] .node-label { font-family: var(--font-sans-cn); letter-spacing: 0.1em; }
+html[lang|="zh"] .node-label { font-family: var(--font-sans-cn); letter-spacing: 0.1em; }
 
 /* Hover card — fixed light "paper" so it reads in any color scheme */
 .node-card {
@@ -1521,7 +1526,7 @@ html[lang="zh"] .node-label { font-family: var(--font-sans-cn); letter-spacing: 
   margin-bottom: 0.3rem;
   color: var(--card-ink);
 }
-html[lang="zh"] .node-card-title { font-family: var(--font-serif-cn); font-style: normal; }
+html[lang|="zh"] .node-card-title { font-family: var(--font-serif-cn); font-style: normal; }
 .node-card-desc {
   margin: 0 0 0.6rem;
   font-size: 0.8rem;
@@ -1529,7 +1534,7 @@ html[lang="zh"] .node-card-title { font-family: var(--font-serif-cn); font-style
   color: var(--card-ink-soft);
   font-family: var(--font-sans-en);
 }
-html[lang="zh"] .node-card-desc { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .node-card-desc { font-family: var(--font-sans-cn); }
 .node-card .badge { font-size: 0.6rem; }
 
 /* Mobile: hide hover cards (tap = navigate), show legend list below */
@@ -1661,7 +1666,7 @@ html[lang="zh"] .node-card-desc { font-family: var(--font-sans-cn); }
   margin: -0.8rem 0 1.2rem;
   font-family: var(--font-sans-en);
 }
-html[lang="zh"] .strata-caption { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .strata-caption { font-family: var(--font-sans-cn); }
 
 .strata { position: relative; }
 
@@ -1758,7 +1763,7 @@ html[lang="zh"] .strata-caption { font-family: var(--font-sans-cn); }
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-html[lang="zh"] .strata-name { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .strata-name { font-family: var(--font-sans-cn); }
 .strata-node .badge { font-size: 0.58rem; padding: 0.14rem 0.5rem; }
 
 /* Hover card */
@@ -1785,7 +1790,7 @@ html[lang="zh"] .strata-name { font-family: var(--font-sans-cn); }
   z-index: 6;
   white-space: normal;
 }
-html[lang="zh"] .strata-card { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .strata-card { font-family: var(--font-sans-cn); }
 .strata-node:hover .strata-card,
 .strata-node:focus-visible .strata-card {
   opacity: 1;
@@ -1866,7 +1871,7 @@ html[lang="zh"] .strata-card { font-family: var(--font-sans-cn); }
   font-size: 1.02rem;
   letter-spacing: 0.005em;
 }
-html[lang="zh"] .work-index-name {
+html[lang|="zh"] .work-index-name {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 600;
@@ -1941,7 +1946,18 @@ html[lang="zh"] .work-index-name {
   color: var(--muted);
   letter-spacing: 0.02em;
 }
-html[lang="zh"] .pipeline-fig figcaption { font-family: var(--font-sans-cn); }
+html[lang|="zh"] .pipeline-fig figcaption { font-family: var(--font-sans-cn); }
+
+@media (max-width: 640px) {
+  .pipeline-fig::before {
+    content: "Swipe or scroll sideways to view the full diagram →";
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+  }
+  html[lang|="zh"] .pipeline-fig::before { content: "左右滑动，查看完整流程图 →"; }
+}
 
 /* ---------- v7 dark-mode overrides ---------- */
 @media (prefers-color-scheme: dark) {
@@ -1994,7 +2010,7 @@ html[lang="zh"] .pipeline-fig figcaption { font-family: var(--font-sans-cn); }
   height: 1px;
   background: currentColor;
 }
-html[lang="zh"] .hero-kicker {
+html[lang|="zh"] .hero-kicker {
   font-family: var(--font-sans-cn);
   letter-spacing: 0.12em;
   text-transform: none;
@@ -2008,7 +2024,7 @@ html[lang="zh"] .hero-kicker {
   line-height: 1.04;
   letter-spacing: -0.035em;
 }
-html[lang="zh"] .hero-statement {
+html[lang|="zh"] .hero-statement {
   font-family: var(--font-serif-cn);
   font-size: clamp(2.25rem, 4.8vw, 4.35rem);
   font-weight: 600;
@@ -2123,7 +2139,7 @@ html[lang="zh"] .hero-statement {
   letter-spacing: 0.06em;
   text-align: center;
 }
-html[lang="zh"] .hero-portrait figcaption {
+html[lang|="zh"] .hero-portrait figcaption {
   font-family: var(--font-serif-cn);
   font-style: normal;
 }
@@ -2227,7 +2243,7 @@ html[lang="zh"] .hero-portrait figcaption {
   font-weight: 500;
   line-height: 1.15;
 }
-html[lang="zh"] .featured-work-card h3 {
+html[lang|="zh"] .featured-work-card h3 {
   font-family: var(--font-serif-cn);
   font-style: normal;
   font-weight: 600;
@@ -2292,29 +2308,34 @@ html[lang="zh"] .featured-work-card h3 {
 
 @media (max-width: 640px) {
   .nav {
+    position: relative;
     flex-wrap: wrap;
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
+  .nav .brand { display: inline-flex; align-items: center; min-height: 44px; padding-right: 64px; }
   .nav-links {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     order: 2;
     width: 100%;
     margin-top: 0.75rem;
     padding-top: 0.7rem;
     border-top: 1px solid var(--rule);
     justify-content: space-between;
-    gap: 0.5rem;
-    font-size: 0.73rem;
+    gap: 0.25rem;
+    font-size: 0.8rem;
   }
   .nav-links a,
   .nav-links a.cv-link,
   .nav-links .lang-toggle { display: inline-flex !important; }
-  .lang-toggle { padding: 0.2rem 0.5rem; font-size: 0.7rem; }
+  .nav-links a { min-width: 0; min-height: 44px; justify-content: center; align-items: center; letter-spacing: 0; }
+  .lang-toggle { position: absolute; top: 1rem; right: var(--gutter); min-width: 44px; min-height: 44px; justify-content: center; align-items: center; padding: 0.2rem 0.5rem; font-size: 0.8rem; }
 
   .hero-v2 { padding-top: 2.2rem; }
   .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-statement { font-size: clamp(2.45rem, 12.2vw, 3.35rem); }
-  html[lang="zh"] .hero-statement { font-size: clamp(2.05rem, 10.5vw, 2.8rem); }
+  html[lang|="zh"] .hero-statement { font-size: clamp(2.05rem, 10.5vw, 2.8rem); }
   .hero-intro { font-size: 0.96rem; }
   .hero-action { flex: 1 1 auto; }
   .hero-v2 .proof-chips { display: grid; grid-template-columns: 1fr; }
@@ -2407,10 +2428,11 @@ html[lang="zh"] .featured-work-card h3 {
 }
 .skill-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: 1rem;
 }
 .skill-card {
+  min-width: 0;
   border: 1px solid var(--rule);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.55);
@@ -2418,6 +2440,7 @@ html[lang="zh"] .featured-work-card h3 {
 }
 .skill-card-top {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 0.55rem;

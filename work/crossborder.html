@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js"></script>
 </head>
 <body>
 
@@ -56,9 +57,9 @@
         <span class="lang-zh">跨境电商从 0 到 1 —— AI 驱动的选品-上架全流程体系</span>
       </h1>
       <div class="case-meta-strip">
-        <span class="origin-pill origin-personal">Personal Project</span>
-        <span class="badge badge-building"><span class="pulse-dot pulse-dot-amber" aria-hidden="true"></span>Building</span>
-        <span class="case-layer">Applications</span>
+        <span class="origin-pill origin-personal"><span class="lang-en">Personal Project</span><span class="lang-zh">个人项目</span></span>
+        <span class="badge badge-building"><span class="pulse-dot pulse-dot-amber" aria-hidden="true"></span><span class="lang-en">Building</span><span class="lang-zh">开发中</span></span>
+        <span class="case-layer"><span class="lang-en">Applications</span><span class="lang-zh">应用层</span></span>
       </div>
       <div class="article-meta">
         <span class="lang-en">
@@ -71,7 +72,7 @@
       </div>
     </div>
 
-    <dl class="case-summary" aria-label="Case study summary">
+    <dl class="case-summary" aria-label="Case study summary" data-i18n-aria-label-en="Case study summary" data-i18n-aria-label-zh="案例摘要">
       <div>
         <dt><span class="lang-en">Context</span><span class="lang-zh">场景</span></dt>
         <dd><span class="lang-en">A real TikTok Shop Malaysia operation with money and inventory at risk</span><span class="lang-zh">承担真实资金与库存风险的马来西亚 TikTok Shop</span></dd>
@@ -118,28 +119,28 @@
           are excluded at the data source — not caught by manual review.
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 182" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-cb-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <!-- main chain: six stages -->
             <rect class="pl-box" x="6" y="24" width="102" height="52" rx="8"/>
-            <text class="pl-name" x="57" y="46" text-anchor="middle">市场调研</text>
-            <text class="pl-note" x="57" y="62" text-anchor="middle">公开社区内容检索</text>
+            <text class="pl-name" x="57" y="46" text-anchor="middle">Research</text>
+            <text class="pl-note" x="57" y="62" text-anchor="middle">Community search</text>
             <rect class="pl-box" x="126" y="24" width="102" height="52" rx="8"/>
-            <text class="pl-name" x="177" y="46" text-anchor="middle">选品</text>
-            <text class="pl-note" x="177" y="62" text-anchor="middle">四层漏斗·三源交叉</text>
+            <text class="pl-name" x="177" y="46" text-anchor="middle">Selection</text>
+            <text class="pl-note" x="177" y="62" text-anchor="middle">4 stages; 3 sources</text>
             <rect class="pl-box" x="246" y="24" width="102" height="52" rx="8"/>
-            <text class="pl-name" x="297" y="46" text-anchor="middle">货源</text>
-            <text class="pl-note" x="297" y="62" text-anchor="middle">1688·买样为硬前提</text>
+            <text class="pl-name" x="297" y="46" text-anchor="middle">Sourcing</text>
+            <text class="pl-note" x="297" y="62" text-anchor="middle">1688; samples first</text>
             <rect class="pl-box" x="366" y="24" width="102" height="52" rx="8"/>
-            <text class="pl-name" x="417" y="46" text-anchor="middle">定价</text>
-            <text class="pl-note" x="417" y="62" text-anchor="middle">利润测算模型</text>
+            <text class="pl-name" x="417" y="46" text-anchor="middle">Pricing</text>
+            <text class="pl-note" x="417" y="62" text-anchor="middle">Margin model</text>
             <rect class="pl-box" x="486" y="24" width="102" height="52" rx="8"/>
-            <text class="pl-name" x="537" y="46" text-anchor="middle">素材</text>
-            <text class="pl-note" x="537" y="62" text-anchor="middle">两层商品图工厂</text>
+            <text class="pl-name" x="537" y="46" text-anchor="middle">Creatives</text>
+            <text class="pl-note" x="537" y="62" text-anchor="middle">2-stage images</text>
             <rect class="pl-box" x="606" y="24" width="102" height="52" rx="8"/>
-            <text class="pl-name" x="657" y="46" text-anchor="middle">上架</text>
-            <text class="pl-note" x="657" y="62" text-anchor="middle">ERP API 管道</text>
+            <text class="pl-name" x="657" y="46" text-anchor="middle">Listing</text>
+            <text class="pl-note" x="657" y="62" text-anchor="middle">ERP API pipeline</text>
             <line class="pl-line" x1="111" y1="50" x2="121" y2="50" marker-end="url(#arr-cb-en)"/>
             <line class="pl-line" x1="231" y1="50" x2="241" y2="50" marker-end="url(#arr-cb-en)"/>
             <line class="pl-line" x1="351" y1="50" x2="361" y2="50" marker-end="url(#arr-cb-en)"/>
@@ -148,13 +149,10 @@
             <!-- risk-screening side note under 选品 -->
             <path class="pl-dash" d="M 177 76 V 116" marker-end="url(#arr-cb-en)"/>
             <rect class="pl-box" x="92" y="122" width="170" height="44" rx="8"/>
-            <text class="pl-name" x="177" y="140" text-anchor="middle">风控前置</text>
-            <text class="pl-note" x="177" y="156" text-anchor="middle">专利/退货/物流约束在源头排除</text>
+            <text class="pl-name" x="177" y="140" text-anchor="middle">Upfront risk checks</text>
+            <text class="pl-note" x="177" y="156" text-anchor="middle">Screen patents, returns and logistics at source</text>
           </svg>
-          <figcaption>
-            <span class="lang-en">Six-stage pipeline; risk screening happens at the data source, not in review.</span>
-            <span class="lang-zh">六环节流水线;风控发生在数据源头,而非人工复核。</span>
-          </figcaption>
+          <figcaption>Six-stage pipeline; risk screening happens at the data source, not in review.</figcaption>
         </figure>
 
         <h2>What shipped</h2>
@@ -210,7 +208,7 @@
           分工边界:我负责不可逆决策(市场/平台/品类选择、预算分配、风险判断)与平台侧运营(执照、店铺、ERP/API 开通),AI 承担数据抓取与工具链编码。用数据否决直觉——发饰品类因市场特性与引流款垄断被数据证实放弃;"运动手机壳"在马来的真实需求形态是防水袋。识别 RM0.01 引流款垄断的品类并规避,选择高客单、零引流款的空位品类。风控前置到搜索词:专利雷区、高退货品类、物流受限品在数据源头排除,而不是靠人工复核。
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 182" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-cb-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <!-- main chain: six stages -->
@@ -243,10 +241,7 @@
             <text class="pl-name" x="177" y="140" text-anchor="middle">风控前置</text>
             <text class="pl-note" x="177" y="156" text-anchor="middle">专利/退货/物流约束在源头排除</text>
           </svg>
-          <figcaption>
-            <span class="lang-en">Six-stage pipeline; risk screening happens at the data source, not in review.</span>
-            <span class="lang-zh">六环节流水线;风控发生在数据源头,而非人工复核。</span>
-          </figcaption>
+          <figcaption>六环节流水线;风控发生在数据源头,而非人工复核。</figcaption>
         </figure>
 
         <h2>交付</h2>
@@ -293,7 +288,7 @@
             <span class="lang-zh">简历 (英)</span>
           </a>
           <a href="../cv/zh.html">
-            <span class="lang-en">cv (中)</span>
+            <span class="lang-en">cv (zh)</span>
             <span class="lang-zh">简历 (中)</span>
           </a>
         </div>
@@ -305,6 +300,5 @@
     </div>
   </footer>
 
-  <script src="../script.js"></script>
 </body>
 </html>

@@ -14,6 +14,12 @@
   let pointerType = '';
   const returnKey = 'pz-work-return';
 
+  function announceCard(card) {
+    if (!announcement) return;
+    const lang = document.documentElement.lang === 'zh' ? 'zh' : 'en';
+    announcement.textContent = card ? card.querySelector(`.work-sr .lang-${lang}`).textContent : '';
+  }
+
   function preview(card, announce = false) {
     if (active === card) return;
     active = card;
@@ -23,10 +29,7 @@
         panel.replaceChildren(card.querySelector('.work-summary').content.cloneNode(true));
       } else panel.innerHTML = initial;
     });
-    if (announce && card) {
-      const lang = document.documentElement.lang === 'zh' ? 'zh' : 'en';
-      announcement.textContent = card.querySelector(`.work-sr .lang-${lang}`).textContent;
-    }
+    if (announce || !card) announceCard(card);
   }
 
   cards.forEach(card => {
@@ -37,7 +40,7 @@
     card.addEventListener('focus', () => preview(card, true));
     card.addEventListener('click', event => {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      const touch = event.detail !== 0 && (pointerType === 'touch' || matchMedia('(hover: none)').matches || matchMedia('(max-width: 700px)').matches);
+      const touch = event.detail !== 0 && (pointerType === 'touch' || (!pointerType && matchMedia('(hover: none)').matches));
       if (touch && armed !== card) {
         event.preventDefault();
         armed = card;
@@ -59,6 +62,7 @@
   map.addEventListener('keydown', event => {
     if (event.key === 'Escape') { armed = null; preview(null); }
   });
+  document.addEventListener('languagechange', () => { if (active) announceCard(active); });
   map.addEventListener('click', event => {
     if (!event.target.closest('.work-detail-link') || !active) return;
     try { sessionStorage.setItem(returnKey, active.id); } catch (_) { /* Links still work. */ }

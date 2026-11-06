@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>张若阳 — 简历（AI产品经理）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +51,14 @@
     .summary-block .row { display: grid; grid-template-columns: 95px 1fr; gap: 12px; margin-bottom: 3px; }
     .summary-block .label { font-weight: 600; color: #1a3a6c; letter-spacing: 1px; }
     a { color: #1a3a6c; text-decoration: none; }
+    @media screen and (max-width: 640px) {
+      body { padding: 24px 20px; overflow-wrap: anywhere; }
+      .header-row { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+      .contact-grid { grid-template-columns: minmax(0, 1fr); }
+      .entry-row1 { flex-wrap: wrap; gap: 2px 12px; }
+      .entry-date { white-space: normal; }
+      .summary-block .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    }
     @media print { html, body { background: #fff; } body { max-width: none; margin: 0; padding: 0; box-shadow: none; zoom: 0.86; }
       .header-left .objective { background: transparent; padding: 0; } }
     @page { size: A4; margin: 0.32in 0.45in; }

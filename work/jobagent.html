@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js"></script>
 </head>
 <body>
 
@@ -56,10 +57,10 @@
         <span class="lang-zh">求职自动化系统 —— 端到端 AI Agent 管线</span>
       </h1>
       <div class="case-meta-strip">
-        <span class="origin-pill origin-personal">Personal Project</span>
-        <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span>Running</span>
-        <a class="badge badge-oss" href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Public repo</a>
-        <span class="case-layer">Agents &amp; Skills</span>
+        <span class="origin-pill origin-personal"><span class="lang-en">Personal Project</span><span class="lang-zh">个人项目</span></span>
+        <span class="badge badge-running"><span class="pulse-dot" aria-hidden="true"></span><span class="lang-en">Running</span><span class="lang-zh">运行中</span></span>
+        <a class="badge badge-oss" href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener"><span class="lang-en">Public repo</span><span class="lang-zh">公开仓库</span></a>
+        <span class="case-layer"><span class="lang-en">Agents &amp; Skills</span><span class="lang-zh">智能体与技能</span></span>
       </div>
       <div class="article-meta">
         <span class="lang-en">
@@ -75,7 +76,7 @@
       </div>
     </div>
 
-    <dl class="case-summary" aria-label="Case study summary">
+    <dl class="case-summary" aria-label="Case study summary" data-i18n-aria-label-en="Case study summary" data-i18n-aria-label-zh="案例摘要">
       <div>
         <dt><span class="lang-en">Context</span><span class="lang-zh">场景</span></dt>
         <dd><span class="lang-en">A fragmented, repetitive campus job-search loop</span><span class="lang-zh">分散且重复的校招求职流程</span></dd>
@@ -103,14 +104,14 @@
         </span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">2×/day</span>
+        <span class="stat-num"><span class="lang-en">2×/day</span><span class="lang-zh">每日 2 次</span></span>
         <span class="stat-label">
           <span class="lang-en">scheduled runs</span>
           <span class="lang-zh">每日两班</span>
         </span>
       </div>
       <div class="stat-item">
-        <span class="stat-num">≤ 10 min</span>
+        <span class="stat-num"><span class="lang-en">≤ 10 min</span><span class="lang-zh">≤ 10 分钟</span></span>
         <span class="stat-label">
           <span class="lang-en">daily loop budget</span>
           <span class="lang-zh">每日循环时间预算</span>
@@ -148,21 +149,21 @@
           must trace back to a ledger of verified facts.
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-ja-en" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <!-- main chain -->
             <rect class="pl-box" x="10" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="75" y="50" text-anchor="middle">多信源</text>
-            <text class="pl-note" x="75" y="66" text-anchor="middle">结构化表+平台API</text>
+            <text class="pl-name" x="75" y="50" text-anchor="middle">Multiple sources</text>
+            <text class="pl-note" x="75" y="66" text-anchor="middle">Tables + APIs</text>
             <rect class="pl-box" x="175" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="240" y="50" text-anchor="middle">筛选+去重</text>
-            <text class="pl-note" x="240" y="66" text-anchor="middle">画像匹配</text>
+            <text class="pl-name" x="240" y="50" text-anchor="middle">Filter + dedupe</text>
+            <text class="pl-note" x="240" y="66" text-anchor="middle">Profile matching</text>
             <rect class="pl-box" x="340" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="405" y="50" text-anchor="middle">LLM Agent 富化</text>
-            <text class="pl-note" x="405" y="66" text-anchor="middle">官方入口·JD·匹配度</text>
+            <text class="pl-name" x="405" y="50" text-anchor="middle">LLM enrichment</text>
+            <text class="pl-note" x="405" y="66" text-anchor="middle">Official link / JD / fit</text>
             <rect class="pl-box" x="505" y="28" width="130" height="52" rx="8"/>
-            <text class="pl-name" x="570" y="50" text-anchor="middle">每日推送</text>
+            <text class="pl-name" x="570" y="50" text-anchor="middle">Daily digest</text>
             <text class="pl-note" x="570" y="66" text-anchor="middle">Feishu</text>
             <line class="pl-line" x1="144" y1="54" x2="168" y2="54" marker-end="url(#arr-ja-en)"/>
             <line class="pl-line" x1="309" y1="54" x2="333" y2="54" marker-end="url(#arr-ja-en)"/>
@@ -175,19 +176,16 @@
             <path class="pl-dash" d="M 75 160 H 570"/>
             <path class="pl-dash" d="M 95 160 V 180" marker-end="url(#arr-ja-en)"/>
             <rect class="pl-box" x="10" y="186" width="170" height="44" rx="8"/>
-            <text class="pl-name" x="95" y="204" text-anchor="middle">故障报警</text>
-            <text class="pl-note" x="95" y="220" text-anchor="middle">独立凭证通道</text>
+            <text class="pl-name" x="95" y="204" text-anchor="middle">Failure alerts</text>
+            <text class="pl-note" x="95" y="220" text-anchor="middle">Separate credentials</text>
             <!-- ledger feedback loop -->
             <rect class="pl-box" x="575" y="186" width="105" height="40" rx="8"/>
-            <text class="pl-name" x="627" y="210" text-anchor="middle">投递台账</text>
+            <text class="pl-name" x="627" y="210" text-anchor="middle">Application ledger</text>
             <path class="pl-line" d="M 635 54 C 692 62, 692 150, 640 180" marker-end="url(#arr-ja-en)"/>
             <path class="pl-line" d="M 575 206 C 420 246, 275 165, 244 88" marker-end="url(#arr-ja-en)"/>
-            <text class="pl-anno" x="415" y="243" text-anchor="middle">已投抑制 / applied-suppression</text>
+            <text class="pl-anno" x="415" y="243" text-anchor="middle">Skip prior applications</text>
           </svg>
-          <figcaption>
-            <span class="lang-en">Daily pipeline: discovery → filter → LLM enrichment → push, with an independent alerting rail and a ledger feedback loop.</span>
-            <span class="lang-zh">每日管线:发现→筛选→LLM富化→推送;独立报警轨 + 台账回流抑制。</span>
-          </figcaption>
+          <figcaption>Daily pipeline: discovery → filter → LLM enrichment → push, with an independent alerting rail and a ledger feedback loop.</figcaption>
         </figure>
 
         <h2>What shipped</h2>
@@ -219,9 +217,9 @@
         </p>
 
         <ul>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Architecture &amp; design decisions / 架构与设计决策 (README)</a></li>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Agent prompts: discovery &amp; enrichment / 发现与富化提示词</a></li>
-          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Skills: career-archive · resume-tailor · apply / 三个编排 skill（已脱敏）</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Architecture &amp; design decisions (README)</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Agent prompts: discovery &amp; enrichment</a></li>
+          <li><a href="https://github.com/PacificaPie/job-search-agent" target="_blank" rel="noopener">Skills: career-archive · resume-tailor · apply (sanitized)</a></li>
         </ul>
 
         <h2>What iterating taught me</h2>
@@ -255,7 +253,7 @@
           简历上每个数字必须可溯源到事实台账。
         </p>
 
-        <figure class="pipeline-fig">
+        <figure class="pipeline-fig" tabindex="0" role="group" aria-label="Scrollable process diagram" data-i18n-aria-label-en="Scrollable process diagram" data-i18n-aria-label-zh="可横向滚动的流程图">
           <svg viewBox="0 0 720 248" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <defs><marker id="arr-ja-zh" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0 L8 4 L0 8 Z" fill="currentColor"/></marker></defs>
             <!-- main chain -->
@@ -291,10 +289,7 @@
             <path class="pl-line" d="M 575 206 C 420 246, 275 165, 244 88" marker-end="url(#arr-ja-zh)"/>
             <text class="pl-anno" x="415" y="243" text-anchor="middle">已投抑制 / applied-suppression</text>
           </svg>
-          <figcaption>
-            <span class="lang-en">Daily pipeline: discovery → filter → LLM enrichment → push, with an independent alerting rail and a ledger feedback loop.</span>
-            <span class="lang-zh">每日管线:发现→筛选→LLM富化→推送;独立报警轨 + 台账回流抑制。</span>
-          </figcaption>
+          <figcaption>每日管线:发现→筛选→LLM富化→推送;独立报警轨 + 台账回流抑制。</figcaption>
         </figure>
 
         <h2>交付</h2>
@@ -363,7 +358,7 @@
             <span class="lang-zh">简历 (英)</span>
           </a>
           <a href="../cv/zh.html">
-            <span class="lang-en">cv (中)</span>
+            <span class="lang-en">cv (zh)</span>
             <span class="lang-zh">简历 (中)</span>
           </a>
         </div>
@@ -375,6 +370,5 @@
     </div>
   </footer>
 
-  <script src="../script.js"></script>
 </body>
 </html>

@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
 </head>
 <body>
 
@@ -49,7 +50,7 @@
     <div class="article-header">
       <div class="article-eyebrow-block blue">
         <span class="lang-en">skills · toolchain</span>
-        <span class="lang-zh">skills · 工具集</span>
+        <span class="lang-zh">技能 · 工具集</span>
       </div>
       <h1 class="article-title">
         <span class="lang-en">Methodology, compiled into runnable assets.</span>
@@ -59,7 +60,7 @@
         <span class="lang-en">agent skills I design, build, and run for my own workflows</span>
         <span class="lang-zh">为自己的工作流设计、构建并日常运行的 agent skills</span>
       </div>
-      <div class="skills-count-strip" aria-label="Portfolio counts">
+      <div class="skills-count-strip" aria-label="Portfolio counts" data-i18n-aria-label-en="Portfolio counts" data-i18n-aria-label-zh="工具集数量概览">
         <span class="skills-count">15 <span class="lang-en">built</span><span class="lang-zh">个已建</span></span>
         <span class="skills-count">8 <span class="lang-en">components public</span><span class="lang-zh">个组件公开</span></span>
         <span class="skills-count">3 <span class="lang-en">compositions running</span><span class="lang-zh">个组合在跑</span></span>
@@ -188,7 +189,7 @@
         <div class="skill-card">
           <div class="skill-card-top">
             <span class="skill-name">competitor-research</span>
-            <span class="skill-form-tag"><span class="lang-en">research harness</span><span class="lang-zh">调研 harness</span></span>
+            <span class="skill-form-tag"><span class="lang-en">research harness</span><span class="lang-zh">调研框架</span></span>
           </div>
           <p class="skill-desc">
             <span class="lang-en">Exhaustive bilingual competitor sweeps across apps, web, and AI agents — a ledger that won't stop until the search is truly dry.</span>
@@ -244,7 +245,7 @@
               <span class="orch-name"><span class="lang-en">Job-search Agent</span><span class="lang-zh">求职 Agent</span></span>
               <span class="skill-form-tag"><span class="lang-en">autonomous loop</span><span class="lang-zh">自治循环</span></span>
             </div>
-            <div class="orch-chain">MCP sources → filter / dedupe → LLM enrich → Feishu push&nbsp;&nbsp;|&nbsp;&nbsp;cron 2×/day&nbsp;&nbsp;|&nbsp;&nbsp;material: career-archive&nbsp;&nbsp;|&nbsp;&nbsp;gate: never auto-submit</div>
+            <div class="orch-chain"><span class="lang-en">MCP sources → filter / dedupe → LLM enrich → Feishu push&nbsp;&nbsp;|&nbsp;&nbsp;cron 2×/day&nbsp;&nbsp;|&nbsp;&nbsp;material: career-archive&nbsp;&nbsp;|&nbsp;&nbsp;gate: never auto-submit</span><span class="lang-zh">MCP 数据源 → 筛选去重 → 大模型补充信息 → 飞书推送 | 每日定时运行 2 次 | 素材：career-archive | 边界：不自动提交</span></div>
             <p class="skill-desc">
               <span class="lang-en">
                 Skills, MCP feeds, and a scheduler composed into an unattended daily pipeline.
@@ -267,7 +268,7 @@
               <span class="orch-name"><span class="lang-en">career-archive pipeline</span><span class="lang-zh">career-archive 管线</span></span>
               <span class="skill-form-tag"><span class="lang-en">staged pipeline</span><span class="lang-zh">分层管线</span></span>
             </div>
-            <div class="orch-chain">capture (append-only) → organize (distill) → tailor (reserved)&nbsp;&nbsp;|&nbsp;&nbsp;interface: human sign-off gates</div>
+            <div class="orch-chain"><span class="lang-en">capture (append-only) → organize (distill) → tailor (reserved)&nbsp;&nbsp;|&nbsp;&nbsp;interface: human sign-off gates</span><span class="lang-zh">捕获（仅追加）→ 整理（提炼）→ 定制（预留）| 各阶段经人工确认</span></div>
             <p class="skill-desc">
               <span class="lang-en">
                 Three modes of one skill chained into a pipeline. The interface between layers
@@ -284,7 +285,7 @@
               <span class="orch-name">TripAlarm</span>
               <span class="skill-form-tag"><span class="lang-en">product loop</span><span class="lang-zh">产品闭环</span></span>
             </div>
-            <div class="orch-chain">skill front door → resident server → year-round price watch → push → /lock · /pause · /delete</div>
+            <div class="orch-chain"><span class="lang-en">skill front door → resident server → year-round price watch → push → /lock · /pause · /delete</span><span class="lang-zh">技能入口 → 常驻服务 → 全年价格监控 → 推送 → /lock · /pause · /delete</span></div>
             <p class="skill-desc">
               <span class="lang-en">
                 A conversational skill in front, a resident server behind: the skill files the
@@ -339,7 +340,7 @@
             <span class="lang-zh">简历 (英)</span>
           </a>
           <a href="cv/zh.html">
-            <span class="lang-en">cv (中)</span>
+            <span class="lang-en">cv (zh)</span>
             <span class="lang-zh">简历 (中)</span>
           </a>
         </div>
@@ -351,6 +352,5 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

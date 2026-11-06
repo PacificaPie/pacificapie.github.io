@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
 node --check script.js
+node --check work-map.js
 
 test -s assets/pacifica-avatar.png
 test -s favicon.ico
@@ -33,6 +34,7 @@ while IFS= read -r html_file; do
     ref="${attribute#*=\"}"
     ref="${ref%\"}"
     ref="${ref%%#*}"
+    ref="${ref%%\?*}"
     case "$ref" in
       ''|http://*|https://*|mailto:*|javascript:*|data:*) continue ;;
     esac
