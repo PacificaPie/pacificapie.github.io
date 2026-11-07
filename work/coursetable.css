@@ -1,0 +1,50 @@
+.ct-story .article-title { max-width: 680px; text-wrap: balance; }
+.ct-status {
+  margin: 1.3rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--blue);
+  color: var(--ink-soft);
+  font-size: .85rem;
+  line-height: 1.8;
+}
+.ct-example { margin: 2rem 0; }
+.ct-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.ct-plan {
+  border: 1px solid var(--rule);
+  padding: 1.3rem;
+  background: var(--bg-tint);
+}
+.ct-plan:last-child { background: color-mix(in srgb, var(--blue-soft) 35%, var(--bg)); }
+.ct-plan-label { font: italic 1.8rem var(--font-serif-en); color: var(--blue); }
+.article-body .ct-plan h3 { margin: .5rem 0 .8rem; font-size: 1.15rem; }
+.article-body .ct-plan p { font-size: .85rem; line-height: 1.85; margin: 0 0 .9rem; }
+.ct-course-list { padding-top: .8rem; border-top: 1px solid var(--rule); letter-spacing: .02em; }
+.ct-course-list span { display: block; }
+.article-body .ct-plan .ct-plan-result { margin-bottom: 0; color: var(--blue); }
+.ct-example figcaption { margin-top: .9rem; font-size: .75rem; line-height: 1.8; color: var(--muted); }
+.ct-check {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-left: 2px solid var(--accent);
+  background: var(--bg-tint);
+}
+.article-body .ct-check p { margin: 0; font-size: .85rem; line-height: 1.85; }
+.ct-responsibilities { display: grid; gap: 0; margin: 1.5rem 0 2rem; }
+.ct-responsibilities section {
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 1.3rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--rule);
+}
+.article-body .ct-responsibilities h3 { margin: 0; font-size: 1.05rem; color: var(--blue); }
+.article-body .ct-responsibilities p { margin: 0; font-size: .9rem; line-height: 1.9; }
+@media (max-width: 560px) {
+  .ct-comparison { grid-template-columns: 1fr; }
+  .ct-responsibilities section { grid-template-columns: 1fr; gap: .5rem; }
+  .ct-plan { padding: 1.1rem; }
+}

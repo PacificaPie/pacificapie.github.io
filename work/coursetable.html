@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-en="CourseTable Agent — Course Planning Prototype" data-zh="CourseTable Agent — 选课规划原型">CourseTable Agent — Course Planning Prototype</title>
+  <meta name="description" content="An MCP course-planning prototype with explicit constraints, independent A/B plans, persistent state, and CourseTable worksheet previews.">
+  <link rel="icon" href="../favicon.ico">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..500&family=Inter:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="coursetable.css">
+  <script src="../script.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <a href="../index.html" class="brand">
+      <span class="lang-en">Pacifica Zhang</span>
+      <span class="lang-zh">张若阳</span>
+    </a>
+    <div class="nav-links">
+      <a href="../about.html">
+        <span class="lang-en">about</span>
+        <span class="lang-zh">关于</span>
+      </a>
+      <a href="../index.html#work">
+        <span class="lang-en">work</span>
+        <span class="lang-zh">作品</span>
+      </a>
+      <a href="../index.html#writing">
+        <span class="lang-en">writing</span>
+        <span class="lang-zh">写作</span>
+      </a>
+      <a href="../cv.html" class="cv-link">
+        <span class="lang-en">cv</span>
+        <span class="lang-zh">简历</span>
+      </a>
+      <button class="lang-toggle" type="button">EN</button>
+    </div>
+  </nav>
+
+  <article class="article wrap ct-story">
+    <div class="article-header">
+      <div class="article-eyebrow-block"><span class="lang-en">prototype · constraint planning &amp; agent state</span><span class="lang-zh">原型 · 约束规划与 Agent 状态管理</span></div>
+      <h1 class="article-title"><span class="lang-en">CourseTable Agent — course plans that can change with you</span><span class="lang-zh">CourseTable Agent —— 从选课偏好，到可比较的方案</span></h1>
+      <div class="case-meta-strip">
+        <span class="origin-pill origin-personal"><span class="lang-en">Personal prototype</span><span class="lang-zh">个人原型</span></span>
+        <span class="case-layer"><span class="lang-en">Agent systems · MCP</span><span class="lang-zh">Agent 系统 · MCP</span></span>
+      </div>
+      <div class="article-meta"><span class="lang-en">Product design · task boundaries, state &amp; evaluation · implementation with AI</span><span class="lang-zh">产品设计 · 任务边界、状态与评测 · 与 AI 协作实现</span></div>
+      <p class="ct-status"><span class="lang-en">The tool and state layers are implemented. The product frontend and full AI conversation experience are the next stage.</span><span class="lang-zh">已实现工具与状态层；产品前端和完整 AI 对话体验仍待完善。</span></p>
+    </div>
+
+    <dl class="case-summary" aria-label="Case study summary" data-i18n-aria-label-en="Case study summary" data-i18n-aria-label-zh="案例摘要">
+      <div><dt><span class="lang-en">Problem</span><span class="lang-zh">问题</span></dt><dd><span class="lang-en">Course choices change as constraints become clearer</span><span class="lang-zh">偏好不断变化，选课方案需要跟着调整</span></dd></div>
+      <div><dt><span class="lang-en">My focus</span><span class="lang-zh">能力侧重</span></dt><dd><span class="lang-en">Constraint modeling · independent plans · persistent state</span><span class="lang-zh">约束建模 · 方案分支 · 持久化状态</span></dd></div>
+      <div><dt><span class="lang-en">Architecture</span><span class="lang-zh">架构</span></dt><dd><span class="lang-en">Host AI + MCP planning tools + SQLite</span><span class="lang-zh">宿主 AI + MCP 规划工具 + SQLite</span></dd></div>
+      <div><dt><span class="lang-en">Evidence</span><span class="lang-zh">当前验证</span></dt><dd><span class="lang-en">Public course data, a fictional student, and a working tool chain</span><span class="lang-zh">公开课程与虚构学生已跑通工具链路</span></dd></div>
+    </dl>
+
+    <div class="article-body">
+      <div class="lang-en">
+        <h2>“Keep Tuesday afternoon free. What if I take more programming?”</h2>
+        <p>Course planning starts with a mix of requirements, interests, and half-formed preferences. The difficult part comes when one of them changes: which plan are we editing, what must stay fixed, and which earlier result can we still trust?</p>
+        <p>I built this prototype around that revision loop. A host AI can turn the conversation into structured inputs; MCP tools search the public CourseTable catalog, check explicit constraints, and save separate plans. The output is a combination to compare and a shared worksheet to preview, with unresolved checks kept alongside it.</p>
+      </div>
+      <div class="lang-zh">
+        <h2>“周二下午别排课。但如果我想多学一点编程呢？”</h2>
+        <p>选课的起点往往是混在一起的要求、兴趣和还没想清楚的偏好。真正麻烦的是改主意之后：现在改的是哪份方案，哪些条件还要保留，之前算出来的结果还能不能用？</p>
+        <p>我围绕这轮反复修改做了一个原型。宿主 AI 将对话整理成结构化输入，MCP 工具查询 CourseTable 公开课程、检查明确约束，并分别保存不同方案。最终交付可以比较的课程组合和共享课表预览，同时保留仍需核实的事项。</p>
+      </div>
+
+      <figure class="ct-example">
+        <div class="ct-comparison">
+          <section class="ct-plan">
+            <span class="ct-plan-label">A</span>
+            <h3><span class="lang-en">Keep Tuesday afternoon free</span><span class="lang-zh">保留周二下午</span></h3>
+            <p><span class="lang-en">Block Tuesday, 13:00–18:00, and find a course combination within the remaining constraints.</span><span class="lang-zh">周二 13:00–18:00 不排课，在其余约束内寻找课程组合。</span></p>
+            <p class="ct-course-list"><span>CPSC 2010</span><span>PHIL 1125</span><span>PHIL 1175</span></p>
+            <p class="ct-plan-result"><span class="lang-en">Saved as its own plan</span><span class="lang-zh">作为独立方案保存</span></p>
+          </section>
+          <section class="ct-plan">
+            <span class="ct-plan-label">B</span>
+            <h3><span class="lang-en">Add a programming course</span><span class="lang-zh">增加一门编程课</span></h3>
+            <p><span class="lang-en">Fork A, release the Tuesday restriction, and fix CPSC 2230 in the new plan.</span><span class="lang-zh">从 A 复制，放开周二限制，并在新方案中固定加入 CPSC 2230。</span></p>
+            <p class="ct-course-list"><span>CPSC 2010</span><span>CPSC 2230</span><span>PHIL 1125</span></p>
+            <p class="ct-plan-result"><span class="lang-en">Changing B leaves A intact</span><span class="lang-zh">修改 B，A 的条件保持不变</span></p>
+          </section>
+        </div>
+        <div class="ct-check">
+          <p><span class="lang-en"><strong>Still to check:</strong> B includes CPSC 2230, whose catalog prerequisites include CPSC 2000 or 2010. The fictional student has only <em>planned</em> 2010. The prototype carries this requirement forward as unresolved; fitting the timetable does not establish eligibility.</span><span class="lang-zh"><strong>仍需核实：</strong>B 中的 CPSC 2230 要求先修 CPSC 2000 或 2010，而虚构学生的 2010 只是“计划修读”。原型继续返回这条未核验要求；时间排得下，并不代表已经具备修读资格。</span></p>
+        </div>
+        <figcaption><span class="lang-en">Recorded protocol demo, October 5, 2026 · real public catalog snapshot, fictional student · example output, not a live product interface.</span><span class="lang-zh">2026 年 10 月 5 日协议演示记录 · 真实公开课程快照、虚构学生 · 此处展示输出示例，非产品前端。</span></figcaption>
+      </figure>
+
+      <h2><span class="lang-en">Give each part a clear responsibility</span><span class="lang-zh">让理解、检查和记忆各有归属</span></h2>
+      <div class="ct-responsibilities">
+        <section>
+          <h3><span class="lang-en">Host AI</span><span class="lang-zh">宿主 AI</span></h3>
+          <p><span class="lang-en">Handles the conversation, interprets materials, asks for clarification, and explains tradeoffs. Those abilities come from the host; the MCP server does not call a model itself. Full conversation and attachment handling still need validation.</span><span class="lang-zh">负责对话、理解材料、澄清偏好和解释取舍。这些能力来自宿主，MCP 服务本身不调用模型；完整对话和附件理解仍需单独验证。</span></p>
+        </section>
+        <section>
+          <h3><span class="lang-en">Planning tools</span><span class="lang-zh">规划工具</span></h3>
+          <p><span class="lang-en">Search a public catalog snapshot and solve within an explicit candidate pool. Check known class times, fixed courses, credits, and excluded time slots; rank supported soft preferences such as avoiding early classes.</span><span class="lang-zh">查询公开目录快照，在明确候选池内求解。检查已知上课时间、固定课程、学分和禁排时段，再按照避开早课等已支持的软偏好排序。</span></p>
+        </section>
+        <section>
+          <h3><span class="lang-en">Persistent state</span><span class="lang-zh">持久化状态</span></h3>
+          <p><span class="lang-en">SQLite stores the student profile, separate scenarios, and historical results. Each result is tied to its inputs. A changed profile, plan, or catalog makes an old result stale and requires a new solve before export.</span><span class="lang-zh">SQLite 保存学生档案、独立方案和历史结果。每次结果绑定当时的输入；档案、方案或目录发生变化后，旧结果会失效，需要重新求解才能导出。</span></p>
+        </section>
+      </div>
+
+      <div class="lang-en">
+        <h2>The product work is in what happens after a change</h2>
+        <p>My focus is turning an open-ended planning task into explicit operations: confirm a background fact, update one scenario, fork another direction, compare results, and choose a specific combination to preview. Persistent state makes those decisions available beyond a single conversation.</p>
+        <p>That also defines how I evaluate the system. Updating B must leave A unchanged. A newly confirmed fact must invalidate incompatible old results. A plan with no solution must stay unsolved until someone changes a condition. And a planned course must never silently become a completed prerequisite.</p>
+        <h2>What the prototype has demonstrated</h2>
+        <p>The recorded demo uses public courses and a fictional student to complete profile storage, course search, A/B branching, comparison, and worksheet export through a real MCP service. It also checks state recovery after reconnection and rejection of stale exports.</p>
+        <p>A separate evaluation journey covers ten checkpoints, with eight automated backend checks. Natural-language extraction, ambiguous references, explanations, and real attachments require a separate host-AI evaluation; the protocol demo does not establish that full experience.</p>
+        <h2>Next: make the planning loop visible</h2>
+        <p>The next product step is a frontend where students can see the constraints they have confirmed, compare A and B, edit the right plan, and understand why a result needs recalculation. Pending checks should remain visible next to the worksheet preview.</p>
+        <p>Real student trials will help test that experience. Today the prototype uses public catalog snapshots and shared previews; account sign-in, private evaluations, registration writes, live seat availability, and a complete degree audit are outside the implemented scope.</p>
+      </div>
+      <div class="lang-zh">
+        <h2>产品设计，落在每次改动之后会发生什么</h2>
+        <p>我的重点是把开放式的选课任务拆成明确操作：确认一项背景信息、修改某个方案、复制另一条方向、比较结果，再选择具体组合打开预览。持久化状态让这些决定可以跨会话继续使用。</p>
+        <p>这也决定了评测要看什么。修改 B 时，A 应该保持原样；确认新信息后，不再适用的旧结果应该失效；条件无解时，需要先改变条件才能继续；“计划修读”的课程，不能悄悄变成“已经完成”的先修课。</p>
+        <h2>原型目前验证了什么</h2>
+        <p>现有演示使用公开课程与虚构学生，通过真实 MCP 服务跑通了档案保存、查课、A/B 分支、方案比较和课表预览导出，也检查了断开重连后的状态恢复，以及旧结果导出被拒绝的情况。</p>
+        <p>此外，完整选课旅程被拆成十个评测检查点，其中八项可以通过后端自动检查。自然语言提取、模糊指代、解释和真实附件仍需在宿主 AI 中单独评测；协议演示还不能证明完整对话体验已经成立。</p>
+        <h2>下一步，把这轮修改变成看得见的体验</h2>
+        <p>前端会围绕学生真正需要判断的内容继续打磨：已经确认了哪些条件，A 和 B 有什么区别，当前改的是哪份方案，为什么要重新计算。仍需核实的事项也应和课表预览放在一起。</p>
+        <p>接下来会用真实学生试用来检验这些设计。当前原型使用公开课程快照和共享预览，尚未接入账号登录、私有评价或注册写入，也不覆盖实时余量与完整学位审计。</p>
+      </div>
+
+      <div class="article-end"><div class="signoff"><span class="lang-en">Pacifica Zhang · Planning, state, and decisions that stay editable</span><span class="lang-zh">若阳 · 规划、状态，以及可以继续修改的决定</span></div><p><a href="../index.html#work-coursetable"><span class="lang-en">← Back to the work map</span><span class="lang-zh">← 返回作品地图</span></a></p></div>
+    </div>
+  </article>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="mailto:ruoyang.zhang@yale.edu">ruoyang.zhang@yale.edu</a>
+          <a href="https://github.com/PacificaPie" target="_blank" rel="noopener">github</a>
+          <a href="https://www.linkedin.com/in/pacifica-zhang" target="_blank" rel="noopener">linkedin</a>
+          <a href="../cv/en.html">
+            <span class="lang-en">cv (en)</span>
+            <span class="lang-zh">简历 (英)</span>
+          </a>
+          <a href="../cv/zh.html">
+            <span class="lang-en">cv (zh)</span>
+            <span class="lang-zh">简历 (中)</span>
+          </a>
+        </div>
+        <div class="footer-signoff">
+          <span class="lang-en">— written and rewritten in New Haven, CT 06511</span>
+          <span class="lang-zh">—— 写于 New Haven, CT 06511</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
